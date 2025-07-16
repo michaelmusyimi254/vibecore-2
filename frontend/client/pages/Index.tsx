@@ -53,9 +53,18 @@ export default function Index() {
               </Link>
             </nav>
           </div>
-          <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-            Login/Register
-          </Button>
+          <div className="flex items-center space-x-4">
+            <Link to="/login">
+              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
+                Register
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
