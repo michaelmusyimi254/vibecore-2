@@ -299,7 +299,7 @@ export default function TrainerProfile() {
                       {[5,4,3,2,1].map(r => <option key={r} value={r}>{r}</option>)}
                     </select>
                     <textarea className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Comment" required />
-                    <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Submit</Button>
+                    <Button type="submit" size="sm" className="w-full bg-vibecore-red text-white rounded-full mt-2">Submit</Button>
                   </form>
                 </CardContent>
               </Card>
@@ -307,10 +307,10 @@ export default function TrainerProfile() {
             {/* Right column: tabs and tab content */}
             <div className="md:col-span-2 space-y-6">
               <Tabs defaultValue="packages" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8 bg-gray-100 rounded-2xl p-1">
-                  <TabsTrigger value="packages" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Packages</TabsTrigger>
-                  <TabsTrigger value="schedule" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Schedule</TabsTrigger>
-                  <TabsTrigger value="reviews" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Reviews</TabsTrigger>
+                <TabsList className="flex gap-2 overflow-x-auto md:grid md:grid-cols-3 mb-8 bg-gray-100 rounded-2xl p-1 scrollbar-hide pb-2">
+                  <TabsTrigger value="packages" className="min-w-[120px] rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Packages</TabsTrigger>
+                  <TabsTrigger value="schedule" className="min-w-[120px] rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Schedule</TabsTrigger>
+                  <TabsTrigger value="events" className="min-w-[120px] rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Events</TabsTrigger>
                 </TabsList>
                 {/* Packages Tab */}
                 <TabsContent value="packages">
@@ -380,11 +380,11 @@ export default function TrainerProfile() {
                   <Card>
                     <CardHeader><CardTitle>Weekly Availability</CardTitle></CardHeader>
                     <CardContent>
-                      <div className="grid gap-4">
+                      <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:gap-6 scrollbar-hide pb-2">
                         {trainer.availability.map((day) => (
-                          <div key={day.day} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                          <div key={day.day} className="min-w-[220px] flex-shrink-0 flex flex-col items-start justify-between p-4 bg-gray-50 rounded-xl md:min-w-0 md:w-full">
                             <h4 className="font-medium w-24">{day.day}</h4>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-2 mt-2">
                               {day.times.map((time) => (
                                 <Badge key={time} variant={time === "Rest Day" ? "secondary" : "default"} className="rounded-full">{time}</Badge>
                               ))}
@@ -398,38 +398,25 @@ export default function TrainerProfile() {
                     </CardContent>
                   </Card>
                 </TabsContent>
-                {/* Reviews Tab */}
-                <TabsContent value="reviews">
+                {/* Events Tab */}
+                <TabsContent value="events">
                   <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-semibold">Client Reviews ({trainer.reviews.length})</h3>
-                      <div className="flex items-center">
-                        <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                        <span className="font-bold text-lg ml-1">{trainer.rating}</span>
-                        <span className="text-gray-600 ml-1">out of 5</span>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      {trainer.reviews.map((review, index) => (
-                        <Card key={index}>
-                          <CardContent className="p-6">
-                            <div className="flex items-start justify-between mb-3">
-                              <div className="flex items-center">
-                                <Avatar className="w-10 h-10 mr-3"><AvatarFallback>{review.name.charAt(0)}</AvatarFallback></Avatar>
-                                <div>
-                                  <div className="flex items-center"><h4 className="font-medium">{review.name}</h4>{review.verified && (<CheckCircle className="w-4 h-4 text-green-500 ml-2" />)}</div>
-                                  <p className="text-gray-500 text-sm">{review.date}</p>
-                                </div>
-                              </div>
-                              <div className="flex">{Array.from({ length: review.rating }).map((_, i) => (<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />))}</div>
+                    <h3 className="text-xl font-semibold mb-4">Upcoming Events</h3>
+                    <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:gap-6 scrollbar-hide pb-2">
+                      {[{title: 'Bootcamp Challenge', date: '2024-07-10', time: '10:00 AM', location: 'Main Gym', spots: '10 spots left', image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=300&h=200&fit=crop'}, {title: 'Nutrition Workshop', date: '2024-07-15', time: '2:00 PM', location: 'Studio B', spots: '20 spots left', image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=300&h=200&fit=crop'}].map((event, idx) => (
+                        <Card key={idx} className="min-w-[320px] md:min-w-0">
+                          <CardContent className="p-4">
+                            <img src={event.image} alt={event.title} className="w-full h-32 object-cover rounded-xl mb-3" />
+                            <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
+                            <div className="text-sm text-gray-600 mb-1">{event.date} • {event.time}</div>
+                            <div className="text-sm text-gray-600 mb-2">{event.location}</div>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-gray-500">{event.spots}</span>
+                              <Button size="sm" className="bg-vibecore-red text-white rounded-full">Join</Button>
                             </div>
-                            <p className="text-gray-600">{review.comment}</p>
                           </CardContent>
                         </Card>
                       ))}
-                    </div>
-                    <div className="text-center">
-                      <Button variant="outline" className="rounded-full px-8">View All Reviews</Button>
                     </div>
                   </div>
                 </TabsContent>
