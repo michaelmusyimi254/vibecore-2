@@ -130,6 +130,11 @@ export default function FacilityProfile() {
     },
   ];
 
+  // 1. Add state for selected package, form fields, submission, and confirmation
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: '', email: '', phone: '', reason: '', hearAbout: '', message: '', subscribe: false });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
@@ -377,16 +382,10 @@ export default function FacilityProfile() {
                     Calendar
                   </TabsTrigger>
                   <TabsTrigger
-                    value="price"
+                    value="packages"
                     className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
                   >
-                    Price
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="booking"
-                    className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-                  >
-                    Booking
+                    Packages
                   </TabsTrigger>
                   <TabsTrigger
                     value="events"
@@ -503,53 +502,66 @@ export default function FacilityProfile() {
                     </CardContent>
                   </Card>
                 </TabsContent>
-                <TabsContent value="price">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {packages.map((pkg, idx) => (
-                      <Card key={pkg.name} className="flex flex-col h-full justify-between border-2 border-gray-200 hover:border-vibecore-red transition-colors">
+                <TabsContent value="packages">
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    {packages.map((pkg) => (
+                      <Card key={pkg.name} className={`flex flex-col h-full justify-between border-2 transition-colors ${selectedPackage === pkg.name ? 'border-vibecore-red' : 'border-gray-200 hover:border-vibecore-red'}`}> 
                         <CardHeader>
                           <CardTitle className="text-lg font-bold mb-2">{pkg.name}</CardTitle>
                           <div className="text-3xl font-bold text-vibecore-red mb-1">{pkg.price}</div>
                         </CardHeader>
                         <CardContent className="flex-1 flex flex-col justify-between">
                           <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
-                          <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full mt-auto">Select</Button>
+                          <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full mt-auto" onClick={() => { setSelectedPackage(pkg.name); setFormSubmitted(false); }}>Select</Button>
                         </CardContent>
                       </Card>
                     ))}
                   </div>
-                </TabsContent>
-                <TabsContent value="booking">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Book This Facility</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <form className="space-y-3">
-                        <input type="text" className="w-full border rounded px-2 py-1 text-sm" placeholder="Your Name" required />
-                        <input type="email" className="w-full border rounded px-2 py-1 text-sm" placeholder="Email" required />
-                        <input type="date" className="w-full border rounded px-2 py-1 text-sm" required />
-                        <textarea className="w-full border rounded px-2 py-1 text-sm" placeholder="Reason for your inquiry (e.g. tour, membership, event, partnership, etc.)" rows={3} required />
-                        <div>
-                          <label className="block text-sm font-medium mb-1">How did you hear about us?</label>
-                          <select className="w-full border rounded px-2 py-1 text-sm">
-                            <option value="">Select an option</option>
-                            <option value="search">Search Engine</option>
-                            <option value="social">Social Media</option>
-                            <option value="friend">Friend/Referral</option>
-                            <option value="event">Attended an Event</option>
-                            <option value="ad">Advertisement</option>
-                            <option value="other">Other</option>
-                          </select>
-                        </div>
-                        <label className="flex items-center gap-2 text-sm">
-                          <input type="checkbox" className="rounded" />
-                          Subscribe to facility updates and offers
-                        </label>
-                        <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Book Now</Button>
-                      </form>
-                    </CardContent>
-                  </Card>
+                  {/* Booking/Inquiry Form appears below selected package */}
+                  {selectedPackage && !formSubmitted && (
+                    <Card className="mb-4">
+                      <CardHeader>
+                        <CardTitle>Book: {selectedPackage} Package</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <form className="space-y-3" onSubmit={e => { e.preventDefault(); setFormSubmitted(true); }}>
+                          <input type="text" className="w-full border rounded px-2 py-1 text-sm" placeholder="Your Name" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
+                          <input type="email" className="w-full border rounded px-2 py-1 text-sm" placeholder="Email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
+                          <input type="tel" className="w-full border rounded px-2 py-1 text-sm" placeholder="Phone" required value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+                          <textarea className="w-full border rounded px-2 py-1 text-sm" placeholder="Reason for your inquiry (e.g. tour, membership, event, partnership, etc.)" rows={3} required value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))} />
+                          <div>
+                            <label className="block text-sm font-medium mb-1">How did you hear about us?</label>
+                            <select className="w-full border rounded px-2 py-1 text-sm" required value={form.hearAbout} onChange={e => setForm(f => ({ ...f, hearAbout: e.target.value }))}>
+                              <option value="">Select an option</option>
+                              <option value="search">Search Engine</option>
+                              <option value="social">Social Media</option>
+                              <option value="friend">Friend/Referral</option>
+                              <option value="event">Attended an Event</option>
+                              <option value="ad">Advertisement</option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                          <textarea className="w-full border rounded px-2 py-1 text-sm" placeholder="Additional message (optional)" rows={2} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
+                          <label className="flex items-center gap-2 text-sm">
+                            <input type="checkbox" className="rounded" checked={form.subscribe} onChange={e => setForm(f => ({ ...f, subscribe: e.target.checked }))} />
+                            Subscribe to facility updates and offers
+                          </label>
+                          <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Submit Inquiry</Button>
+                        </form>
+                      </CardContent>
+                    </Card>
+                  )}
+                  {/* Confirmation message after submission */}
+                  {formSubmitted && (
+                    <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded text-green-800 text-center">
+                      Thank you for your inquiry! The facility will reach out to you soon.
+                    </div>
+                  )}
+                  {/* Disclaimer always visible */}
+                  <div className="mt-2 text-xs text-orange-700 bg-orange-50 border-l-4 border-orange-400 p-3 rounded flex items-start gap-2">
+                    <span className="mt-0.5"><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#f59e42" strokeWidth="2"/><path d="M12 8v4m0 4h.01" stroke="#f59e42" strokeWidth="2" strokeLinecap="round"/></svg></span>
+                    <span><b>Disclaimer:</b> Please do not make any payments until you have visited the facility and confirmed all details in person. VibeCore does not process payments for facilities directly. All bookings are subject to confirmation by the facility.</span>
+                  </div>
                 </TabsContent>
                 <TabsContent value="events">
                   <div className="mb-8 grid md:grid-cols-2 xl:grid-cols-3 gap-6">

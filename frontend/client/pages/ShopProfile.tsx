@@ -316,37 +316,27 @@ export default function ShopProfile() {
                     </Button>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <span className="font-bold text-xl ml-1">{shop.rating}</span>
-                    </div>
-                    <p className="text-gray-600 text-sm">{shop.reviews} reviews</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <ShoppingBag className="w-5 h-5 text-vibecore-red mr-1" />
-                      <span className="font-bold text-xl">{products.length}</span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Products</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <span className="font-bold text-xl text-vibecore-red">
-                        {shop.price}
-                      </span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Starting Price</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Badge className="bg-green-100 text-green-800 rounded-full px-2 py-1 text-xs font-medium">
-                        {shop.featured}
-                      </Badge>
-                    </div>
-                    <p className="text-gray-600 text-sm">Featured Offer</p>
-                  </div>
+                {/* Replace the grid of stats with a compact info row styled like FacilityProfile */}
+                <div className="flex flex-wrap items-center gap-4 mb-4 text-base text-gray-800 font-medium">
+                  <span className="flex items-center gap-1">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span className="font-bold">{shop.rating}</span>
+                    <span className="text-gray-500">({shop.reviews} reviews)</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <ShoppingBag className="w-5 h-5 text-vibecore-red" />
+                    <span className="font-semibold">{products.length} Products</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="font-semibold text-vibecore-red">{shop.price}</span>
+                    <span className="text-gray-500">Starting Price</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Badge className="bg-green-100 text-green-800 rounded-full px-2 py-1 text-xs font-medium">
+                      {shop.featured}
+                    </Badge>
+                    <span className="text-gray-500">Featured Offer</span>
+                  </span>
                 </div>
               </div>
             </div>

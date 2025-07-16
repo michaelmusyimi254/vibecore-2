@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
+import { useState } from "react";
 
 export default function TrainerProfile() {
   const trainer = {
@@ -29,7 +30,6 @@ export default function TrainerProfile() {
     title: "Certified Personal Trainer & Nutrition Coach",
     location: "Downtown Fitness Center, San Francisco",
     rating: 4.9,
-    reviews: 127,
     yearsExperience: 8,
     clientsHelped: 200,
     image:
@@ -118,6 +118,10 @@ export default function TrainerProfile() {
     ],
   };
 
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: '', email: '', phone: '', reason: '', hearAbout: '', message: '', subscribe: false });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
@@ -172,80 +176,39 @@ export default function TrainerProfile() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <span className="font-bold text-xl ml-1">
-                        {trainer.rating}
-                      </span>
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      {trainer.reviews.length} reviews
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Award className="w-5 h-5 text-vibecore-red mr-1" />
-                      <span className="font-bold text-xl">
-                        {trainer.yearsExperience}
-                      </span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Years Experience</p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Users className="w-5 h-5 text-vibecore-red mr-1" />
-                      <span className="font-bold text-xl">
-                        {trainer.clientsHelped}+
-                      </span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Clients Helped</p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-1" />
-                      <span className="font-bold text-xl">
-                        {trainer.certifications.length}
-                      </span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Certifications</p>
-                  </div>
+                {/* Replace the grid of stats with a compact info row styled like Shop/Facility */}
+                <div className="flex flex-wrap items-center gap-4 mb-4 text-base text-gray-800 font-medium">
+                  <span className="flex items-center gap-1">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span className="font-bold">{trainer.rating}</span>
+                    <span className="text-gray-500">({trainer.reviews.length} reviews)</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Award className="w-5 h-5 text-vibecore-red" />
+                    <span className="font-semibold">{trainer.yearsExperience} Years Experience</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Users className="w-5 h-5 text-vibecore-red" />
+                    <span className="font-semibold">{trainer.clientsHelped}+ Clients Helped</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="font-semibold">{trainer.certifications.length} Certifications</span>
+                  </span>
                 </div>
-
+                {/* Show first four specialties as badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {trainer.specialties.slice(0, 4).map((specialty) => (
-                    <Badge
-                      key={specialty}
-                      variant="secondary"
-                      className="rounded-full"
-                    >
+                    <Badge key={specialty} variant="secondary" className="rounded-full">
                       {specialty}
                     </Badge>
                   ))}
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
-                    Book Session
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="rounded-full px-8 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Message
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="rounded-full px-8 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Call
-                  </Button>
+                {/* Place Book Session, Message, and Call buttons in a single row */}
+                <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                  <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">Book Session</Button>
+                  <Button variant="outline" className="rounded-full px-8 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"><MessageCircle className="w-4 h-4 mr-2" />Message</Button>
+                  <Button variant="outline" className="rounded-full px-8 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"><Phone className="w-4 h-4 mr-2" />Call</Button>
                 </div>
               </div>
             </div>
@@ -256,271 +219,223 @@ export default function TrainerProfile() {
       {/* Profile Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="about" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1">
-              <TabsTrigger
-                value="about"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                About
-              </TabsTrigger>
-              <TabsTrigger
-                value="services"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                Services
-              </TabsTrigger>
-              <TabsTrigger
-                value="schedule"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                Schedule
-              </TabsTrigger>
-              <TabsTrigger
-                value="reviews"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                Reviews
-              </TabsTrigger>
-            </TabsList>
-
-            {/* About Tab */}
-            <TabsContent value="about">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="md:col-span-2 space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>About Sarah</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 leading-relaxed">
-                        {trainer.bio}
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Specialties</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-2 gap-3">
-                        {trainer.specialties.map((specialty) => (
-                          <div
-                            key={specialty}
-                            className="flex items-center p-3 bg-gray-50 rounded-xl"
-                          >
-                            <CheckCircle className="w-5 h-5 text-vibecore-red mr-3" />
-                            <span className="font-medium">{specialty}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Certifications</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {trainer.certifications.map((cert) => (
-                          <li key={cert} className="flex items-center">
-                            <Award className="w-4 h-4 text-vibecore-red mr-3" />
-                            <span className="text-sm">{cert}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Contact & Social</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start rounded-xl"
-                        >
-                          <Mail className="w-4 h-4 mr-3" />
-                          Email Sarah
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start rounded-xl"
-                        >
-                          <Phone className="w-4 h-4 mr-3" />
-                          Call Sarah
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start rounded-xl"
-                        >
-                          <Instagram className="w-4 h-4 mr-3" />
-                          Instagram
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start rounded-xl"
-                        >
-                          <Facebook className="w-4 h-4 mr-3" />
-                          Facebook
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </TabsContent>
-
-            {/* Services Tab */}
-            <TabsContent value="services">
-              <div className="grid md:grid-cols-2 gap-6">
-                {trainer.services.map((service) => (
-                  <Card
-                    key={service.name}
-                    className="hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="font-semibold text-lg">
-                          {service.name}
-                        </h3>
-                        <div className="text-right">
-                          <span className="text-2xl font-bold text-vibecore-red">
-                            ${service.price}
-                          </span>
-                          {service.priceNote && (
-                            <p className="text-sm text-gray-500">
-                              {service.priceNote}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex items-center text-gray-600 mb-3">
-                        <Clock className="w-4 h-4 mr-2" />
-                        <span className="text-sm">{service.duration}</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-4">
-                        {service.description}
-                      </p>
-                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                        Book This Service
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* Schedule Tab */}
-            <TabsContent value="schedule">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Left column: sidebar */}
+            <div className="space-y-6">
+              {/* About */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Weekly Availability</CardTitle>
+                  <CardTitle>About {trainer.name.split(' ')[0]}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    {trainer.availability.map((day) => (
-                      <div
-                        key={day.day}
-                        className="flex items-center justify-between p-4 bg-gray-50 rounded-xl"
-                      >
-                        <h4 className="font-medium w-24">{day.day}</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {day.times.map((time) => (
-                            <Badge
-                              key={time}
-                              variant={
-                                time === "Rest Day" ? "secondary" : "default"
-                              }
-                              className="rounded-full"
-                            >
-                              {time}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 text-center">
-                    <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      View Calendar & Book
-                    </Button>
+                  <p className="text-gray-600 leading-relaxed">{trainer.bio}</p>
+                </CardContent>
+              </Card>
+              {/* Contact & Social */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Contact & Social</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <Button variant="outline" className="w-full justify-start rounded-xl"><Mail className="w-4 h-4 mr-3" />Email {trainer.name.split(' ')[0]}</Button>
+                    <Button variant="outline" className="w-full justify-start rounded-xl"><Phone className="w-4 h-4 mr-3" />Call {trainer.name.split(' ')[0]}</Button>
+                    <Button variant="outline" className="w-full justify-start rounded-xl"><Instagram className="w-4 h-4 mr-3" />Instagram</Button>
+                    <Button variant="outline" className="w-full justify-start rounded-xl"><Facebook className="w-4 h-4 mr-3" />Facebook</Button>
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
-
-            {/* Reviews Tab */}
-            <TabsContent value="reviews">
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-semibold">
-                    Client Reviews ({trainer.reviews.length})
-                  </h3>
-                  <div className="flex items-center">
-                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                    <span className="font-bold text-lg ml-1">
-                      {trainer.rating}
-                    </span>
-                    <span className="text-gray-600 ml-1">out of 5</span>
+              {/* Trainer Highlights */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Trainer Highlights</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li><span className="font-medium">Years Experience:</span> {trainer.yearsExperience}</li>
+                    <li><span className="font-medium">Clients Helped:</span> {trainer.clientsHelped}+</li>
+                    <li><span className="font-medium">Certifications:</span> {trainer.certifications.length}</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              {/* Specialties */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Specialties</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {trainer.specialties.map((specialty) => (
+                      <Badge key={specialty} variant="secondary" className="rounded-full">
+                        {specialty}
+                      </Badge>
+                    ))}
                   </div>
-                </div>
-
-                <div className="space-y-4">
-                  {trainer.reviews.map((review, index) => (
-                    <Card key={index}>
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center">
-                            <Avatar className="w-10 h-10 mr-3">
-                              <AvatarFallback>
-                                {review.name.charAt(0)}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <div className="flex items-center">
-                                <h4 className="font-medium">{review.name}</h4>
-                                {review.verified && (
-                                  <CheckCircle className="w-4 h-4 text-green-500 ml-2" />
-                                )}
-                              </div>
-                              <p className="text-gray-500 text-sm">
-                                {review.date}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex">
-                            {Array.from({ length: review.rating }).map(
-                              (_, i) => (
-                                <Star
-                                  key={i}
-                                  className="w-4 h-4 text-yellow-400 fill-current"
-                                />
-                              ),
-                            )}
-                          </div>
+                </CardContent>
+              </Card>
+              {/* Reviews */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Reviews</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
+                    {trainer.reviews.map((review, index) => (
+                      <div key={index} className="bg-gray-100 rounded p-2 shadow-sm">
+                        <div className="flex items-center mb-1">
+                          <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                          <span className="font-bold text-vibecore-red mr-2 text-sm">{review.rating}</span>
+                          <span className="text-gray-500 text-xs">{review.date}</span>
                         </div>
-                        <p className="text-gray-600">{review.comment}</p>
+                        <p className="text-gray-700 mb-1 text-xs">{review.comment}</p>
+                        <span className="text-xs text-gray-500">{review.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Review form */}
+                  <form className="mt-4">
+                    <input type="text" className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Your Name" required />
+                    <select className="w-full border rounded px-2 py-1 text-sm mb-2">
+                      {[5,4,3,2,1].map(r => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                    <textarea className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Comment" required />
+                    <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Submit</Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+            {/* Right column: tabs and tab content */}
+            <div className="md:col-span-2 space-y-6">
+              <Tabs defaultValue="packages" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-8 bg-gray-100 rounded-2xl p-1">
+                  <TabsTrigger value="packages" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Packages</TabsTrigger>
+                  <TabsTrigger value="schedule" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Schedule</TabsTrigger>
+                  <TabsTrigger value="reviews" className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2">Reviews</TabsTrigger>
+                </TabsList>
+                {/* Packages Tab */}
+                <TabsContent value="packages">
+                  <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:gap-6 mb-8 scrollbar-hide pb-2">
+                    {trainer.services.map((pkg) => (
+                      <Card key={pkg.name} className={`min-w-[260px] flex flex-col h-full justify-between border-2 transition-colors ${selectedPackage === pkg.name ? 'border-vibecore-red' : 'border-gray-200 hover:border-vibecore-red'}`}> 
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold mb-2">{pkg.name}</CardTitle>
+                          <div className="text-3xl font-bold text-vibecore-red mb-1">${pkg.price}</div>
+                        </CardHeader>
+                        <CardContent className="flex-1 flex flex-col justify-between">
+                          <p className="text-gray-600 text-sm mb-2">{pkg.description}</p>
+                          <div className="text-xs text-gray-500 mb-4">{pkg.duration}{pkg.priceNote ? ` • ${pkg.priceNote}` : ''}</div>
+                          <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full mt-auto" onClick={() => { setSelectedPackage(pkg.name); setFormSubmitted(false); }}>Select</Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                  {/* Booking/Inquiry Form appears below selected package */}
+                  {selectedPackage && !formSubmitted && (
+                    <Card className="mb-4">
+                      <CardHeader>
+                        <CardTitle>Book: {selectedPackage} Package</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <form className="space-y-3" onSubmit={e => { e.preventDefault(); setFormSubmitted(true); }}>
+                          <input type="text" className="w-full border rounded px-2 py-1 text-sm" placeholder="Your Name" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
+                          <input type="email" className="w-full border rounded px-2 py-1 text-sm" placeholder="Email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
+                          <input type="tel" className="w-full border rounded px-2 py-1 text-sm" placeholder="Phone" required value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+                          <textarea className="w-full border rounded px-2 py-1 text-sm" placeholder="Reason for your inquiry (e.g. session, consultation, group training, etc.)" rows={3} required value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))} />
+                          <div>
+                            <label className="block text-sm font-medium mb-1">How did you hear about us?</label>
+                            <select className="w-full border rounded px-2 py-1 text-sm" required value={form.hearAbout} onChange={e => setForm(f => ({ ...f, hearAbout: e.target.value }))}>
+                              <option value="">Select an option</option>
+                              <option value="search">Search Engine</option>
+                              <option value="social">Social Media</option>
+                              <option value="friend">Friend/Referral</option>
+                              <option value="event">Attended an Event</option>
+                              <option value="ad">Advertisement</option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                          <textarea className="w-full border rounded px-2 py-1 text-sm" placeholder="Additional message (optional)" rows={2} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
+                          <label className="flex items-center gap-2 text-sm">
+                            <input type="checkbox" className="rounded" checked={form.subscribe} onChange={e => setForm(f => ({ ...f, subscribe: e.target.checked }))} />
+                            Subscribe to trainer updates and offers
+                          </label>
+                          <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Submit Inquiry</Button>
+                        </form>
                       </CardContent>
                     </Card>
-                  ))}
-                </div>
-
-                <div className="text-center">
-                  <Button variant="outline" className="rounded-full px-8">
-                    View All Reviews
-                  </Button>
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
+                  )}
+                  {/* Confirmation message after submission */}
+                  {formSubmitted && (
+                    <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded text-green-800 text-center">
+                      Thank you for your inquiry! The trainer will reach out to you soon.
+                    </div>
+                  )}
+                  {/* Disclaimer always visible */}
+                  <div className="mt-2 text-xs text-orange-700 bg-orange-50 border-l-4 border-orange-400 p-3 rounded flex items-start gap-2">
+                    <span className="mt-0.5"><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#f59e42" strokeWidth="2"/><path d="M12 8v4m0 4h.01" stroke="#f59e42" strokeWidth="2" strokeLinecap="round"/></svg></span>
+                    <span><b>Disclaimer:</b> Please do not make any payments until you have met the trainer and confirmed all details in person. VibeCore does not process payments for trainers directly. All bookings are subject to confirmation by the trainer.</span>
+                  </div>
+                </TabsContent>
+                {/* Schedule Tab */}
+                <TabsContent value="schedule">
+                  <Card>
+                    <CardHeader><CardTitle>Weekly Availability</CardTitle></CardHeader>
+                    <CardContent>
+                      <div className="grid gap-4">
+                        {trainer.availability.map((day) => (
+                          <div key={day.day} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                            <h4 className="font-medium w-24">{day.day}</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {day.times.map((time) => (
+                                <Badge key={time} variant={time === "Rest Day" ? "secondary" : "default"} className="rounded-full">{time}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-6 text-center">
+                        <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8"><Calendar className="w-4 h-4 mr-2" />View Calendar & Book</Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                {/* Reviews Tab */}
+                <TabsContent value="reviews">
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xl font-semibold">Client Reviews ({trainer.reviews.length})</h3>
+                      <div className="flex items-center">
+                        <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                        <span className="font-bold text-lg ml-1">{trainer.rating}</span>
+                        <span className="text-gray-600 ml-1">out of 5</span>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      {trainer.reviews.map((review, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-6">
+                            <div className="flex items-start justify-between mb-3">
+                              <div className="flex items-center">
+                                <Avatar className="w-10 h-10 mr-3"><AvatarFallback>{review.name.charAt(0)}</AvatarFallback></Avatar>
+                                <div>
+                                  <div className="flex items-center"><h4 className="font-medium">{review.name}</h4>{review.verified && (<CheckCircle className="w-4 h-4 text-green-500 ml-2" />)}</div>
+                                  <p className="text-gray-500 text-sm">{review.date}</p>
+                                </div>
+                              </div>
+                              <div className="flex">{Array.from({ length: review.rating }).map((_, i) => (<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />))}</div>
+                            </div>
+                            <p className="text-gray-600">{review.comment}</p>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                    <div className="text-center">
+                      <Button variant="outline" className="rounded-full px-8">View All Reviews</Button>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
         </div>
       </section>
     </div>
