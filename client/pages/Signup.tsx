@@ -989,6 +989,22 @@ export default function Signup() {
                       </div>
 
                       <div>
+                        <Label htmlFor="services">
+                          Services Offered (Multi-Function Venues)
+                        </Label>
+                        <Textarea
+                          id="services"
+                          placeholder="List all services/activities your venue offers: e.g., Gym, Pool, Tennis Courts, Basketball, Yoga Classes, Spa Services, Dining, Events, etc."
+                          className="rounded-xl"
+                          rows={3}
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          For multi-function venues, please list all activities
+                          and services available
+                        </p>
+                      </div>
+
+                      <div>
                         <Label htmlFor="amenities">Amenities & Features</Label>
                         <Input
                           id="amenities"
