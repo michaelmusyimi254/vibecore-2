@@ -1073,12 +1073,18 @@ export default function Signup() {
                         selectedRole === "trainer"
                           ? "yourself and your training philosophy"
                           : selectedRole === "facility"
-                            ? "your facility and what makes it special"
+                            ? "your facility, all services offered, what makes it special, and any unique multi-function features"
                             : "your business and what you offer"
                       }...`}
                       className="rounded-xl"
                       rows={4}
                     />
+                    {selectedRole === "facility" && (
+                      <p className="text-xs text-gray-500 mt-1">
+                        For multi-function venues: Describe all your services,
+                        target audiences, and what makes your facility unique
+                      </p>
+                    )}
                   </div>
                 </CardContent>
               </Card>
