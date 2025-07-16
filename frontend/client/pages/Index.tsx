@@ -70,7 +70,7 @@ export default function Index() {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://cdn.builder.io/api/v1/assets/89b2ce336c1e469faf0b11a3b6d20bdd/screencapture-localhost-8001-2025-07-16-03_28_36-de77e7?format=webp&width=800')`,
         }}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 pt-24 md:pt-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -106,6 +106,16 @@ export default function Index() {
               <p className="mt-4 text-white/80">
                 Popular searches within my area
               </p>
+              <div className="flex flex-wrap gap-2 mt-2 pb-10">
+                {["Yoga", "Personal Training", "Pilates", "HIIT", "Zumba"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-white/30 text-white px-4 py-1 rounded-full text-sm font-medium border border-white/40 hover:bg-vibecore-red hover:text-white transition-colors cursor-pointer"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Join as Facility Card */}
