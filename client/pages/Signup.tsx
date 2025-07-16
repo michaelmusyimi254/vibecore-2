@@ -92,7 +92,8 @@ export default function Signup() {
     { step: 1, title: "Choose Role" },
     { step: 2, title: "Basic Info" },
     { step: 3, title: "Profile Details" },
-    { step: 4, title: "Verification" },
+    { step: 4, title: "Choose Plan" },
+    { step: 5, title: "Verification" },
   ];
 
   const nextStep = () => {
