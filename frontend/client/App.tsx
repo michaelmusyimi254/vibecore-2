@@ -15,7 +15,13 @@ import Shops from "./pages/Shops";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import React, { useEffect, useState } from 'react';
+import Events from "./pages/Events";
+import EventProfile from "./pages/EventProfile";
+import FacilityProfile from "./pages/FacilityProfile";
+import ShopProfile from "./pages/ShopProfile";
 
 const queryClient = new QueryClient();
 
@@ -42,13 +48,17 @@ function App() {
             <Route path="/trainers/:id" element={<TrainerProfile />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/events" element={<NotFound />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/trainers" element={<Trainers />} />
             <Route path="/shops" element={<Shops />} />
             <Route path="/pricing" element={<NotFound />} />
             <Route path="/terms" element={<NotFound />} />
             <Route path="/privacy" element={<NotFound />} />
-            <Route path="/forgot-password" element={<NotFound />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/events/:id" element={<EventProfile />} />
+            <Route path="/facilities/:id" element={<FacilityProfile />} />
+            <Route path="/shops/:id" element={<ShopProfile />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -195,6 +195,12 @@ export default function Login() {
                       </button>
                     </div>
                   </div>
+                  {/* Forgot password link */}
+                  <div className="flex justify-end mb-2">
+                    <Link to="/forgot-password" className="text-sm text-vibecore-red hover:underline font-medium">
+                      Forgot password?
+                    </Link>
+                  </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Checkbox id="remember" />
@@ -202,12 +208,6 @@ export default function Login() {
                         Remember me
                       </Label>
                     </div>
-                    <Link
-                      to="/forgot-password"
-                      className="text-sm text-vibecore-red hover:text-vibecore-red-hover"
-                    >
-                      Forgot password?
-                    </Link>
                   </div>
                   <Button
                     type="submit"

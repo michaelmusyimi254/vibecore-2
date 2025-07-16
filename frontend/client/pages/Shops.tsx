@@ -307,37 +307,25 @@ export default function Shops() {
 
               <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {shops.map((shop) => (
-                  <div
-                    key={shop.id}
-                    className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                  >
-                    <img
-                      src={shop.image}
-                      alt={shop.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-lg">{shop.name}</h3>
-                        {shop.verified && (
-                          <Badge className="bg-green-100 text-green-800 rounded-full">
-                            <Shield className="w-3 h-3 mr-1" />
-                            Verified
-                          </Badge>
-                        )}
-                      </div>
-
-                      <p className="text-gray-600 text-sm mb-2">
-                        {shop.category}
-                      </p>
-
-                      <p className="text-gray-500 text-sm mb-3 flex items-center">
-                        <MapPin className="w-3 h-3 mr-1" />
-                        {shop.location}
-                      </p>
-
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center">
+                  <Link key={shop.id} to={`/shops/1`}>
+                    <div
+                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                    >
+                      <img
+                        src={shop.image}
+                        alt={shop.name}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="font-semibold text-lg mb-1">{shop.name}</h3>
+                        <p className="text-gray-600 text-sm mb-2">
+                          {shop.category}
+                        </p>
+                        <p className="text-gray-500 text-sm mb-3 flex items-center">
+                          <MapPin className="w-3 h-3 mr-1" />
+                          {shop.location}
+                        </p>
+                        <div className="flex items-center mb-3">
                           <Star className="w-4 h-4 text-yellow-400 fill-current" />
                           <span className="text-sm font-medium ml-1">
                             {shop.rating}
@@ -346,42 +334,17 @@ export default function Shops() {
                             ({shop.reviews})
                           </span>
                         </div>
-                        <span className="font-semibold text-vibecore-red">
-                          {shop.price}
-                        </span>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-4">
+                          <p className="text-green-800 text-xs font-medium">
+                            {shop.featured}
+                          </p>
+                        </div>
+                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                          Shop Now
+                        </Button>
                       </div>
-
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
-                        <p className="text-green-800 text-sm font-medium">
-                          {shop.featured}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-wrap gap-1 mb-4">
-                        {shop.tags.slice(0, 3).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs rounded-full"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center mb-4 text-xs text-gray-500">
-                        <Truck className="w-3 h-3 mr-1" />
-                        <span className="mr-3">Fast Shipping</span>
-                        <Award className="w-3 h-3 mr-1" />
-                        <span>Quality Guarantee</span>
-                      </div>
-
-                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                        <ShoppingBag className="w-4 h-4 mr-2" />
-                        Visit Shop
-                      </Button>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
