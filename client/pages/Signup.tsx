@@ -1224,8 +1224,254 @@ export default function Signup() {
             </div>
           )}
 
-          {/* Step 4: Verification */}
+          {/* Step 4: Choose Plan */}
           {currentStep === 4 && (
+            <div className="max-w-4xl mx-auto space-y-8">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold mb-2">Choose Your Plan</h2>
+                <p className="text-gray-600">
+                  Select the plan that works best for your{" "}
+                  {selectedRole === "trainer"
+                    ? "training business"
+                    : selectedRole === "facility"
+                      ? "facility"
+                      : "business"}
+                </p>
+              </div>
+
+              {/* Pricing Cards */}
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* Monthly Plan */}
+                <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold mb-2">Monthly</h3>
+                    <div className="text-3xl font-bold text-vibecore-red mb-1">
+                      $
+                      {selectedRole === "trainer"
+                        ? "29"
+                        : selectedRole === "facility"
+                          ? "79"
+                          : "49"}
+                    </div>
+                    <p className="text-gray-600 text-sm mb-6">per month</p>
+
+                    <ul className="text-left space-y-3 mb-6">
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Profile listing on platform
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Client booking system
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Basic analytics
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Customer support
+                      </li>
+                      {selectedRole === "facility" && (
+                        <>
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Multiple trainer profiles
+                          </li>
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Class scheduling
+                          </li>
+                        </>
+                      )}
+                      {selectedRole === "vendor" && (
+                        <>
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Product listings (up to 50)
+                          </li>
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Inventory management
+                          </li>
+                        </>
+                      )}
+                    </ul>
+
+                    <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
+                      Select Monthly
+                    </Button>
+                  </div>
+                </div>
+
+                {/* 6-Month Plan - Most Popular */}
+                <div className="bg-white border-2 border-vibecore-red rounded-2xl p-6 relative">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-vibecore-red text-white rounded-full px-4 py-1">
+                      Most Popular
+                    </Badge>
+                  </div>
+
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold mb-2">6 Months</h3>
+                    <div className="text-3xl font-bold text-vibecore-red mb-1">
+                      $
+                      {selectedRole === "trainer"
+                        ? "149"
+                        : selectedRole === "facility"
+                          ? "399"
+                          : "249"}
+                    </div>
+                    <p className="text-gray-600 text-sm mb-2">total</p>
+                    <p className="text-green-600 text-sm font-medium mb-4">
+                      Save $
+                      {selectedRole === "trainer"
+                        ? "25"
+                        : selectedRole === "facility"
+                          ? "75"
+                          : "45"}
+                      !
+                    </p>
+
+                    <ul className="text-left space-y-3 mb-6">
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Everything in Monthly
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Advanced analytics
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Priority support
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Featured listing boost
+                      </li>
+                      {selectedRole === "facility" && (
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Event hosting tools
+                        </li>
+                      )}
+                      {selectedRole === "vendor" && (
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Product listings (up to 200)
+                        </li>
+                      )}
+                      {selectedRole === "trainer" && (
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Online training tools
+                        </li>
+                      )}
+                    </ul>
+
+                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                      Select 6 Months
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Yearly Plan */}
+                <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold mb-2">Yearly</h3>
+                    <div className="text-3xl font-bold text-vibecore-red mb-1">
+                      $
+                      {selectedRole === "trainer"
+                        ? "279"
+                        : selectedRole === "facility"
+                          ? "739"
+                          : "459"}
+                    </div>
+                    <p className="text-gray-600 text-sm mb-2">per year</p>
+                    <p className="text-green-600 text-sm font-medium mb-4">
+                      Save $
+                      {selectedRole === "trainer"
+                        ? "69"
+                        : selectedRole === "facility"
+                          ? "209"
+                          : "129"}
+                      !
+                    </p>
+
+                    <ul className="text-left space-y-3 mb-6">
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Everything in 6 Months
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Premium analytics & insights
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Dedicated account manager
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        Marketing toolkit
+                      </li>
+                      <li className="flex items-center text-sm">
+                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                        API access
+                      </li>
+                      {selectedRole === "facility" && (
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          White-label booking system
+                        </li>
+                      )}
+                      {selectedRole === "vendor" && (
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Unlimited product listings
+                        </li>
+                      )}
+                    </ul>
+
+                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                      Select Yearly
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Info */}
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 max-w-2xl mx-auto">
+                <p className="text-blue-800 text-sm text-center">
+                  <strong>Note:</strong> You collect payments directly from your
+                  clients using your own systems. VibeCore subscription covers
+                  platform access, listing, and tools only.
+                </p>
+              </div>
+
+              <div className="flex justify-between">
+                <Button
+                  onClick={prevStep}
+                  variant="outline"
+                  className="rounded-full px-6"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back
+                </Button>
+                <Button
+                  onClick={nextStep}
+                  className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-6"
+                >
+                  Continue to Verification
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Step 5: Verification */}
+          {currentStep === 5 && (
             <div className="max-w-2xl mx-auto space-y-8">
               <div className="text-center">
                 <h2 className="text-2xl font-bold mb-2">Verification</h2>
