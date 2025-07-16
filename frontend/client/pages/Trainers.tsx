@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
+import Footer from "@/components/ui/Footer";
 
 export default function Trainers() {
   const trainers = [
@@ -490,6 +491,7 @@ export default function Trainers() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

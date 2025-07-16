@@ -8,6 +8,7 @@ import { Mail, Lock, Eye, EyeOff, ChevronLeft, ChevronRight } from "lucide-react
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/ui/NavBar";
+import Footer from "@/components/ui/Footer";
 
 const heroSlides = [
   {
@@ -246,6 +247,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

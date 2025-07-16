@@ -30,6 +30,7 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import { useRef } from "react";
+import Footer from "@/components/ui/Footer";
 
 export default function Signup() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -1688,6 +1689,7 @@ export default function Signup() {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

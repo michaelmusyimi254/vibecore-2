@@ -22,6 +22,7 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import { useState } from "react";
+import Footer from "@/components/ui/Footer";
 
 export default function TrainerProfile() {
   const trainer = {
@@ -279,27 +280,16 @@ export default function TrainerProfile() {
                   <CardTitle>Reviews</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
-                    {trainer.reviews.map((review, index) => (
-                      <div key={index} className="bg-gray-100 rounded p-2 shadow-sm">
-                        <div className="flex items-center mb-1">
-                          <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                          <span className="font-bold text-vibecore-red mr-2 text-sm">{review.rating}</span>
-                          <span className="text-gray-500 text-xs">{review.date}</span>
-                        </div>
-                        <p className="text-gray-700 mb-1 text-xs">{review.comment}</p>
-                        <span className="text-xs text-gray-500">{review.name}</span>
-                      </div>
+                  <ul className="space-y-2 mb-2 max-h-64 overflow-y-auto pr-1">
+                    {trainer.reviews.map((review, i) => (
+                      <li key={i} className="text-xs text-gray-700 border-b border-gray-200 pb-2 last:border-b-0">
+                        <span className="font-semibold text-vibecore-red">{review.name}:</span> {review.comment} <span className="ml-2 text-yellow-500">{"★".repeat(review.rating)}</span>
+                      </li>
                     ))}
-                  </div>
-                  {/* Review form */}
-                  <form className="mt-4">
-                    <input type="text" className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Your Name" required />
-                    <select className="w-full border rounded px-2 py-1 text-sm mb-2">
-                      {[5,4,3,2,1].map(r => <option key={r} value={r}>{r}</option>)}
-                    </select>
-                    <textarea className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Comment" required />
-                    <Button type="submit" size="sm" className="w-full bg-vibecore-red text-white rounded-full mt-2">Submit</Button>
+                  </ul>
+                  <form className="mt-2">
+                    <input type="text" placeholder="Add a review..." className="w-full border rounded px-2 py-1 text-xs mb-1" />
+                    <Button size="sm" className="w-full bg-vibecore-red text-white rounded-full text-xs">Submit</Button>
                   </form>
                 </CardContent>
               </Card>
@@ -425,6 +415,7 @@ export default function TrainerProfile() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

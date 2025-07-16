@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
+import Footer from "@/components/ui/Footer";
 
 export default function Search() {
   const trainers = [
@@ -467,6 +468,7 @@ export default function Search() {
           </Tabs>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

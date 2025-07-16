@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NavBar from "@/components/ui/NavBar";
 import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import Footer from "@/components/ui/Footer";
 
 export default function FacilityProfile() {
   // Mock facility data
@@ -324,43 +325,15 @@ export default function FacilityProfile() {
                   <CardTitle>Reviews</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
-                    <div className="bg-gray-100 rounded p-2 shadow-sm">
-                      <div className="flex items-center mb-1">
-                        <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                        <span className="font-bold text-vibecore-red mr-2 text-sm">5</span>
-                        <span className="text-gray-500 text-xs">2 weeks ago</span>
-                      </div>
-                      <p className="text-gray-700 mb-1 text-xs">Great quality products and fast shipping! Highly recommend.</p>
-                      <span className="text-xs text-gray-500">Jane D.</span>
-                    </div>
-                    <div className="bg-gray-100 rounded p-2 shadow-sm">
-                      <div className="flex items-center mb-1">
-                        <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                        <span className="font-bold text-vibecore-red mr-2 text-sm">4</span>
-                        <span className="text-gray-500 text-xs">1 month ago</span>
-                      </div>
-                      <p className="text-gray-700 mb-1 text-xs">Good selection and prices. Customer support was helpful.</p>
-                      <span className="text-xs text-gray-500">Mike S.</span>
-                    </div>
-                    <div className="bg-gray-100 rounded p-2 shadow-sm">
-                      <div className="flex items-center mb-1">
-                        <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                        <span className="font-bold text-vibecore-red mr-2 text-sm">5</span>
-                        <span className="text-gray-500 text-xs">2 months ago</span>
-                      </div>
-                      <p className="text-gray-700 mb-1 text-xs">Love my new yoga mat! Will shop again.</p>
-                      <span className="text-xs text-gray-500">Lisa K.</span>
-                    </div>
-                  </div>
-                  {/* Review form */}
-                  <form className="mt-4">
-                    <input type="text" className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Your Name" required />
-                    <select className="w-full border rounded px-2 py-1 text-sm mb-2">
-                      {[5,4,3,2,1].map(r => <option key={r} value={r}>{r}</option>)}
-                    </select>
-                    <textarea className="w-full border rounded px-2 py-1 text-sm mb-2" placeholder="Comment" required />
-                    <Button type="submit" size="sm" className="bg-vibecore-red text-white rounded-full w-full">Submit</Button>
+                  <ul className="space-y-2 mb-2 max-h-64 overflow-y-auto pr-1">
+                    {/* Example reviews, replace with dynamic data as needed */}
+                    <li className="text-xs text-gray-700 border-b border-gray-200 pb-2 last:border-b-0"><span className="font-semibold text-vibecore-red">Jane D.:</span> Great quality products and fast shipping! Highly recommend. <span className="ml-2 text-yellow-500">★★★★★</span></li>
+                    <li className="text-xs text-gray-700 border-b border-gray-200 pb-2 last:border-b-0"><span className="font-semibold text-vibecore-red">Mike S.:</span> Good selection and prices. Customer support was helpful. <span className="ml-2 text-yellow-500">★★★★</span></li>
+                    <li className="text-xs text-gray-700 border-b border-gray-200 pb-2 last:border-b-0"><span className="font-semibold text-vibecore-red">Lisa K.:</span> Love my new yoga mat! Will shop again. <span className="ml-2 text-yellow-500">★★★★★</span></li>
+                  </ul>
+                  <form className="mt-2">
+                    <input type="text" placeholder="Add a review..." className="w-full border rounded px-2 py-1 text-xs mb-1" />
+                    <Button size="sm" className="w-full bg-vibecore-red text-white rounded-full text-xs">Submit</Button>
                   </form>
                 </CardContent>
               </Card>
@@ -609,6 +582,7 @@ export default function FacilityProfile() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 } 

@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
+import Footer from "@/components/ui/Footer";
 
 export default function Facilities() {
   const facilities = [
@@ -412,6 +413,7 @@ export default function Facilities() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

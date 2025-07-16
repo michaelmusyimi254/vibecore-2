@@ -12,6 +12,7 @@ import { Calendar, Clock, MapPin, Filter, Search as SearchIcon } from "lucide-re
 import NavBar from "@/components/ui/NavBar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
+import Footer from "@/components/ui/Footer";
 
 export default function Events() {
   const events = [
@@ -276,6 +277,7 @@ export default function Events() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 } 

@@ -20,6 +20,7 @@ import {
 import NavBar from "@/components/ui/NavBar";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import Footer from "@/components/ui/Footer";
 
 // Add Shop type to support both single and multiple locations
 interface ShopLocation {
@@ -681,6 +682,7 @@ export default function ShopProfile() {
       {/* .scrollbar-hide::-webkit-scrollbar { display: none; } */}
       {/* .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; } */}
       {/* TODO: Implement /api/notify-shop-owner endpoint in Laravel backend to send email to shop owner when a product is added to cart. */}
+      <Footer />
     </div>
   );
 }
