@@ -665,6 +665,175 @@ export default function Signup() {
                               Ice Hockey Rink
                             </SelectItem>
 
+                            {/* Olympic & Paralympic Sports */}
+                            <SelectItem value="athletics">
+                              Athletics Track & Field
+                            </SelectItem>
+                            <SelectItem value="gymnastics">
+                              Gymnastics Center
+                            </SelectItem>
+                            <SelectItem value="weightlifting">
+                              Olympic Weightlifting
+                            </SelectItem>
+                            <SelectItem value="wrestling">
+                              Wrestling Center
+                            </SelectItem>
+                            <SelectItem value="judo">Judo Center</SelectItem>
+                            <SelectItem value="taekwondo">
+                              Taekwondo Center
+                            </SelectItem>
+                            <SelectItem value="fencing">
+                              Fencing Club
+                            </SelectItem>
+                            <SelectItem value="cycling">
+                              Cycling Velodrome
+                            </SelectItem>
+                            <SelectItem value="rowing">Rowing Club</SelectItem>
+                            <SelectItem value="canoe-kayak">
+                              Canoe/Kayak Center
+                            </SelectItem>
+                            <SelectItem value="sailing">
+                              Sailing Club
+                            </SelectItem>
+                            <SelectItem value="triathlon">
+                              Triathlon Training
+                            </SelectItem>
+                            <SelectItem value="pentathlon">
+                              Pentathlon Center
+                            </SelectItem>
+                            <SelectItem value="paralympic">
+                              Paralympic Training Center
+                            </SelectItem>
+
+                            {/* Combat Sports */}
+                            <SelectItem value="karate">Karate Dojo</SelectItem>
+                            <SelectItem value="muay-thai">
+                              Muay Thai Gym
+                            </SelectItem>
+                            <SelectItem value="bjj">
+                              Brazilian Jiu-Jitsu
+                            </SelectItem>
+                            <SelectItem value="mma">
+                              MMA Training Center
+                            </SelectItem>
+                            <SelectItem value="krav-maga">
+                              Krav Maga Center
+                            </SelectItem>
+
+                            {/* Water Sports */}
+                            <SelectItem value="diving">
+                              Diving Center
+                            </SelectItem>
+                            <SelectItem value="water-polo">
+                              Water Polo Facility
+                            </SelectItem>
+                            <SelectItem value="synchronized-swimming">
+                              Synchronized Swimming
+                            </SelectItem>
+                            <SelectItem value="surfing">
+                              Surfing School
+                            </SelectItem>
+                            <SelectItem value="wakeboarding">
+                              Wakeboarding Center
+                            </SelectItem>
+                            <SelectItem value="jet-ski">
+                              Jet Ski Rental
+                            </SelectItem>
+
+                            {/* Camps & Training */}
+                            <SelectItem value="sports-camp">
+                              Sports Training Camp
+                            </SelectItem>
+                            <SelectItem value="summer-camp">
+                              Summer Sports Camp
+                            </SelectItem>
+                            <SelectItem value="boot-camp">
+                              Fitness Boot Camp
+                            </SelectItem>
+                            <SelectItem value="youth-camp">
+                              Youth Sports Camp
+                            </SelectItem>
+                            <SelectItem value="specialty-camp">
+                              Specialty Sports Camp
+                            </SelectItem>
+                            <SelectItem value="overnight-camp">
+                              Overnight Sports Camp
+                            </SelectItem>
+                            <SelectItem value="day-camp">
+                              Day Sports Camp
+                            </SelectItem>
+
+                            {/* Accessibility & Medical */}
+                            <SelectItem value="adaptive-sports">
+                              Adaptive Sports Center
+                            </SelectItem>
+                            <SelectItem value="disability-fitness">
+                              Disability Fitness Center
+                            </SelectItem>
+                            <SelectItem value="wheelchair-sports">
+                              Wheelchair Sports Facility
+                            </SelectItem>
+                            <SelectItem value="blind-sports">
+                              Visually Impaired Sports
+                            </SelectItem>
+                            <SelectItem value="deaf-sports">
+                              Deaf Sports Center
+                            </SelectItem>
+                            <SelectItem value="rehabilitation">
+                              Physical Rehabilitation Center
+                            </SelectItem>
+                            <SelectItem value="physical-therapy">
+                              Physical Therapy Clinic
+                            </SelectItem>
+                            <SelectItem value="sports-medicine">
+                              Sports Medicine Clinic
+                            </SelectItem>
+                            <SelectItem value="muscle-therapy">
+                              Muscle & Joint Therapy
+                            </SelectItem>
+                            <SelectItem value="mobility-clinic">
+                              Mobility Enhancement Clinic
+                            </SelectItem>
+                            <SelectItem value="orthopedic">
+                              Orthopedic Sports Center
+                            </SelectItem>
+                            <SelectItem value="chiropractic">
+                              Chiropractic Sports Clinic
+                            </SelectItem>
+                            <SelectItem value="massage-therapy">
+                              Massage Therapy Center
+                            </SelectItem>
+
+                            {/* Extreme & Adventure */}
+                            <SelectItem value="bungee">
+                              Bungee Jumping
+                            </SelectItem>
+                            <SelectItem value="skydiving">
+                              Skydiving Center
+                            </SelectItem>
+                            <SelectItem value="paragliding">
+                              Paragliding School
+                            </SelectItem>
+                            <SelectItem value="mountaineering">
+                              Mountaineering School
+                            </SelectItem>
+                            <SelectItem value="caving">
+                              Caving/Spelunking
+                            </SelectItem>
+
+                            {/* Traditional & Cultural Sports */}
+                            <SelectItem value="capoeira">
+                              Capoeira School
+                            </SelectItem>
+                            <SelectItem value="aikido">Aikido Dojo</SelectItem>
+                            <SelectItem value="tai-chi">
+                              Tai Chi Center
+                            </SelectItem>
+                            <SelectItem value="qigong">
+                              Qigong Studio
+                            </SelectItem>
+                            <SelectItem value="sumo">Sumo Wrestling</SelectItem>
+
                             {/* Large Venues */}
                             <SelectItem value="stadium">Stadium</SelectItem>
                             <SelectItem value="arena">Sports Arena</SelectItem>
@@ -673,6 +842,12 @@ export default function Signup() {
                             </SelectItem>
                             <SelectItem value="recreation-center">
                               Recreation Center
+                            </SelectItem>
+                            <SelectItem value="olympic-center">
+                              Olympic Training Center
+                            </SelectItem>
+                            <SelectItem value="multi-sport">
+                              Multi-Sport Facility
                             </SelectItem>
 
                             {/* Wellness */}
@@ -685,6 +860,9 @@ export default function Signup() {
                             </SelectItem>
                             <SelectItem value="sauna">
                               Sauna / Steam Room
+                            </SelectItem>
+                            <SelectItem value="recovery">
+                              Recovery & Regeneration Center
                             </SelectItem>
 
                             {/* Other */}
