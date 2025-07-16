@@ -9,8 +9,50 @@ import {
 } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const heroSlides = [
+  {
+    title: "Join as a Trainee",
+    description: "Start your fitness journey, find trainers, and achieve your goals.",
+    button: "Join as a Trainee",
+  },
+  {
+    title: "Join as a Trainer",
+    description: "Share your expertise, connect with clients, and grow your business.",
+    button: "Become a Trainer",
+  },
+  {
+    title: "Join as a Facility",
+    description: "List your gym, studio, pool, or fitness center. Attract new members and manage bookings with ease.",
+    button: "List Your Facility",
+  },
+  {
+    title: "Become a Vendor",
+    description: "Sell fitness equipment, supplements, and accessories to our community.",
+    button: "Start Selling",
+  },
+  {
+    title: "Promote Your Event",
+    description: "Advertise your fitness events and reach a wider audience.",
+    button: "Promote Event",
+  },
+];
 
 export default function Index() {
+  const [current, setCurrent] = useState(0);
+  const slideCount = heroSlides.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slideCount);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slideCount]);
+
+  const slide = heroSlides[current];
+  const backgroundImage = "url('/your-default-image-path.jpg')"; // Replace with the correct path to your uploaded image
+
   return (
     <div className="min-h-screen bg-white">
       {/* Floating Navigation Header */}
@@ -67,7 +109,7 @@ export default function Index() {
       <section
         className="relative min-h-[600px] bg-cover bg-center flex items-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://cdn.builder.io/api/v1/assets/89b2ce336c1e469faf0b11a3b6d20bdd/screencapture-localhost-8001-2025-07-16-03_28_36-de77e7?format=webp&width=800')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${backgroundImage}`,
         }}
       >
         <div className="container mx-auto px-4 pt-24 md:pt-32">
@@ -117,41 +159,33 @@ export default function Index() {
                 ))}
               </div>
             </div>
-
-            {/* Join as Facility Card */}
+            {/* Floating Card Slider */}
             <div className="flex justify-end">
-              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-2xl max-w-sm text-white">
-                <div className="flex items-center mb-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=face"
-                    alt="Fitness professionals"
-                    className="w-16 h-16 rounded-full mr-4"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-lg">
-                      Join as a Facility
-                    </h3>
-                  </div>
-                </div>
-                <p className="text-white/90 mb-4 text-sm">
-                  List your gym, studio, pool, or fitness center. Attract new
-                  members and manage bookings with ease.
-                </p>
+              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-2xl max-w-sm text-white transition-all duration-500">
+                <h3 className="font-semibold text-lg">{slide.title}</h3>
+                <p className="text-white/90 mb-4 text-sm">{slide.description}</p>
                 <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  List Your Facility
+                  {slide.button}
                 </Button>
               </div>
             </div>
           </div>
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => setCurrent((current - 1 + slideCount) % slideCount)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft size={32} />
+          </button>
+          <button
+            onClick={() => setCurrent((current + 1) % slideCount)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
+            aria-label="Next Slide"
+          >
+            <ChevronRight size={32} />
+          </button>
         </div>
-
-        {/* Navigation Arrows */}
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white">
-          <ChevronLeft size={32} />
-        </button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white">
-          <ChevronRight size={32} />
-        </button>
       </section>
 
       {/* Platform Features Section with Left-Aligned Layout */}
