@@ -39,6 +39,11 @@
 
     --radius: 0.5rem;
 
+    /* VibeCore brand colors */
+    --vibecore-red: 0 66% 58%;
+    --vibecore-red-hover: 0 66% 52%;
+    --vibecore-navy: 232 44% 22%;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
