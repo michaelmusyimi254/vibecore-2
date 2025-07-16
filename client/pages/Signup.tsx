@@ -97,7 +97,7 @@ export default function Signup() {
   ];
 
   const nextStep = () => {
-    if (currentStep < 4) setCurrentStep(currentStep + 1);
+    if (currentStep < 5) setCurrentStep(currentStep + 1);
   };
 
   const prevStep = () => {
