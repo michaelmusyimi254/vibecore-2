@@ -413,7 +413,7 @@ export default function Signup() {
                           <SelectTrigger className="rounded-xl">
                             <SelectValue placeholder="Select your primary fitness goal" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-[200px] overflow-y-auto">
                             <SelectItem value="weight-loss">
                               Weight Loss
                             </SelectItem>
@@ -431,6 +431,69 @@ export default function Signup() {
                             </SelectItem>
                             <SelectItem value="general">
                               General Fitness
+                            </SelectItem>
+
+                            {/* Rehabilitation & Medical */}
+                            <SelectItem value="rehabilitation">
+                              Physical Rehabilitation
+                            </SelectItem>
+                            <SelectItem value="injury-recovery">
+                              Injury Recovery
+                            </SelectItem>
+                            <SelectItem value="post-surgery">
+                              Post-Surgery Recovery
+                            </SelectItem>
+                            <SelectItem value="chronic-pain">
+                              Chronic Pain Management
+                            </SelectItem>
+                            <SelectItem value="mobility">
+                              Improve Mobility
+                            </SelectItem>
+                            <SelectItem value="balance">
+                              Balance & Stability
+                            </SelectItem>
+                            <SelectItem value="joint-health">
+                              Joint Health
+                            </SelectItem>
+                            <SelectItem value="muscle-therapy">
+                              Muscle Therapy
+                            </SelectItem>
+
+                            {/* Accessibility & Adaptive */}
+                            <SelectItem value="adaptive-fitness">
+                              Adaptive Fitness
+                            </SelectItem>
+                            <SelectItem value="wheelchair-fitness">
+                              Wheelchair Fitness
+                            </SelectItem>
+                            <SelectItem value="prosthetic-training">
+                              Prosthetic Training
+                            </SelectItem>
+                            <SelectItem value="visual-impaired">
+                              Visual Impairment Fitness
+                            </SelectItem>
+                            <SelectItem value="hearing-impaired">
+                              Hearing Impairment Fitness
+                            </SelectItem>
+                            <SelectItem value="cognitive-support">
+                              Cognitive Support Fitness
+                            </SelectItem>
+                            <SelectItem value="elderly-fitness">
+                              Senior/Elderly Fitness
+                            </SelectItem>
+
+                            {/* Sport-Specific */}
+                            <SelectItem value="olympic-training">
+                              Olympic Sport Training
+                            </SelectItem>
+                            <SelectItem value="paralympic-training">
+                              Paralympic Training
+                            </SelectItem>
+                            <SelectItem value="competitive-sport">
+                              Competitive Sport
+                            </SelectItem>
+                            <SelectItem value="youth-development">
+                              Youth Sport Development
                             </SelectItem>
                           </SelectContent>
                         </Select>
