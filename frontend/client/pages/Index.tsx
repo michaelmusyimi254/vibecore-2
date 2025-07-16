@@ -10,6 +10,7 @@ import {
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import NavBar from "@/components/ui/NavBar";
 
 const heroSlides = [
   {
@@ -55,55 +56,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Floating Navigation Header */}
-      <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
-        <div className="px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <Link to="/" className="text-2xl font-bold">
-              VIBE<span className="text-vibecore-red">CORE</span>
-            </Link>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/events"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
-              >
-                Events
-              </Link>
-              <Link
-                to="/trainers"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
-              >
-                Trainers
-              </Link>
-              <Link
-                to="/facilities"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
-              >
-                Facilities
-              </Link>
-              <Link
-                to="/shops"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
-              >
-                Shops
-              </Link>
-            </nav>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/login">
-              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-                Login/Register
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <NavBar />
 
       {/* Hero Section */}
       <section

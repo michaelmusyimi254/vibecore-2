@@ -28,10 +28,24 @@ import {
   Camera,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import NavBar from "@/components/ui/NavBar";
+import { useRef } from "react";
 
 export default function Signup() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState<string>("");
+
+  // Refs for scrollable containers
+  const stepperRef = useRef<HTMLDivElement>(null);
+  const roleScrollRef = useRef<HTMLDivElement>(null);
+  const planScrollRef = useRef<HTMLDivElement>(null);
+
+  // Scroll helpers
+  const scrollByAmount = (ref: React.RefObject<HTMLDivElement>, amount: number) => {
+    if (ref.current) {
+      ref.current.scrollBy({ left: amount, behavior: "smooth" });
+    }
+  };
 
   const roles = [
     {
@@ -110,36 +124,33 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="text-2xl font-bold">
-              VIBE<span className="text-vibecore-red">CORE</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
-                Already have an account?
-              </span>
-              <Link to="/login">
-                <Button
-                  variant="outline"
-                  className="rounded-full border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
-                >
-                  Login
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <NavBar />
       {/* Progress Bar */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-center space-x-8">
+      <div className="bg-white border-b border-gray-200 mt-32 relative">
+        <div className="container mx-auto px-2 py-2">
+          {/* Mobile nav buttons */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+            onClick={() => scrollByAmount(stepperRef, -120)}
+            aria-label="Scroll left"
+          >
+            <ArrowLeft className="w-4 h-4 text-gray-500" />
+          </button>
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+            onClick={() => scrollByAmount(stepperRef, 120)}
+            aria-label="Scroll right"
+          >
+            <ArrowRight className="w-4 h-4 text-gray-500" />
+          </button>
+          <div
+            ref={stepperRef}
+            className="flex items-center justify-center space-x-4 overflow-x-auto flex-nowrap w-full md:space-x-8 md:w-auto snap-x scrollbar-hide"
+          >
             {progressSteps.map((step, index) => (
-              <div key={step.step} className="flex items-center">
+              <div key={step.step} className="flex items-center min-w-[120px] snap-center">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                     step.step <= currentStep
@@ -154,7 +165,7 @@ export default function Signup() {
                   )}
                 </div>
                 <span
-                  className={`ml-2 text-sm font-medium ${
+                  className={`ml-2 text-xs md:text-sm font-medium ${
                     step.step <= currentStep
                       ? "text-vibecore-red"
                       : "text-gray-600"
@@ -164,7 +175,7 @@ export default function Signup() {
                 </span>
                 {index < progressSteps.length - 1 && (
                   <div
-                    className={`w-16 h-1 mx-4 ${
+                    className={`w-8 md:w-16 h-1 mx-2 md:mx-4 ${
                       step.step < currentStep
                         ? "bg-vibecore-red"
                         : "bg-gray-200"
@@ -178,8 +189,8 @@ export default function Signup() {
       </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+      <main className="container mx-auto px-2 md:px-4 py-12 mt-8">
+        <div className="max-w-6xl mx-auto">
           {/* Step 1: Choose Role */}
           {currentStep === 1 && (
             <div className="text-center space-y-8">
@@ -193,53 +204,65 @@ export default function Signup() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {roles.map((role) => {
-                  const IconComponent = role.icon;
-                  return (
-                    <Card
-                      key={role.id}
-                      className={`cursor-pointer transition-all hover:shadow-lg ${
-                        selectedRole === role.id
-                          ? "ring-2 ring-vibecore-red border-vibecore-red"
-                          : "hover:border-vibecore-red"
-                      }`}
-                      onClick={() => setSelectedRole(role.id)}
-                    >
-                      <CardHeader className="text-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                          <IconComponent className="w-8 h-8 text-white" />
-                        </div>
-                        <CardTitle className="text-xl">{role.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600 text-sm mb-4">
-                          {role.description}
-                        </p>
-                        <ul className="space-y-2">
-                          {role.features.map((feature, index) => (
-                            <li
-                              key={index}
-                              className="flex items-center text-sm text-gray-600"
-                            >
-                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
+              {/* Mobile nav buttons for role cards */}
+              <div className="relative">
+                <button
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                  onClick={() => scrollByAmount(roleScrollRef, -240)}
+                  aria-label="Scroll left"
+                >
+                  <ArrowLeft className="w-4 h-4 text-gray-500" />
+                </button>
+                <button
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                  onClick={() => scrollByAmount(roleScrollRef, 240)}
+                  aria-label="Scroll right"
+                >
+                  <ArrowRight className="w-4 h-4 text-gray-500" />
+                </button>
+                <div
+                  ref={roleScrollRef}
+                  className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x pb-4 scrollbar-hide"
+                >
+                  {roles.map((role) => {
+                    const IconComponent = role.icon;
+                    return (
+                      <Card
+                        key={role.id}
+                        className={`min-w-[220px] max-w-xs mx-2 md:mx-0 cursor-pointer transition-all hover:shadow-lg snap-center ${
+                          selectedRole === role.id
+                            ? "ring-2 ring-vibecore-red border-vibecore-red"
+                            : "hover:border-vibecore-red"
+                        }`}
+                        onClick={() => setSelectedRole(role.id)}
+                      >
+                        <CardHeader className="text-center">
+                          <div className="w-16 h-16 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <IconComponent className="w-8 h-8 text-white" />
+                          </div>
+                          <CardTitle className="text-xl">{role.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-600 text-sm mb-4">{role.description}</p>
+                          <ul className="text-xs text-left text-gray-500 space-y-1">
+                            {role.features.map((f) => (
+                              <li key={f}>• {f}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
               </div>
-
               <Button
+                className="w-full md:w-auto mt-4"
                 onClick={nextStep}
                 disabled={!selectedRole}
-                className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8 py-3"
               >
                 Continue
-                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
           )}
@@ -1239,204 +1262,225 @@ export default function Signup() {
                 </p>
               </div>
 
-              {/* Pricing Cards */}
-              <div className="grid md:grid-cols-3 gap-6">
-                {/* Monthly Plan */}
-                <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2">Monthly</h3>
-                    <div className="text-3xl font-bold text-vibecore-red mb-1">
-                      $
-                      {selectedRole === "trainer"
-                        ? "29"
-                        : selectedRole === "facility"
-                          ? "79"
-                          : "49"}
+              {/* Mobile nav buttons for plan cards */}
+              <div className="relative">
+                <button
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                  onClick={() => scrollByAmount(planScrollRef, -260)}
+                  aria-label="Scroll left"
+                >
+                  <ArrowLeft className="w-4 h-4 text-gray-500" />
+                </button>
+                <button
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
+                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                  onClick={() => scrollByAmount(planScrollRef, 260)}
+                  aria-label="Scroll right"
+                >
+                  <ArrowRight className="w-4 h-4 text-gray-500" />
+                </button>
+                <div
+                  ref={planScrollRef}
+                  className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto snap-x scrollbar-hide"
+                >
+                  {/* Monthly Plan */}
+                  <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold mb-2">Monthly</h3>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $
+                        {selectedRole === "trainer"
+                          ? "29"
+                          : selectedRole === "facility"
+                            ? "79"
+                            : "49"}
+                      </div>
+                      <p className="text-gray-600 text-sm mb-6">per month</p>
+
+                      <ul className="text-left space-y-3 mb-6">
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Profile listing on platform
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Client booking system
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Basic analytics
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Customer support
+                        </li>
+                        {selectedRole === "facility" && (
+                          <>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                              Multiple trainer profiles
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                              Class scheduling
+                            </li>
+                          </>
+                        )}
+                        {selectedRole === "vendor" && (
+                          <>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                              Product listings (up to 50)
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                              Inventory management
+                            </li>
+                          </>
+                        )}
+                      </ul>
+
+                      <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
+                        Select Monthly
+                      </Button>
                     </div>
-                    <p className="text-gray-600 text-sm mb-6">per month</p>
-
-                    <ul className="text-left space-y-3 mb-6">
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Profile listing on platform
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Client booking system
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Basic analytics
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Customer support
-                      </li>
-                      {selectedRole === "facility" && (
-                        <>
-                          <li className="flex items-center text-sm">
-                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                            Multiple trainer profiles
-                          </li>
-                          <li className="flex items-center text-sm">
-                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                            Class scheduling
-                          </li>
-                        </>
-                      )}
-                      {selectedRole === "vendor" && (
-                        <>
-                          <li className="flex items-center text-sm">
-                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                            Product listings (up to 50)
-                          </li>
-                          <li className="flex items-center text-sm">
-                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                            Inventory management
-                          </li>
-                        </>
-                      )}
-                    </ul>
-
-                    <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
-                      Select Monthly
-                    </Button>
-                  </div>
-                </div>
-
-                {/* 6-Month Plan - Most Popular */}
-                <div className="bg-white border-2 border-vibecore-red rounded-2xl p-6 relative">
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-vibecore-red text-white rounded-full px-4 py-1">
-                      Most Popular
-                    </Badge>
                   </div>
 
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2">6 Months</h3>
-                    <div className="text-3xl font-bold text-vibecore-red mb-1">
-                      $
-                      {selectedRole === "trainer"
-                        ? "149"
-                        : selectedRole === "facility"
-                          ? "399"
-                          : "249"}
+                  {/* 6-Month Plan - Most Popular */}
+                  <div className="bg-white border-2 border-vibecore-red rounded-2xl p-6 relative">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                      <Badge className="bg-vibecore-red text-white rounded-full px-4 py-1">
+                        Most Popular
+                      </Badge>
                     </div>
-                    <p className="text-gray-600 text-sm mb-2">total</p>
-                    <p className="text-green-600 text-sm font-medium mb-4">
-                      Save $
-                      {selectedRole === "trainer"
-                        ? "25"
-                        : selectedRole === "facility"
-                          ? "75"
-                          : "45"}
-                      !
-                    </p>
 
-                    <ul className="text-left space-y-3 mb-6">
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Everything in Monthly
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Advanced analytics
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Priority support
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Featured listing boost
-                      </li>
-                      {selectedRole === "facility" && (
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold mb-2">6 Months</h3>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $
+                        {selectedRole === "trainer"
+                          ? "149"
+                          : selectedRole === "facility"
+                            ? "399"
+                            : "249"}
+                      </div>
+                      <p className="text-gray-600 text-sm mb-2">total</p>
+                      <p className="text-green-600 text-sm font-medium mb-4">
+                        Save $
+                        {selectedRole === "trainer"
+                          ? "25"
+                          : selectedRole === "facility"
+                            ? "75"
+                            : "45"}
+                        !
+                      </p>
+
+                      <ul className="text-left space-y-3 mb-6">
                         <li className="flex items-center text-sm">
                           <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                          Event hosting tools
+                          Everything in Monthly
                         </li>
-                      )}
-                      {selectedRole === "vendor" && (
                         <li className="flex items-center text-sm">
                           <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                          Product listings (up to 200)
+                          Advanced analytics
                         </li>
-                      )}
-                      {selectedRole === "trainer" && (
                         <li className="flex items-center text-sm">
                           <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                          Online training tools
+                          Priority support
                         </li>
-                      )}
-                    </ul>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Featured listing boost
+                        </li>
+                        {selectedRole === "facility" && (
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Event hosting tools
+                          </li>
+                        )}
+                        {selectedRole === "vendor" && (
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Product listings (up to 200)
+                          </li>
+                        )}
+                        {selectedRole === "trainer" && (
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Online training tools
+                          </li>
+                        )}
+                      </ul>
 
-                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                      Select 6 Months
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Yearly Plan */}
-                <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2">Yearly</h3>
-                    <div className="text-3xl font-bold text-vibecore-red mb-1">
-                      $
-                      {selectedRole === "trainer"
-                        ? "279"
-                        : selectedRole === "facility"
-                          ? "739"
-                          : "459"}
+                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                        Select 6 Months
+                      </Button>
                     </div>
-                    <p className="text-gray-600 text-sm mb-2">per year</p>
-                    <p className="text-green-600 text-sm font-medium mb-4">
-                      Save $
-                      {selectedRole === "trainer"
-                        ? "69"
-                        : selectedRole === "facility"
-                          ? "209"
-                          : "129"}
-                      !
-                    </p>
+                  </div>
 
-                    <ul className="text-left space-y-3 mb-6">
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Everything in 6 Months
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Premium analytics & insights
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Dedicated account manager
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        Marketing toolkit
-                      </li>
-                      <li className="flex items-center text-sm">
-                        <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                        API access
-                      </li>
-                      {selectedRole === "facility" && (
+                  {/* Yearly Plan */}
+                  <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold mb-2">Yearly</h3>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $
+                        {selectedRole === "trainer"
+                          ? "279"
+                          : selectedRole === "facility"
+                            ? "739"
+                            : "459"}
+                      </div>
+                      <p className="text-gray-600 text-sm mb-2">per year</p>
+                      <p className="text-green-600 text-sm font-medium mb-4">
+                        Save $
+                        {selectedRole === "trainer"
+                          ? "69"
+                          : selectedRole === "facility"
+                            ? "209"
+                            : "129"}
+                        !
+                      </p>
+
+                      <ul className="text-left space-y-3 mb-6">
                         <li className="flex items-center text-sm">
                           <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                          White-label booking system
+                          Everything in 6 Months
                         </li>
-                      )}
-                      {selectedRole === "vendor" && (
                         <li className="flex items-center text-sm">
                           <Check className="w-4 h-4 text-vibecore-red mr-2" />
-                          Unlimited product listings
+                          Premium analytics & insights
                         </li>
-                      )}
-                    </ul>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Dedicated account manager
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Marketing toolkit
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          API access
+                        </li>
+                        {selectedRole === "facility" && (
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            White-label booking system
+                          </li>
+                        )}
+                        {selectedRole === "vendor" && (
+                          <li className="flex items-center text-sm">
+                            <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            Unlimited product listings
+                          </li>
+                        )}
+                      </ul>
 
-                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                      Select Yearly
-                    </Button>
+                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                        Select Yearly
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
