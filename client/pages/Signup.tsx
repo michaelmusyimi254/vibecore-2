@@ -670,6 +670,15 @@ export default function Signup() {
                             <SelectItem value="climbing">
                               Rock Climbing Gym
                             </SelectItem>
+                            <SelectItem value="rock-climbing">
+                              Rock Climbing Wall/Center
+                            </SelectItem>
+                            <SelectItem value="indoor-climbing">
+                              Indoor Climbing Facility
+                            </SelectItem>
+                            <SelectItem value="bouldering">
+                              Bouldering Gym
+                            </SelectItem>
                             <SelectItem value="adventure-park">
                               Adventure Park
                             </SelectItem>
