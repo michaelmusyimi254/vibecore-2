@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Search from "./pages/Search";
 import Facilities from "./pages/Facilities";
 import TrainerProfile from "./pages/TrainerProfile";
+import Shops from "./pages/Shops";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
