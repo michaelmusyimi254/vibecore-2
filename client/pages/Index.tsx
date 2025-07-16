@@ -13,9 +13,9 @@ import { Link } from "react-router-dom";
 export default function Index() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation Header */}
-      <header className="relative z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      {/* Floating Navigation Header */}
+      <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+        <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-2xl font-bold">
               VIBE<span className="text-vibecore-red">CORE</span>
@@ -53,7 +53,7 @@ export default function Index() {
               </Link>
             </nav>
           </div>
-          <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6">
+          <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
             Login/Register
           </Button>
         </div>
@@ -77,14 +77,14 @@ export default function Index() {
                 Platform
               </h1>
 
-              {/* Search Form */}
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg space-y-4 max-w-md">
+              {/* Search Form with Curved Buttons */}
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl space-y-4 max-w-md">
                 <Input
                   placeholder="Search for trainers, facilities, or events..."
-                  className="bg-white/20 border-white/30 placeholder:text-white/70 text-white"
+                  className="bg-white/20 border-white/30 placeholder:text-white/70 text-white rounded-full px-4"
                 />
                 <Select>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white">
+                  <SelectTrigger className="bg-white/20 border-white/30 text-white rounded-full">
                     <SelectValue placeholder="Detect my location..." />
                   </SelectTrigger>
                   <SelectContent>
@@ -94,17 +94,19 @@ export default function Index() {
                     <SelectItem value="custom">Enter Location</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white">
+                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
                   Search
                 </Button>
               </div>
 
-              <p className="mt-4 text-white/80">Popular cities</p>
+              <p className="mt-4 text-white/80">
+                Popular searches within my area
+              </p>
             </div>
 
             {/* Join as Facility Card */}
             <div className="flex justify-end">
-              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-lg max-w-sm text-white">
+              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-2xl max-w-sm text-white">
                 <div className="flex items-center mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=face"
@@ -121,7 +123,7 @@ export default function Index() {
                   List your gym, studio, pool, or fitness center. Attract new
                   members and manage bookings with ease.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white">
+                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
                   List Your Facility
                 </Button>
               </div>
@@ -138,8 +140,8 @@ export default function Index() {
         </button>
       </section>
 
-      {/* Platform Features Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Platform Features Section with Images and Mobile Scrolling */}
+      <section className="py-16 bg-gray-50 mt-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-vibecore-red font-semibold text-sm uppercase tracking-wider">
@@ -147,39 +149,104 @@ export default function Index() {
             </span>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-3">
-                Everything you need
-              </h3>
-              <p className="text-gray-600 text-sm">
-                A comprehensive platform that connects fitness enthusiasts with
-                trainers, facilities, and products.
-              </p>
-            </div>
+          {/* Mobile Scrollable, Desktop Grid */}
+          <div className="md:overflow-visible overflow-x-auto">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 space-x-6 md:space-x-0 pb-4 md:pb-0">
+              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  Everything you need
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  A comprehensive platform that connects fitness enthusiasts
+                  with trainers, facilities, and products.
+                </p>
+              </div>
 
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-3">Join Events</h3>
-              <p className="text-gray-600 text-sm">
-                Participate in bootcamps, workshops, competitions, and wellness
-                retreats organized by fitness professionals.
-              </p>
-            </div>
+              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Join Events</h3>
+                <p className="text-gray-600 text-sm">
+                  Participate in bootcamps, workshops, competitions, and
+                  wellness retreats organized by fitness professionals.
+                </p>
+              </div>
 
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-3">Shop Fitness Gear</h3>
-              <p className="text-gray-600 text-sm">
-                Browse and purchase equipment, supplements, apparel, and fitness
-                accessories from trusted vendors.
-              </p>
-            </div>
+              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  Shop Fitness Gear
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Browse and purchase equipment, supplements, apparel, and
+                  fitness accessories from trusted vendors.
+                </p>
+              </div>
 
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-3">Community</h3>
-              <p className="text-gray-600 text-sm">
-                Connect with like-minded fitness enthusiasts, share your
-                journey, and get motivated by others' progress.
-              </p>
+              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Community</h3>
+                <p className="text-gray-600 text-sm">
+                  Connect with like-minded fitness enthusiasts, share your
+                  journey, and get motivated by others' progress.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -195,7 +262,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Ready to Join Section */}
+      {/* Ready to Join Section with Images and Mobile Scrolling */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -205,44 +272,96 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Trainer Card */}
-            <div className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Join as a Trainer</h3>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                Share your expertise, connect with clients, and grow your
-                fitness business. Offer personal training, group classes, and
-                wellness coaching services.
-              </p>
-              <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white">
-                Become a Trainer
-              </Button>
-            </div>
+          {/* Mobile Scrollable, Desktop Grid */}
+          <div className="md:overflow-visible overflow-x-auto">
+            <div className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto space-x-6 md:space-x-0 pb-4 md:pb-0">
+              {/* Trainer Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
+                <div className="w-20 h-20 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">
+                  Join as a Trainer
+                </h3>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                  Share your expertise, connect with clients, and grow your
+                  fitness business. Offer personal training, group classes, and
+                  wellness coaching services.
+                </p>
+                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                  Become a Trainer
+                </Button>
+              </div>
 
-            {/* Facility Card */}
-            <div className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Join as a Facility</h3>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                List your gym, studio, or fitness center. Attract new members,
-                manage bookings, and showcase your facilities to fitness
-                enthusiasts.
-              </p>
-              <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white">
-                List Your Facility
-              </Button>
-            </div>
+              {/* Facility Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">
+                  Join as a Facility
+                </h3>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                  List your gym, studio, or fitness center. Attract new members,
+                  manage bookings, and showcase your facilities to fitness
+                  enthusiasts.
+                </p>
+                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                  List Your Facility
+                </Button>
+              </div>
 
-            {/* Vendor Card */}
-            <div className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Join as a Vendor</h3>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                Sell fitness equipment, supplements, apparel, and accessories.
-                Reach thousands of fitness enthusiasts looking for quality
-                products.
-              </p>
-              <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white">
-                Start Selling
-              </Button>
+              {/* Vendor Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">Join as a Vendor</h3>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                  Sell fitness equipment, supplements, apparel, and accessories.
+                  Reach thousands of fitness enthusiasts looking for quality
+                  products.
+                </p>
+                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                  Start Selling
+                </Button>
+              </div>
             </div>
           </div>
         </div>
