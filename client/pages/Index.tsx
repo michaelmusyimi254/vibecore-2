@@ -141,7 +141,7 @@ export default function Index() {
       </section>
 
       {/* Platform Features Section with Left-Aligned Layout */}
-      <section className="py-16 bg-gray-50 mt-20">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           {/* Left-aligned heading with content underneath */}
           <div className="mb-8">
