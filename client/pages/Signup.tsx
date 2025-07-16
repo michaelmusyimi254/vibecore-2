@@ -649,6 +649,45 @@ export default function Signup() {
 
               <Card>
                 <CardContent className="p-6 space-y-6">
+                  {selectedRole === "trainee" && (
+                    <>
+                      <div>
+                        <Label>Health & Fitness Assessment (Optional)</Label>
+                        <div className="mt-2 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+                          <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                          <p className="text-sm text-gray-600 mb-2">
+                            Upload any medical clearance or fitness assessments
+                          </p>
+                          <Button variant="outline" className="rounded-xl">
+                            Choose Files
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label>Profile Photo</Label>
+                        <div className="mt-2 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+                          <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                          <p className="text-sm text-gray-600 mb-2">
+                            Upload a profile photo (optional)
+                          </p>
+                          <Button variant="outline" className="rounded-xl">
+                            Choose Files
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                        <p className="text-blue-800 text-sm">
+                          <strong>Welcome!</strong> As a trainee, you can start
+                          exploring trainers and facilities immediately.
+                          Complete your profile to get personalized
+                          recommendations.
+                        </p>
+                      </div>
+                    </>
+                  )}
+
                   {selectedRole === "trainer" && (
                     <>
                       <div>
