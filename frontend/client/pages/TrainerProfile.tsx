@@ -260,25 +260,25 @@ export default function TrainerProfile() {
             <TabsList className="grid w-full grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1">
               <TabsTrigger
                 value="about"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 About
               </TabsTrigger>
               <TabsTrigger
                 value="services"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 Services
               </TabsTrigger>
               <TabsTrigger
                 value="schedule"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 Schedule
               </TabsTrigger>
               <TabsTrigger
                 value="reviews"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 Reviews
               </TabsTrigger>

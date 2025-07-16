@@ -240,28 +240,28 @@ export default function Search() {
             <TabsList className="grid w-full grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1">
               <TabsTrigger
                 value="trainers"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 <Dumbbell className="w-4 h-4 mr-2" />
                 Trainers
               </TabsTrigger>
               <TabsTrigger
                 value="facilities"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 <Building2 className="w-4 h-4 mr-2" />
                 Facilities
               </TabsTrigger>
               <TabsTrigger
                 value="shops"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 <ShoppingBag className="w-4 h-4 mr-2" />
                 Shops
               </TabsTrigger>
               <TabsTrigger
                 value="events"
-                className="rounded-xl data-[state=active]:bg-white"
+                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 Events

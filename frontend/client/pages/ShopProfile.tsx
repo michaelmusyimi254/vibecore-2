@@ -14,6 +14,8 @@ import {
   Globe,
   MapPin as MapIcon,
   ShoppingCart,
+  Flame, // <-- Add for On Offer
+  Sparkles, // <-- Add for Popular
 } from "lucide-react";
 import NavBar from "@/components/ui/NavBar";
 import { Link } from "react-router-dom";
@@ -96,6 +98,7 @@ export default function ShopProfile() {
       category: "Equipment",
       offer: true,
       createdAt: new Date("2024-06-01T10:00:00Z"),
+      popular: true, // <-- Add popular flag
     },
     {
       id: 2,
@@ -106,6 +109,7 @@ export default function ShopProfile() {
       category: "Accessories",
       offer: false,
       createdAt: new Date("2024-06-03T09:00:00Z"),
+      popular: false,
     },
     {
       id: 3,
@@ -116,6 +120,7 @@ export default function ShopProfile() {
       category: "Equipment",
       offer: true,
       createdAt: new Date("2024-06-02T12:00:00Z"),
+      popular: true, // <-- Add popular flag
     },
     {
       id: 4,
@@ -606,8 +611,13 @@ export default function ShopProfile() {
                               className="w-full h-48 object-cover rounded-lg"
                             />
                             {product.offer && (
-                              <span className="absolute top-2 left-2 bg-vibecore-red text-white text-xs font-bold px-2 py-1 rounded-full shadow">
-                                On Offer
+                              <span className="absolute top-2 left-2 flex items-center gap-1 text-white text-xs font-bold" style={{textShadow: '0 1px 4px rgba(0,0,0,0.5)'}}>
+                                <Flame className="w-4 h-4" /> On Offer
+                              </span>
+                            )}
+                            {product.popular && (
+                              <span className="absolute top-2 right-2 flex items-center gap-1 text-white text-xs font-bold" style={{textShadow: '0 1px 4px rgba(0,0,0,0.5)'}}>
+                                <Sparkles className="w-4 h-4" /> Popular
                               </span>
                             )}
                           </div>
