@@ -405,6 +405,77 @@ export default function Signup() {
                   </div>
 
                   {/* Role-specific fields */}
+                  {selectedRole === "trainee" && (
+                    <>
+                      <div>
+                        <Label htmlFor="fitnessGoals">Fitness Goals</Label>
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select your primary fitness goal" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="weight-loss">
+                              Weight Loss
+                            </SelectItem>
+                            <SelectItem value="muscle-gain">
+                              Muscle Gain
+                            </SelectItem>
+                            <SelectItem value="strength">
+                              Build Strength
+                            </SelectItem>
+                            <SelectItem value="endurance">
+                              Improve Endurance
+                            </SelectItem>
+                            <SelectItem value="flexibility">
+                              Increase Flexibility
+                            </SelectItem>
+                            <SelectItem value="general">
+                              General Fitness
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="experience">
+                          Fitness Experience Level
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select your experience level" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="beginner">Beginner</SelectItem>
+                            <SelectItem value="intermediate">
+                              Intermediate
+                            </SelectItem>
+                            <SelectItem value="advanced">Advanced</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="preferences">Workout Preferences</Label>
+                        <Input
+                          id="preferences"
+                          placeholder="e.g., Yoga, Weightlifting, Cardio, HIIT"
+                          className="rounded-xl"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="schedule">
+                          Preferred Workout Times
+                        </Label>
+                        <Input
+                          id="schedule"
+                          placeholder="e.g., Morning (6-9 AM), Evening (6-8 PM)"
+                          className="rounded-xl"
+                        />
+                      </div>
+                    </>
+                  )}
+
                   {selectedRole === "trainer" && (
                     <>
                       <div>
