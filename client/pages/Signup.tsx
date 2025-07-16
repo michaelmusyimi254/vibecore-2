@@ -482,9 +482,13 @@ export default function Signup() {
                         <Label htmlFor="specialties">Specialties</Label>
                         <Input
                           id="specialties"
-                          placeholder="e.g., Weight Loss, Strength Training, Yoga"
+                          placeholder="e.g., Adaptive Fitness, Physical Therapy, Paralympic Training, Muscle Mobility"
                           className="rounded-xl"
                         />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Include: Disability/Adaptive Fitness, Medical Rehab,
+                          Olympic Sports, Muscle & Joint Therapy
+                        </p>
                       </div>
 
                       <div>
