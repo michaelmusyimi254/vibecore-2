@@ -1636,7 +1636,7 @@ export default function Signup() {
                   Back
                 </Button>
                 <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
-                  Submit Application
+                  Complete Registration
                   <Check className="w-4 h-4 ml-2" />
                 </Button>
               </div>
