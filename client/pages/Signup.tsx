@@ -521,14 +521,182 @@ export default function Signup() {
                           <SelectTrigger className="rounded-xl">
                             <SelectValue placeholder="Select facility type" />
                           </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="gym">Gym</SelectItem>
-                            <SelectItem value="studio">Studio</SelectItem>
+                          <SelectContent className="max-h-[300px] overflow-y-auto">
+                            {/* Fitness & Gym */}
+                            <SelectItem value="gym">
+                              Gym / Fitness Center
+                            </SelectItem>
+                            <SelectItem value="studio">
+                              Fitness Studio
+                            </SelectItem>
+                            <SelectItem value="crossfit">
+                              CrossFit Box
+                            </SelectItem>
+                            <SelectItem value="martial-arts">
+                              Martial Arts Dojo
+                            </SelectItem>
+                            <SelectItem value="boxing">Boxing Gym</SelectItem>
+                            <SelectItem value="yoga">Yoga Studio</SelectItem>
+                            <SelectItem value="pilates">
+                              Pilates Studio
+                            </SelectItem>
+                            <SelectItem value="dance">Dance Studio</SelectItem>
+
+                            {/* Aquatic */}
+                            <SelectItem value="pool">Swimming Pool</SelectItem>
+                            <SelectItem value="aquatic-center">
+                              Aquatic Center
+                            </SelectItem>
+                            <SelectItem value="water-park">
+                              Water Park
+                            </SelectItem>
+                            <SelectItem value="surf">
+                              Surf School / Beach Club
+                            </SelectItem>
+
+                            {/* Outdoor & Adventure */}
+                            <SelectItem value="hiking">
+                              Hiking Trails
+                            </SelectItem>
+                            <SelectItem value="climbing">
+                              Rock Climbing Gym
+                            </SelectItem>
+                            <SelectItem value="adventure-park">
+                              Adventure Park
+                            </SelectItem>
+                            <SelectItem value="zip-line">
+                              Zip Line Course
+                            </SelectItem>
+                            <SelectItem value="obstacle-course">
+                              Obstacle Course
+                            </SelectItem>
+
+                            {/* Racquet Sports */}
+                            <SelectItem value="tennis">Tennis Club</SelectItem>
+                            <SelectItem value="badminton">
+                              Badminton Center
+                            </SelectItem>
+                            <SelectItem value="squash">Squash Club</SelectItem>
+                            <SelectItem value="racquetball">
+                              Racquetball Center
+                            </SelectItem>
+                            <SelectItem value="table-tennis">
+                              Table Tennis Center
+                            </SelectItem>
+
+                            {/* Team Sports */}
+                            <SelectItem value="basketball">
+                              Basketball Court
+                            </SelectItem>
+                            <SelectItem value="volleyball">
+                              Volleyball Center
+                            </SelectItem>
+                            <SelectItem value="soccer">
+                              Soccer Field / Futsal
+                            </SelectItem>
+                            <SelectItem value="baseball">
+                              Baseball Field
+                            </SelectItem>
+                            <SelectItem value="cricket">
+                              Cricket Ground
+                            </SelectItem>
+
+                            {/* Golf */}
+                            <SelectItem value="golf-course">
+                              Golf Course
+                            </SelectItem>
+                            <SelectItem value="driving-range">
+                              Golf Driving Range
+                            </SelectItem>
+                            <SelectItem value="mini-golf">Mini Golf</SelectItem>
+                            <SelectItem value="topgolf">
+                              TopGolf / Golf Entertainment
+                            </SelectItem>
+
+                            {/* Specialty Sports */}
+                            <SelectItem value="archery">
+                              Archery Range
+                            </SelectItem>
+                            <SelectItem value="shooting">
+                              Shooting Range
+                            </SelectItem>
+                            <SelectItem value="bowling">
+                              Bowling Alley
+                            </SelectItem>
+                            <SelectItem value="ice-skating">
+                              Ice Skating Rink
+                            </SelectItem>
+                            <SelectItem value="roller-skating">
+                              Roller Skating Rink
+                            </SelectItem>
+                            <SelectItem value="skateboard">
+                              Skate Park
+                            </SelectItem>
+                            <SelectItem value="bmx">BMX Park</SelectItem>
+
+                            {/* Equestrian */}
+                            <SelectItem value="horse-riding">
+                              Horse Riding School
+                            </SelectItem>
+                            <SelectItem value="equestrian">
+                              Equestrian Center
+                            </SelectItem>
+                            <SelectItem value="polo">Polo Club</SelectItem>
+
+                            {/* Motorsports */}
+                            <SelectItem value="go-kart">
+                              Go-Kart Track
+                            </SelectItem>
+                            <SelectItem value="racing">Racing Track</SelectItem>
+                            <SelectItem value="motocross">
+                              Motocross Track
+                            </SelectItem>
+
+                            {/* Winter Sports */}
+                            <SelectItem value="ski">Ski Resort</SelectItem>
+                            <SelectItem value="snowboard">
+                              Snowboard Park
+                            </SelectItem>
+                            <SelectItem value="ice-hockey">
+                              Ice Hockey Rink
+                            </SelectItem>
+
+                            {/* Large Venues */}
+                            <SelectItem value="stadium">Stadium</SelectItem>
+                            <SelectItem value="arena">Sports Arena</SelectItem>
+                            <SelectItem value="complex">
+                              Sports Complex
+                            </SelectItem>
+                            <SelectItem value="recreation-center">
+                              Recreation Center
+                            </SelectItem>
+
+                            {/* Wellness */}
                             <SelectItem value="spa">Spa</SelectItem>
-                            <SelectItem value="pool">Pool</SelectItem>
                             <SelectItem value="wellness">
                               Wellness Center
                             </SelectItem>
+                            <SelectItem value="meditation">
+                              Meditation Center
+                            </SelectItem>
+                            <SelectItem value="sauna">
+                              Sauna / Steam Room
+                            </SelectItem>
+
+                            {/* Other */}
+                            <SelectItem value="trampoline">
+                              Trampoline Park
+                            </SelectItem>
+                            <SelectItem value="laser-tag">
+                              Laser Tag Arena
+                            </SelectItem>
+                            <SelectItem value="paintball">
+                              Paintball Field
+                            </SelectItem>
+                            <SelectItem value="escape-room">
+                              Escape Room
+                            </SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
