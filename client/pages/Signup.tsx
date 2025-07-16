@@ -521,9 +521,13 @@ export default function Signup() {
                         <Label htmlFor="preferences">Workout Preferences</Label>
                         <Input
                           id="preferences"
-                          placeholder="e.g., Yoga, Weightlifting, Cardio, HIIT"
+                          placeholder="e.g., Adaptive Yoga, Wheelchair Sports, Aqua Therapy, Paralympic Training"
                           className="rounded-xl"
                         />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Include any accessibility needs, medical
+                          considerations, or adaptive equipment requirements
+                        </p>
                       </div>
 
                       <div>
