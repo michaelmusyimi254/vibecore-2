@@ -140,118 +140,55 @@ export default function Index() {
         </button>
       </section>
 
-      {/* Platform Features Section with Images and Mobile Scrolling */}
+      {/* Platform Features Section with Left-Aligned Layout */}
       <section className="py-16 bg-gray-50 mt-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          {/* Left-aligned heading with content underneath */}
+          <div className="mb-8">
             <span className="text-vibecore-red font-semibold text-sm uppercase tracking-wider">
               Platform Features
             </span>
           </div>
 
-          {/* Mobile Scrollable, Desktop Grid */}
-          <div className="md:overflow-visible overflow-x-auto">
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 space-x-6 md:space-x-0 pb-4 md:pb-0">
-              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Everything you need
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  A comprehensive platform that connects fitness enthusiasts
-                  with trainers, facilities, and products.
-                </p>
-              </div>
+          {/* Content Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-xl font-semibold mb-3">
+                Everything you need
+              </h3>
+              <p className="text-gray-600 text-sm">
+                A comprehensive platform that connects fitness enthusiasts with
+                trainers, facilities, and products.
+              </p>
+            </div>
 
-              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Join Events</h3>
-                <p className="text-gray-600 text-sm">
-                  Participate in bootcamps, workshops, competitions, and
-                  wellness retreats organized by fitness professionals.
-                </p>
-              </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Join Events</h3>
+              <p className="text-gray-600 text-sm">
+                Participate in bootcamps, workshops, competitions, and wellness
+                retreats organized by fitness professionals.
+              </p>
+            </div>
 
-              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Shop Fitness Gear
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Browse and purchase equipment, supplements, apparel, and
-                  fitness accessories from trusted vendors.
-                </p>
-              </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Shop Fitness Gear</h3>
+              <p className="text-gray-600 text-sm">
+                Browse and purchase equipment, supplements, apparel, and fitness
+                accessories from trusted vendors.
+              </p>
+            </div>
 
-              <div className="text-center bg-white p-6 rounded-2xl shadow-sm min-w-[250px] md:min-w-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Community</h3>
-                <p className="text-gray-600 text-sm">
-                  Connect with like-minded fitness enthusiasts, share your
-                  journey, and get motivated by others' progress.
-                </p>
-              </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Community</h3>
+              <p className="text-gray-600 text-sm">
+                Connect with like-minded fitness enthusiasts, share your
+                journey, and get motivated by others' progress.
+              </p>
             </div>
           </div>
 
-          {/* Navigation arrows */}
-          <div className="flex justify-center mt-8 space-x-4">
+          {/* Navigation arrows positioned underneath */}
+          <div className="flex space-x-4">
             <button className="w-10 h-10 rounded-full border-2 border-vibecore-red text-vibecore-red flex items-center justify-center hover:bg-vibecore-red hover:text-white transition-colors">
               <ChevronLeft size={20} />
             </button>
