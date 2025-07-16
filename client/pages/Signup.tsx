@@ -702,10 +702,10 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        <Label htmlFor="amenities">Amenities</Label>
+                        <Label htmlFor="amenities">Amenities & Features</Label>
                         <Input
                           id="amenities"
-                          placeholder="e.g., Pool, Sauna, Parking, WiFi"
+                          placeholder="e.g., Parking, WiFi, Equipment Rental, Lessons, Pro Shop, Changing Rooms"
                           className="rounded-xl"
                         />
                       </div>
