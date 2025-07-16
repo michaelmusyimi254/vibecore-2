@@ -593,6 +593,44 @@ export default function Signup() {
                             <SelectValue placeholder="Select facility type" />
                           </SelectTrigger>
                           <SelectContent className="max-h-[300px] overflow-y-auto">
+                            {/* Multi-Purpose & Mixed-Use Venues */}
+                            <SelectItem value="multi-sport">
+                              Multi-Sport Complex
+                            </SelectItem>
+                            <SelectItem value="recreation-center">
+                              Recreation Center (Multi-Use)
+                            </SelectItem>
+                            <SelectItem value="community-center">
+                              Community Center (Multi-Function)
+                            </SelectItem>
+                            <SelectItem value="country-club">
+                              Country Club (Golf + Tennis + Dining)
+                            </SelectItem>
+                            <SelectItem value="resort">
+                              Resort & Spa (Multi-Activity)
+                            </SelectItem>
+                            <SelectItem value="university-campus">
+                              University Sports Campus
+                            </SelectItem>
+                            <SelectItem value="school-complex">
+                              School Sports Complex
+                            </SelectItem>
+                            <SelectItem value="ymca">
+                              YMCA / YWCA (Multi-Service)
+                            </SelectItem>
+                            <SelectItem value="health-club">
+                              Health & Wellness Club
+                            </SelectItem>
+                            <SelectItem value="fitness-resort">
+                              Fitness Resort (All-Inclusive)
+                            </SelectItem>
+                            <SelectItem value="sports-village">
+                              Sports Village / Campus
+                            </SelectItem>
+                            <SelectItem value="athletic-club">
+                              Athletic Club (Multi-Sport)
+                            </SelectItem>
+
                             {/* Fitness & Gym */}
                             <SelectItem value="gym">
                               Gym / Fitness Center
