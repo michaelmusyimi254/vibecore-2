@@ -998,8 +998,113 @@ export default function Signup() {
                       </div>
 
                       <div>
+                        <Label>
+                          Additional Functions & Services (Smart Selector)
+                        </Label>
+                        <p className="text-sm text-gray-600 mb-3">
+                          🎯 Click to add functions your facility offers, or
+                          type custom ones:
+                        </p>
+
+                        {/* Quick Add Buttons */}
+                        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
+                          {[
+                            "Gym",
+                            "Pool",
+                            "Tennis",
+                            "Basketball",
+                            "Yoga",
+                            "Pilates",
+                            "Rock Climbing",
+                            "Golf",
+                            "Spa",
+                            "Restaurant",
+                            "Archery",
+                            "Martial Arts",
+                            "Dance",
+                            "Rehabilitation",
+                            "Massage",
+                            "Sauna",
+                            "Childcare",
+                            "Pro Shop",
+                            "Personal Training",
+                            "Group Classes",
+                            "Aqua Fitness",
+                            "Squash",
+                            "Boxing",
+                            "CrossFit",
+                            "Cycling",
+                            "Running Track",
+                            "Soccer",
+                            "Baseball",
+                            "Ice Skating",
+                            "Bowling",
+                            "Volleyball",
+                            "Badminton",
+                            "Climbing Wall",
+                            "Weight Room",
+                            "Cardio Area",
+                            "Stretching Zone",
+                            "Locker Rooms",
+                          ].map((func) => (
+                            <button
+                              key={func}
+                              type="button"
+                              className="text-xs px-3 py-2 border border-gray-300 rounded-full hover:bg-vibecore-red hover:text-white hover:border-vibecore-red transition-colors text-gray-700"
+                            >
+                              + {func}
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Selected Functions Display */}
+                        <div className="mb-3">
+                          <Label className="text-sm">Selected Functions:</Label>
+                          <div className="flex flex-wrap gap-2 min-h-[60px] p-3 border border-gray-200 rounded-xl bg-gray-50 mt-1">
+                            <span className="text-sm text-gray-500 italic">
+                              Selected functions will appear here as removable
+                              badges...
+                            </span>
+                            {/* Example badges - in real implementation these would be dynamic */}
+                            <Badge variant="secondary" className="rounded-full">
+                              Gym{" "}
+                              <span className="ml-1 cursor-pointer hover:text-red-600">
+                                ×
+                              </span>
+                            </Badge>
+                            <Badge variant="secondary" className="rounded-full">
+                              Pool{" "}
+                              <span className="ml-1 cursor-pointer hover:text-red-600">
+                                ×
+                              </span>
+                            </Badge>
+                          </div>
+                        </div>
+
+                        {/* Custom Function Input */}
+                        <div className="flex gap-2">
+                          <Input
+                            placeholder="Type any function not listed above..."
+                            className="rounded-xl flex-1"
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="rounded-xl"
+                          >
+                            Add Custom
+                          </Button>
+                        </div>
+
+                        <p className="text-xs text-gray-500 mt-2">
+                          💡 Examples: Physiotherapy, Nutrition Counseling,
+                          Equipment Rental, Event Hosting, Cryotherapy, etc.
+                        </p>
+                      </div>
+
+                      <div>
                         <Label htmlFor="services">
-                          Services Offered (Multi-Function Venues)
+                          Services Description (Optional)
                         </Label>
                         <Textarea
                           id="services"
