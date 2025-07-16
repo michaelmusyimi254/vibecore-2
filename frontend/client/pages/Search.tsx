@@ -214,12 +214,7 @@ export default function Search() {
           <div className="flex items-center space-x-4">
             <Link to="/login">
               <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-                Login
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-                Register
+                Login/Register
               </Button>
             </Link>
           </div>
