@@ -23,6 +23,11 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        vibecore: {
+          red: "hsl(var(--vibecore-red))",
+          navy: "hsl(var(--vibecore-navy))",
+          "red-hover": "hsl(var(--vibecore-red-hover))",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
