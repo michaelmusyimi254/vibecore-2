@@ -35,6 +35,19 @@ export default function Signup() {
 
   const roles = [
     {
+      id: "trainee",
+      title: "Join as a Trainee",
+      description:
+        "Start your fitness journey, find trainers, and achieve your goals",
+      icon: Dumbbell,
+      features: [
+        "Find and book qualified trainers",
+        "Access facilities and classes",
+        "Track your fitness progress",
+        "Join community events",
+      ],
+    },
+    {
       id: "trainer",
       title: "Join as a Trainer",
       description:
