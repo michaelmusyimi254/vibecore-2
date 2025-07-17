@@ -261,4 +261,4 @@ const AIChatInput = () => {
   );
 };
 
-export { AIChatInput };
+export default AIChatInput;
