@@ -548,27 +548,30 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Enhanced Platform Features Section */}
-      <section className="vc-section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-red-100 rounded-full opacity-20 transform translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100 rounded-full opacity-20 transform -translate-x-40 translate-y-40"></div>
-
-        <div className="vc-container relative z-10">
-          <div className="text-center mb-16 animate-fade-in">
-            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Platform Features
-            </span>
-            <h2 className="vc-heading-2 text-responsive-lg mb-6">
-              Why Choose <span className="text-gradient">VibeCore</span>?
+      {/* Modern Platform Features Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-gray-100 rounded-full px-4 py-2 mb-6">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+              <span className="text-sm font-medium text-gray-700">
+                Platform Features
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Why Choose{" "}
+              <span className="bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
+                VibeCore
+              </span>
+              ?
             </h2>
-            <p className="vc-body-large max-w-3xl mx-auto">
-              Your complete wellness ecosystem. Discover, connect, and grow with
-              intelligent tools designed for every step of your wellness
-              journey.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Your complete wellness ecosystem designed for the modern world
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+
+          {/* Modern Card Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             <div className="vc-card vc-card-hover p-6 text-center group animate-slide-up">
               <div className="bg-gradient-to-br from-red-50 to-red-100 text-red-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
