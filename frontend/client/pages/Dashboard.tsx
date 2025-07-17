@@ -575,7 +575,13 @@ function OverviewContent({ role, userData }: any) {
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
-  const [userRole] = useState(mockUserData.role);
+  const userData = getUserData();
+
+  if (!userData) {
+    return <div>Redirecting to login...</div>;
+  }
+
+  const userRole = userData.role;
 
   // Render role-specific dashboard content
   const renderDashboardContent = () => {
