@@ -279,7 +279,9 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Schedule</h1>
-            <p className="text-gray-600">Manage your appointments and availability</p>
+            <p className="text-gray-600">
+              Manage your appointments and availability
+            </p>
           </div>
           <Button className="bg-vibecore-red hover:bg-vibecore-red-hover">
             <Plus className="w-4 h-4 mr-2" />
@@ -389,8 +391,12 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Services & Rates</h1>
-            <p className="text-gray-600">Manage your service offerings and pricing</p>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Services & Rates
+            </h1>
+            <p className="text-gray-600">
+              Manage your service offerings and pricing
+            </p>
           </div>
           <Button className="bg-vibecore-red hover:bg-vibecore-red-hover">
             <Plus className="w-4 h-4 mr-2" />
@@ -571,7 +577,9 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
-          <p className="text-gray-600">Track your coaching performance and earnings</p>
+          <p className="text-gray-600">
+            Track your coaching performance and earnings
+          </p>
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
@@ -579,7 +587,9 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">This Month</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    This Month
+                  </p>
                   <p className="text-2xl font-bold text-green-600">
                     ${mockEarnings.thisMonth}
                   </p>
@@ -640,7 +650,10 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
             <CardContent>
               <div className="space-y-4">
                 {mockEarnings.weeklyEarnings.map((week, index) => (
-                  <div key={index} className="flex items-center justify-between">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between"
+                  >
                     <span className="text-sm text-gray-600">{week.week}</span>
                     <span className="font-semibold">${week.amount}</span>
                   </div>
@@ -656,7 +669,9 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Client Retention</span>
+                  <span className="text-sm text-gray-600">
+                    Client Retention
+                  </span>
                   <span className="font-semibold text-green-600">92%</span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -665,7 +680,9 @@ export default function CoachDashboard({ activeTab }: CoachDashboardProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Response Time</span>
-                  <span className="font-semibold text-blue-600">< 2 hours</span>
+                  <span className="font-semibold text-blue-600">
+                    &lt; 2 hours
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Booking Rate</span>
