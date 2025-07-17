@@ -1637,7 +1637,7 @@ export default function Signup() {
                     </>
                   )}
 
-                  {selectedRole === "facility" && (
+                  {selectedRole === "studio" && (
                     <>
                       <div>
                         <Label>Business License</Label>
@@ -1653,11 +1653,11 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        <Label>Facility Photos</Label>
+                        <Label>Studio Photos</Label>
                         <div className="mt-2 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                           <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                           <p className="text-sm text-gray-600 mb-2">
-                            Upload photos of your facility
+                            Upload photos of your studio
                           </p>
                           <Button variant="outline" className="rounded-xl">
                             Choose Files
