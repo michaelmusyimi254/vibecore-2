@@ -615,7 +615,7 @@ export default function Signup() {
                     </>
                   )}
 
-                  {selectedRole === "trainer" && (
+                  {selectedRole === "coach" && (
                     <>
                       <div>
                         <Label htmlFor="specialties">Specialties</Label>
