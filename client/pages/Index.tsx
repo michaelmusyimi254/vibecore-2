@@ -21,52 +21,157 @@ import {
 import { Link } from "react-router-dom";
 
 export default function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Floating Navigation Header */}
-      <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+      {/* Enhanced Floating Navigation Header */}
+      <header
+        className="fixed top-4 left-4 right-4 z-50 bg-white/85 backdrop-blur-xl border border-white/30 shadow-xl"
+        style={{ borderRadius: "24px" }}
+      >
         <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-2xl font-bold">
               VIBE<span className="text-vibecore-red">CORE</span>
             </Link>
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center space-x-6">
               <Link
                 to="/"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
+                className="text-gray-700 hover:text-vibecore-red transition-colors font-medium"
               >
                 Home
               </Link>
               <Link
                 to="/events"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
+                className="text-gray-700 hover:text-vibecore-red transition-colors font-medium"
               >
                 Events
               </Link>
               <Link
                 to="/trainers"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
+                className="text-gray-700 hover:text-vibecore-red transition-colors font-medium"
               >
                 Trainers
               </Link>
               <Link
                 to="/facilities"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
+                className="text-gray-700 hover:text-vibecore-red transition-colors font-medium"
               >
                 Facilities
               </Link>
               <Link
                 to="/shops"
-                className="text-gray-700 hover:text-vibecore-red transition-colors"
+                className="text-gray-700 hover:text-vibecore-red transition-colors font-medium"
               >
                 Shops
               </Link>
             </nav>
           </div>
-          <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-            Login/Register
-          </Button>
+
+          {/* Desktop Login */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <Link to="/login">
+              <Button
+                variant="ghost"
+                className="text-gray-700 hover:text-vibecore-red font-medium"
+                style={{ borderRadius: "18px" }}
+              >
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button
+                className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 font-medium"
+                style={{ borderRadius: "18px" }}
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-gray-700 hover:text-vibecore-red transition-colors"
+            style={{ borderRadius: "12px" }}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div
+            className="lg:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-xl"
+            style={{ borderRadius: "0 0 24px 24px" }}
+          >
+            <div className="px-6 py-4 space-y-4">
+              <nav className="space-y-3">
+                <Link
+                  to="/"
+                  className="block text-gray-700 hover:text-vibecore-red transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/events"
+                  className="block text-gray-700 hover:text-vibecore-red transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Events
+                </Link>
+                <Link
+                  to="/trainers"
+                  className="block text-gray-700 hover:text-vibecore-red transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Trainers
+                </Link>
+                <Link
+                  to="/facilities"
+                  className="block text-gray-700 hover:text-vibecore-red transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Facilities
+                </Link>
+                <Link
+                  to="/shops"
+                  className="block text-gray-700 hover:text-vibecore-red transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Shops
+                </Link>
+              </nav>
+
+              {/* Mobile Login/Register */}
+              <div className="pt-4 border-t border-gray-200/50 space-y-3">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button
+                    variant="outline"
+                    className="w-full text-gray-700 hover:text-vibecore-red font-medium border-gray-300"
+                    style={{ borderRadius: "18px" }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Button
+                    className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium"
+                    style={{ borderRadius: "18px" }}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
