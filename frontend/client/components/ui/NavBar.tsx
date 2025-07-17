@@ -24,7 +24,7 @@ export default function NavBar() {
     { to: "/", label: "Home" },
     { to: "/events", label: "Events" },
     { to: "/trainers", label: "Coaches" },
-    { to: "/facilities", label: "Studios" },
+    { to: "/facilities", label: "Venues" },
     { to: "/shops", label: "Shop" },
   ];
 
