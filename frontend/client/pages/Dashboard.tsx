@@ -618,7 +618,7 @@ export default function Dashboard() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           role={userRole}
-          userData={mockUserData}
+          userData={userData}
         />
 
         <main className="flex-1 md:ml-64 pt-20 pb-20 md:pb-8">
