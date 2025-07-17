@@ -277,8 +277,7 @@ export default function Index() {
                     e.preventDefault();
                     handleSearch(searchQuery);
                   }}
-                >
-<<<<<<< HEAD
+                                >
                   <div className="relative group">
                     {/* AI Search Icon */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
@@ -314,10 +313,6 @@ export default function Index() {
                         </div>
                       )}
                     </div>
-
-=======
-                  <div className="relative">
->>>>>>> e83101a7bac9641e4be5e492896f340fd297e750
                     <Input
                       ref={inputRef}
                       placeholder={
