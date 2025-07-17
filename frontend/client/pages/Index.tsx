@@ -249,7 +249,7 @@ export default function Index() {
                   <span className="text-gradient block mt-1 md:mt-2">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
-                  Connect with certified coaches, discover premium venues, and
+                  Connect with certified coaches, discover premium grounds, and
                   transform your wellness journey with intelligent AI
                   recommendations.
                 </p>
@@ -609,7 +609,7 @@ export default function Index() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Discover Venues
+                Discover Grounds
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Explore premium gyms, studios, and wellness centers. Filter by

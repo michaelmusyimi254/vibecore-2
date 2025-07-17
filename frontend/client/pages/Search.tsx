@@ -118,7 +118,7 @@ export default function Search() {
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search for coaches, venues, or events..."
+                  placeholder="Search for coaches, grounds, or events..."
                   className="pl-10 rounded-full border-gray-200"
                   defaultValue="fitness coaches"
                 />
@@ -183,7 +183,7 @@ export default function Search() {
                   className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
                 >
                   <Building2 className="w-4 h-4 mr-2" />
-                  Venues
+                  Grounds
                 </TabsTrigger>
                 <TabsTrigger
                   value="shops"
@@ -254,12 +254,12 @@ export default function Search() {
                 </div>
               </TabsContent>
 
-              {/* Venues Tab */}
+              {/* Grounds Tab */}
               <TabsContent value="facilities">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {results.facilities.length === 0 ? (
                     <div className="col-span-full text-center text-gray-400">
-                      No venues found.
+                      No grounds found.
                     </div>
                   ) : (
                     results.facilities.map((facility: any) => (
