@@ -226,8 +226,8 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <NavBar />
 
-      {/* Enhanced Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
+      {/* Join Our Community Section */}
+      <section className="pt-8 pb-20 bg-gray-50 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
@@ -240,7 +240,7 @@ export default function Index() {
             style={{ animationDelay: "4s" }}
           ></div>
         </div>
-        <div className="vc-container relative z-10 pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[80vh]">
+        <div className="vc-container relative z-10 pt-12 md:pt-20 flex flex-col items-center justify-center py-12">
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
@@ -549,12 +549,8 @@ export default function Index() {
       </section>
 
       {/* Enhanced Platform Features Section */}
-      <section className="vc-section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-red-100 rounded-full opacity-20 transform translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100 rounded-full opacity-20 transform -translate-x-40 translate-y-40"></div>
-
-        <div className="vc-container relative z-10">
+      <section className="py-12 bg-white">
+        <div className="vc-container">
           <div className="text-center mb-16 animate-fade-in">
             <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
               Platform Features
