@@ -15,6 +15,7 @@ import Shops from "./pages/Shops";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import MobileApp from "./pages/MobileApp";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
