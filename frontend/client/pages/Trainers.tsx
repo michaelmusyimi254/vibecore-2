@@ -613,18 +613,18 @@ export default function Trainers() {
                             <div className="flex items-center justify-center mb-1">
                               <Star className="w-4 h-4 text-yellow-400 fill-current" />
                               <span className="font-semibold ml-1">
-                                {trainer.rating}
+                                {coach.rating}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">
-                              {trainer.reviews} reviews
+                              {coach.reviews} reviews
                             </p>
                           </div>
                           <div>
                             <div className="flex items-center justify-center mb-1">
                               <Award className="w-4 h-4 text-vibecore-red" />
                               <span className="font-semibold ml-1">
-                                {trainer.experience}
+                                {coach.experience}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">experience</p>
@@ -633,7 +633,7 @@ export default function Trainers() {
                             <div className="flex items-center justify-center mb-1">
                               <DollarSign className="w-4 h-4 text-green-600" />
                               <span className="font-semibold ml-1">
-                                ${trainer.hourlyRate}
+                                ${coach.hourlyRate}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">per session</p>
