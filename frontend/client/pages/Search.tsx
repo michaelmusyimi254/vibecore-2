@@ -24,7 +24,7 @@ import { Link, useLocation } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import QuickActions from "@/components/ui/QuickActions";
+import { AIChatInput } from "@/components/ui/ai-chat-input";
 import {
   Drawer,
   DrawerTrigger,
@@ -35,8 +35,11 @@ import {
 } from "@/components/ui/drawer";
 import { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { AIChatInput } from "@/components/ui/ai-chat-input";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 
 export default function Search() {
   // --- NEW: Read query params ---
@@ -113,20 +116,8 @@ export default function Search() {
       reviews: 156,
       price: "$40/session",
       image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
-      tags: ["Core Strength", "Rehabilitation", "Posture"],
-    },
-    {
-      id: 4,
-      name: "David Wilson",
-      specialty: "CrossFit Coach",
-      location: "Iron Box Gym",
-      rating: 4.9,
-      reviews: 203,
-      price: "$50/session",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      tags: ["HIIT", "Olympic Lifting", "Endurance"],
+        "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=300&h=300&fit=crop&crop=face",
+      tags: ["Core Strength", "Posture", "Rehabilitation"],
     },
   ];
 
@@ -134,71 +125,38 @@ export default function Search() {
     {
       id: 1,
       name: "Elite Fitness Center",
-      type: "Gym",
-      location: "123 Main St, Downtown",
-      status: "Open",
+      type: "Premium Gym",
+      location: "Downtown District",
       rating: 4.6,
+      reviews: 234,
+      membership: "$89/month",
       image:
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop",
-      tags: ["24/7", "Pool", "Sauna", "Personal Training"],
+        "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=300&fit=crop",
+      amenities: ["Pool", "Sauna", "Personal Training", "Group Classes"],
     },
     {
       id: 2,
-      name: "Zen Wellness Spa",
-      type: "Spa",
-      location: "456 Oak Ave, Midtown",
-      status: "Open",
+      name: "Zen Wellness Studio",
+      type: "Yoga & Meditation",
+      location: "Midtown",
       rating: 4.8,
+      reviews: 189,
+      membership: "$65/month",
       image:
-        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=300&h=200&fit=crop",
-      tags: ["Massage", "Yoga", "Meditation", "Wellness"],
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop",
+      amenities: ["Yoga Classes", "Meditation", "Workshops", "Retreat"],
     },
     {
       id: 3,
-      name: "AquaFit Pool Center",
-      type: "Pool",
-      location: "789 Water St, Eastside",
-      status: "Closed",
-      rating: 4.4,
+      name: "PowerHouse Gym",
+      type: "Strength Training",
+      location: "Eastside",
+      rating: 4.5,
+      reviews: 298,
+      membership: "$75/month",
       image:
-        "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=300&h=200&fit=crop",
-      tags: ["Swimming", "Water Aerobics", "Lessons", "Lap Pool"],
-    },
-    {
-      id: 4,
-      name: "Powerhouse Gym",
-      type: "Gym",
-      location: "321 Strength Blvd, Westside",
-      status: "Open",
-      rating: 4.7,
-      image:
-        "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop",
-      tags: ["Weights", "Cardio", "Classes", "Nutrition"],
-    },
-  ];
-
-  const events = [
-    {
-      id: 1,
-      title: "Morning Yoga Flow",
-      date: "Dec 15, 2024",
-      time: "7:00 AM",
-      location: "Central Park",
-      price: "Free",
-      spots: "15 spots left",
-      image:
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=300&h=200&fit=crop",
-    },
-    {
-      id: 2,
-      title: "CrossFit Competition",
-      date: "Dec 20, 2024",
-      time: "10:00 AM",
-      location: "Iron Box Gym",
-      price: "$25",
-      spots: "8 spots left",
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=300&fit=crop",
+      amenities: ["Free Weights", "Machines", "Personal Training", "Nutrition"],
     },
   ];
 
@@ -206,31 +164,58 @@ export default function Search() {
     {
       id: 1,
       name: "FitGear Pro",
-      category: "Equipment",
-      location: "Online & 2 stores",
-      rating: 4.5,
+      category: "Equipment & Apparel",
+      rating: 4.7,
+      reviews: 156,
       image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
-      featured: "Premium Dumbbells - 20% Off",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop",
+      products: ["Dumbbells", "Resistance Bands", "Yoga Mats", "Apparel"],
     },
     {
       id: 2,
-      name: "NutriMax Supplements",
-      category: "Supplements",
-      location: "456 Health St",
-      rating: 4.7,
+      name: "Wellness Supplements",
+      category: "Nutrition & Supplements",
+      rating: 4.8,
+      reviews: 203,
       image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
-      featured: "Protein Powder Sale",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop",
+      products: ["Protein Powder", "Vitamins", "Pre-workout", "Recovery"],
     },
   ];
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const events = [
+    {
+      id: 1,
+      name: "Summer Fitness Bootcamp",
+      date: "June 15, 2024",
+      time: "9:00 AM",
+      location: "Central Park",
+      price: "Free",
+      attendees: 24,
+      image:
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop",
+      tags: ["Outdoor", "Bootcamp", "All Levels"],
+    },
+    {
+      id: 2,
+      name: "Yoga & Meditation Workshop",
+      date: "June 20, 2024",
+      time: "6:00 PM",
+      location: "Zen Wellness Studio",
+      price: "$25",
+      attendees: 15,
+      image:
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop",
+      tags: ["Indoor", "Yoga", "Beginner Friendly"],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
-<<<<<<< HEAD
+
+      {/* AI Chat Input */}
+      <AIChatInput />
 
       {/* Search Header */}
       <section className="pt-24 pb-8 bg-gray-50">
@@ -243,9 +228,9 @@ export default function Search() {
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search for trainers, facilities, or events..."
+                  placeholder="Search for coaches, studios, or events..."
                   className="pl-10 rounded-full border-gray-200"
-                  defaultValue="fitness trainers"
+                  defaultValue="fitness coaches"
                 />
               </div>
               <Select defaultValue="current">
@@ -260,647 +245,237 @@ export default function Search() {
                   <SelectItem value="eastside">Eastside</SelectItem>
                 </SelectContent>
               </Select>
-              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
+              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-8 rounded-full">
                 Search
               </Button>
             </div>
           </div>
-
-          {/* Location Detection */}
-          <div className="flex items-center text-sm text-gray-600 mb-6">
-            <MapPin className="w-4 h-4 mr-2" />
-            <span>
-              Detected location: <strong>San Francisco, CA</strong>
-            </span>
-          </div>
-
-          {/* Mobile Filters Button */}
-          <div className="flex lg:hidden mb-4">
-            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-              <DrawerTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full rounded-full"
-                  onClick={() => setDrawerOpen(true)}
-                >
-                  <Filter className="w-5 h-5 mr-2" /> Filters
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>Filters</DrawerTitle>
-                </DrawerHeader>
-                {/* Example filter controls */}
-                <div className="space-y-6 px-4 pb-4">
-                  {/* Distance */}
-                  <Collapsible>
-                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
-                      Distance
-                      <span className="ml-2">▼</span>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-2">
-                        {["5 miles", "10 miles", "25 miles", "Any"].map(
-                          (distance) => (
-                            <div
-                              key={distance}
-                              className="flex items-center space-x-2"
-                            >
-                              <Checkbox id={distance + "-mobile"} />
-                              <label
-                                htmlFor={distance + "-mobile"}
-                                className="text-sm text-gray-700"
-                              >
-                                {distance}
-                              </label>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  {/* Price */}
-                  <Collapsible>
-                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
-                      Price
-                      <span className="ml-2">▼</span>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-2">
-                        {["Any", "$", "$$", "$$$"].map((price) => (
-                          <div
-                            key={price}
-                            className="flex items-center space-x-2"
-                          >
-                            <Checkbox id={price + "-mobile"} />
-                            <label
-                              htmlFor={price + "-mobile"}
-                              className="text-sm text-gray-700"
-                            >
-                              {price}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  {/* Rating */}
-                  <Collapsible>
-                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
-                      Rating
-                      <span className="ml-2">▼</span>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-2">
-                        {["4.5+", "4.0+", "3.5+", "Any"].map((rating) => (
-                          <div
-                            key={rating}
-                            className="flex items-center space-x-2"
-                          >
-                            <Checkbox id={rating + "-mobile"} />
-                            <label
-                              htmlFor={rating + "-mobile"}
-                              className="text-sm text-gray-700"
-                            >
-                              {rating}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  {/* Category */}
-                  <Collapsible>
-                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
-                      Category
-                      <span className="ml-2">▼</span>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-2">
-                        {["Trainers", "Facilities", "Shops", "Events"].map(
-                          (cat) => (
-                            <div
-                              key={cat}
-                              className="flex items-center space-x-2"
-                            >
-                              <Checkbox id={cat + "-mobile"} />
-                              <label
-                                htmlFor={cat + "-mobile"}
-                                className="text-sm text-gray-700"
-                              >
-                                {cat}
-                              </label>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  <DrawerClose asChild>
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
-                      Apply Filters
-                    </Button>
-                  </DrawerClose>
-                </div>
-              </DrawerContent>
-            </Drawer>
-          </div>
-          {/* Desktop Filters (if any) and badges remain as before */}
-          <div className="hidden lg:flex items-center gap-4 mb-8">
-            <Button variant="outline" className="rounded-full">
-              <Filter className="w-4 h-4 mr-2" />
-              Filters
-            </Button>
-            <Badge variant="secondary" className="rounded-full">
-              Distance: 5 miles
-            </Badge>
-            <Badge variant="secondary" className="rounded-full">
-              Price: Any
-            </Badge>
-            <Badge variant="secondary" className="rounded-full">
-              Rating: 4.0+
-            </Badge>
-          </div>
         </div>
       </section>
-=======
-      <AIChatInput />
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
 
-      {/* Results Section */}
-      <section className="pb-16">
+      {/* Search Results */}
+      <section className="pb-12">
         <div className="container mx-auto px-4">
-          {loading ? (
-            <div className="text-center py-12 text-lg text-gray-500 animate-pulse">
-              Loading results…
-            </div>
-          ) : error ? (
-            <div className="text-center py-12 text-lg text-red-500">
-              {error}
-            </div>
-          ) : (
-            <Tabs defaultValue={type} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1 overflow-x-auto">
-              <TabsTrigger
-                value="trainers"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                <Dumbbell className="w-4 h-4 mr-2" />
-                Trainers
+          <Tabs defaultValue="trainers" className="w-full">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
+              <TabsTrigger value="trainers" className="flex items-center gap-2">
+                <Dumbbell className="w-4 h-4" />
+                Coaches
               </TabsTrigger>
               <TabsTrigger
                 value="facilities"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
+                className="flex items-center gap-2"
               >
-                <Building2 className="w-4 h-4 mr-2" />
-                Facilities
+                <Building2 className="w-4 h-4" />
+                Studios
               </TabsTrigger>
-              <TabsTrigger
-                value="shops"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                <ShoppingBag className="w-4 h-4 mr-2" />
-                Shops
+              <TabsTrigger value="shops" className="flex items-center gap-2">
+                <ShoppingBag className="w-4 h-4" />
+                Shop
               </TabsTrigger>
-              <TabsTrigger
-                value="events"
-                className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
-              >
-                <Calendar className="w-4 h-4 mr-2" />
+              <TabsTrigger value="events" className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
                 Events
               </TabsTrigger>
             </TabsList>
 
-            {/* Trainers Tab */}
+            {/* Coaches Tab */}
             <TabsContent value="trainers">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {results.trainers.length === 0 ? (
-<<<<<<< HEAD
-                    <div className="col-span-full text-center text-gray-400">
-                      No trainers found.
-                    </div>
-                  ) : (
-                    results.trainers.map((trainer: any) => (
-                      <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
-                        <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                          <img
-                            src={trainer.image}
-                            alt={trainer.name}
-                            className="w-full h-48 object-cover rounded-xl mb-4"
-                          />
-                          <h3 className="font-semibold text-lg mb-1">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {trainers.map((trainer) => (
+                  <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-start gap-4">
+                        <img
+                          src={trainer.image}
+                          alt={trainer.name}
+                          className="w-16 h-16 rounded-full object-cover"
+                        />
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-lg">
                             {trainer.name}
                           </h3>
-                          <p className="text-gray-600 text-sm mb-2">
+                          <p className="text-gray-600 text-sm">
                             {trainer.specialty}
                           </p>
-                          <p className="text-gray-500 text-sm mb-3 flex items-center">
-                            <MapPin className="w-3 h-3 mr-1" />
-                            {trainer.location}
-                          </p>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center">
-                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                              <span className="text-sm font-medium ml-1">
-                                {trainer.rating}
-                              </span>
-                              <span className="text-gray-500 text-sm ml-1">
-                                ({trainer.reviews})
-                              </span>
-                            </div>
-                            <span className="font-semibold text-vibecore-red">
-                              {trainer.price}
+                          <div className="flex items-center gap-1 mt-1">
+                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            <span className="text-sm font-medium">
+                              {trainer.rating}
+                            </span>
+                            <span className="text-sm text-gray-500">
+                              ({trainer.reviews} reviews)
                             </span>
                           </div>
-                          <div className="flex flex-wrap gap-1 mb-4">
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                          <MapPin className="w-4 h-4" />
+                          {trainer.location}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-vibecore-red">
+                            {trainer.price}
+                          </span>
+                          <div className="flex gap-1">
                             {trainer.tags.slice(0, 2).map((tag) => (
                               <Badge
                                 key={tag}
                                 variant="secondary"
-                                className="text-xs rounded-full"
+                                className="text-xs"
                               >
                                 {tag}
                               </Badge>
                             ))}
                           </div>
-                          <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                            Book Session
-                          </Button>
                         </div>
-                      </Link>
-                    ))
-                  )}
-                </div>
-              </TabsContent>
-
-              {/* Facilities Tab */}
-              <TabsContent value="facilities">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {results.facilities.length === 0 ? (
-                    <div className="col-span-full text-center text-gray-400">
-                      No facilities found.
-                    </div>
-                  ) : (
-                    results.facilities.map((facility: any) => (
-                      <div
-                        key={facility.id}
-                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                      >
-                        <img
-                          src={facility.image}
-                          alt={facility.name}
-                          className="w-full h-48 object-cover rounded-xl mb-4"
-                        />
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-lg">
-                            {facility.name}
-                          </h3>
-                          <Badge
-                            variant={
-                              facility.status === "Open"
-                                ? "default"
-                                : "secondary"
-                            }
-                            className="rounded-full"
-                          >
-                            {facility.status}
-                          </Badge>
-                        </div>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {facility.type}
-                        </p>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {facility.location}
-                        </p>
-                        <div className="flex items-center mb-3">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm font-medium ml-1">
-                            {facility.rating}
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {facility.tags.slice(0, 3).map((tag) => (
-                            <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs rounded-full"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          View More
-                        </Button>
                       </div>
-                    ))
-                  )}
-                </div>
-              </TabsContent>
-=======
-                    <div className="col-span-full text-center text-gray-400">No trainers found.</div>
-                  ) : results.trainers.map((trainer: any) => (
-                  <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                      <img
-                        src={trainer.image}
-                        alt={trainer.name}
-                        className="w-full h-48 object-cover rounded-xl mb-4"
-                      />
-                      <h3 className="font-semibold text-lg mb-1">
-                        {trainer.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-2">
-                        {trainer.specialty}
-                      </p>
-                      <p className="text-gray-500 text-sm mb-3 flex items-center">
-                        <MapPin className="w-3 h-3 mr-1" />
-                        {trainer.location}
-                      </p>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm font-medium ml-1">
-                            {trainer.rating}
-                          </span>
-                          <span className="text-gray-500 text-sm ml-1">
-                            ({trainer.reviews})
-                          </span>
-                        </div>
-                        <span className="font-semibold text-vibecore-red">
-                          {trainer.price}
-                        </span>
-                      </div>
-                      <div className="flex flex-wrap gap-1 mb-4">
-                        {trainer.tags.slice(0, 2).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs rounded-full"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                        Book Session
-                      </Button>
                     </div>
                   </Link>
                 ))}
               </div>
             </TabsContent>
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
 
-            {/* Facilities Tab */}
+            {/* Studios Tab */}
             <TabsContent value="facilities">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {results.facilities.length === 0 ? (
-                    <div className="col-span-full text-center text-gray-400">No facilities found.</div>
-                  ) : results.facilities.map((facility: any) => (
-                  <div
-                    key={facility.id}
-                    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <img
-                      src={facility.image}
-                      alt={facility.name}
-                      className="w-full h-48 object-cover rounded-xl mb-4"
-                    />
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-lg">{facility.name}</h3>
-                      <Badge
-                        variant={
-                          facility.status === "Open" ? "default" : "secondary"
-                        }
-                        className="rounded-full"
-                      >
-                        {facility.status}
-                      </Badge>
-                    </div>
-                    <p className="text-gray-600 text-sm mb-2">
-                      {facility.type}
-                    </p>
-                    <p className="text-gray-500 text-sm mb-3 flex items-center">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {facility.location}
-                    </p>
-                    <div className="flex items-center mb-3">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-medium ml-1">
-                        {facility.rating}
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {facility.tags.slice(0, 3).map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs rounded-full"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                      View More
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* Shops Tab */}
-            <TabsContent value="shops">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {results.shops.length === 0 ? (
-<<<<<<< HEAD
-                    <div className="col-span-full text-center text-gray-400">
-                      No shops found.
-                    </div>
-                  ) : (
-                    results.shops.map((shop: any) => (
-                      <div
-                        key={shop.id}
-                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                      >
-                        <img
-                          src={shop.image}
-                          alt={shop.name}
-                          className="w-full h-48 object-cover rounded-xl mb-4"
-                        />
-                        <h3 className="font-semibold text-lg mb-1">
-                          {shop.name}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {facilities.map((facility) => (
+                  <Link key={facility.id} to={`/facilities/${facility.id}`}>
+                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                      <img
+                        src={facility.image}
+                        alt={facility.name}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="font-semibold text-lg">
+                          {facility.name}
                         </h3>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {shop.category}
-                        </p>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {shop.location}
-                        </p>
-                        <div className="flex items-center mb-3">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm font-medium ml-1">
-                            {shop.rating}
+                        <p className="text-gray-600 text-sm">{facility.type}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span className="text-sm font-medium">
+                            {facility.rating}
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            ({facility.reviews} reviews)
                           </span>
                         </div>
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-4">
-                          <p className="text-green-800 text-xs font-medium">
-                            {shop.featured}
-                          </p>
+                        <div className="flex items-center gap-2 text-sm text-gray-600 mt-2">
+                          <MapPin className="w-4 h-4" />
+                          {facility.location}
                         </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          Shop Now
-                        </Button>
+                        <div className="flex items-center justify-between mt-4">
+                          <span className="font-semibold text-vibecore-red">
+                            {facility.membership}
+                          </span>
+                          <Badge variant="outline" className="text-xs">
+                            {facility.amenities.length} amenities
+                          </Badge>
+                        </div>
                       </div>
-                    ))
-                  )}
-                </div>
-              </TabsContent>
-=======
-                    <div className="col-span-full text-center text-gray-400">No shops found.</div>
-                  ) : results.shops.map((shop: any) => (
-                  <div
-                    key={shop.id}
-                    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <img
-                      src={shop.image}
-                      alt={shop.name}
-                      className="w-full h-48 object-cover rounded-xl mb-4"
-                    />
-                    <h3 className="font-semibold text-lg mb-1">{shop.name}</h3>
-                    <p className="text-gray-600 text-sm mb-2">
-                      {shop.category}
-                    </p>
-                    <p className="text-gray-500 text-sm mb-3 flex items-center">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {shop.location}
-                    </p>
-                    <div className="flex items-center mb-3">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-medium ml-1">
-                        {shop.rating}
-                      </span>
                     </div>
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-4">
-                      <p className="text-green-800 text-xs font-medium">
-                        {shop.featured}
-                      </p>
-                    </div>
-                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                      Shop Now
-                    </Button>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </TabsContent>
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
+
+            {/* Shop Tab */}
+            <TabsContent value="shops">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {shops.map((shop) => (
+                  <Link key={shop.id} to={`/shops/${shop.id}`}>
+                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                      <img
+                        src={shop.image}
+                        alt={shop.name}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="font-semibold text-lg">{shop.name}</h3>
+                        <p className="text-gray-600 text-sm">{shop.category}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span className="text-sm font-medium">
+                            {shop.rating}
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            ({shop.reviews} reviews)
+                          </span>
+                        </div>
+                        <div className="flex gap-1 mt-3">
+                          {shop.products.slice(0, 3).map((product) => (
+                            <Badge
+                              key={product}
+                              variant="secondary"
+                              className="text-xs"
+                            >
+                              {product}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </TabsContent>
 
             {/* Events Tab */}
             <TabsContent value="events">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {results.events.length === 0 ? (
-<<<<<<< HEAD
-                    <div className="col-span-full text-center text-gray-400">
-                      No events found.
-                    </div>
-                  ) : (
-                    results.events.map((event: any) => (
-                      <div
-                        key={event.id}
-                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                      >
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-48 object-cover rounded-xl mb-4"
-                        />
-                        <h3 className="font-semibold text-lg mb-2">
-                          {event.title}
-                        </h3>
-                        <div className="space-y-2 mb-4">
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <Calendar className="w-3 h-3 mr-2" />
-                            {event.date}
-                          </p>
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <Clock className="w-3 h-3 mr-2" />
-                            {event.time}
-                          </p>
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <MapPin className="w-3 h-3 mr-2" />
-                            {event.location}
-                          </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {events.map((event) => (
+                  <Link key={event.id} to={`/events/${event.id}`}>
+                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                      <img
+                        src={event.image}
+                        alt={event.name}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="font-semibold text-lg">{event.name}</h3>
+                        <div className="flex items-center gap-2 text-sm text-gray-600 mt-2">
+                          <Calendar className="w-4 h-4" />
+                          {event.date}
                         </div>
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Clock className="w-4 h-4" />
+                          {event.time}
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <MapPin className="w-4 h-4" />
+                          {event.location}
+                        </div>
+                        <div className="flex items-center justify-between mt-4">
                           <span className="font-semibold text-vibecore-red">
                             {event.price}
                           </span>
                           <span className="text-sm text-gray-500">
-                            {event.spots}
+                            {event.attendees} attending
                           </span>
                         </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          Join Event
-                        </Button>
+                        <div className="flex gap-1 mt-3">
+                          {event.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="text-xs"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
-                    ))
-                  )}
-                </div>
-              </TabsContent>
-            </Tabs>
-=======
-                    <div className="col-span-full text-center text-gray-400">No events found.</div>
-                  ) : results.events.map((event: any) => (
-                  <div
-                    key={event.id}
-                    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-48 object-cover rounded-xl mb-4"
-                    />
-                    <h3 className="font-semibold text-lg mb-2">
-                      {event.title}
-                    </h3>
-                    <div className="space-y-2 mb-4">
-                      <p className="text-gray-600 text-sm flex items-center">
-                        <Calendar className="w-3 h-3 mr-2" />
-                        {event.date}
-                      </p>
-                      <p className="text-gray-600 text-sm flex items-center">
-                        <Clock className="w-3 h-3 mr-2" />
-                        {event.time}
-                      </p>
-                      <p className="text-gray-600 text-sm flex items-center">
-                        <MapPin className="w-3 h-3 mr-2" />
-                        {event.location}
-                      </p>
                     </div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-semibold text-vibecore-red">
-                        {event.price}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        {event.spots}
-                      </span>
-                    </div>
-                    <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                      Join Event
-                    </Button>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </TabsContent>
           </Tabs>
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
-          )}
         </div>
       </section>
+
       <Footer />
     </div>
   );
