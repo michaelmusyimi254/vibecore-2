@@ -498,22 +498,22 @@ export default function Facilities() {
                           <div className="flex items-center">
                             <Star className="w-4 h-4 text-yellow-400 fill-current" />
                             <span className="text-sm font-medium ml-1">
-                              {facility.rating}
+                              {studio.rating}
                             </span>
                             <span className="text-gray-500 text-sm ml-1">
-                              ({facility.reviews})
+                              ({studio.reviews})
                             </span>
                           </div>
                           <span className="font-semibold text-vibecore-red">
-                            {facility.price}
+                            {studio.price}
                           </span>
                         </div>
                         <p className="text-gray-500 text-sm mb-3 flex items-center">
                           <Clock className="w-3 h-3 mr-1" />
-                          {facility.openTime}
+                          {studio.openTime}
                         </p>
                         <div className="flex flex-wrap gap-1 mb-4">
-                          {facility.tags.slice(0, 3).map((tag) => (
+                          {studio.tags.slice(0, 3).map((tag) => (
                             <Badge
                               key={tag}
                               variant="secondary"
@@ -524,7 +524,7 @@ export default function Facilities() {
                           ))}
                         </div>
                         <div className="flex items-center mb-4 text-xs text-gray-500">
-                          {facility.amenities
+                          {studio.amenities
                             .slice(0, 4)
                             .map((amenity, index) => (
                               <span key={amenity} className="flex items-center">
@@ -547,7 +547,7 @@ export default function Facilities() {
                                   )}
                                 {amenity}
                                 {index <
-                                  facility.amenities.slice(0, 4).length - 1 &&
+                                  studio.amenities.slice(0, 4).length - 1 &&
                                   " • "}
                               </span>
                             ))}
