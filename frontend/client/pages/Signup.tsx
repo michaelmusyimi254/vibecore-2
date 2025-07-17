@@ -452,10 +452,10 @@ export default function Signup() {
                 <h2 className="text-2xl font-bold mb-2">Profile Details</h2>
                 <p className="text-gray-600">
                   Add details that will help people find and choose{" "}
-                  {selectedRole === "trainer"
+                  {selectedRole === "coach" || selectedRole === "member"
                     ? "you"
-                    : selectedRole === "facility"
-                      ? "your facility"
+                    : selectedRole === "studio"
+                      ? "your studio"
                       : "your business"}
                 </p>
               </div>
