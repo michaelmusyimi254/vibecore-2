@@ -586,7 +586,7 @@ export default function Dashboard() {
   // Render role-specific dashboard content
   const renderDashboardContent = () => {
     if (activeTab === "overview") {
-      return <OverviewContent role={userRole} userData={mockUserData} />;
+      return <OverviewContent role={userRole} userData={userData} />;
     }
 
     switch (userRole) {
@@ -603,7 +603,7 @@ export default function Dashboard() {
       case "admin":
         return <AdminDashboard activeTab={activeTab} />;
       default:
-        return <OverviewContent role={userRole} userData={mockUserData} />;
+        return <OverviewContent role={userRole} userData={userData} />;
     }
   };
 
