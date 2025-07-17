@@ -430,25 +430,29 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Platform Features Section with Left-Aligned Layout */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="mb-10">
-            <span className="text-vibecore-red font-bold text-2xl uppercase tracking-wider block mb-2">
+      {/* Enhanced Platform Features Section */}
+      <section className="vc-section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-red-100 rounded-full opacity-20 transform translate-x-48 -translate-y-48"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100 rounded-full opacity-20 transform -translate-x-40 translate-y-40"></div>
+
+        <div className="vc-container relative z-10">
+          <div className="text-center mb-16 animate-fade-in">
+            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
               Platform Features
             </span>
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-              Why VibeCore?
+            <h2 className="vc-heading-2 text-responsive-lg mb-6">
+              Why Choose <span className="text-gradient">VibeCore</span>?
             </h2>
-            <p className="text-lg text-gray-700 max-w-2xl">
-              All-in-one platform for fitness, wellness, and community.
-              Discover, connect, and grow with tools designed for every step of
-              your journey.
+            <p className="vc-body-large max-w-3xl mx-auto">
+              Your complete wellness ecosystem. Discover, connect, and grow with
+              intelligent tools designed for every step of your wellness
+              journey.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            <div className="flex flex-col items-start">
-              <div className="bg-vibecore-red/10 text-vibecore-red rounded-xl p-4 mb-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+            <div className="vc-card vc-card-hover p-6 text-center group animate-slide-up">
+              <div className="bg-gradient-to-br from-red-50 to-red-100 text-red-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -463,14 +467,19 @@ export default function Index() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Find & Book Experts</h3>
-              <p className="text-gray-600 text-base">
-                Browse trainers, nutritionists, and wellness pros. Book
-                sessions, classes, or consultations in a few taps.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Find & Book Experts
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Connect with certified coaches, nutritionists, and wellness
+                professionals. Book sessions seamlessly.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-blue-500/10 text-blue-600 rounded-xl p-4 mb-4">
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.1s" }}
+            >
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -485,16 +494,19 @@ export default function Index() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">
-                Facility & Class Discovery
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Discover Facilities
               </h3>
-              <p className="text-gray-600 text-base">
-                Find gyms, studios, pools, and classes near you. Filter by
-                amenities, schedule, and reviews.
+              <p className="text-gray-600 leading-relaxed">
+                Explore premium gyms, studios, and wellness centers. Filter by
+                amenities and location.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-green-500/10 text-green-600 rounded-xl p-4 mb-4">
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="bg-gradient-to-br from-green-50 to-green-100 text-green-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -509,14 +521,19 @@ export default function Index() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Shop Fitness Gear</h3>
-              <p className="text-gray-600 text-base">
-                Buy equipment, supplements, and apparel from trusted vendors.
-                Exclusive deals for members.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Premium Marketplace
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Shop high-quality fitness gear, supplements, and wellness
+                products from trusted vendors.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-yellow-400/10 text-yellow-500 rounded-xl p-4 mb-4">
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 text-yellow-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -527,14 +544,16 @@ export default function Index() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Events & Community</h3>
-              <p className="text-gray-600 text-base">
-                Join bootcamps, workshops, and wellness events. Connect, share,
-                and grow with the VibeCore community.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Events & Community
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Join exclusive wellness events, workshops, and build meaningful
+                connections with like-minded individuals.
               </p>
             </div>
             <div className="flex flex-col items-start">
