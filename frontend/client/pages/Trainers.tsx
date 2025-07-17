@@ -641,7 +641,7 @@ export default function Trainers() {
                         </div>
 
                         <div className="flex flex-wrap gap-1 mb-4">
-                          {trainer.specialties.slice(0, 3).map((specialty) => (
+                          {coach.specialties.slice(0, 3).map((specialty) => (
                             <Badge
                               key={specialty}
                               variant="secondary"
@@ -655,10 +655,10 @@ export default function Trainers() {
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center text-sm text-gray-600">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span>{trainer.available}</span>
+                            <span>{coach.available}</span>
                           </div>
                           <span className="text-xs text-gray-500">
-                            {trainer.responseTime}
+                            {coach.responseTime}
                           </span>
                         </div>
 
