@@ -139,7 +139,7 @@ function MobileNavigation({ activeTab, setActiveTab, role }: any) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50 md:hidden safe-area-bottom">
       <div className="flex justify-around py-2">
         {getNavItems().map((item) => (
           <button
