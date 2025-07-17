@@ -258,7 +258,7 @@ export default function Signup() {
                 </button>
                 <div
                   ref={roleScrollRef}
-                  className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x pb-4 scrollbar-hide"
+                  className="flex md:grid md:grid-cols-5 gap-4 md:gap-6 overflow-x-auto snap-x pb-4 scrollbar-hide"
                 >
                   {roles.map((role, index) => {
                     const IconComponent = role.icon;
@@ -320,11 +320,13 @@ export default function Signup() {
                 <h2 className="text-2xl font-bold mb-2">Basic Information</h2>
                 <p className="text-gray-600">
                   Let's start with some basic details about{" "}
-                  {selectedRole === "trainer"
+                  {selectedRole === "coach"
                     ? "yourself"
-                    : selectedRole === "facility"
-                      ? "your facility"
-                      : "your business"}
+                    : selectedRole === "studio"
+                      ? "your studio"
+                      : selectedRole === "member"
+                        ? "yourself"
+                        : "your business"}
                 </p>
               </div>
 
@@ -333,19 +335,19 @@ export default function Signup() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">
-                        {selectedRole === "trainer"
+                        {selectedRole === "coach" || selectedRole === "member"
                           ? "First Name"
-                          : selectedRole === "facility"
-                            ? "Facility Name"
+                          : selectedRole === "studio"
+                            ? "Studio Name"
                             : "Business Name"}
                       </Label>
                       <Input
                         id="firstName"
                         placeholder={
-                          selectedRole === "trainer"
+                          selectedRole === "coach" || selectedRole === "member"
                             ? "Enter your first name"
-                            : selectedRole === "facility"
-                              ? "Enter facility name"
+                            : selectedRole === "studio"
+                              ? "Enter studio name"
                               : "Enter business name"
                         }
                         className="rounded-xl"
@@ -353,14 +355,14 @@ export default function Signup() {
                     </div>
                     <div>
                       <Label htmlFor="lastName">
-                        {selectedRole === "trainer"
+                        {selectedRole === "coach" || selectedRole === "member"
                           ? "Last Name"
                           : "Contact Person"}
                       </Label>
                       <Input
                         id="lastName"
                         placeholder={
-                          selectedRole === "trainer"
+                          selectedRole === "coach" || selectedRole === "member"
                             ? "Enter your last name"
                             : "Enter contact person name"
                         }
