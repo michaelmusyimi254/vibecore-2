@@ -89,6 +89,25 @@ export default function Welcome() {
     navigate("/dashboard");
   };
 
+  const exploreFeature = (feature: string) => {
+    switch (feature) {
+      case "coaches":
+        navigate("/trainers");
+        break;
+      case "booking":
+        navigate("/search");
+        break;
+      case "dashboard":
+        navigate("/dashboard");
+        break;
+      case "community":
+        navigate("/events");
+        break;
+      default:
+        navigate("/dashboard");
+    }
+  };
+
   const currentStepData = welcomeSteps[currentStep - 1];
 
   return (

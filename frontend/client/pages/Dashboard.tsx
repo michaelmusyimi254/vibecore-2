@@ -139,7 +139,7 @@ function MobileNavigation({ activeTab, setActiveTab, role }: any) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50 md:hidden safe-area-bottom">
       <div className="flex justify-around py-2">
         {getNavItems().map((item) => (
           <button
@@ -622,7 +622,7 @@ export default function Dashboard() {
         />
 
         <main className="flex-1 md:ml-64 pt-20 pb-20 md:pb-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="vc-container py-6 md:py-8">
             {renderDashboardContent()}
           </div>
         </main>

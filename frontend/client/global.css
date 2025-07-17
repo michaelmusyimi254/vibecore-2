@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import premium Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
+   * Enhanced VibeCore Design System
+   * Modern, premium wellness platform styling with advanced animations
   */
   :root {
     --background: 0 0% 100%;
@@ -39,20 +41,47 @@
 
     --radius: 0.5rem;
 
-    /* VibeCore brand colors (HSL) */
-    --vc-red: 0 84% 58%;         /* Main red */
-    --vc-black: 0 0% 10%;        /* Deep black */
-    --vc-light-red: 0 100% 95%;  /* Light red for backgrounds/accents */
-    --vc-font-family: 'Inter', 'Roboto', Arial, sans-serif;
-    --vc-header-size: 1.25rem;
-    --vc-header-weight: 700;
-    --vc-body-size: 1rem;
-    --vc-body-weight: 400;
+    /* Enhanced VibeCore Brand System */
+    --vc-red: 0 84% 58%; /* Primary red */
+    --vc-red-light: 0 84% 68%; /* Lighter red */
+    --vc-red-dark: 0 84% 48%; /* Darker red */
+    --vc-black: 0 0% 8%; /* Deep black */
+    --vc-gray-50: 220 14% 96%; /* Light gray */
+    --vc-gray-100: 220 14% 92%; /* Light gray */
+    --vc-gray-200: 220 13% 85%; /* Medium light gray */
+    --vc-gray-300: 220 9% 70%; /* Medium gray */
+    --vc-gray-400: 220 8% 55%; /* Medium dark gray */
+    --vc-gray-500: 220 9% 40%; /* Dark gray */
+    --vc-gray-600: 220 12% 25%; /* Darker gray */
+    --vc-gray-700: 220 16% 15%; /* Very dark gray */
+    --vc-gradient-start: 0 84% 58%; /* Gradient start */
+    --vc-gradient-end: 15 84% 58%; /* Gradient end */
 
-    /* VibeCore brand colors */
+    /* Premium Typography System */
+    --vc-font-sans:
+      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --vc-font-display:
+      "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    /* Enhanced Color Palette */
     --vibecore-red: 0 66% 58%;
     --vibecore-red-hover: 0 66% 52%;
     --vibecore-navy: 232 44% 22%;
+    --vibecore-success: 142 76% 36%;
+    --vibecore-warning: 38 92% 50%;
+    --vibecore-info: 217 91% 60%;
+
+    /* Animation Variables */
+    --vc-transition-fast: 0.15s ease-out;
+    --vc-transition-normal: 0.25s ease-out;
+    --vc-transition-slow: 0.35s ease-out;
+    --vc-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --vc-shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --vc-shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --vc-shadow-xl:
+      0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -71,35 +100,77 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  html, body {
-    font-family: var(--vc-font-family);
-    font-size: var(--vc-body-size);
-    font-weight: var(--vc-body-weight);
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--vc-font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
     color: hsl(var(--vc-black));
     background: hsl(var(--background));
+    text-rendering: optimizeLegibility;
   }
 
-  /* Section header utility class */
-  .vc-section-header {
-    font-family: var(--vc-font-family);
-    font-size: var(--vc-header-size);
-    font-weight: var(--vc-header-weight);
-    color: hsl(var(--vc-red));
-    letter-spacing: 0.01em;
-    margin-bottom: 0.5em;
-  }
-
-  /* Body text utility class */
-  .vc-body-text {
-    font-family: var(--vc-font-family);
-    font-size: var(--vc-body-size);
-    font-weight: var(--vc-body-weight);
+  /* Enhanced Typography Classes */
+  .vc-heading-1 {
+    font-family: var(--vc-font-display);
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: hsl(var(--vc-black));
   }
 
-  /* Accent text utility class */
+  .vc-heading-2 {
+    font-family: var(--vc-font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: hsl(var(--vc-black));
+  }
+
+  .vc-heading-3 {
+    font-family: var(--vc-font-display);
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: hsl(var(--vc-black));
+  }
+
+  .vc-section-header {
+    font-family: var(--vc-font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(var(--vc-red));
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+  }
+
+  .vc-body-text {
+    font-family: var(--vc-font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: hsl(var(--vc-gray-600));
+  }
+
+  .vc-body-large {
+    font-family: var(--vc-font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: hsl(var(--vc-gray-600));
+  }
+
   .vc-accent-text {
-    color: hsl(var(--vc-light-red));
+    color: hsl(var(--vc-red));
+    font-weight: 500;
   }
 
   .dark {
@@ -148,5 +219,237 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Enhanced Card Components */
+  .vc-card {
+    @apply relative overflow-hidden bg-white border border-gray-200 rounded-xl shadow-sm;
+    transition: all var(--vc-transition-normal);
+    transform-style: preserve-3d;
+  }
+
+  .vc-card-hover {
+    @apply hover:shadow-lg hover:scale-[1.02];
+    transition: all var(--vc-transition-normal);
+  }
+
+  .vc-card-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+  }
+
+  /* Premium Button Styles */
+  .vc-btn-primary {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white font-medium px-6 py-3 rounded-lg;
+    @apply hover:from-red-600 hover:to-red-700 hover:scale-105;
+    @apply focus:ring-4 focus:ring-red-200 focus:outline-none;
+    @apply transition-all duration-300 transform;
+    box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.25);
+  }
+
+  .vc-btn-secondary {
+    @apply bg-white border-2 border-gray-200 text-gray-700 font-medium px-6 py-3 rounded-lg;
+    @apply hover:border-red-300 hover:text-red-600 hover:scale-105;
+    @apply focus:ring-4 focus:ring-gray-100 focus:outline-none;
+    @apply transition-all duration-300 transform;
+  }
+
+  /* Glassmorphism Effects */
+  .vc-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .vc-glass-dark {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Loading States */
+  .vc-skeleton {
+    @apply animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200;
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Premium Input Styles */
+  .vc-input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg;
+    @apply focus:ring-4 focus:ring-red-100 focus:border-red-300 focus:outline-none;
+    @apply transition-all duration-200;
+  }
+
+  /* Mobile Responsive Utilities */
+  .vc-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .vc-section {
+    @apply py-16 lg:py-24;
+  }
+
+  /* Dashboard Specific Styles */
+  .vc-dashboard-card {
+    @apply vc-card vc-card-hover p-6;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+  }
+
+  .vc-dashboard-stat {
+    @apply text-center p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100;
+    @apply hover:from-red-50 hover:to-red-100 transition-all duration-300;
+  }
+
+  /* Navigation Enhancements */
+  .vc-nav-link {
+    @apply flex items-center px-4 py-2 text-sm font-medium rounded-lg;
+    @apply hover:bg-gray-100 hover:text-red-600 transition-all duration-200;
+  }
+
+  .vc-nav-link-active {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+}
+
+@layer utilities {
+  /* Custom Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent;
+  }
+
+  /* Premium Shadows */
+  .shadow-premium {
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+
+  /* Responsive Typography */
+  .text-responsive-xl {
+    @apply text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Mobile-First Responsive Breakpoints */
+@media (max-width: 768px) {
+  .vc-heading-1 {
+    font-size: 2.5rem;
+  }
+  .vc-heading-2 {
+    font-size: 2rem;
+  }
+  .vc-heading-3 {
+    font-size: 1.5rem;
+  }
+
+  .vc-section {
+    @apply py-12;
+  }
+  .vc-container {
+    @apply px-4;
   }
 }
