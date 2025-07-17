@@ -27,6 +27,7 @@ import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { FacilityCard } from "@/components/ui/FacilityCard";
 
 export default function Facilities() {
   const facilities = [
@@ -408,98 +409,7 @@ export default function Facilities() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {facilities.map((facility) => (
                   <Link key={facility.id} to={`/facilities/1`}>
-                    <div
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
-                      <img
-                        src={facility.image}
-                        alt={facility.name}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-lg">
-                            {facility.name}
-                          </h3>
-                          <Badge
-                            variant={
-                              facility.status === "Open" ? "default" : "secondary"
-                            }
-                            className="rounded-full"
-                          >
-                            {facility.status}
-                          </Badge>
-                        </div>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {facility.type}
-                        </p>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {facility.location}
-                        </p>
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center">
-                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                            <span className="text-sm font-medium ml-1">
-                              {facility.rating}
-                            </span>
-                            <span className="text-gray-500 text-sm ml-1">
-                              ({facility.reviews})
-                            </span>
-                          </div>
-                          <span className="font-semibold text-vibecore-red">
-                            {facility.price}
-                          </span>
-                        </div>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {facility.openTime}
-                        </p>
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {facility.tags.slice(0, 3).map((tag) => (
-                            <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs rounded-full"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                        <div className="flex items-center mb-4 text-xs text-gray-500">
-                          {facility.amenities
-                            .slice(0, 4)
-                            .map((amenity, index) => (
-                              <span key={amenity} className="flex items-center">
-                                {amenity === "WiFi" && (
-                                  <Wifi className="w-3 h-3 mr-1" />
-                                )}
-                                {amenity === "Parking" && (
-                                  <Car className="w-3 h-3 mr-1" />
-                                )}
-                                {amenity.includes("Room") ||
-                                  amenity.includes("Area") ||
-                                  (amenity === "Showers" && (
-                                    <Building2 className="w-3 h-3 mr-1" />
-                                  ))}
-                                {!["WiFi", "Parking"].includes(amenity) &&
-                                  !amenity.includes("Room") &&
-                                  !amenity.includes("Area") &&
-                                  amenity !== "Showers" && (
-                                    <Users className="w-3 h-3 mr-1" />
-                                  )}
-                                {amenity}
-                                {index <
-                                  facility.amenities.slice(0, 4).length - 1 &&
-                                  " • "}
-                              </span>
-                            ))}
-                        </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          View More
-                        </Button>
-                      </div>
-                    </div>
+                    <FacilityCard facility={facility} onBook={() => {}} />
                   </Link>
                 ))}
               </div>

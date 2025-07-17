@@ -26,6 +26,7 @@ import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { ShopScroller } from "@/components/ui/ShopScroller";
 
 export default function Shops() {
   const shops = [
@@ -411,48 +412,7 @@ export default function Shops() {
                 </Select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {shops.map((shop) => (
-                  <Link key={shop.id} to={`/shops/1`}>
-                    <div
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
-                      <img
-                        src={shop.image}
-                        alt={shop.name}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6">
-                        <h3 className="font-semibold text-lg mb-1">{shop.name}</h3>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {shop.category}
-                        </p>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {shop.location}
-                        </p>
-                        <div className="flex items-center mb-3">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm font-medium ml-1">
-                            {shop.rating}
-                          </span>
-                          <span className="text-gray-500 text-sm ml-1">
-                            ({shop.reviews})
-                          </span>
-                        </div>
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-4">
-                          <p className="text-green-800 text-xs font-medium">
-                            {shop.featured}
-                          </p>
-                        </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          Shop Now
-                        </Button>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <ShopScroller shops={shops} />
 
               {/* Pagination */}
               <div className="flex justify-center mt-12">
