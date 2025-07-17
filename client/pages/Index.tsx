@@ -192,31 +192,94 @@ export default function Index() {
                 Platform
               </h1>
 
-              {/* Search Form with Curved Buttons */}
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl space-y-4 max-w-md">
-                <Input
-                  placeholder="Search for trainers, facilities, or events..."
-                  className="bg-white/20 border-white/30 placeholder:text-white/70 text-white rounded-full px-4"
-                />
-                <Select>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white rounded-full">
-                    <SelectValue placeholder="Detect my location..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="current">
-                      Use Current Location
-                    </SelectItem>
-                    <SelectItem value="custom">Enter Location</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  Search
+              {/* Enhanced AI-Powered Search Form */}
+              <div
+                className="bg-white/10 backdrop-blur-sm p-6 space-y-4 max-w-md"
+                style={{
+                  borderRadius: "24px",
+                  border: "6px solid rgba(255, 255, 255, 0.15)",
+                }}
+              >
+                {/* AI Search Input */}
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                    <Search className="w-5 h-5 text-white/70" />
+                    <Sparkles className="w-4 h-4 text-yellow-400" />
+                  </div>
+                  <Input
+                    placeholder="Ask AI: 'Find affordable gyms with pool'"
+                    className="bg-white/20 border-white/30 placeholder:text-white/70 text-white pl-16 pr-4 py-3"
+                    style={{
+                      borderRadius: "18px",
+                      border: "2px solid rgba(255, 255, 255, 0.25)",
+                    }}
+                  />
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <Zap className="w-4 h-4 text-blue-400" />
+                  </div>
+                </div>
+
+                {/* Location Detection */}
+                <div className="relative">
+                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70" />
+                  <Select>
+                    <SelectTrigger
+                      className="bg-white/20 border-white/30 text-white pl-12"
+                      style={{
+                        borderRadius: "18px",
+                        border: "2px solid rgba(255, 255, 255, 0.25)",
+                      }}
+                    >
+                      <SelectValue placeholder="Detect my location..." />
+                    </SelectTrigger>
+                    <SelectContent style={{ borderRadius: "12px" }}>
+                      <SelectItem value="current">
+                        Use Current Location
+                      </SelectItem>
+                      <SelectItem value="custom">Enter Location</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Enhanced Search Button */}
+                <Button
+                  className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium py-3 flex items-center justify-center space-x-2"
+                  style={{
+                    borderRadius: "18px",
+                    border: "2px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Search with AI</span>
                 </Button>
               </div>
 
-              <p className="mt-4 text-white/80">
-                Popular searches within my area
-              </p>
+              {/* Enhanced Popular Searches */}
+              <div className="mt-6 space-y-3">
+                <p className="text-white/80 font-medium">
+                  Popular searches within my area
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Yoga",
+                    "Personal Training",
+                    "Pilates",
+                    "HIIT",
+                    "Zumba",
+                  ].map((term) => (
+                    <button
+                      key={term}
+                      className="px-3 py-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm font-medium hover:bg-white/25 transition-colors"
+                      style={{
+                        borderRadius: "16px",
+                        border: "1px solid rgba(255, 255, 255, 0.2)",
+                      }}
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Join as Facility Card */}
