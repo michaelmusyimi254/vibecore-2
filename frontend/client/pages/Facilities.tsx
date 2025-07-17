@@ -144,9 +144,10 @@ export default function Facilities() {
       <section className="pt-24 pb-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Wellness Studios</h1>
+            <h1 className="text-3xl font-bold mb-2">Wellness Venues</h1>
             <p className="text-gray-600">
-              Discover gyms, studios, spas, and wellness centers near you
+              Discover gyms, studios, spas, stadiums, pools, golf clubs, and
+              wellness venues near you
             </p>
           </div>
 
