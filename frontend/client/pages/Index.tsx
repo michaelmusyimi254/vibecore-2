@@ -245,23 +245,32 @@ export default function Index() {
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
                 <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
-                  Your Complete
+                  Your AI-Powered
                   <span className="text-gradient block">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
                   Connect with certified coaches, discover premium studios, and
-                  transform your wellness journey with our comprehensive
-                  platform.
+                  transform your wellness journey with intelligent AI
+                  recommendations.
                 </p>
               </div>
-              {/* Enhanced Search Form */}
+              {/* AI-Enhanced Search Form */}
               <div className="space-y-6 w-full max-w-lg animate-fade-in">
-                {userLocation && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 text-red-500" />
-                    <span>Searching in {userLocation}</span>
+                {/* AI Indicator Badge */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 bg-gradient-to-r from-purple-100 to-blue-100 px-3 py-1.5 rounded-full border border-purple-200">
+                    <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-purple-700">
+                      ✨ AI-Powered Search
+                    </span>
                   </div>
-                )}
+                  {userLocation && (
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <MapPin className="w-4 h-4 text-red-500" />
+                      <span>{userLocation}</span>
+                    </div>
+                  )}
+                </div>
                 <form
                   className="relative"
                   onSubmit={(e) => {
@@ -269,26 +278,84 @@ export default function Index() {
                     handleSearch(searchQuery);
                   }}
                 >
-                  <div className="relative">
+                  <div className="relative group">
+                    {/* AI Search Icon */}
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                          />
+                        </svg>
+                      </div>
+                      {searching && (
+                        <div className="flex space-x-1">
+                          <div
+                            className="w-1 h-1 bg-purple-500 rounded-full animate-bounce"
+                            style={{ animationDelay: "0s" }}
+                          ></div>
+                          <div
+                            className="w-1 h-1 bg-blue-500 rounded-full animate-bounce"
+                            style={{ animationDelay: "0.1s" }}
+                          ></div>
+                          <div
+                            className="w-1 h-1 bg-purple-500 rounded-full animate-bounce"
+                            style={{ animationDelay: "0.2s" }}
+                          ></div>
+                        </div>
+                      )}
+                    </div>
+
                     <Input
                       ref={inputRef}
                       placeholder={
                         searching || awaitingClarification
-                          ? ""
-                          : "What wellness service are you looking for?"
+                          ? "🤖 AI is analyzing your request..."
+                          : "Ask me anything about wellness services..."
                       }
-                      className="vc-input h-14 text-lg pr-32 shadow-premium"
+                      className="vc-input h-16 text-lg pl-16 pr-36 shadow-premium border-2 border-transparent group-hover:border-purple-200 focus:border-purple-300 bg-gradient-to-r from-white to-purple-50/30"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyDown={handleInputKeyDown}
                       disabled={searching || awaitingClarification}
                     />
+
                     <button
                       type="submit"
-                      className="vc-btn-primary absolute right-2 top-1/2 -translate-y-1/2 h-10 px-6 text-sm"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 disabled:opacity-50 flex items-center gap-2"
                       disabled={searching || awaitingClarification}
                     >
-                      {searching ? "Searching..." : "Search"}
+                      {searching ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>AI Thinking...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                            />
+                          </svg>
+                          <span>Ask AI</span>
+                        </>
+                      )}
                     </button>
                   </div>
                   {/* Rotating example search below input */}
