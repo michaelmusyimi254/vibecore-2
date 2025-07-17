@@ -469,8 +469,8 @@ export default function Facilities() {
                   <Link key={studio.id} to={`/facilities/1`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
-                        src={facility.image}
-                        alt={facility.name}
+                        src={studio.image}
+                        alt={studio.name}
                         className="w-full h-48 object-cover"
                       />
                       <div className="p-6">
