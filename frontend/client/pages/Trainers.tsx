@@ -576,8 +576,8 @@ export default function Trainers() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
-                {trainers.map((trainer) => (
-                  <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
+                {coaches.map((coach) => (
+                  <Link key={coach.id} to={`/trainers/${coach.id}`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <div className="p-6">
                         <div className="flex items-start space-x-4 mb-4">
