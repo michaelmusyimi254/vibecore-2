@@ -269,7 +269,6 @@ export default function Index() {
                     handleSearch(searchQuery);
                   }}
                 >
-<<<<<<< HEAD
                   <div className="relative">
                     <Input
                       ref={inputRef}
@@ -292,26 +291,6 @@ export default function Index() {
                       {searching ? "Searching..." : "Search"}
                     </button>
                   </div>
-=======
-                <Input
-                    ref={inputRef}
-                    placeholder={searching || awaitingClarification ? "" : `What are you looking for today?`}
-                    className="bg-transparent border-0 border-b-2 border-white/40 focus:border-vibecore-red text-white rounded-none px-0 py-2 placeholder:text-white/70 focus:ring-0 transition-all focus:shadow-[0_2px_12px_0_rgba(255,0,64,0.12)] pr-20"
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                    onKeyDown={handleInputKeyDown}
-                    disabled={searching || awaitingClarification}
-                    style={{ boxShadow: "none" }}
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-0 top-1/2 -translate-y-1/2 border border-white/60 text-white px-4 py-1 rounded-full bg-transparent hover:bg-white/10 transition-all text-sm font-medium focus:outline-none focus:ring-2 focus:ring-vibecore-red"
-                    style={{ minWidth: 64 }}
-                    disabled={searching || awaitingClarification}
-                  >
-                  Search
-                  </button>
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
                   {/* Rotating example search below input */}
                   {!searchQuery && !searching && !awaitingClarification && (
                     <div className="mt-3 text-sm text-gray-500 animate-fade-in">
