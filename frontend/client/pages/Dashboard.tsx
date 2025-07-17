@@ -574,7 +574,106 @@ function OverviewContent({ role, userData }: any) {
                 </div>
               </>
             )}
-            {/* Add similar activity feeds for other roles */}
+
+            {role === "coach" && (
+              <>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm">
+                    New client registration: Emma Wilson
+                  </span>
+                  <span className="text-xs text-gray-500">1 hour ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">
+                    Completed session with John Smith
+                  </span>
+                  <span className="text-xs text-gray-500">3 hours ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <DollarSign className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">Payment received: $120</span>
+                  <span className="text-xs text-gray-500">1 day ago</span>
+                </div>
+              </>
+            )}
+
+            {role === "studio" && (
+              <>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm">
+                    New member joined: Premium Membership
+                  </span>
+                  <span className="text-xs text-gray-500">30 minutes ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CalendarIcon className="h-5 w-5 text-purple-600" />
+                  <span className="text-sm">
+                    15 bookings for tomorrow's yoga class
+                  </span>
+                  <span className="text-xs text-gray-500">2 hours ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <TrendingUp className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">
+                    Monthly revenue target achieved
+                  </span>
+                  <span className="text-xs text-gray-500">1 day ago</span>
+                </div>
+              </>
+            )}
+
+            {role === "brand-seller" && (
+              <>
+                <div className="flex items-center space-x-3">
+                  <ShoppingBag className="h-5 w-5 text-purple-600" />
+                  <span className="text-sm">
+                    New order: Premium Yoga Mat Set
+                  </span>
+                  <span className="text-xs text-gray-500">45 minutes ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Package className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm">5 products added to inventory</span>
+                  <span className="text-xs text-gray-500">2 hours ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <AlertCircle className="h-5 w-5 text-orange-600" />
+                  <span className="text-sm">
+                    Low stock alert: Resistance Bands
+                  </span>
+                  <span className="text-xs text-gray-500">6 hours ago</span>
+                </div>
+              </>
+            )}
+
+            {role === "event-curator" && (
+              <>
+                <div className="flex items-center space-x-3">
+                  <EventIcon className="h-5 w-5 text-purple-600" />
+                  <span className="text-sm">
+                    Wellness Workshop event published
+                  </span>
+                  <span className="text-xs text-gray-500">1 hour ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm">
+                    25 new attendees registered for yoga retreat
+                  </span>
+                  <span className="text-xs text-gray-500">4 hours ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">
+                    Mindfulness event completed successfully
+                  </span>
+                  <span className="text-xs text-gray-500">2 days ago</span>
+                </div>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
