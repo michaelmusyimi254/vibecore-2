@@ -4,8 +4,15 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, Lock, Eye, EyeOff, ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
@@ -13,25 +20,29 @@ import Footer from "@/components/ui/Footer";
 const heroSlides = [
   {
     title: "Join as a Trainee",
-    description: "Start your fitness journey, find trainers, and achieve your goals.",
+    description:
+      "Start your fitness journey, find trainers, and achieve your goals.",
     button: "Join as a Trainee",
     image: "/your-default-image-path.jpg", // Replace with your actual image path
   },
   {
     title: "Join as a Trainer",
-    description: "Share your expertise, connect with clients, and grow your business.",
+    description:
+      "Share your expertise, connect with clients, and grow your business.",
     button: "Become a Trainer",
     image: "/your-default-image-path.jpg",
   },
   {
     title: "Join as a Facility",
-    description: "List your gym, studio, pool, or fitness center. Attract new members and manage bookings with ease.",
+    description:
+      "List your gym, studio, pool, or fitness center. Attract new members and manage bookings with ease.",
     button: "List Your Facility",
     image: "/your-default-image-path.jpg",
   },
   {
     title: "Become a Vendor",
-    description: "Sell fitness equipment, supplements, and accessories to our community.",
+    description:
+      "Sell fitness equipment, supplements, and accessories to our community.",
     button: "Start Selling",
     image: "/your-default-image-path.jpg",
   },
@@ -47,6 +58,10 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [current, setCurrent] = useState(0);
   const slideCount = heroSlides.length;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -160,7 +175,7 @@ export default function Login() {
                   </div>
                 </div>
                 {/* Email/Password Form */}
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleLogin}>
                   <div>
                     <Label htmlFor="email">Email Address</Label>
                     <div className="relative mt-1">
@@ -169,7 +184,10 @@ export default function Login() {
                         id="email"
                         type="email"
                         placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="pl-10 rounded-full border-gray-300 focus:border-vibecore-red focus:ring-vibecore-red"
+                        required
                       />
                     </div>
                   </div>
@@ -181,7 +199,10 @@ export default function Login() {
                         id="password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="pl-10 pr-10 rounded-full border-gray-300 focus:border-vibecore-red focus:ring-vibecore-red"
+                        required
                       />
                       <button
                         type="button"
@@ -198,23 +219,30 @@ export default function Login() {
                   </div>
                   {/* Forgot password link */}
                   <div className="flex justify-end mb-2">
-                    <Link to="/forgot-password" className="text-sm text-vibecore-red hover:underline font-medium">
+                    <Link
+                      to="/forgot-password"
+                      className="text-sm text-vibecore-red hover:underline font-medium"
+                    >
                       Forgot password?
                     </Link>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Checkbox id="remember" />
-                      <Label htmlFor="remember" className="text-sm text-gray-600">
+                      <Label
+                        htmlFor="remember"
+                        className="text-sm text-gray-600"
+                      >
                         Remember me
                       </Label>
                     </div>
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full py-3"
+                    disabled={isLoading}
+                    className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full py-3 disabled:opacity-50"
                   >
-                    Sign In
+                    {isLoading ? "Signing In..." : "Sign In"}
                   </Button>
                 </form>
                 {/* Sign Up Link */}
@@ -239,7 +267,10 @@ export default function Login() {
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link to="/privacy" className="text-vibecore-red hover:underline">
+                <Link
+                  to="/privacy"
+                  className="text-vibecore-red hover:underline"
+                >
                   Privacy Policy
                 </Link>
               </p>
