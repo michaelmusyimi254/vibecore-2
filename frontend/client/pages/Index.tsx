@@ -18,7 +18,7 @@ const heroSlides = [
   {
     title: "Start Your Wellness Journey",
     description:
-      "Connect with certified trainers, discover fitness programs, and transform your lifestyle.",
+      "Connect with certified coaches, discover wellness programs, and transform your lifestyle.",
     button: "Join as Member",
     icon: "🌟",
     gradient: "from-blue-500 to-purple-600",
@@ -34,7 +34,7 @@ const heroSlides = [
   {
     title: "Showcase Your Studio",
     description:
-      "List your fitness facility, attract new members, and manage bookings seamlessly.",
+      "List your wellness studio, attract new members, and manage bookings seamlessly.",
     button: "List Your Studio",
     icon: "🏋️",
     gradient: "from-orange-500 to-red-600",
@@ -42,16 +42,16 @@ const heroSlides = [
   {
     title: "Sell Premium Products",
     description:
-      "Offer high-quality fitness gear, supplements, and wellness products to our community.",
-    button: "Start Selling",
+      "Offer high-quality wellness gear, supplements, and lifestyle products to our community.",
+    button: "Start as Brand Seller",
     icon: "🛍️",
     gradient: "from-purple-500 to-pink-600",
   },
   {
-    title: "Host Amazing Events",
+    title: "Curate Amazing Events",
     description:
-      "Create unforgettable fitness experiences and connect with wellness enthusiasts.",
-    button: "Create Events",
+      "Create unforgettable wellness experiences and connect with health enthusiasts.",
+    button: "Become Event Curator",
     icon: "🎯",
     gradient: "from-indigo-500 to-blue-600",
   },
