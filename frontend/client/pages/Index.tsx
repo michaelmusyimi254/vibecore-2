@@ -439,7 +439,7 @@ export default function Index() {
                         <p className="text-purple-700 font-medium mb-3">
                           {aiMessage}
                         </p>
-                        <Input
+                <Input
                           placeholder="Help me understand better..."
                           value={clarification}
                           onChange={(e) => setClarification(e.target.value)}
@@ -450,7 +450,7 @@ export default function Index() {
                           className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white w-full"
                         >
                           🤖 Continue with AI
-                        </Button>
+                </Button>
                       </div>
                     </div>
                   </form>
@@ -471,16 +471,16 @@ export default function Index() {
                     "Meditation Centers",
                   ].map((tag) => (
                     <button
-                      key={tag}
+                    key={tag}
                       onClick={() => {
                         setSearchQuery(tag);
                         handleSearch(tag);
                       }}
                       className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:border-red-300 hover:text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-105 shadow-sm"
-                    >
-                      {tag}
+                  >
+                    {tag}
                     </button>
-                  ))}
+                ))}
                 </div>
               </div>
             </div>
@@ -502,8 +502,8 @@ export default function Index() {
                   </p>
                   <Link to="/signup">
                     <Button className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 rounded-xl font-medium hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                      {slide.button}
-                    </Button>
+                  {slide.button}
+                </Button>
                   </Link>
                 </div>
               </div>
@@ -511,15 +511,15 @@ export default function Index() {
           </div>
           {/* Enhanced Navigation */}
           <div className="flex justify-center mt-12 space-x-6">
-            <button
+          <button
               onClick={() =>
                 setCurrent((current - 1 + slideCount) % slideCount)
               }
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-              aria-label="Previous Slide"
-            >
+            aria-label="Previous Slide"
+          >
               <ChevronLeft size={20} />
-            </button>
+          </button>
 
             {/* Slide Indicators */}
             <div className="flex items-center space-x-2">
@@ -537,13 +537,13 @@ export default function Index() {
               ))}
             </div>
 
-            <button
-              onClick={() => setCurrent((current + 1) % slideCount)}
+          <button
+            onClick={() => setCurrent((current + 1) % slideCount)}
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-              aria-label="Next Slide"
-            >
+            aria-label="Next Slide"
+          >
               <ChevronRight size={20} />
-            </button>
+          </button>
           </div>
         </div>
       </section>
@@ -845,7 +845,7 @@ export default function Index() {
                 <Link to="/signup">
                   <Button className="vc-btn-primary w-full hover:scale-105 transition-transform duration-300">
                     Start Coaching
-                  </Button>
+                </Button>
                 </Link>
               </div>
 
@@ -879,7 +879,7 @@ export default function Index() {
                 <Link to="/signup">
                   <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
                     Join as Venue
-                  </Button>
+                </Button>
                 </Link>
               </div>
 
@@ -912,8 +912,8 @@ export default function Index() {
                 </p>
                 <Link to="/signup">
                   <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
-                    Start Selling
-                  </Button>
+                  Start Selling
+                </Button>
                 </Link>
               </div>
             </div>
