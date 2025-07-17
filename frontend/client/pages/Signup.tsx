@@ -480,10 +480,10 @@ export default function Signup() {
                   {selectedRole === "member" && (
                     <>
                       <div>
-                        <Label htmlFor="fitnessGoals">Fitness Goals</Label>
+                        <Label htmlFor="wellnessGoals">Wellness Goals</Label>
                         <Select>
                           <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select your primary fitness goal" />
+                            <SelectValue placeholder="Select your primary wellness goal" />
                           </SelectTrigger>
                           <SelectContent className="max-h-[200px] overflow-y-auto">
                             <SelectItem value="weight-loss">
