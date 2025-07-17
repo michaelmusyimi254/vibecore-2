@@ -227,7 +227,7 @@ export default function Index() {
       <NavBar />
 
       {/* Join Our Community Section */}
-      <section className="pt-8 pb-20 bg-gray-50 relative overflow-hidden">
+      <section className="pt-16 pb-20 bg-gray-50 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
