@@ -463,12 +463,12 @@ export default function Index() {
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {[
-                    "Yoga",
-                    "Personal Training",
-                    "Pilates",
-                    "HIIT",
-                    "Zumba",
-                    "Meditation",
+                    "Yoga Coaches",
+                    "Personal Trainers",
+                    "Pilates Studios",
+                    "HIIT Programs",
+                    "Wellness Coaches",
+                    "Meditation Centers",
                   ].map((tag) => (
                     <button
                       key={tag}
