@@ -282,26 +282,46 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Join as Facility Card */}
+            {/* Enhanced Join as Facility Card */}
             <div className="flex justify-end">
-              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-2xl max-w-sm text-white">
+              <div
+                className="bg-black/60 backdrop-blur-xl p-6 max-w-sm text-white"
+                style={{
+                  borderRadius: "24px",
+                  border: "6px solid rgba(255, 255, 255, 0.15)",
+                }}
+              >
                 <div className="flex items-center mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=face"
                     alt="Fitness professionals"
-                    className="w-16 h-16 rounded-full mr-4"
+                    className="w-16 h-16 mr-4"
+                    style={{
+                      borderRadius: "16px",
+                      border: "3px solid rgba(255, 255, 255, 0.2)",
+                    }}
                   />
                   <div>
                     <h3 className="font-semibold text-lg">
                       Join as a Facility
                     </h3>
+                    <div className="flex items-center mt-1">
+                      <Sparkles className="w-4 h-4 text-yellow-400 mr-1" />
+                      <span className="text-xs text-white/80">AI-Powered</span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-white/90 mb-4 text-sm">
+                <p className="text-white/90 mb-4 text-sm leading-relaxed">
                   List your gym, studio, pool, or fitness center. Attract new
-                  members and manage bookings with ease.
+                  members and manage bookings with AI assistance.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                <Button
+                  className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium"
+                  style={{
+                    borderRadius: "18px",
+                    border: "2px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                >
                   List Your Facility
                 </Button>
               </div>
