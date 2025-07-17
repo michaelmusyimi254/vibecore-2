@@ -164,7 +164,7 @@ export default function Index() {
   async function handleSearch(query) {
     setSearching(true);
     setSearchError(false);
-    setAiMessage("Thinking… Let me help you find the best options!");
+    setAiMessage("Thinking�� Let me help you find the best options!");
     try {
       const res = await fetch("http://localhost:8001/ai-search", {
         method: "POST",
@@ -560,86 +560,108 @@ export default function Index() {
             </p>
           </div>
 
-                    {/* Compact Features Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-red-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+                              {/* Ultra-Compact Two-Column Features */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            {/* Left Column */}
+            <div className="space-y-3">
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-red-50 transition-colors group">
+                <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">AI Coach Matching</h3>
+                  <p className="text-xs text-gray-600">Smart recommendations & instant booking</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1">AI Coach Matching</h3>
-              <p className="text-xs text-gray-600">Smart coach recommendations</p>
+
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors group">
+                <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Premium Venues</h3>
+                  <p className="text-xs text-gray-600">Gyms, studios, pools & golf clubs</p>
+                </div>
+              </div>
+
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-green-50 transition-colors group">
+                <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Curated Marketplace</h3>
+                  <p className="text-xs text-gray-600">Premium gear from verified sellers</p>
+                </div>
+              </div>
+
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-yellow-50 transition-colors group">
+                <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Events & Community</h3>
+                  <p className="text-xs text-gray-600">Join wellness events & connect</p>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+            {/* Right Column */}
+            <div className="space-y-3">
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors group">
+                <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Smart Analytics</h3>
+                  <p className="text-xs text-gray-600">Track progress with insights</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1">Premium Venues</h3>
-              <p className="text-xs text-gray-600">Access exclusive facilities</p>
-            </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors group">
+                <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">AI-Powered Search</h3>
+                  <p className="text-xs text-gray-600">Natural language understanding</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1">Marketplace</h3>
-              <p className="text-xs text-gray-600">Premium wellness gear</p>
-            </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-yellow-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5" />
-                </svg>
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group">
+                <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Enterprise Security</h3>
+                  <p className="text-xs text-gray-600">Bank-level data protection</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1">Events</h3>
-              <p className="text-xs text-gray-600">Join wellness community</p>
-            </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-purple-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
+              <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors group">
+                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">Marketing Suite</h3>
+                  <p className="text-xs text-gray-600">Automated promotion tools</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1">Analytics</h3>
-              <p className="text-xs text-gray-600">Track your progress</p>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-indigo-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-sm mb-1">AI Search</h3>
-              <p className="text-xs text-gray-600">Natural language search</p>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-sm mb-1">Security</h3>
-              <p className="text-xs text-gray-600">Enterprise-grade protection</p>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-sm mb-1">Marketing</h3>
-              <p className="text-xs text-gray-600">Built-in promotion tools</p>
             </div>
           </div>
 
