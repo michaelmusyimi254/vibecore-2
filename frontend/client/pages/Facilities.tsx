@@ -156,7 +156,7 @@ export default function Facilities() {
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search facilities..."
+                  placeholder="Search studios..."
                   className="pl-10 rounded-full border-gray-200"
                 />
               </div>
@@ -448,7 +448,7 @@ export default function Facilities() {
             <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
-                  {facilities.length} facilities found
+                  {studios.length} studios found
                 </h2>
                 <Select defaultValue="rating">
                   <SelectTrigger className="w-[150px] rounded-full">
@@ -465,7 +465,7 @@ export default function Facilities() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {facilities.map((facility) => (
+                {studios.map((studio) => (
                   <Link key={facility.id} to={`/facilities/1`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
