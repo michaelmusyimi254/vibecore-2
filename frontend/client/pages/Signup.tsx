@@ -1569,14 +1569,14 @@ export default function Signup() {
 
               <Card>
                 <CardContent className="p-6 space-y-6">
-                  {selectedRole === "trainee" && (
+                  {selectedRole === "member" && (
                     <>
                       <div>
-                        <Label>Health & Fitness Assessment (Optional)</Label>
+                        <Label>Health & Wellness Assessment (Optional)</Label>
                         <div className="mt-2 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                           <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                           <p className="text-sm text-gray-600 mb-2">
-                            Upload any medical clearance or fitness assessments
+                            Upload any medical clearance or wellness assessments
                           </p>
                           <Button variant="outline" className="rounded-xl">
                             Choose Files
