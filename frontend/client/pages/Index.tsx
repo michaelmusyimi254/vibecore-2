@@ -240,7 +240,7 @@ export default function Index() {
             style={{ animationDelay: "4s" }}
           ></div>
         </div>
-        <div className="vc-container relative z-10 pt-12 md:pt-20 flex flex-col items-center justify-center py-12">
+        <div className="vc-container relative z-10 pt-24 md:pt-28 flex flex-col items-center justify-center py-12">
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
