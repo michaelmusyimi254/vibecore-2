@@ -1557,11 +1557,13 @@ export default function Signup() {
                 <h2 className="text-2xl font-bold mb-2">Verification</h2>
                 <p className="text-gray-600">
                   Upload documents to verify your{" "}
-                  {selectedRole === "trainer"
+                  {selectedRole === "coach"
                     ? "credentials"
-                    : selectedRole === "facility"
+                    : selectedRole === "studio"
                       ? "business"
-                      : "business"}
+                      : selectedRole === "member"
+                        ? "profile"
+                        : "business"}
                 </p>
               </div>
 
