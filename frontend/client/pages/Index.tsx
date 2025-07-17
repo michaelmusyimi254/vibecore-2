@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 import BlurText from "../../yes/BlurText/BlurText.jsx";
@@ -42,9 +42,28 @@ const heroSlides = [
   },
 ];
 
+const exampleSearches = [
+  "yoga classes near me",
+  "affordable gyms with pool",
+  "personal trainers for weight loss",
+  "zumba events this weekend",
+  "nutritionists in Nairobi",
+  "HIIT bootcamps",
+  "pilates studios open now"
+];
+
 export default function Index() {
   const [current, setCurrent] = useState(0);
   const slideCount = heroSlides.length;
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [aiMessage, setAiMessage] = useState("");
+  const [awaitingClarification, setAwaitingClarification] = useState(false);
+  const [clarification, setClarification] = useState("");
+  const [userLocation, setUserLocation] = useState("");
+  const inputRef = useRef(null);
+  const [exampleIdx, setExampleIdx] = useState(0);
+  const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,6 +71,108 @@ export default function Index() {
     }, 5000);
     return () => clearInterval(interval);
   }, [slideCount]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setExampleIdx((prev) => (prev + 1) % exampleSearches.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Get browser location (city/region if possible)
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        // Use a free reverse geocoding API (e.g., Nominatim)
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+          const data = await res.json();
+          setUserLocation(data.address.city || data.address.town || data.address.village || data.address.state || "your area");
+        } catch {
+          setUserLocation("your area");
+        }
+      });
+    }
+  }, []);
+
+  const followUpPrompts = [
+    region => `Hmm, just to be sure—are you looking for yoga classes, yoga trainers, or something else in ${region}?`,
+    region => `Could you clarify if you want a class, a trainer, or a facility in ${region}?`,
+    region => `Just checking—do you mean a group class, a private session, or something else in ${region}?`,
+    region => `I want to get this right! Are you after a class, a trainer, or a gym in ${region}?`,
+  ];
+  const friendlyClarifyResponses = [
+    "Ah, I see what you mean! Let’s get you the best options.",
+    "Crystal clear, let me find that for you!",
+    "Got it! Searching for the best matches now…",
+    "Thanks for clarifying! One moment…",
+  ];
+  const errorMessages = [
+    "Oops! Something went wrong. Please try again in a moment.",
+    "Sorry, I couldn't connect to the search service. Please check your connection and try again.",
+    "Hmm, I had trouble searching. Want to try again?",
+  ];
+
+  // Add a simple spinner component
+  function DotsLoader() {
+    return (
+      <div className="flex justify-center items-center py-2 space-x-1">
+        <span className="block w-2 h-2 bg-vibecore-red rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>
+        <span className="block w-2 h-2 bg-vibecore-red rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+        <span className="block w-2 h-2 bg-vibecore-red rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
+      </div>
+    );
+  }
+
+  async function handleSearch(query) {
+    setSearching(true);
+    setSearchError(false);
+    setAiMessage("Thinking… Let me help you find the best options!");
+    try {
+      const res = await fetch("http://localhost:8001/ai-search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, region: userLocation }),
+      });
+      if (!res.ok) throw new Error("AI API error");
+      const data = await res.json();
+      const topLabel = data.labels[0];
+      const topScore = data.scores[0];
+      let region = userLocation || "your area";
+      if (topScore < 0.5) {
+        const followUp = followUpPrompts[Math.floor(Math.random() * followUpPrompts.length)](region);
+        setAiMessage(followUp);
+        setAwaitingClarification(true);
+        setSearching(false);
+        return;
+      }
+      setAiMessage(`Let's see what we have for ${topLabel} in ${region}…`);
+      setTimeout(() => {
+        window.location.href = `/search?type=${encodeURIComponent(topLabel)}&region=${encodeURIComponent(region)}`;
+      }, 1200);
+    } catch (err) {
+      setAiMessage(errorMessages[Math.floor(Math.random() * errorMessages.length)]);
+      setSearchError(true);
+      setSearching(false);
+    }
+  }
+
+  function handleInputKeyDown(e) {
+    if (e.key === "Enter") {
+      handleSearch(searchQuery);
+    }
+  }
+
+  function handleClarificationSubmit(e) {
+    e.preventDefault();
+    setAiMessage(friendlyClarifyResponses[Math.floor(Math.random() * friendlyClarifyResponses.length)]);
+    setTimeout(() => {
+      handleSearch(clarification);
+      setAwaitingClarification(false);
+      setClarification("");
+    }, 1000);
+  }
 
   const slide = heroSlides[current];
   const backgroundImage = "url('/your-default-image-path.jpg')"; // Replace with the correct path to your uploaded image
@@ -62,52 +183,86 @@ export default function Index() {
 
       {/* Hero Section */}
       <section
-        className="relative min-h-[600px] bg-cover bg-center flex items-center"
+        className="relative min-h-[600px] bg-cover bg-center flex items-center justify-start"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${backgroundImage}`,
         }}
       >
-        <div className="container mx-auto px-4 pt-24 md:pt-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
+        <div className="container mx-auto px-4 pt-24 md:pt-32 flex flex-col items-start justify-center min-h-[500px] animate-fade-in">
+          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+            <div className="text-white flex flex-col items-start w-full">
               <BlurText
                 text="Your Complete Fitness & Wellness Platform"
-                className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"
+                className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white text-left"
                 delay={100}
                 animateBy="words"
                 direction="top"
               />
-
-              {/* Search Form with Curved Buttons */}
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl space-y-4 max-w-md">
-                <Input
-                  placeholder="Search for trainers, facilities, or events..."
-                  className="bg-white/20 border-white/30 placeholder:text-white/70 text-white rounded-full px-4"
-                />
-                <Select>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white rounded-full">
-                    <SelectValue placeholder="Detect my location..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="current">
-                      Use Current Location
-                    </SelectItem>
-                    <SelectItem value="custom">Enter Location</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  Search
-                </Button>
+              {/* Search Form with AI Look, left-aligned and polished */}
+              <div className="space-y-4 w-full max-w-md bg-transparent p-0 animate-fade-in">
+                {userLocation && (
+                  <div className="text-xs text-white/70 mb-1 pl-1 text-left">Detected region: {userLocation}</div>
+                )}
+                <form
+                  className="relative flex items-center gap-2"
+                  onSubmit={e => { e.preventDefault(); handleSearch(searchQuery); }}
+                >
+                  <Input
+                    ref={inputRef}
+                    placeholder={searching || awaitingClarification ? "" : `What are you looking for today?`}
+                    className="bg-transparent border-0 border-b-2 border-white/40 focus:border-vibecore-red text-white rounded-none px-0 py-2 placeholder:text-white/70 focus:ring-0 transition-all focus:shadow-[0_2px_12px_0_rgba(255,0,64,0.12)] pr-20"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    onKeyDown={handleInputKeyDown}
+                    disabled={searching || awaitingClarification}
+                    style={{ boxShadow: "none" }}
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 border border-white/60 text-white px-4 py-1 rounded-full bg-transparent hover:bg-white/10 transition-all text-sm font-medium focus:outline-none focus:ring-2 focus:ring-vibecore-red"
+                    style={{ minWidth: 64 }}
+                    disabled={searching || awaitingClarification}
+                  >
+                    Search
+                  </button>
+                  {/* Rotating example search below input */}
+                  {!searchQuery && !searching && !awaitingClarification && (
+                    <div className="absolute left-0 top-full mt-1 text-xs text-white/60 pl-1 animate-fade-in text-left w-full">
+                      e.g. {exampleSearches[exampleIdx]}
+                    </div>
+                  )}
+                </form>
+                {searching && !searchError && (
+                  <>
+                    <DotsLoader />
+                    <div className="text-left text-lg text-white/90 py-2 animate-fade-in animate-pulse">{aiMessage}</div>
+                  </>
+                )}
+                {searchError && (
+                  <div className="text-left text-lg py-2 animate-fade-in bg-red-100/20 text-red-200 rounded-xl px-4 mt-2">
+                    {aiMessage}
+                    <Button className="mt-2 bg-vibecore-red text-white rounded-full" onClick={() => handleSearch(searchQuery)}>Try Again</Button>
+                  </div>
+                )}
+                {awaitingClarification && (
+                  <form onSubmit={handleClarificationSubmit} className="flex flex-col gap-2 mt-2 animate-fade-in">
+                    <Input
+                      placeholder="Type your clarification…"
+                      value={clarification}
+                      onChange={e => setClarification(e.target.value)}
+                      className="bg-transparent border-0 border-b-2 border-white/40 focus:border-vibecore-red text-white rounded-none px-0 py-2 placeholder:text-white/70 focus:ring-0 transition-all"
+                    />
+                    <Button type="submit" className="w-full bg-vibecore-red text-white rounded-full">Send</Button>
+                  </form>
+                )}
               </div>
-
-              <p className="mt-4 text-white/80">
-                Popular searches within my area
-              </p>
-              <div className="flex flex-wrap gap-2 mt-2 pb-10">
+              {/* Popular searches with 6px border radius capsules, left-aligned and spaced */}
+              <p className="mt-6 text-white/80 text-left">Popular searches within my area</p>
+              <div className="flex flex-wrap gap-2 mt-2 pb-10 justify-start">
                 {["Yoga", "Personal Training", "Pilates", "HIIT", "Zumba"].map((tag) => (
                   <span
                     key={tag}
-                    className="bg-white/30 text-white px-4 py-1 rounded-full text-sm font-medium border border-white/40 hover:bg-vibecore-red hover:text-white transition-colors cursor-pointer"
+                    className="bg-white/30 text-white px-4 py-1 rounded-[6px] text-sm font-medium border border-white/40 hover:bg-vibecore-red hover:text-white transition-colors cursor-pointer shadow-sm"
                   >
                     {tag}
                   </span>
