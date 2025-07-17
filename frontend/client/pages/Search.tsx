@@ -35,16 +35,8 @@ import {
 } from "@/components/ui/drawer";
 import { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-<<<<<<< HEAD
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
-=======
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { AIChatInput } from "@/components/ui/ai-chat-input";
->>>>>>> 49df3ead29ade5898dc3b0075961bed64f3317a0
 
 export default function Search() {
   // --- NEW: Read query params ---
