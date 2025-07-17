@@ -142,6 +142,16 @@ export default function Signup() {
     return roles.find((role) => role.id === selectedRole);
   };
 
+  const handleCompleteRegistration = () => {
+    // Store signup data
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userRole", selectedRole);
+    localStorage.setItem("justSignedUp", "true");
+
+    // Redirect to welcome page with role parameter
+    navigate(`/welcome?role=${selectedRole}`);
+  };
+
   useEffect(() => {
     const ref = roleScrollRef.current;
     if (!ref) return;
