@@ -548,25 +548,16 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Modern Platform Features Section */}
-      <section className="py-32 bg-gray-50 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-sm border border-gray-200 mb-8">
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 animate-pulse"></div>
-              <span className="text-sm font-semibold text-gray-700">
-                Platform Features
-              </span>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
-              Everything you need for
-              <span className="bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent block">
-                wellness success
-              </span>
+      {/* Compact Platform Features */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              Everything you need for{" "}
+              <span className="text-red-500">wellness success</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Built for the modern wellness community with intelligent AI,
-              seamless booking, and premium experiences
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              AI-powered platform with seamless booking and premium experiences
             </p>
           </div>
 
