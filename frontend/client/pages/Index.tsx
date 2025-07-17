@@ -278,6 +278,7 @@ export default function Index() {
                     handleSearch(searchQuery);
                   }}
                 >
+<<<<<<< HEAD
                   <div className="relative group">
                     {/* AI Search Icon */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
@@ -314,6 +315,9 @@ export default function Index() {
                       )}
                     </div>
 
+=======
+                  <div className="relative">
+>>>>>>> e83101a7bac9641e4be5e492896f340fd297e750
                     <Input
                       ref={inputRef}
                       placeholder={
@@ -358,7 +362,11 @@ export default function Index() {
                       )}
                     </button>
                   </div>
+<<<<<<< HEAD
                   {/* AI-Powered Example Suggestions */}
+=======
+                  {/* Rotating example search below input */}
+>>>>>>> e83101a7bac9641e4be5e492896f340fd297e750
                   {!searchQuery && !searching && !awaitingClarification && (
                     <div className="mt-4 space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-500">
