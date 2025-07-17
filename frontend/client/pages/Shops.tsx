@@ -23,6 +23,8 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { useState } from "react";
 
 export default function Shops() {
   const shops = [
@@ -112,6 +114,8 @@ export default function Shops() {
     },
   ];
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
@@ -172,9 +176,89 @@ export default function Shops() {
       {/* Main Content */}
       <section className="pb-16">
         <div className="container mx-auto px-4">
+          {/* Mobile Filters Button */}
+          <div className="flex lg:hidden mb-4">
+            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+              <DrawerTrigger asChild>
+                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                  <Filter className="w-5 h-5 mr-2" /> Filters
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Filters</DrawerTitle>
+                </DrawerHeader>
+                {/* Filter controls (same as sidebar) */}
+                <div className="space-y-6 px-4 pb-4">
+                  {/* Category */}
+                  <div>
+                    <h4 className="font-medium mb-3">Category</h4>
+                    <div className="space-y-2">
+                      {["Fitness Equipment","Supplements","Apparel","Accessories","Technology"].map((category) => (
+                        <div key={category} className="flex items-center space-x-2">
+                          <Checkbox id={category + "-mobile"} />
+                          <label htmlFor={category + "-mobile"} className="text-sm text-gray-700">
+                            {category}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Price Range */}
+                  <div>
+                    <h4 className="font-medium mb-3">Price Range</h4>
+                    <div className="space-y-2">
+                      {["Under $25","$25 - $50","$50 - $100","Over $100"].map((price) => (
+                        <div key={price} className="flex items-center space-x-2">
+                          <Checkbox id={price + "-mobile"} />
+                          <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                            {price}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Features */}
+                  <div>
+                    <h4 className="font-medium mb-3">Features</h4>
+                    <div className="space-y-2">
+                      {["Free Shipping","Verified Seller","Same Day Delivery","Return Policy","Warranty"].map((feature) => (
+                        <div key={feature} className="flex items-center space-x-2">
+                          <Checkbox id={feature + "-mobile"} />
+                          <label htmlFor={feature + "-mobile"} className="text-sm text-gray-700">
+                            {feature}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Rating */}
+                  <div>
+                    <h4 className="font-medium mb-3">Rating</h4>
+                    <div className="space-y-2">
+                      {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
+                        <div key={rating} className="flex items-center space-x-2">
+                          <Checkbox id={rating + "-mobile"} />
+                          <label className="text-sm text-gray-700 flex items-center">
+                            {Array.from({ length: stars }).map((_, i) => (
+                              <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                            ))}
+                            {rating}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <DrawerClose asChild>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                  </DrawerClose>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
-            <div className="lg:w-1/4 space-y-6">
+            {/* Sidebar Filters (desktop only) */}
+            <div className="lg:w-1/4 space-y-6 hidden lg:block">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-semibold mb-4 flex items-center">
                   <Filter className="w-5 h-5 mr-2" />
@@ -287,7 +371,7 @@ export default function Shops() {
             </div>
 
             {/* Results Grid */}
-            <div className="lg:w-3/4">
+            <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
                   {shops.length} shops found
@@ -306,7 +390,7 @@ export default function Shops() {
                 </Select>
               </div>
 
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {shops.map((shop) => (
                   <Link key={shop.id} to={`/shops/1`}>
                     <div
