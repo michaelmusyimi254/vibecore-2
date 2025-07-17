@@ -105,55 +105,91 @@ export default function Login() {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen flex flex-col lg:flex-row">
-        {/* Left: Sliding Image and Card */}
-        <div
-          className="relative w-full lg:w-1/2 min-h-[400px] lg:min-h-screen flex items-center justify-center bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('${slide.image}')`,
-          }}
-        >
-          <div className="bg-black/60 backdrop-blur-sm p-8 rounded-2xl max-w-md text-white m-8">
-            <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
-            <p className="mb-4">{slide.description}</p>
-            <button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 py-2 rounded-full">
-              {slide.button}
+      <div className="min-h-screen flex flex-col lg:flex-row pt-16 md:pt-20">
+        {/* Left: Enhanced Hero Section */}
+        <div className="relative w-full lg:w-1/2 min-h-[300px] md:min-h-[400px] lg:min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-40 h-40 md:w-60 md:h-60 bg-red-200 rounded-full opacity-20 animate-float"></div>
+            <div
+              className="absolute -bottom-20 -left-20 w-48 h-48 md:w-72 md:h-72 bg-orange-200 rounded-full opacity-20 animate-float"
+              style={{ animationDelay: "2s" }}
+            ></div>
+          </div>
+          <div className="vc-card vc-card-3d p-6 md:p-8 max-w-sm bg-gradient-to-br from-white to-red-50 m-4 md:m-8 text-center relative z-10">
+            <div className="text-4xl mb-4">🌟</div>
+            <h2 className="text-xl md:text-2xl font-bold mb-3 text-gray-900">
+              {slide.title}
+            </h2>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              {slide.description}
+            </p>
+            <Link to="/signup">
+              <Button className="vc-btn-primary w-full">{slide.button}</Button>
+            </Link>
+          </div>
+          {/* Enhanced Navigation */}
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
+            <button
+              onClick={() =>
+                setCurrent((current - 1 + slideCount) % slideCount)
+              }
+              className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-2 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300"
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft size={16} />
+            </button>
+
+            {/* Slide Indicators */}
+            <div className="flex items-center space-x-1">
+              {heroSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrent(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === current ? "bg-red-500" : "bg-gray-300"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => setCurrent((current + 1) % slideCount)}
+              className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-2 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300"
+              aria-label="Next Slide"
+            >
+              <ChevronRight size={16} />
             </button>
           </div>
-          {/* Arrows for manual navigation */}
-          <button
-            onClick={() => setCurrent((current - 1 + slideCount) % slideCount)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
-            aria-label="Previous Slide"
-          >
-            <ChevronLeft size={32} />
-          </button>
-          <button
-            onClick={() => setCurrent((current + 1) % slideCount)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
-            aria-label="Next Slide"
-          >
-            <ChevronRight size={32} />
-          </button>
         </div>
-        {/* Right: Login Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50">
-          <div className="w-full max-w-md p-6">
+        {/* Right: Enhanced Login Form */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center bg-white relative">
+          <div className="w-full max-w-md p-4 md:p-6">
             {/* Logo */}
-            <div className="text-center mb-8 mt-16">
-              <Link to="/" className="text-3xl font-bold">
-                VIBE<span className="text-vibecore-red">CORE</span>
+            <div className="text-center mb-6 md:mb-8">
+              <Link
+                to="/"
+                className="text-2xl md:text-3xl font-bold vc-section-header"
+              >
+                VIBE
+                <span className="text-[color:hsl(var(--vc-red))]">CORE</span>
               </Link>
-              <p className="text-gray-600 mt-2">
-                Welcome back to your fitness journey
+              <p className="text-gray-600 mt-2 text-sm md:text-base">
+                Welcome back to your wellness journey
               </p>
             </div>
-            {/* Login Card */}
-            <Card className="shadow-lg">
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Sign In</CardTitle>
+            {/* Enhanced Login Card */}
+            <Card className="vc-card shadow-premium border-0">
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-xl md:text-2xl font-bold text-gray-900">
+                  Sign In
+                </CardTitle>
+                <p className="text-gray-600 text-sm">
+                  Access your wellness dashboard
+                </p>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 p-4 md:p-6">
                 {/* Social Login */}
                 <div className="space-y-3">
                   <Button
