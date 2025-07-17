@@ -23,6 +23,7 @@ import EventProfile from "./pages/EventProfile";
 import FacilityProfile from "./pages/FacilityProfile";
 import ShopProfile from "./pages/ShopProfile";
 import Dashboard from "./pages/Dashboard";
+import Welcome from "./pages/Welcome";
 
 const queryClient = new QueryClient();
 
