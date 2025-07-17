@@ -410,9 +410,15 @@ export default function Index() {
           {/* Mobile Scrollable, Desktop Grid */}
           <div className="md:overflow-visible overflow-x-auto">
             <div className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto space-x-6 md:space-x-0 pb-4 md:pb-0">
-              {/* Trainer Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              {/* Enhanced Trainer Card */}
+              <div
+                className="bg-white p-8 text-center hover:shadow-xl transition-all duration-300 min-w-[300px] md:min-w-0 hover:scale-105"
+                style={{ borderRadius: "24px", border: "6px solid #f3f4f6" }}
+              >
+                <div
+                  className="w-20 h-20 bg-gradient-to-br from-vibecore-red to-pink-500 mx-auto mb-6 flex items-center justify-center"
+                  style={{ borderRadius: "20px" }}
+                >
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -435,14 +441,23 @@ export default function Index() {
                   fitness business. Offer personal training, group classes, and
                   wellness coaching services.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                <Button
+                  className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium"
+                  style={{ borderRadius: "18px" }}
+                >
                   Become a Trainer
                 </Button>
               </div>
 
-              {/* Facility Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              {/* Enhanced Facility Card */}
+              <div
+                className="bg-white p-8 text-center hover:shadow-xl transition-all duration-300 min-w-[300px] md:min-w-0 hover:scale-105"
+                style={{ borderRadius: "24px", border: "6px solid #f3f4f6" }}
+              >
+                <div
+                  className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 mx-auto mb-6 flex items-center justify-center"
+                  style={{ borderRadius: "20px" }}
+                >
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -465,14 +480,23 @@ export default function Index() {
                   manage bookings, and showcase your facilities to fitness
                   enthusiasts.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                <Button
+                  className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium"
+                  style={{ borderRadius: "18px" }}
+                >
                   List Your Facility
                 </Button>
               </div>
 
-              {/* Vendor Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              {/* Enhanced Vendor Card */}
+              <div
+                className="bg-white p-8 text-center hover:shadow-xl transition-all duration-300 min-w-[300px] md:min-w-0 hover:scale-105"
+                style={{ borderRadius: "24px", border: "6px solid #f3f4f6" }}
+              >
+                <div
+                  className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 mx-auto mb-6 flex items-center justify-center"
+                  style={{ borderRadius: "20px" }}
+                >
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -493,7 +517,10 @@ export default function Index() {
                   Reach thousands of fitness enthusiasts looking for quality
                   products.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                <Button
+                  className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white font-medium"
+                  style={{ borderRadius: "18px" }}
+                >
                   Start Selling
                 </Button>
               </div>
