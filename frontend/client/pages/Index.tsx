@@ -99,7 +99,6 @@ export default function Index() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
-        // Use a free reverse geocoding API (e.g., Nominatim)
         try {
           const res = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
@@ -129,19 +128,20 @@ export default function Index() {
     (region) =>
       `I want to get this right! Are you after a class, a trainer, or a gym in ${region}?`,
   ];
+
   const friendlyClarifyResponses = [
     "Ah, I see what you mean! Let's get you the best options.",
     "Crystal clear, let me find that for you!",
     "Got it! Searching for the best matches now…",
     "Thanks for clarifying! One moment…",
   ];
+
   const errorMessages = [
     "Oops! Something went wrong. Please try again in a moment.",
     "Sorry, I couldn't connect to the search service. Please check your connection and try again.",
     "Hmm, I had trouble searching. Want to try again?",
   ];
 
-  // Add a simple spinner component
   function DotsLoader() {
     return (
       <div className="flex justify-center items-center py-2 space-x-1">
@@ -220,15 +220,13 @@ export default function Index() {
   }
 
   const slide = heroSlides[current];
-  const backgroundImage = "url('/your-default-image-path.jpg')"; // Replace with the correct path to your uploaded image
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <NavBar />
 
-      {/* Join Our Community Section */}
-      <section className="pt-16 pb-20 bg-gray-50 relative overflow-hidden">
-        {/* Animated Background Elements */}
+      {/* Enhanced Hero Section */}
+      <section className="relative min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
           <div
@@ -240,23 +238,24 @@ export default function Index() {
             style={{ animationDelay: "4s" }}
           ></div>
         </div>
-        <div className="vc-container relative z-10 pt-24 md:pt-28 flex flex-col items-center justify-center py-12">
+
+        <div className="vc-container relative z-10 pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[80vh]">
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
-                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-normal md:leading-tight text-gray-900">
+                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
                   Your AI-Powered
-                  <span className="text-gradient block mt-1 md:mt-2">Wellness Platform</span>
+                  <span className="text-gradient block">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
-                  Connect with certified coaches, discover premium grounds, and
+                  Connect with certified coaches, discover premium venues, and
                   transform your wellness journey with intelligent AI
                   recommendations.
                 </p>
               </div>
+
               {/* AI-Enhanced Search Form */}
               <div className="space-y-6 w-full max-w-lg animate-fade-in">
-                {/* AI Indicator Badge */}
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 bg-gradient-to-r from-purple-100 to-blue-100 px-3 py-1.5 rounded-full border border-purple-200">
                     <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
@@ -271,6 +270,7 @@ export default function Index() {
                     </div>
                   )}
                 </div>
+
                 <form
                   className="relative"
                   onSubmit={(e) => {
@@ -279,7 +279,6 @@ export default function Index() {
                   }}
                 >
                   <div className="relative group">
-                    {/* AI Search Icon */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
                       <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
                         <svg
@@ -358,7 +357,7 @@ export default function Index() {
                       )}
                     </button>
                   </div>
-                  {/* AI-Powered Example Suggestions */}
+
                   {!searchQuery && !searching && !awaitingClarification && (
                     <div className="mt-4 space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -375,6 +374,7 @@ export default function Index() {
                     </div>
                   )}
                 </form>
+
                 {searching && !searchError && (
                   <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 p-6 rounded-xl animate-scale-in">
                     <div className="flex items-center justify-center gap-3 mb-3">
@@ -403,6 +403,7 @@ export default function Index() {
                     </div>
                   </div>
                 )}
+
                 {searchError && (
                   <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-xl animate-scale-in">
                     <p className="mb-3">{aiMessage}</p>
@@ -414,6 +415,7 @@ export default function Index() {
                     </Button>
                   </div>
                 )}
+
                 {awaitingClarification && (
                   <form
                     onSubmit={handleClarificationSubmit}
@@ -439,7 +441,7 @@ export default function Index() {
                         <p className="text-purple-700 font-medium mb-3">
                           {aiMessage}
                         </p>
-                <Input
+                        <Input
                           placeholder="Help me understand better..."
                           value={clarification}
                           onChange={(e) => setClarification(e.target.value)}
@@ -450,13 +452,13 @@ export default function Index() {
                           className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white w-full"
                         >
                           🤖 Continue with AI
-                </Button>
+                        </Button>
                       </div>
                     </div>
                   </form>
                 )}
               </div>
-              {/* Popular searches */}
+
               <div className="space-y-4">
                 <p className="text-gray-600 font-medium">
                   Popular in your area
@@ -471,426 +473,616 @@ export default function Index() {
                     "Meditation Centers",
                   ].map((tag) => (
                     <button
-                    key={tag}
+                      key={tag}
                       onClick={() => {
                         setSearchQuery(tag);
                         handleSearch(tag);
                       }}
                       className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:border-red-300 hover:text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-105 shadow-sm"
-                  >
-                    {tag}
+                    >
+                      {tag}
                     </button>
-                ))}
+                  ))}
                 </div>
               </div>
             </div>
-            {/* Enhanced Card Slider */}
-            <div className="flex justify-center lg:justify-end">
-              <div
-                className={`vc-card vc-card-3d p-8 max-w-md bg-gradient-to-br ${slide.gradient} text-white shadow-premium transition-all duration-700 relative overflow-hidden`}
-              >
-                {/* Background Icon */}
-                <div className="absolute top-4 right-4 text-6xl opacity-10">
-                  {slide.icon}
-                </div>
 
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4">{slide.icon}</div>
-                  <h3 className="font-bold text-xl mb-3">{slide.title}</h3>
-                  <p className="text-white/90 mb-6 leading-relaxed">
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative max-w-md w-full h-96 rounded-2xl overflow-hidden shadow-2xl group">
+                <img
+                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                  alt="Fitness training session"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-3xl">{slide.icon}</div>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-4 h-4 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                      <span className="ml-2 text-sm">4.9 (127)</span>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-xl mb-2">{slide.title}</h3>
+                  <p className="text-white/90 mb-4 text-sm leading-relaxed">
                     {slide.description}
                   </p>
                   <Link to="/signup">
                     <Button className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 rounded-xl font-medium hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                  {slide.button}
-                </Button>
+                      {slide.button}
+                    </Button>
                   </Link>
                 </div>
               </div>
             </div>
           </div>
-          {/* Enhanced Navigation */}
+
           <div className="flex justify-center mt-12 space-x-6">
-          <button
+            <button
               onClick={() =>
                 setCurrent((current - 1 + slideCount) % slideCount)
               }
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-            aria-label="Previous Slide"
-          >
+              aria-label="Previous Slide"
+            >
               <ChevronLeft size={20} />
-          </button>
+            </button>
 
-            {/* Slide Indicators */}
             <div className="flex items-center space-x-2">
               {heroSlides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === current
-                      ? "bg-red-500 scale-125"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === current ? "bg-red-500 scale-125" : "bg-gray-300 hover:bg-gray-400"}`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
 
-          <button
-            onClick={() => setCurrent((current + 1) % slideCount)}
+            <button
+              onClick={() => setCurrent((current + 1) % slideCount)}
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-            aria-label="Next Slide"
-          >
+              aria-label="Next Slide"
+            >
               <ChevronRight size={20} />
-          </button>
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Platform Features Section */}
-      <section className="py-12 bg-white">
-        <div className="vc-container">
-          <div className="text-center mb-16 animate-fade-in">
-            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Platform Features
-            </span>
-            <h2 className="vc-heading-2 text-responsive-lg mb-6">
-              Why Choose <span className="text-gradient">VibeCore</span>?
+      {/* Two-Column Features with Images and Floating Text */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Everything you need for{" "}
+              <span className="text-red-500">wellness success</span>
             </h2>
-            <p className="vc-body-large max-w-3xl mx-auto">
-              Your complete wellness ecosystem. Discover, connect, and grow with
-              intelligent tools designed for every step of your wellness
-              journey.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
-            <div className="vc-card vc-card-hover p-6 text-center group animate-slide-up">
-              <div className="bg-gradient-to-br from-red-50 to-red-100 text-red-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Find & Book Experts
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Connect with certified coaches, nutritionists, and wellness
-                professionals. Book sessions seamlessly.
-              </p>
-            </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Discover Grounds
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Explore premium gyms, studios, and wellness centers. Filter by
-                amenities and location.
-              </p>
-            </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <div className="bg-gradient-to-br from-green-50 to-green-100 text-green-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Premium Marketplace
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Shop high-quality fitness gear, supplements, and wellness
-                products from trusted vendors.
-              </p>
-            </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 text-yellow-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Events & Community
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Join exclusive wellness events, workshops, and build meaningful
-                connections with like-minded individuals.
-              </p>
-            </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.4s" }}
-            >
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 text-purple-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Smart Analytics
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Track progress, bookings, and performance with intelligent
-                insights and actionable data.
-              </p>
-            </div>
-
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.5s" }}
-            >
-              <div className="bg-gradient-to-br from-pink-50 to-pink-100 text-pink-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                AI-Powered Search
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Natural language search that understands your needs and connects
-                you instantly.
-              </p>
-            </div>
-
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.6s" }}
-            >
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-700 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Enterprise Security
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Bank-level security with end-to-end encryption protecting your
-                personal and business data.
-              </p>
-            </div>
-
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.7s" }}
-            >
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 text-orange-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Marketing Suite
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Built-in promotional tools, featured listings, and marketing
-                automation for growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced CTA Section */}
-      <section className="pt-12 pb-20 bg-gradient-to-br from-white via-red-50 to-orange-50 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-red-200 rounded-full animate-float"></div>
-          <div
-            className="absolute bottom-20 right-20 w-80 h-80 bg-orange-200 rounded-full animate-float"
-            style={{ animationDelay: "3s" }}
-          ></div>
-        </div>
-
-        <div className="vc-container relative z-10">
-          <div className="text-center mb-16 animate-fade-in">
-            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Join Our Community
-            </span>
-            <h2 className="vc-heading-2 text-responsive-lg mb-6">
-              Ready to Transform Your
-              <span className="text-gradient">Wellness Journey</span>?
-            </h2>
-            <p className="vc-body-large max-w-2xl mx-auto">
-              Choose your path and start building meaningful connections in the
-              wellness community today.
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              AI-powered platform with seamless booking and premium experiences
             </p>
           </div>
 
-          {/* Mobile Scrollable, Desktop Grid */}
-          <div className="overflow-x-auto md:overflow-visible">
-            <div
-              className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto pb-4 md:pb-0"
-              style={{ minWidth: "900px" }}
-            >
-              {/* Coach Card */}
-              <div className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-red-50 min-w-[300px] md:min-w-0 animate-slide-up">
-                <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <svg
-                    className="w-10 h-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Left Column */}
+            <div className="space-y-6">
+              {/* AI Coach Matching */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                    alt="Personal trainer with client"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Featured
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </div>
+                      <div className="flex text-yellow-400 text-sm">
+                        ★★★★★ <span className="text-white ml-1">4.9 (324)</span>
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">
+                      AI Coach Matching
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Smart recommendations & instant booking with certified
+                      professionals
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      From $25/hour
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">
-                  Become a Coach
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Share your expertise, build meaningful client relationships,
-                  and grow your wellness coaching business with our
-                  comprehensive platform.
-                </p>
-                <Link to="/signup">
-                  <Button className="vc-btn-primary w-full hover:scale-105 transition-transform duration-300">
-                    Start Coaching
-                </Button>
-                </Link>
               </div>
 
-              {/* Venue Card */}
-              <div
-                className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-blue-50 min-w-[300px] md:min-w-0 animate-slide-up"
-                style={{ animationDelay: "0.1s" }}
-              >
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <svg
-                    className="w-10 h-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
+              {/* Premium Venues */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern gym facility"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Premium
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">1,247 venues</div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">Premium Venues</h3>
+                    <p className="text-white/90 text-sm">
+                      Gyms, studios, pools & golf clubs with premium amenities
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Starting at $15/day
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">
-                  List Your Venue
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Showcase your wellness venue to thousands of wellness
-                  enthusiasts. Manage bookings and grow your member community.
-                </p>
-                <Link to="/signup">
-                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
-                    Join as Venue
-                </Button>
-                </Link>
               </div>
 
-              {/* Brand Seller Card */}
-              <div
-                className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-green-50 min-w-[300px] md:min-w-0 animate-slide-up"
-                style={{ animationDelay: "0.2s" }}
+              {/* Curated Marketplace */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80"
+                    alt="Fitness equipment and gear"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      New
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        2,500+ products
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">
+                      Curated Marketplace
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Premium gear from verified sellers with quality guarantee
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Free shipping over $50
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Events & Community */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80"
+                    alt="Group fitness class"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-semibold">
+                      Live
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4 text-black"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        47 events this week
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">
+                      Events & Community
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Join wellness events & connect with like-minded people
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Next event: Yoga at 6 PM
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-6">
+              {/* Smart Analytics */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80"
+                    alt="Fitness app analytics dashboard"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      AI Powered
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        Real-time tracking
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">Smart Analytics</h3>
+                    <p className="text-white/90 text-sm">
+                      Track progress with insights and detailed performance
+                      metrics
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Advanced reports included
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI-Powered Search */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                    alt="Smartphone with fitness app"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Smart
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">99% accuracy</div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">
+                      AI-Powered Search
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Natural language understanding with intelligent matching
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Instant results guaranteed
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enterprise Security */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
+                    alt="Secure digital technology"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Secure
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        256-bit encryption
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">
+                      Enterprise Security
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      Bank-level data protection with encrypted communications
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      GDPR & HIPAA compliant
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Marketing Suite */}
+              <div className="relative group">
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                    alt="Digital marketing analytics"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Growth
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        Auto campaigns
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl mb-2">Marketing Suite</h3>
+                    <p className="text-white/90 text-sm">
+                      Automated promotion tools to grow your business
+                    </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      3x faster client acquisition
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Compact CTA */}
+          <div className="bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto mt-16">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Ready to get started?
+              </h3>
+              <p className="text-gray-600">
+                Choose your path in the wellness community
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-6">
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-red-500 rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-lg mb-2">Become a Coach</h4>
+                  <p className="text-gray-600 text-sm">
+                    Share your expertise and grow your coaching business
+                  </p>
+                </div>
+              </Link>
+
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-blue-500 rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-lg mb-2">
+                    List Your Venue
+                  </h4>
+                  <p className="text-gray-600 text-sm">
+                    Showcase your space and attract new members
+                  </p>
+                </div>
+              </Link>
+
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-lg mb-2">Sell Products</h4>
+                  <p className="text-gray-600 text-sm">
+                    Reach more customers with our marketplace
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Trainers Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                Our choice of{" "}
+                <span className="text-red-500">Personal Trainer</span>
+              </h2>
+              <p className="text-gray-600">
+                Top-rated certified professionals ready to transform your
+                fitness journey
+              </p>
+            </div>
+            <button className="flex items-center gap-2 text-red-600 hover:text-red-700 font-medium">
+              See All
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Trainer 1 */}
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  Featured
+                </span>
+              </div>
+              <div className="absolute top-4 right-4 z-10">
+                <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                   <svg
-                    className="w-10 h-10 text-white"
+                    className="w-4 h-4 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -899,29 +1091,447 @@ export default function Index() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                   </svg>
+                </button>
+              </div>
+              <div className="relative h-80">
+                <img
+                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&q=80"
+                  alt="Marcus Rodriguez - Personal Trainer"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="flex items-center gap-1 mb-2">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-3 h-3 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-xs ml-1">5 (167)</span>
+                  </div>
+                  <h3 className="font-bold text-lg">Marcus Rodriguez</h3>
+                  <p className="text-white/80 text-sm mb-2">
+                    Strength & Conditioning Coach
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg">
+                      $32<span className="text-sm font-normal">/hour</span>
+                    </span>
+                    <span className="text-xs bg-green-500 px-2 py-1 rounded-full">
+                      Available Now
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">
-                  Sell Premium Products
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Reach thousands of wellness enthusiasts with your high-quality
-                  fitness gear, supplements, and lifestyle products.
-                </p>
-                <Link to="/signup">
-                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
-                  Start Selling
-                </Button>
-                </Link>
+              </div>
+            </div>
+
+            {/* Trainer 2 */}
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute top-4 right-4 z-10">
+                <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="relative h-80">
+                <img
+                  src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?auto=format&fit=crop&w=400&q=80"
+                  alt="Sarah Chen - Yoga Instructor"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="flex items-center gap-1 mb-2">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-3 h-3 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-xs ml-1">4.9 (203)</span>
+                  </div>
+                  <h3 className="font-bold text-lg">Sarah Chen</h3>
+                  <p className="text-white/80 text-sm mb-2">
+                    Yoga & Mindfulness Expert
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg">
+                      $28<span className="text-sm font-normal">/hour</span>
+                    </span>
+                    <span className="text-xs bg-blue-500 px-2 py-1 rounded-full">
+                      Online
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trainer 3 */}
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute top-4 right-4 z-10">
+                <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="relative h-80">
+                <img
+                  src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=400&q=80"
+                  alt="Alex Thompson - HIIT Specialist"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="flex items-center gap-1 mb-2">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-3 h-3 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-xs ml-1">4.8 (145)</span>
+                  </div>
+                  <h3 className="font-bold text-lg">Alex Thompson</h3>
+                  <p className="text-white/80 text-sm mb-2">
+                    HIIT & Cardio Specialist
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg">
+                      $35<span className="text-sm font-normal">/hour</span>
+                    </span>
+                    <span className="text-xs bg-orange-500 px-2 py-1 rounded-full">
+                      Busy
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trainer 4 */}
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute top-4 right-4 z-10">
+                <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="relative h-80">
+                <img
+                  src="https://images.unsplash.com/photo-1506629905496-7d4d7f67ba5c?auto=format&fit=crop&w=400&q=80"
+                  alt="Emma Wilson - Pilates Instructor"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="flex items-center gap-1 mb-2">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-3 h-3 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-xs ml-1">5.0 (98)</span>
+                  </div>
+                  <h3 className="font-bold text-lg">Emma Wilson</h3>
+                  <p className="text-white/80 text-sm mb-2">
+                    Pilates & Core Strength
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg">
+                      $30<span className="text-sm font-normal">/hour</span>
+                    </span>
+                    <span className="text-xs bg-green-500 px-2 py-1 rounded-full">
+                      Available
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Getting Started Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Getting Started is <span className="text-red-500">Simple!</span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Easy step to start your workout journey with our AI-powered
+              platform
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="relative mb-6">
+                <div className="w-64 h-80 mx-auto bg-gray-100 rounded-3xl overflow-hidden shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=300&q=80"
+                    alt="Download VibeCore App"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute top-4 left-4 right-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+                          <svg
+                            className="w-6 h-6 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M10 2L3 7v11a1 1 0 001 1h3v-6h6v6h3a1 1 0 001-1V7l-7-5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm">VibeCore</h4>
+                          <div className="flex text-yellow-400 text-xs">
+                            ★★★★★{" "}
+                            <span className="text-gray-600 ml-1">4.8</span>
+                          </div>
+                        </div>
+                        <button className="ml-auto bg-blue-500 text-white px-3 py-1 rounded-lg text-xs font-semibold">
+                          GET
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Download The App
+              </h3>
+              <p className="text-gray-600 text-sm">
+                You can download the App from App Store or Google Play Store
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="relative mb-6">
+                <div className="w-64 h-80 mx-auto bg-gray-100 rounded-3xl overflow-hidden shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=300&q=80"
+                    alt="Create personalized account"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="absolute inset-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 flex flex-col">
+                    <div className="text-center mb-4">
+                      <h4 className="font-bold text-lg text-gray-900">
+                        Create Account
+                      </h4>
+                      <p className="text-gray-600 text-xs">
+                        Tell us about your fitness goals
+                      </p>
+                    </div>
+                    <div className="space-y-3 flex-1">
+                      <div className="bg-gray-100 rounded-lg p-2">
+                        <div className="text-xs text-gray-500">
+                          Fitness Level
+                        </div>
+                        <div className="text-sm font-medium">Beginner</div>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-2">
+                        <div className="text-xs text-gray-500">
+                          Preferred Workout
+                        </div>
+                        <div className="text-sm font-medium">
+                          Strength Training
+                        </div>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-2">
+                        <div className="text-xs text-gray-500">Goals</div>
+                        <div className="text-sm font-medium">Build Muscle</div>
+                      </div>
+                    </div>
+                    <button className="bg-red-500 text-white py-2 rounded-lg text-sm font-semibold mt-4">
+                      Continue
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Create and Personalized
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Create your account and start personalized you preferences!
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="relative mb-6">
+                <div className="w-64 h-80 mx-auto bg-gray-100 rounded-3xl overflow-hidden shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=300&q=80"
+                    alt="Start your workout"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute top-4 left-4 right-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-semibold text-gray-700">
+                          TODAY'S WORKOUT
+                        </span>
+                        <span className="text-xs text-gray-500">45 MIN</span>
+                      </div>
+                      <h4 className="font-bold text-sm mb-1">
+                        Upper Body Strength
+                      </h4>
+                      <div className="bg-gray-200 rounded-full h-1 mb-2">
+                        <div className="bg-red-500 h-1 rounded-full w-3/4"></div>
+                      </div>
+                      <div className="text-xs text-gray-600">
+                        3 of 4 exercises complete
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-red-500 text-white rounded-xl p-4 text-center">
+                      <div className="text-2xl font-bold">78%</div>
+                      <div className="text-xs">Workout Complete</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Start Your Workout!
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Choose the workout based on your preferences
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center">
+              <div className="relative mb-6">
+                <div className="w-64 h-80 mx-auto bg-gray-100 rounded-3xl overflow-hidden shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=300&q=80"
+                    alt="Analyze and repeat progress"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="absolute inset-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4">
+                    <div className="text-center mb-4">
+                      <h4 className="font-bold text-lg text-gray-900">
+                        Weekly Progress
+                      </h4>
+                      <p className="text-gray-600 text-xs">
+                        You're crushing your goals!
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Workouts</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold text-green-500">
+                            5
+                          </span>
+                          <span className="text-xs text-gray-500">/5</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Calories</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold text-red-500">
+                            2,340
+                          </span>
+                          <span className="text-xs text-gray-500">kcal</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Time</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold text-blue-500">
+                            4.2
+                          </span>
+                          <span className="text-xs text-gray-500">hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4 bg-green-100 rounded-lg p-2 text-center">
+                      <span className="text-green-600 text-xs font-semibold">
+                        🎉 Goal Achieved!
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Analyze and Repeat!
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Gain valuable insights into your progress and performance
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
