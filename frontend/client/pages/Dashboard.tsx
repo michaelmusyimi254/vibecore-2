@@ -38,11 +38,17 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
+import MemberDashboard from "@/components/MemberDashboard";
+import CoachDashboard from "@/components/CoachDashboard";
+import StudioDashboard from "@/components/StudioDashboard";
+import BrandSellerDashboard from "@/components/BrandSellerDashboard";
+import EventCuratorDashboard from "@/components/EventCuratorDashboard";
+import AdminDashboard from "@/components/AdminDashboard";
 
 // Mock data for demonstration
 const mockUserData = {
-  role: "member", // member, coach, studio, brand-seller, event-curator
-  name: "Sarah Johnson",
+  role: "admin", // member, coach, studio, brand-seller, event-curator, admin
+  name: "Admin Control Center",
   avatar: "/api/placeholder/80/80",
   stats: {
     member: { sessionsBooked: 12, savedProfiles: 8, progress: 65 },
@@ -50,6 +56,7 @@ const mockUserData = {
     studio: { members: 145, bookings: 89, revenue: 12400 },
     "brand-seller": { products: 32, orders: 156, revenue: 8900 },
     "event-curator": { events: 8, attendees: 324, rating: 4.9 },
+    admin: { totalUsers: 12847, revenue: 245680, growth: 18.5, alerts: 4 },
   },
 };
 
@@ -96,6 +103,14 @@ function MobileNavigation({ activeTab, setActiveTab, role }: any) {
           { id: "checkin", icon: QrCode, label: "Check-in" },
           { id: "analytics", icon: BarChart3, label: "Analytics" },
         ];
+      case "admin":
+        return [
+          { id: "overview", icon: BarChart3, label: "Control" },
+          { id: "alerts", icon: AlertCircle, label: "Alerts" },
+          { id: "users", icon: Users, label: "Users" },
+          { id: "inbox", icon: MessageCircle, label: "Inbox" },
+          { id: "revenue", icon: DollarSign, label: "Revenue" },
+        ];
       default:
         return [];
     }
@@ -108,13 +123,15 @@ function MobileNavigation({ activeTab, setActiveTab, role }: any) {
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`flex flex-col items-center py-2 px-3 min-w-0 ${
+            className={`flex flex-col items-center py-2 px-3 min-w-0 transition-all duration-300 hover:scale-110 ${
               activeTab === item.id
                 ? "text-vibecore-red"
                 : "text-gray-500 hover:text-gray-700"
             }`}
           >
-            <item.icon className="w-5 h-5 mb-1" />
+            <item.icon
+              className={`w-5 h-5 mb-1 ${role === "admin" && activeTab === item.id ? "animate-pulse" : ""}`}
+            />
             <span className="text-xs truncate">{item.label}</span>
           </button>
         ))}
@@ -171,20 +188,37 @@ function DesktopSidebar({ activeTab, setActiveTab, role, userData }: any) {
           { id: "attendees", icon: Users, label: "Attendee Stats" },
           { id: "analytics", icon: TrendingUp, label: "Analytics" },
         ];
+      case "admin":
+        return [
+          { id: "overview", icon: BarChart3, label: "🔥 CONTROL CENTER" },
+          { id: "alerts", icon: AlertCircle, label: "⚠️ CRITICAL ALERTS" },
+          { id: "users", icon: Users, label: "👥 USER MANAGEMENT" },
+          { id: "inbox", icon: MessageCircle, label: "📧 ADMIN INBOX" },
+          { id: "revenue", icon: DollarSign, label: "💰 REVENUE CONTROL" },
+          { id: "settings", icon: Settings, label: "⚙️ PLATFORM SETTINGS" },
+        ];
       default:
         return [];
     }
   };
 
   return (
-    <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white border-r border-gray-200 pt-20">
+    <div
+      className={`hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 ${role === "admin" ? "bg-gradient-to-b from-red-50 to-orange-50 border-r-2 border-red-200" : "bg-white border-r border-gray-200"} pt-20`}
+    >
       <div className="flex flex-col flex-grow overflow-y-auto">
         {/* User info */}
-        <div className="px-4 py-6 border-b border-gray-200">
+        <div
+          className={`px-4 py-6 border-b ${role === "admin" ? "border-red-200 bg-red-100/50" : "border-gray-200"}`}
+        >
           <div className="flex items-center">
-            <Avatar className="h-12 w-12">
+            <Avatar
+              className={`h-12 w-12 ${role === "admin" ? "ring-2 ring-red-400" : ""}`}
+            >
               <AvatarImage src={userData.avatar} />
-              <AvatarFallback>
+              <AvatarFallback
+                className={role === "admin" ? "bg-red-200 text-red-800" : ""}
+              >
                 {userData.name
                   .split(" ")
                   .map((n) => n[0])
@@ -192,11 +226,15 @@ function DesktopSidebar({ activeTab, setActiveTab, role, userData }: any) {
               </AvatarFallback>
             </Avatar>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">
+              <p
+                className={`text-sm font-medium ${role === "admin" ? "text-red-900" : "text-gray-900"}`}
+              >
                 {userData.name}
               </p>
-              <p className="text-xs text-gray-500 capitalize">
-                {role.replace("-", " ")}
+              <p
+                className={`text-xs ${role === "admin" ? "text-red-700 font-semibold" : "text-gray-500"} capitalize`}
+              >
+                {role.replace("-", " ")} {role === "admin" && "🛡️"}
               </p>
             </div>
           </div>
@@ -208,10 +246,14 @@ function DesktopSidebar({ activeTab, setActiveTab, role, userData }: any) {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`w-full group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`w-full group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105 ${
                 activeTab === item.id
-                  ? "bg-vibecore-red text-white"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  ? role === "admin"
+                    ? "bg-red-600 text-white shadow-lg animate-pulse"
+                    : "bg-vibecore-red text-white"
+                  : role === "admin"
+                    ? "text-red-700 hover:bg-red-100 hover:text-red-900"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
               }`}
             >
               <item.icon className="mr-3 h-5 w-5" />
@@ -237,6 +279,8 @@ function OverviewContent({ role, userData }: any) {
         return "Brand Seller Hub";
       case "event-curator":
         return "Event Curator Dashboard";
+      case "admin":
+        return "⚡ CRITICAL ADMIN CONTROL CENTER ⚡";
       default:
         return "Dashboard";
     }
@@ -265,88 +309,31 @@ function OverviewContent({ role, userData }: any) {
             color: "text-green-600",
           },
         ];
-      case "coach":
+      case "admin":
         return [
           {
-            label: "Active Clients",
-            value: userData.stats.coach.clients,
+            label: "TOTAL USERS",
+            value: userData.stats.admin.totalUsers.toLocaleString(),
             icon: Users,
-            color: "text-blue-600",
+            color: "text-red-600",
           },
           {
-            label: "Monthly Earnings",
-            value: `$${userData.stats.coach.earnings}`,
+            label: "PLATFORM REVENUE",
+            value: `$${userData.stats.admin.revenue.toLocaleString()}`,
             icon: DollarSign,
             color: "text-green-600",
           },
           {
-            label: "Rating",
-            value: userData.stats.coach.rating,
-            icon: Star,
-            color: "text-yellow-600",
-          },
-        ];
-      case "studio":
-        return [
-          {
-            label: "Members",
-            value: userData.stats.studio.members,
-            icon: Users,
-            color: "text-blue-600",
-          },
-          {
-            label: "This Month Bookings",
-            value: userData.stats.studio.bookings,
-            icon: CalendarIcon,
+            label: "GROWTH RATE",
+            value: `+${userData.stats.admin.growth}%`,
+            icon: TrendingUp,
             color: "text-purple-600",
           },
           {
-            label: "Revenue",
-            value: `$${userData.stats.studio.revenue}`,
-            icon: DollarSign,
-            color: "text-green-600",
-          },
-        ];
-      case "brand-seller":
-        return [
-          {
-            label: "Products Listed",
-            value: userData.stats["brand-seller"].products,
-            icon: Package,
-            color: "text-blue-600",
-          },
-          {
-            label: "Orders",
-            value: userData.stats["brand-seller"].orders,
-            icon: ShoppingBag,
-            color: "text-purple-600",
-          },
-          {
-            label: "Revenue",
-            value: `$${userData.stats["brand-seller"].revenue}`,
-            icon: DollarSign,
-            color: "text-green-600",
-          },
-        ];
-      case "event-curator":
-        return [
-          {
-            label: "Events Created",
-            value: userData.stats["event-curator"].events,
-            icon: EventIcon,
-            color: "text-blue-600",
-          },
-          {
-            label: "Total Attendees",
-            value: userData.stats["event-curator"].attendees,
-            icon: Users,
-            color: "text-purple-600",
-          },
-          {
-            label: "Rating",
-            value: userData.stats["event-curator"].rating,
-            icon: Star,
-            color: "text-yellow-600",
+            label: "CRITICAL ALERTS",
+            value: userData.stats.admin.alerts,
+            icon: AlertCircle,
+            color: "text-orange-600",
           },
         ];
       default:
@@ -357,27 +344,69 @@ function OverviewContent({ role, userData }: any) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{getRoleTitle()}</h1>
-        <p className="text-gray-600">
-          Manage your {role.replace("-", " ")} activities and track your
-          progress
+        <h1
+          className={`text-2xl font-bold ${role === "admin" ? "text-red-900 text-3xl" : "text-gray-900"}`}
+        >
+          {getRoleTitle()}
+        </h1>
+        <p
+          className={
+            role === "admin" ? "text-red-700 font-semibold" : "text-gray-600"
+          }
+        >
+          {role === "admin"
+            ? "🛡️ FULL PLATFORM CONTROL & MONITORING SYSTEM 🛡️"
+            : `Manage your ${role.replace("-", " ")} activities and track your progress`}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div
+        className={`grid grid-cols-1 ${role === "admin" ? "md:grid-cols-4" : "md:grid-cols-3"} gap-6`}
+      >
         {getQuickStats().map((stat, index) => (
-          <Card key={index} className="relative overflow-hidden">
+          <Card
+            key={index}
+            className={`relative overflow-hidden hover:shadow-lg transition-all duration-500 hover:scale-105 cursor-pointer ${
+              role === "admin"
+                ? "border-red-200 bg-gradient-to-br from-red-50 to-orange-50 hover:from-red-100 hover:to-orange-100"
+                : ""
+            }`}
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+            onMouseEnter={(e) => {
+              const card = e.currentTarget;
+              if (role === "admin") {
+                card.style.transform =
+                  "perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05)";
+              } else {
+                card.style.transform =
+                  "perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.05)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              const card = e.currentTarget;
+              card.style.transform =
+                "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+            }}
+          >
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p
+                    className={`text-sm font-medium ${role === "admin" ? "text-red-700" : "text-gray-600"}`}
+                  >
                     {stat.label}
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p
+                    className={`text-2xl font-bold ${role === "admin" ? "text-red-900" : "text-gray-900"} ${role === "admin" && stat.label.includes("ALERT") ? "animate-pulse" : ""}`}
+                  >
                     {stat.value}
                   </p>
                 </div>
-                <div className={`p-3 rounded-full bg-gray-50 ${stat.color}`}>
+                <div
+                  className={`p-3 rounded-full ${role === "admin" ? "bg-red-100" : "bg-gray-50"} ${stat.color} ${role === "admin" && stat.label.includes("ALERT") ? "animate-bounce" : ""}`}
+                >
                   <stat.icon className="h-6 w-6" />
                 </div>
               </div>
@@ -387,154 +416,69 @@ function OverviewContent({ role, userData }: any) {
       </div>
 
       {/* Quick Actions */}
-      <Card>
+      <Card className={role === "admin" ? "border-red-200 bg-red-50/50" : ""}>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle className={role === "admin" ? "text-red-900" : ""}>
+            {role === "admin" ? "🚨 CRITICAL CONTROLS" : "Quick Actions"}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {role === "admin" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2 bg-red-600 hover:bg-red-700 text-white hover:scale-105 transition-all duration-300 hover:rotate-1">
+                  <AlertCircle className="h-6 w-6" />
+                  <span className="text-sm">SYSTEM ALERTS</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 border-red-200 hover:bg-red-50 hover:scale-105 transition-all duration-300 hover:-rotate-1"
+                >
+                  <Users className="h-6 w-6" />
+                  <span className="text-sm">User Management</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 border-orange-200 hover:bg-orange-50 hover:scale-105 transition-all duration-300 hover:rotate-1"
+                >
+                  <DollarSign className="h-6 w-6" />
+                  <span className="text-sm">Revenue Control</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 border-purple-200 hover:bg-purple-50 hover:scale-105 transition-all duration-300 hover:-rotate-1"
+                >
+                  <Settings className="h-6 w-6" />
+                  <span className="text-sm">Platform Settings</span>
+                </Button>
+              </>
+            )}
             {role === "member" && (
               <>
-                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2 hover:scale-105 transition-transform duration-300">
                   <Search className="h-6 w-6" />
                   <span className="text-sm">Find Coach</span>
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 hover:scale-105 transition-transform duration-300"
                 >
                   <CalendarIcon className="h-6 w-6" />
                   <span className="text-sm">Book Session</span>
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 hover:scale-105 transition-transform duration-300"
                 >
                   <TrendingUp className="h-6 w-6" />
                   <span className="text-sm">View Progress</span>
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                  className="flex flex-col items-center p-6 h-auto space-y-2 hover:scale-105 transition-transform duration-300"
                 >
                   <MessageCircle className="h-6 w-6" />
                   <span className="text-sm">Messages</span>
-                </Button>
-              </>
-            )}
-            {role === "coach" && (
-              <>
-                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
-                  <Plus className="h-6 w-6" />
-                  <span className="text-sm">Add Client</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <CalendarIcon className="h-6 w-6" />
-                  <span className="text-sm">Schedule</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <Settings className="h-6 w-6" />
-                  <span className="text-sm">Services</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <BarChart3 className="h-6 w-6" />
-                  <span className="text-sm">Analytics</span>
-                </Button>
-              </>
-            )}
-            {role === "studio" && (
-              <>
-                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
-                  <Plus className="h-6 w-6" />
-                  <span className="text-sm">Add Program</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <Users className="h-6 w-6" />
-                  <span className="text-sm">Manage Trainers</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <CalendarIcon className="h-6 w-6" />
-                  <span className="text-sm">Bookings</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <BarChart3 className="h-6 w-6" />
-                  <span className="text-sm">Analytics</span>
-                </Button>
-              </>
-            )}
-            {role === "brand-seller" && (
-              <>
-                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
-                  <Plus className="h-6 w-6" />
-                  <span className="text-sm">Add Product</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <Package className="h-6 w-6" />
-                  <span className="text-sm">Inventory</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <ShoppingBag className="h-6 w-6" />
-                  <span className="text-sm">Orders</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <BarChart3 className="h-6 w-6" />
-                  <span className="text-sm">Analytics</span>
-                </Button>
-              </>
-            )}
-            {role === "event-curator" && (
-              <>
-                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
-                  <Plus className="h-6 w-6" />
-                  <span className="text-sm">Create Event</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <CalendarIcon className="h-6 w-6" />
-                  <span className="text-sm">Bookings</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <QrCode className="h-6 w-6" />
-                  <span className="text-sm">Check-in</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex flex-col items-center p-6 h-auto space-y-2"
-                >
-                  <BarChart3 className="h-6 w-6" />
-                  <span className="text-sm">Analytics</span>
                 </Button>
               </>
             )}
@@ -543,13 +487,39 @@ function OverviewContent({ role, userData }: any) {
       </Card>
 
       {/* Recent Activity */}
-      <Card>
+      <Card className={role === "admin" ? "border-red-200 bg-red-50/50" : ""}>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
+          <CardTitle className={role === "admin" ? "text-red-900" : ""}>
+            {role === "admin" ? "🔥 SYSTEM ACTIVITY" : "Recent Activity"}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {role === "member" && (
+            {role === "admin" ? (
+              <>
+                <div className="flex items-center space-x-3">
+                  <AlertCircle className="h-5 w-5 text-red-600 animate-pulse" />
+                  <span className="text-sm font-semibold text-red-800">
+                    CRITICAL: Multiple failed login attempts detected
+                  </span>
+                  <span className="text-xs text-red-600">2 min ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-5 w-5 text-orange-600" />
+                  <span className="text-sm">
+                    User registration spike: +300% above normal
+                  </span>
+                  <span className="text-xs text-gray-500">15 min ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <DollarSign className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">
+                    Revenue milestone: $250K monthly target reached
+                  </span>
+                  <span className="text-xs text-gray-500">1 hour ago</span>
+                </div>
+              </>
+            ) : role === "member" ? (
               <>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-5 w-5 text-green-600" />
@@ -573,107 +543,7 @@ function OverviewContent({ role, userData }: any) {
                   <span className="text-xs text-gray-500">2 days ago</span>
                 </div>
               </>
-            )}
-
-            {role === "coach" && (
-              <>
-                <div className="flex items-center space-x-3">
-                  <Users className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm">
-                    New client registration: Emma Wilson
-                  </span>
-                  <span className="text-xs text-gray-500">1 hour ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="text-sm">
-                    Completed session with John Smith
-                  </span>
-                  <span className="text-xs text-gray-500">3 hours ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <DollarSign className="h-5 w-5 text-green-600" />
-                  <span className="text-sm">Payment received: $120</span>
-                  <span className="text-xs text-gray-500">1 day ago</span>
-                </div>
-              </>
-            )}
-
-            {role === "studio" && (
-              <>
-                <div className="flex items-center space-x-3">
-                  <Users className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm">
-                    New member joined: Premium Membership
-                  </span>
-                  <span className="text-xs text-gray-500">30 minutes ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CalendarIcon className="h-5 w-5 text-purple-600" />
-                  <span className="text-sm">
-                    15 bookings for tomorrow's yoga class
-                  </span>
-                  <span className="text-xs text-gray-500">2 hours ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <TrendingUp className="h-5 w-5 text-green-600" />
-                  <span className="text-sm">
-                    Monthly revenue target achieved
-                  </span>
-                  <span className="text-xs text-gray-500">1 day ago</span>
-                </div>
-              </>
-            )}
-
-            {role === "brand-seller" && (
-              <>
-                <div className="flex items-center space-x-3">
-                  <ShoppingBag className="h-5 w-5 text-purple-600" />
-                  <span className="text-sm">
-                    New order: Premium Yoga Mat Set
-                  </span>
-                  <span className="text-xs text-gray-500">45 minutes ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Package className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm">5 products added to inventory</span>
-                  <span className="text-xs text-gray-500">2 hours ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <AlertCircle className="h-5 w-5 text-orange-600" />
-                  <span className="text-sm">
-                    Low stock alert: Resistance Bands
-                  </span>
-                  <span className="text-xs text-gray-500">6 hours ago</span>
-                </div>
-              </>
-            )}
-
-            {role === "event-curator" && (
-              <>
-                <div className="flex items-center space-x-3">
-                  <EventIcon className="h-5 w-5 text-purple-600" />
-                  <span className="text-sm">
-                    Wellness Workshop event published
-                  </span>
-                  <span className="text-xs text-gray-500">1 hour ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Users className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm">
-                    25 new attendees registered for yoga retreat
-                  </span>
-                  <span className="text-xs text-gray-500">4 hours ago</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="text-sm">
-                    Mindfulness event completed successfully
-                  </span>
-                  <span className="text-xs text-gray-500">2 days ago</span>
-                </div>
-              </>
-            )}
+            ) : null}
           </div>
         </CardContent>
       </Card>
@@ -685,8 +555,34 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [userRole] = useState(mockUserData.role);
 
+  // Render role-specific dashboard content
+  const renderDashboardContent = () => {
+    if (activeTab === "overview") {
+      return <OverviewContent role={userRole} userData={mockUserData} />;
+    }
+
+    switch (userRole) {
+      case "member":
+        return <MemberDashboard activeTab={activeTab} />;
+      case "coach":
+        return <CoachDashboard activeTab={activeTab} />;
+      case "studio":
+        return <StudioDashboard activeTab={activeTab} />;
+      case "brand-seller":
+        return <BrandSellerDashboard activeTab={activeTab} />;
+      case "event-curator":
+        return <EventCuratorDashboard activeTab={activeTab} />;
+      case "admin":
+        return <AdminDashboard activeTab={activeTab} />;
+      default:
+        return <OverviewContent role={userRole} userData={mockUserData} />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div
+      className={`min-h-screen ${userRole === "admin" ? "bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50" : "bg-gray-50"}`}
+    >
       <NavBar />
 
       <div className="flex">
@@ -699,23 +595,7 @@ export default function Dashboard() {
 
         <main className="flex-1 md:ml-64 pt-20 pb-20 md:pb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {activeTab === "overview" && (
-              <OverviewContent role={userRole} userData={mockUserData} />
-            )}
-
-            {/* Placeholder for other tab contents */}
-            {activeTab !== "overview" && (
-              <div className="text-center py-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
-                  Section
-                </h2>
-                <p className="text-gray-600">
-                  This section is under development. Content for {activeTab}{" "}
-                  will be implemented here.
-                </p>
-              </div>
-            )}
+            {renderDashboardContent()}
           </div>
         </main>
 
