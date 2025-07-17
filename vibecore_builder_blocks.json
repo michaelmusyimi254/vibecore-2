@@ -1,0 +1,237 @@
+{
+  "id": "7c21f547-de43-4dec-95f4-3db4caa6c510",
+  "name": "VibeCore Mobile Layout Pack",
+  "createdAt": "2025-07-17T10:36:37.398849",
+  "blocks": [
+    {
+      "name": "EventCard",
+      "component": "event-card",
+      "responsive": true,
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "0.5rem",
+        "padding": "1rem",
+        "borderRadius": "1rem",
+        "backgroundColor": "#ffffff",
+        "boxShadow": "0px 4px 8px rgba(0, 0, 0, 0.05)"
+      },
+      "elements": [
+        {
+          "type": "image",
+          "binding": "event.image",
+          "style": {
+            "borderRadius": "0.75rem"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "event.title",
+          "style": {
+            "fontSize": "1rem",
+            "fontWeight": "600"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "event.date",
+          "style": {
+            "fontSize": "0.875rem",
+            "color": "#888"
+          }
+        },
+        {
+          "type": "button",
+          "label": "Book",
+          "action": "bookEvent",
+          "style": {
+            "backgroundColor": "#D91E36",
+            "color": "#fff"
+          }
+        }
+      ]
+    },
+    {
+      "name": "TrainerCard",
+      "component": "trainer-card",
+      "responsive": true,
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "gap": "0.75rem",
+        "padding": "1rem",
+        "borderRadius": "1rem",
+        "backgroundColor": "#ffffff",
+        "boxShadow": "0 2px 6px rgba(0, 0, 0, 0.06)"
+      },
+      "elements": [
+        {
+          "type": "avatar",
+          "binding": "trainer.avatar",
+          "style": {
+            "size": "64px"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "trainer.name",
+          "style": {
+            "fontWeight": "700"
+          }
+        },
+        {
+          "type": "rating",
+          "binding": "trainer.rating"
+        },
+        {
+          "type": "button",
+          "label": "Book",
+          "action": "bookTrainer",
+          "style": {
+            "backgroundColor": "#D91E36",
+            "color": "#fff"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ShopScroller",
+      "component": "shop-scroller",
+      "responsive": true,
+      "style": {
+        "display": "flex",
+        "overflowX": "auto",
+        "gap": "1rem",
+        "padding": "1rem"
+      },
+      "elements": [
+        {
+          "type": "card",
+          "repeater": "shop in shops",
+          "children": [
+            {
+              "type": "image",
+              "binding": "shop.logo",
+              "style": {
+                "size": "48px"
+              }
+            },
+            {
+              "type": "text",
+              "binding": "shop.shop_name",
+              "style": {
+                "fontSize": "0.875rem"
+              }
+            },
+            {
+              "type": "rating",
+              "binding": "shop.rating"
+            }
+          ],
+          "style": {
+            "minWidth": "140px",
+            "padding": "0.5rem",
+            "backgroundColor": "#f9f9f9",
+            "borderRadius": "0.75rem"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ProductTile",
+      "component": "product-tile",
+      "responsive": true,
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "0.5rem",
+        "padding": "1rem",
+        "backgroundColor": "#ffffff",
+        "borderRadius": "1rem",
+        "boxShadow": "0 1px 4px rgba(0,0,0,0.04)"
+      },
+      "elements": [
+        {
+          "type": "image",
+          "binding": "product.image",
+          "style": {
+            "borderRadius": "0.75rem"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "product.name",
+          "style": {
+            "fontSize": "0.875rem",
+            "fontWeight": "500"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "product.price",
+          "style": {
+            "fontSize": "0.875rem",
+            "color": "#444"
+          }
+        },
+        {
+          "type": "button",
+          "label": "Add to Cart",
+          "action": "addToCart",
+          "style": {
+            "backgroundColor": "#2196F3",
+            "color": "#fff"
+          }
+        }
+      ]
+    },
+    {
+      "name": "FacilityCard",
+      "component": "facility-card",
+      "responsive": true,
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "0.5rem",
+        "padding": "1rem",
+        "borderRadius": "1rem",
+        "backgroundColor": "#ffffff",
+        "boxShadow": "0 1px 4px rgba(0,0,0,0.04)"
+      },
+      "elements": [
+        {
+          "type": "image",
+          "binding": "facility.images[0]",
+          "style": {
+            "borderRadius": "0.75rem"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "facility.name",
+          "style": {
+            "fontWeight": "600"
+          }
+        },
+        {
+          "type": "text",
+          "binding": "facility.location",
+          "style": {
+            "fontSize": "0.875rem",
+            "color": "#777"
+          }
+        },
+        {
+          "type": "button",
+          "label": "Book Facility",
+          "action": "bookFacility",
+          "style": {
+            "backgroundColor": "#D91E36",
+            "color": "#fff"
+          }
+        }
+      ]
+    }
+  ]
+}
