@@ -488,16 +488,31 @@ export default function Index() {
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div
-                className={`vc-card vc-card-3d p-8 max-w-md bg-gradient-to-br ${slide.gradient} text-white shadow-premium transition-all duration-700 relative overflow-hidden`}
-              >
-                <div className="absolute top-4 right-4 text-6xl opacity-10">
-                  {slide.icon}
-                </div>
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4">{slide.icon}</div>
-                  <h3 className="font-bold text-xl mb-3">{slide.title}</h3>
-                  <p className="text-white/90 mb-6 leading-relaxed">
+              <div className="relative max-w-md w-full h-96 rounded-2xl overflow-hidden shadow-2xl group">
+                <img
+                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                  alt="Fitness training session"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-3xl">{slide.icon}</div>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-4 h-4 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                      <span className="ml-2 text-sm">4.9 (127)</span>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-xl mb-2">{slide.title}</h3>
+                  <p className="text-white/90 mb-4 text-sm leading-relaxed">
                     {slide.description}
                   </p>
                   <Link to="/signup">
@@ -561,24 +576,33 @@ export default function Index() {
             <div className="space-y-6">
               {/* AI Coach Matching */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                    alt="Personal trainer with client"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Featured
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </div>
+                      <div className="flex text-yellow-400 text-sm">
+                        ★★★★★ <span className="text-white ml-1">4.9 (324)</span>
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">
                       AI Coach Matching
                     </h3>
@@ -586,94 +610,149 @@ export default function Index() {
                       Smart recommendations & instant booking with certified
                       professionals
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      From $25/hour
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Premium Venues */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern gym facility"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Premium
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">1,247 venues</div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">Premium Venues</h3>
                     <p className="text-white/90 text-sm">
                       Gyms, studios, pools & golf clubs with premium amenities
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Starting at $15/day
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Curated Marketplace */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80"
+                    alt="Fitness equipment and gear"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      New
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        2,500+ products
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">
                       Curated Marketplace
                     </h3>
                     <p className="text-white/90 text-sm">
                       Premium gear from verified sellers with quality guarantee
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Free shipping over $50
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Events & Community */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80"
+                    alt="Group fitness class"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-semibold">
+                      Live
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4 text-black"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        47 events this week
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">
                       Events & Community
                     </h3>
                     <p className="text-white/90 text-sm">
                       Join wellness events & connect with like-minded people
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Next event: Yoga at 6 PM
+                    </div>
                   </div>
                 </div>
               </div>
@@ -683,117 +762,187 @@ export default function Index() {
             <div className="space-y-6">
               {/* Smart Analytics */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80"
+                    alt="Fitness app analytics dashboard"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      AI Powered
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        Real-time tracking
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">Smart Analytics</h3>
                     <p className="text-white/90 text-sm">
                       Track progress with insights and detailed performance
                       metrics
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Advanced reports included
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* AI-Powered Search */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                    alt="Smartphone with fitness app"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Smart
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">99% accuracy</div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">
                       AI-Powered Search
                     </h3>
                     <p className="text-white/90 text-sm">
                       Natural language understanding with intelligent matching
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      Instant results guaranteed
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Enterprise Security */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
+                    alt="Secure digital technology"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Secure
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        256-bit encryption
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">
                       Enterprise Security
                     </h3>
                     <p className="text-white/90 text-sm">
                       Bank-level data protection with encrypted communications
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      GDPR & HIPAA compliant
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Marketing Suite */}
               <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 h-64">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg
-                      className="w-20 h-20 text-white/30"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
-                      />
-                    </svg>
+                <div className="relative overflow-hidden rounded-2xl h-64">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                    alt="Digital marketing analytics"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Growth
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-sm text-white/90">
+                        Auto campaigns
+                      </div>
+                    </div>
                     <h3 className="font-bold text-xl mb-2">Marketing Suite</h3>
                     <p className="text-white/90 text-sm">
                       Automated promotion tools to grow your business
                     </p>
+                    <div className="mt-3 text-white/80 text-xs">
+                      3x faster client acquisition
+                    </div>
                   </div>
                 </div>
               </div>
