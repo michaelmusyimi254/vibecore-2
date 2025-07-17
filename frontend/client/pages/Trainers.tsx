@@ -25,17 +25,28 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import { useState } from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 // Remove TrainerCard import
 
 export default function Trainers() {
-  const trainers = [
+  const coaches = [
     {
       id: 1,
       name: "Sarah Johnson",
-      specialty: "Personal Training & Nutrition",
+      specialty: "Personal Coaching & Nutrition",
       location: "Downtown Fitness Center",
       rating: 4.9,
       reviews: 127,
@@ -219,7 +230,10 @@ export default function Trainers() {
           <div className="flex lg:hidden mb-4">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
-                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                <Button
+                  className="w-full bg-vibecore-red text-white rounded-full"
+                  onClick={() => setDrawerOpen(true)}
+                >
                   <Filter className="w-5 h-5 mr-2" /> Filters
                 </Button>
               </DrawerTrigger>
@@ -237,10 +251,27 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Personal Training","Weight Loss","Strength Training","Yoga","Pilates","CrossFit","HIIT","Martial Arts","Dance Fitness","Rehabilitation"].map((specialty) => (
-                          <div key={specialty} className="flex items-center space-x-2">
+                        {[
+                          "Personal Training",
+                          "Weight Loss",
+                          "Strength Training",
+                          "Yoga",
+                          "Pilates",
+                          "CrossFit",
+                          "HIIT",
+                          "Martial Arts",
+                          "Dance Fitness",
+                          "Rehabilitation",
+                        ].map((specialty) => (
+                          <div
+                            key={specialty}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={specialty + "-mobile"} />
-                            <label htmlFor={specialty + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={specialty + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {specialty}
                             </label>
                           </div>
@@ -256,10 +287,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Under $40","$40 - $60","$60 - $80","Over $80"].map((price) => (
-                          <div key={price} className="flex items-center space-x-2">
+                        {[
+                          "Under $40",
+                          "$40 - $60",
+                          "$60 - $80",
+                          "Over $80",
+                        ].map((price) => (
+                          <div
+                            key={price}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={price + "-mobile"} />
-                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={price + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {price}
                             </label>
                           </div>
@@ -275,10 +317,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Less than 2 years","2-5 years","5-10 years","10+ years"].map((experience) => (
-                          <div key={experience} className="flex items-center space-x-2">
+                        {[
+                          "Less than 2 years",
+                          "2-5 years",
+                          "5-10 years",
+                          "10+ years",
+                        ].map((experience) => (
+                          <div
+                            key={experience}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={experience + "-mobile"} />
-                            <label htmlFor={experience + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={experience + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {experience}
                             </label>
                           </div>
@@ -294,10 +347,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Available Today","Available This Week","Online Training","In-Person Only"].map((availability) => (
-                          <div key={availability} className="flex items-center space-x-2">
+                        {[
+                          "Available Today",
+                          "Available This Week",
+                          "Online Training",
+                          "In-Person Only",
+                        ].map((availability) => (
+                          <div
+                            key={availability}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={availability + "-mobile"} />
-                            <label htmlFor={availability + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={availability + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {availability}
                             </label>
                           </div>
@@ -313,12 +377,23 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
-                          <div key={rating} className="flex items-center space-x-2">
+                        {[
+                          { rating: "4.5+", stars: 5 },
+                          { rating: "4.0+", stars: 4 },
+                          { rating: "3.5+", stars: 4 },
+                          { rating: "3.0+", stars: 3 },
+                        ].map(({ rating, stars }) => (
+                          <div
+                            key={rating}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={rating + "-mobile"} />
                             <label className="text-sm text-gray-700 flex items-center">
                               {Array.from({ length: stars }).map((_, i) => (
-                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                                <Star
+                                  key={i}
+                                  className="w-3 h-3 text-yellow-400 fill-current mr-1"
+                                />
                               ))}
                               {rating}
                             </label>
@@ -328,7 +403,9 @@ export default function Trainers() {
                     </CollapsibleContent>
                   </Collapsible>
                   <DrawerClose asChild>
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
+                      Apply Filters
+                    </Button>
                   </DrawerClose>
                 </div>
               </DrawerContent>
