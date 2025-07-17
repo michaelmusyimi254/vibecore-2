@@ -24,17 +24,28 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import { useState } from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 // Remove FacilityCard import
 
 export default function Facilities() {
-  const facilities = [
+  const studios = [
     {
       id: 1,
-      name: "Elite Fitness Center",
-      type: "Gym",
+      name: "Elite Wellness Studio",
+      type: "Premium Studio",
       location: "123 Main St, Downtown",
       status: "Open",
       rating: 4.6,
@@ -188,7 +199,10 @@ export default function Facilities() {
           <div className="flex lg:hidden mb-4">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
-                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                <Button
+                  className="w-full bg-vibecore-red text-white rounded-full"
+                  onClick={() => setDrawerOpen(true)}
+                >
                   <Filter className="w-5 h-5 mr-2" /> Filters
                 </Button>
               </DrawerTrigger>
@@ -206,10 +220,22 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Gym","Spa","Pool","Studio","Wellness Center"].map((type) => (
-                          <div key={type} className="flex items-center space-x-2">
+                        {[
+                          "Gym",
+                          "Spa",
+                          "Pool",
+                          "Studio",
+                          "Wellness Center",
+                        ].map((type) => (
+                          <div
+                            key={type}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={type + "-mobile"} />
-                            <label htmlFor={type + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={type + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {type}
                             </label>
                           </div>
@@ -225,10 +251,21 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Under $30","$30 - $60","$60 - $100","Over $100"].map((price) => (
-                          <div key={price} className="flex items-center space-x-2">
+                        {[
+                          "Under $30",
+                          "$30 - $60",
+                          "$60 - $100",
+                          "Over $100",
+                        ].map((price) => (
+                          <div
+                            key={price}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={price + "-mobile"} />
-                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={price + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {price}
                             </label>
                           </div>
@@ -244,14 +281,22 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["WiFi","Parking","Showers","Lockers","Café"].map((amenity) => (
-                          <div key={amenity} className="flex items-center space-x-2">
-                            <Checkbox id={amenity + "-mobile"} />
-                            <label htmlFor={amenity + "-mobile"} className="text-sm text-gray-700">
-                              {amenity}
-                            </label>
-                          </div>
-                        ))}
+                        {["WiFi", "Parking", "Showers", "Lockers", "Café"].map(
+                          (amenity) => (
+                            <div
+                              key={amenity}
+                              className="flex items-center space-x-2"
+                            >
+                              <Checkbox id={amenity + "-mobile"} />
+                              <label
+                                htmlFor={amenity + "-mobile"}
+                                className="text-sm text-gray-700"
+                              >
+                                {amenity}
+                              </label>
+                            </div>
+                          ),
+                        )}
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
@@ -263,12 +308,23 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
-                          <div key={rating} className="flex items-center space-x-2">
+                        {[
+                          { rating: "4.5+", stars: 5 },
+                          { rating: "4.0+", stars: 4 },
+                          { rating: "3.5+", stars: 4 },
+                          { rating: "3.0+", stars: 3 },
+                        ].map(({ rating, stars }) => (
+                          <div
+                            key={rating}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={rating + "-mobile"} />
                             <label className="text-sm text-gray-700 flex items-center">
                               {Array.from({ length: stars }).map((_, i) => (
-                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                                <Star
+                                  key={i}
+                                  className="w-3 h-3 text-yellow-400 fill-current mr-1"
+                                />
                               ))}
                               {rating}
                             </label>
@@ -278,7 +334,9 @@ export default function Facilities() {
                     </CollapsibleContent>
                   </Collapsible>
                   <div className="sticky bottom-0 bg-white p-4">
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
+                      Apply Filters
+                    </Button>
                   </div>
                 </div>
               </DrawerContent>
@@ -409,9 +467,7 @@ export default function Facilities() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {facilities.map((facility) => (
                   <Link key={facility.id} to={`/facilities/1`}>
-                    <div
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
+                    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
                         src={facility.image}
                         alt={facility.name}
@@ -424,7 +480,9 @@ export default function Facilities() {
                           </h3>
                           <Badge
                             variant={
-                              facility.status === "Open" ? "default" : "secondary"
+                              facility.status === "Open"
+                                ? "default"
+                                : "secondary"
                             }
                             className="rounded-full"
                           >
