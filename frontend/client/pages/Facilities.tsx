@@ -476,25 +476,23 @@ export default function Facilities() {
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-lg">
-                            {facility.name}
+                            {studio.name}
                           </h3>
                           <Badge
                             variant={
-                              facility.status === "Open"
-                                ? "default"
-                                : "secondary"
+                              studio.status === "Open" ? "default" : "secondary"
                             }
                             className="rounded-full"
                           >
-                            {facility.status}
+                            {studio.status}
                           </Badge>
                         </div>
                         <p className="text-gray-600 text-sm mb-2">
-                          {facility.type}
+                          {studio.type}
                         </p>
                         <p className="text-gray-500 text-sm mb-3 flex items-center">
                           <MapPin className="w-3 h-3 mr-1" />
-                          {facility.location}
+                          {studio.location}
                         </p>
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center">
