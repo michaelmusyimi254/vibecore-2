@@ -24,17 +24,28 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import { useState } from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 // Remove FacilityCard import
 
 export default function Facilities() {
-  const facilities = [
+  const studios = [
     {
       id: 1,
-      name: "Elite Fitness Center",
-      type: "Gym",
+      name: "Elite Wellness Studio",
+      type: "Premium Studio",
       location: "123 Main St, Downtown",
       status: "Open",
       rating: 4.6,
@@ -133,7 +144,7 @@ export default function Facilities() {
       <section className="pt-24 pb-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Fitness Facilities</h1>
+            <h1 className="text-3xl font-bold mb-2">Wellness Studios</h1>
             <p className="text-gray-600">
               Discover gyms, studios, spas, and wellness centers near you
             </p>
@@ -145,7 +156,7 @@ export default function Facilities() {
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search facilities..."
+                  placeholder="Search studios..."
                   className="pl-10 rounded-full border-gray-200"
                 />
               </div>
@@ -188,7 +199,10 @@ export default function Facilities() {
           <div className="flex lg:hidden mb-4">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
-                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                <Button
+                  className="w-full bg-vibecore-red text-white rounded-full"
+                  onClick={() => setDrawerOpen(true)}
+                >
                   <Filter className="w-5 h-5 mr-2" /> Filters
                 </Button>
               </DrawerTrigger>
@@ -206,10 +220,22 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Gym","Spa","Pool","Studio","Wellness Center"].map((type) => (
-                          <div key={type} className="flex items-center space-x-2">
+                        {[
+                          "Gym",
+                          "Spa",
+                          "Pool",
+                          "Studio",
+                          "Wellness Center",
+                        ].map((type) => (
+                          <div
+                            key={type}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={type + "-mobile"} />
-                            <label htmlFor={type + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={type + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {type}
                             </label>
                           </div>
@@ -225,10 +251,21 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Under $30","$30 - $60","$60 - $100","Over $100"].map((price) => (
-                          <div key={price} className="flex items-center space-x-2">
+                        {[
+                          "Under $30",
+                          "$30 - $60",
+                          "$60 - $100",
+                          "Over $100",
+                        ].map((price) => (
+                          <div
+                            key={price}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={price + "-mobile"} />
-                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={price + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {price}
                             </label>
                           </div>
@@ -244,14 +281,22 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["WiFi","Parking","Showers","Lockers","Café"].map((amenity) => (
-                          <div key={amenity} className="flex items-center space-x-2">
-                            <Checkbox id={amenity + "-mobile"} />
-                            <label htmlFor={amenity + "-mobile"} className="text-sm text-gray-700">
-                              {amenity}
-                            </label>
-                          </div>
-                        ))}
+                        {["WiFi", "Parking", "Showers", "Lockers", "Café"].map(
+                          (amenity) => (
+                            <div
+                              key={amenity}
+                              className="flex items-center space-x-2"
+                            >
+                              <Checkbox id={amenity + "-mobile"} />
+                              <label
+                                htmlFor={amenity + "-mobile"}
+                                className="text-sm text-gray-700"
+                              >
+                                {amenity}
+                              </label>
+                            </div>
+                          ),
+                        )}
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
@@ -263,12 +308,23 @@ export default function Facilities() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
-                          <div key={rating} className="flex items-center space-x-2">
+                        {[
+                          { rating: "4.5+", stars: 5 },
+                          { rating: "4.0+", stars: 4 },
+                          { rating: "3.5+", stars: 4 },
+                          { rating: "3.0+", stars: 3 },
+                        ].map(({ rating, stars }) => (
+                          <div
+                            key={rating}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={rating + "-mobile"} />
                             <label className="text-sm text-gray-700 flex items-center">
                               {Array.from({ length: stars }).map((_, i) => (
-                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                                <Star
+                                  key={i}
+                                  className="w-3 h-3 text-yellow-400 fill-current mr-1"
+                                />
                               ))}
                               {rating}
                             </label>
@@ -278,7 +334,9 @@ export default function Facilities() {
                     </CollapsibleContent>
                   </Collapsible>
                   <div className="sticky bottom-0 bg-white p-4">
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
+                      Apply Filters
+                    </Button>
                   </div>
                 </div>
               </DrawerContent>
@@ -390,7 +448,7 @@ export default function Facilities() {
             <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
-                  {facilities.length} facilities found
+                  {studios.length} studios found
                 </h2>
                 <Select defaultValue="rating">
                   <SelectTrigger className="w-[150px] rounded-full">
@@ -407,57 +465,55 @@ export default function Facilities() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {facilities.map((facility) => (
-                  <Link key={facility.id} to={`/facilities/1`}>
-                    <div
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
+                {studios.map((studio) => (
+                  <Link key={studio.id} to={`/facilities/1`}>
+                    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
-                        src={facility.image}
-                        alt={facility.name}
+                        src={studio.image}
+                        alt={studio.name}
                         className="w-full h-48 object-cover"
                       />
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-lg">
-                            {facility.name}
+                            {studio.name}
                           </h3>
                           <Badge
                             variant={
-                              facility.status === "Open" ? "default" : "secondary"
+                              studio.status === "Open" ? "default" : "secondary"
                             }
                             className="rounded-full"
                           >
-                            {facility.status}
+                            {studio.status}
                           </Badge>
                         </div>
                         <p className="text-gray-600 text-sm mb-2">
-                          {facility.type}
+                          {studio.type}
                         </p>
                         <p className="text-gray-500 text-sm mb-3 flex items-center">
                           <MapPin className="w-3 h-3 mr-1" />
-                          {facility.location}
+                          {studio.location}
                         </p>
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center">
                             <Star className="w-4 h-4 text-yellow-400 fill-current" />
                             <span className="text-sm font-medium ml-1">
-                              {facility.rating}
+                              {studio.rating}
                             </span>
                             <span className="text-gray-500 text-sm ml-1">
-                              ({facility.reviews})
+                              ({studio.reviews})
                             </span>
                           </div>
                           <span className="font-semibold text-vibecore-red">
-                            {facility.price}
+                            {studio.price}
                           </span>
                         </div>
                         <p className="text-gray-500 text-sm mb-3 flex items-center">
                           <Clock className="w-3 h-3 mr-1" />
-                          {facility.openTime}
+                          {studio.openTime}
                         </p>
                         <div className="flex flex-wrap gap-1 mb-4">
-                          {facility.tags.slice(0, 3).map((tag) => (
+                          {studio.tags.slice(0, 3).map((tag) => (
                             <Badge
                               key={tag}
                               variant="secondary"
@@ -468,7 +524,7 @@ export default function Facilities() {
                           ))}
                         </div>
                         <div className="flex items-center mb-4 text-xs text-gray-500">
-                          {facility.amenities
+                          {studio.amenities
                             .slice(0, 4)
                             .map((amenity, index) => (
                               <span key={amenity} className="flex items-center">
@@ -491,7 +547,7 @@ export default function Facilities() {
                                   )}
                                 {amenity}
                                 {index <
-                                  facility.amenities.slice(0, 4).length - 1 &&
+                                  studio.amenities.slice(0, 4).length - 1 &&
                                   " • "}
                               </span>
                             ))}

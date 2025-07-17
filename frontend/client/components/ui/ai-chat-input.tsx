@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Lightbulb, Mic, Globe, Send } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PLACEHOLDERS = [
   "What are you looking for today?",
@@ -244,7 +244,7 @@ const AIChatInput = () => {
                   <Globe size={18} />
                 </div>
                 <motion.span
-                className="pb-[2px]"
+                  className="pb-[2px]"
                   initial={false}
                   animate={{
                     opacity: deepSearchActive ? 1 : 0,
@@ -261,4 +261,4 @@ const AIChatInput = () => {
   );
 };
 
-export { AIChatInput }; 
+export { AIChatInput };

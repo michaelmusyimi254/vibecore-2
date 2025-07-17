@@ -25,17 +25,28 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import { useState } from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 // Remove TrainerCard import
 
 export default function Trainers() {
-  const trainers = [
+  const coaches = [
     {
       id: 1,
       name: "Sarah Johnson",
-      specialty: "Personal Training & Nutrition",
+      specialty: "Personal Coaching & Nutrition",
       location: "Downtown Fitness Center",
       rating: 4.9,
       reviews: 127,
@@ -158,9 +169,7 @@ export default function Trainers() {
       <section className="pt-24 pb-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">
-              Find Your Perfect Trainer
-            </h1>
+            <h1 className="text-3xl font-bold mb-2">Find Your Perfect Coach</h1>
             <p className="text-gray-600">
               Connect with certified fitness professionals who will help you
               achieve your goals
@@ -219,7 +228,10 @@ export default function Trainers() {
           <div className="flex lg:hidden mb-4">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
-                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                <Button
+                  className="w-full bg-vibecore-red text-white rounded-full"
+                  onClick={() => setDrawerOpen(true)}
+                >
                   <Filter className="w-5 h-5 mr-2" /> Filters
                 </Button>
               </DrawerTrigger>
@@ -237,10 +249,27 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Personal Training","Weight Loss","Strength Training","Yoga","Pilates","CrossFit","HIIT","Martial Arts","Dance Fitness","Rehabilitation"].map((specialty) => (
-                          <div key={specialty} className="flex items-center space-x-2">
+                        {[
+                          "Personal Training",
+                          "Weight Loss",
+                          "Strength Training",
+                          "Yoga",
+                          "Pilates",
+                          "CrossFit",
+                          "HIIT",
+                          "Martial Arts",
+                          "Dance Fitness",
+                          "Rehabilitation",
+                        ].map((specialty) => (
+                          <div
+                            key={specialty}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={specialty + "-mobile"} />
-                            <label htmlFor={specialty + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={specialty + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {specialty}
                             </label>
                           </div>
@@ -256,10 +285,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Under $40","$40 - $60","$60 - $80","Over $80"].map((price) => (
-                          <div key={price} className="flex items-center space-x-2">
+                        {[
+                          "Under $40",
+                          "$40 - $60",
+                          "$60 - $80",
+                          "Over $80",
+                        ].map((price) => (
+                          <div
+                            key={price}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={price + "-mobile"} />
-                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={price + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {price}
                             </label>
                           </div>
@@ -275,10 +315,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Less than 2 years","2-5 years","5-10 years","10+ years"].map((experience) => (
-                          <div key={experience} className="flex items-center space-x-2">
+                        {[
+                          "Less than 2 years",
+                          "2-5 years",
+                          "5-10 years",
+                          "10+ years",
+                        ].map((experience) => (
+                          <div
+                            key={experience}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={experience + "-mobile"} />
-                            <label htmlFor={experience + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={experience + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {experience}
                             </label>
                           </div>
@@ -294,10 +345,21 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {["Available Today","Available This Week","Online Training","In-Person Only"].map((availability) => (
-                          <div key={availability} className="flex items-center space-x-2">
+                        {[
+                          "Available Today",
+                          "Available This Week",
+                          "Online Training",
+                          "In-Person Only",
+                        ].map((availability) => (
+                          <div
+                            key={availability}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={availability + "-mobile"} />
-                            <label htmlFor={availability + "-mobile"} className="text-sm text-gray-700">
+                            <label
+                              htmlFor={availability + "-mobile"}
+                              className="text-sm text-gray-700"
+                            >
                               {availability}
                             </label>
                           </div>
@@ -313,12 +375,23 @@ export default function Trainers() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-2">
-                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
-                          <div key={rating} className="flex items-center space-x-2">
+                        {[
+                          { rating: "4.5+", stars: 5 },
+                          { rating: "4.0+", stars: 4 },
+                          { rating: "3.5+", stars: 4 },
+                          { rating: "3.0+", stars: 3 },
+                        ].map(({ rating, stars }) => (
+                          <div
+                            key={rating}
+                            className="flex items-center space-x-2"
+                          >
                             <Checkbox id={rating + "-mobile"} />
                             <label className="text-sm text-gray-700 flex items-center">
                               {Array.from({ length: stars }).map((_, i) => (
-                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                                <Star
+                                  key={i}
+                                  className="w-3 h-3 text-yellow-400 fill-current mr-1"
+                                />
                               ))}
                               {rating}
                             </label>
@@ -328,7 +401,9 @@ export default function Trainers() {
                     </CollapsibleContent>
                   </Collapsible>
                   <DrawerClose asChild>
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
+                      Apply Filters
+                    </Button>
                   </DrawerClose>
                 </div>
               </DrawerContent>
@@ -482,7 +557,7 @@ export default function Trainers() {
             <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
-                  {trainers.length} trainers found
+                  {coaches.length} coaches found
                 </h2>
                 <Select defaultValue="rating">
                   <SelectTrigger className="w-[150px] rounded-full">
@@ -499,22 +574,22 @@ export default function Trainers() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
-                {trainers.map((trainer) => (
-                  <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
+                {coaches.map((coach) => (
+                  <Link key={coach.id} to={`/trainers/${coach.id}`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <div className="p-6">
                         <div className="flex items-start space-x-4 mb-4">
                           <img
-                            src={trainer.image}
-                            alt={trainer.name}
+                            src={coach.image}
+                            alt={coach.name}
                             className="w-16 h-16 rounded-full object-cover"
                           />
                           <div className="flex-1">
                             <div className="flex items-start justify-between mb-1">
                               <h3 className="font-semibold text-lg">
-                                {trainer.name}
+                                {coach.name}
                               </h3>
-                              {trainer.verified && (
+                              {coach.verified && (
                                 <Badge className="bg-green-100 text-green-800 rounded-full text-xs">
                                   <CheckCircle className="w-3 h-3 mr-1" />
                                   Verified
@@ -522,11 +597,11 @@ export default function Trainers() {
                               )}
                             </div>
                             <p className="text-gray-600 text-sm mb-1">
-                              {trainer.specialty}
+                              {coach.specialty}
                             </p>
                             <p className="text-gray-500 text-sm flex items-center">
                               <MapPin className="w-3 h-3 mr-1" />
-                              {trainer.location}
+                              {coach.location}
                             </p>
                           </div>
                         </div>
@@ -536,18 +611,18 @@ export default function Trainers() {
                             <div className="flex items-center justify-center mb-1">
                               <Star className="w-4 h-4 text-yellow-400 fill-current" />
                               <span className="font-semibold ml-1">
-                                {trainer.rating}
+                                {coach.rating}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">
-                              {trainer.reviews} reviews
+                              {coach.reviews} reviews
                             </p>
                           </div>
                           <div>
                             <div className="flex items-center justify-center mb-1">
                               <Award className="w-4 h-4 text-vibecore-red" />
                               <span className="font-semibold ml-1">
-                                {trainer.experience}
+                                {coach.experience}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">experience</p>
@@ -556,7 +631,7 @@ export default function Trainers() {
                             <div className="flex items-center justify-center mb-1">
                               <DollarSign className="w-4 h-4 text-green-600" />
                               <span className="font-semibold ml-1">
-                                ${trainer.hourlyRate}
+                                ${coach.hourlyRate}
                               </span>
                             </div>
                             <p className="text-xs text-gray-500">per session</p>
@@ -564,7 +639,7 @@ export default function Trainers() {
                         </div>
 
                         <div className="flex flex-wrap gap-1 mb-4">
-                          {trainer.specialties.slice(0, 3).map((specialty) => (
+                          {coach.specialties.slice(0, 3).map((specialty) => (
                             <Badge
                               key={specialty}
                               variant="secondary"
@@ -578,10 +653,10 @@ export default function Trainers() {
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center text-sm text-gray-600">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span>{trainer.available}</span>
+                            <span>{coach.available}</span>
                           </div>
                           <span className="text-xs text-gray-500">
-                            {trainer.responseTime}
+                            {coach.responseTime}
                           </span>
                         </div>
 
