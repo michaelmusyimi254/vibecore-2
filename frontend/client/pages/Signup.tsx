@@ -477,7 +477,7 @@ export default function Signup() {
                   </div>
 
                   {/* Role-specific fields */}
-                  {selectedRole === "trainee" && (
+                  {selectedRole === "member" && (
                     <>
                       <div>
                         <Label htmlFor="fitnessGoals">Fitness Goals</Label>
