@@ -559,7 +559,7 @@ export default function Trainers() {
             <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
-                  {trainers.length} trainers found
+                  {coaches.length} coaches found
                 </h2>
                 <Select defaultValue="rating">
                   <SelectTrigger className="w-[150px] rounded-full">
