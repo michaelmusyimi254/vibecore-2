@@ -272,7 +272,7 @@ export default function Signup() {
                       ? "your studio"
                       : selectedRole === "member"
                         ? "yourself"
-                        : "your business"}
+                      : "your business"}
                 </p>
               </div>
 
@@ -1178,18 +1178,18 @@ export default function Signup() {
                           <SelectContent>
                             {selectedRole === "brand-seller" ? (
                               <>
-                                <SelectItem value="equipment">
-                                  Fitness Equipment
-                                </SelectItem>
-                                <SelectItem value="supplements">
-                                  Supplements
-                                </SelectItem>
+                            <SelectItem value="equipment">
+                              Fitness Equipment
+                            </SelectItem>
+                            <SelectItem value="supplements">
+                              Supplements
+                            </SelectItem>
                                 <SelectItem value="apparel">
                                   Wellness Apparel
                                 </SelectItem>
-                                <SelectItem value="accessories">
-                                  Accessories
-                                </SelectItem>
+                            <SelectItem value="accessories">
+                              Accessories
+                            </SelectItem>
                                 <SelectItem value="nutrition">
                                   Nutrition
                                 </SelectItem>
@@ -1253,7 +1253,7 @@ export default function Signup() {
                               ? "your studio, all services offered, what makes it special"
                               : selectedRole === "event-curator"
                                 ? "your event planning experience and the types of wellness events you create"
-                                : "your business and what you offer"
+                            : "your business and what you offer"
                       }...`}
                       className="rounded-xl"
                       rows={4}
@@ -1301,7 +1301,7 @@ export default function Signup() {
                       ? "studio"
                       : selectedRole === "member"
                         ? "wellness journey"
-                        : "business"}
+                      : "business"}
                 </p>
               </div>
 
@@ -1369,22 +1369,22 @@ export default function Signup() {
                       </div>
                       <p className="text-gray-600 text-sm mb-6">per month</p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Everything in Starter
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Advanced analytics
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Priority support
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Featured listing boost
-                        </li>
+                            </li>
                       </ul>
                       <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
                         Select Pro
@@ -1509,7 +1509,7 @@ export default function Signup() {
                       ? "business"
                       : selectedRole === "member"
                         ? "profile"
-                        : "business"}
+                      : "business"}
                 </p>
               </div>
 
