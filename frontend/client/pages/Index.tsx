@@ -299,60 +299,72 @@ export default function Index() {
       </section>
 
       {/* Platform Features Section with Left-Aligned Layout */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          {/* Left-aligned heading with content underneath */}
-          <div className="mb-8">
-            <span className="text-vibecore-red font-semibold text-sm uppercase tracking-wider">
+          <div className="mb-10">
+            <span className="text-vibecore-red font-bold text-2xl uppercase tracking-wider block mb-2">
               Platform Features
             </span>
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Why VibeCore?</h2>
+            <p className="text-lg text-gray-700 max-w-2xl">All-in-one platform for fitness, wellness, and community. Discover, connect, and grow with tools designed for every step of your journey.</p>
           </div>
-
-          {/* Content Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">
-                Everything you need
-              </h3>
-              <p className="text-gray-600 text-sm">
-                A comprehensive platform that connects fitness enthusiasts with
-                trainers, facilities, and products.
-              </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <div className="flex flex-col items-start">
+              <div className="bg-vibecore-red/10 text-vibecore-red rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Find & Book Experts</h3>
+              <p className="text-gray-600 text-base">Browse trainers, nutritionists, and wellness pros. Book sessions, classes, or consultations in a few taps.</p>
             </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Join Events</h3>
-              <p className="text-gray-600 text-sm">
-                Participate in bootcamps, workshops, competitions, and wellness
-                retreats organized by fitness professionals.
-              </p>
+            <div className="flex flex-col items-start">
+              <div className="bg-blue-500/10 text-blue-600 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Facility & Class Discovery</h3>
+              <p className="text-gray-600 text-base">Find gyms, studios, pools, and classes near you. Filter by amenities, schedule, and reviews.</p>
             </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Shop Fitness Gear</h3>
-              <p className="text-gray-600 text-sm">
-                Browse and purchase equipment, supplements, apparel, and fitness
-                accessories from trusted vendors.
-              </p>
+            <div className="flex flex-col items-start">
+              <div className="bg-green-500/10 text-green-600 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Shop Fitness Gear</h3>
+              <p className="text-gray-600 text-base">Buy equipment, supplements, and apparel from trusted vendors. Exclusive deals for members.</p>
             </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Community</h3>
-              <p className="text-gray-600 text-sm">
-                Connect with like-minded fitness enthusiasts, share your
-                journey, and get motivated by others' progress.
-              </p>
+            <div className="flex flex-col items-start">
+              <div className="bg-yellow-400/10 text-yellow-500 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Events & Community</h3>
+              <p className="text-gray-600 text-base">Join bootcamps, workshops, and wellness events. Connect, share, and grow with the VibeCore community.</p>
             </div>
-          </div>
-
-          {/* Navigation arrows positioned underneath */}
-          <div className="flex space-x-4">
-            <button className="w-10 h-10 rounded-full border-2 border-vibecore-red text-vibecore-red flex items-center justify-center hover:bg-vibecore-red hover:text-white transition-colors">
-              <ChevronLeft size={20} />
-            </button>
-            <button className="w-10 h-10 rounded-full border-2 border-vibecore-red text-vibecore-red flex items-center justify-center hover:bg-vibecore-red hover:text-white transition-colors">
-              <ChevronRight size={20} />
-            </button>
+            <div className="flex flex-col items-start">
+              <div className="bg-purple-500/10 text-purple-600 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 018 0v2M5 21v-2a4 4 0 018 0v2" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Analytics & Insights</h3>
+              <p className="text-gray-600 text-base">Track your progress, bookings, and earnings. Get actionable insights to grow your business or fitness journey.</p>
+            </div>
+            <div className="flex flex-col items-start">
+              <div className="bg-pink-500/10 text-pink-600 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">AI-Driven Search</h3>
+              <p className="text-gray-600 text-base">Type what you want—our AI guides you to the right trainers, classes, or products. Natural, human-like search experience.</p>
+            </div>
+            <div className="flex flex-col items-start">
+              <div className="bg-gray-800/10 text-gray-800 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5m6 0a3 3 0 01-6 0" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Secure & Private</h3>
+              <p className="text-gray-600 text-base">Your data is protected. We use best-in-class security and privacy practices for all users.</p>
+            </div>
+            <div className="flex flex-col items-start">
+              <div className="bg-orange-500/10 text-orange-600 rounded-xl p-4 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4" /></svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Marketing Tools</h3>
+              <p className="text-gray-600 text-base">Promote your services, events, or products with built-in marketing and featured listing tools.</p>
+            </div>
           </div>
         </div>
       </section>
