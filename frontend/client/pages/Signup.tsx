@@ -83,12 +83,12 @@ export default function Signup() {
     },
     {
       id: "studio",
-      title: "Join as a Studio",
+      title: "Join as Grounds",
       description:
-        "List your studio, gym, or wellness center to attract new members",
+        "List your Grounds, gym, or wellness center to attract new members",
       icon: Building2,
       features: [
-        "Showcase your studio",
+        "Showcase your Grounds",
         "Manage bookings and memberships",
         "Promote classes and events",
         "Analytics and insights",
@@ -169,7 +169,7 @@ export default function Signup() {
       <NavBar />
       {/* Progress Bar removed */}
       {/* Main Content */}
-      <main className="container mx-auto px-2 md:px-4 py-12 mt-8">
+      <main className="container mx-auto px-2 md:px-4 py-20 mt-24">
         <div className="max-w-6xl mx-auto">
           {/* Step 1: Choose Role */}
           {currentStep === 1 && (
@@ -605,13 +605,13 @@ export default function Signup() {
                   {selectedRole === "studio" && (
                     <>
                       <div>
-                        <Label htmlFor="studioType">Studio/Facility Type</Label>
+                        <Label htmlFor="studioType">Grounds/Facility Type</Label>
                         <Select>
                           <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select studio/facility type" />
+                            <SelectValue placeholder="Select Grounds/facility type" />
                           </SelectTrigger>
                           <SelectContent className="max-h-[300px] overflow-y-auto">
-                            {/* Multi-Purpose & Mixed-Use Venues */}
+                            {/* Multi-Purpose & Mixed-Use Grounds */}
                             <SelectItem value="multi-sport">
                               Multi-Sport Complex
                             </SelectItem>
@@ -654,7 +654,7 @@ export default function Signup() {
                               Gym / Fitness Center
                             </SelectItem>
                             <SelectItem value="studio">
-                              Fitness Studio
+                              Fitness Grounds
                             </SelectItem>
                             <SelectItem value="crossfit">
                               CrossFit Box
@@ -663,11 +663,11 @@ export default function Signup() {
                               Martial Arts Dojo
                             </SelectItem>
                             <SelectItem value="boxing">Boxing Gym</SelectItem>
-                            <SelectItem value="yoga">Yoga Studio</SelectItem>
+                            <SelectItem value="yoga">Yoga Grounds</SelectItem>
                             <SelectItem value="pilates">
-                              Pilates Studio
+                              Pilates Grounds
                             </SelectItem>
-                            <SelectItem value="dance">Dance Studio</SelectItem>
+                            <SelectItem value="dance">Dance Grounds</SelectItem>
 
                             {/* Aquatic */}
                             <SelectItem value="pool">Swimming Pool</SelectItem>
@@ -966,7 +966,7 @@ export default function Signup() {
                             </SelectItem>
                             <SelectItem value="sumo">Sumo Wrestling</SelectItem>
 
-                            {/* Large Venues */}
+                            {/* Large Grounds */}
                             <SelectItem value="stadium">Stadium</SelectItem>
                             <SelectItem value="arena">Sports Arena</SelectItem>
                             <SelectItem value="complex">
@@ -1131,7 +1131,7 @@ export default function Signup() {
                           rows={3}
                         />
                         <p className="text-xs text-gray-500 mt-1">
-                          For multi-function venues, please list all activities
+                          For multi-function grounds, please list all activities
                           and services available
                         </p>
                       </div>
@@ -1250,7 +1250,7 @@ export default function Signup() {
                           : selectedRole === "member"
                             ? "yourself, your wellness goals, and what you're looking for"
                             : selectedRole === "studio"
-                              ? "your studio, all services offered, what makes it special"
+                              ? "your Grounds, all services offered, what makes it special"
                               : selectedRole === "event-curator"
                                 ? "your event planning experience and the types of wellness events you create"
                             : "your business and what you offer"
@@ -1261,7 +1261,7 @@ export default function Signup() {
                     {selectedRole === "studio" && (
                       <p className="text-xs text-gray-500 mt-1">
                         Describe all your wellness services, target audiences,
-                        and what makes your studio unique
+                        and what makes your Grounds unique
                       </p>
                     )}
                   </div>
@@ -1298,7 +1298,7 @@ export default function Signup() {
                   {selectedRole === "coach"
                     ? "coaching business"
                     : selectedRole === "studio"
-                      ? "studio"
+                      ? "Grounds"
                       : selectedRole === "member"
                         ? "wellness journey"
                       : "business"}
