@@ -207,7 +207,7 @@ export default function Index() {
                   className="relative flex items-center gap-2"
                   onSubmit={e => { e.preventDefault(); handleSearch(searchQuery); }}
                 >
-                  <Input
+                <Input
                     ref={inputRef}
                     placeholder={searching || awaitingClarification ? "" : `What are you looking for today?`}
                     className="bg-transparent border-0 border-b-2 border-white/40 focus:border-vibecore-red text-white rounded-none px-0 py-2 placeholder:text-white/70 focus:ring-0 transition-all focus:shadow-[0_2px_12px_0_rgba(255,0,64,0.12)] pr-20"
@@ -223,7 +223,7 @@ export default function Index() {
                     style={{ minWidth: 64 }}
                     disabled={searching || awaitingClarification}
                   >
-                    Search
+                  Search
                   </button>
                   {/* Rotating example search below input */}
                   {!searchQuery && !searching && !awaitingClarification && (
