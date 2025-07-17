@@ -190,13 +190,13 @@ export default function Login() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6 p-4 md:p-6">
-                {/* Social Login */}
+                {/* Enhanced Social Login */}
                 <div className="space-y-3">
                   <Button
                     variant="outline"
                     onClick={() => handleSocialLogin("google")}
                     disabled={isLoading}
-                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red disabled:opacity-50"
+                    className="w-full h-12 rounded-xl border-gray-300 hover:border-red-300 hover:text-red-600 hover:bg-red-50 disabled:opacity-50 transition-all duration-200"
                   >
                     <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                       <path
@@ -222,7 +222,7 @@ export default function Login() {
                     variant="outline"
                     onClick={() => handleSocialLogin("facebook")}
                     disabled={isLoading}
-                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red disabled:opacity-50"
+                    className="w-full h-12 rounded-xl border-gray-300 hover:border-red-300 hover:text-red-600 hover:bg-red-50 disabled:opacity-50 transition-all duration-200"
                   >
                     <svg
                       className="w-5 h-5 mr-3"
@@ -244,45 +244,57 @@ export default function Login() {
                     </span>
                   </div>
                 </div>
-                {/* Email/Password Form */}
-                <form className="space-y-4" onSubmit={handleLogin}>
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <div className="relative mt-1">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                {/* Enhanced Email/Password Form */}
+                <form className="space-y-5" onSubmit={handleLogin}>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="email"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Email Address
+                    </Label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <Input
                         id="email"
                         type="email"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 rounded-full border-gray-300 focus:border-vibecore-red focus:ring-vibecore-red"
+                        className="vc-input h-12 pl-12 text-base"
                         required
+                        autoComplete="email"
                       />
                     </div>
                   </div>
-                  <div>
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative mt-1">
-                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="password"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Password
+                    </Label>
+                    <div className="relative">
+                      <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <Input
                         id="password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="pl-10 pr-10 rounded-full border-gray-300 focus:border-vibecore-red focus:ring-vibecore-red"
+                        className="vc-input h-12 pl-12 pr-12 text-base"
                         required
+                        autoComplete="current-password"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                       >
                         {showPassword ? (
-                          <EyeOff className="w-4 h-4" />
+                          <EyeOff className="w-5 h-5" />
                         ) : (
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-5 h-5" />
                         )}
                       </button>
                     </div>
