@@ -1210,26 +1210,69 @@ export default function Signup() {
                     </>
                   )}
 
-                  {selectedRole === "vendor" && (
+                  {(selectedRole === "brand-seller" ||
+                    selectedRole === "event-curator") && (
                     <>
                       <div>
-                        <Label htmlFor="businessType">Business Type</Label>
+                        <Label htmlFor="businessType">
+                          {selectedRole === "brand-seller"
+                            ? "Product Category"
+                            : "Event Type Focus"}
+                        </Label>
                         <Select>
                           <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select business type" />
+                            <SelectValue
+                              placeholder={
+                                selectedRole === "brand-seller"
+                                  ? "Select product category"
+                                  : "Select event focus"
+                              }
+                            />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="equipment">
-                              Fitness Equipment
-                            </SelectItem>
-                            <SelectItem value="supplements">
-                              Supplements
-                            </SelectItem>
-                            <SelectItem value="apparel">Apparel</SelectItem>
-                            <SelectItem value="accessories">
-                              Accessories
-                            </SelectItem>
-                            <SelectItem value="nutrition">Nutrition</SelectItem>
+                            {selectedRole === "brand-seller" ? (
+                              <>
+                                <SelectItem value="equipment">
+                                  Fitness Equipment
+                                </SelectItem>
+                                <SelectItem value="supplements">
+                                  Supplements
+                                </SelectItem>
+                                <SelectItem value="apparel">
+                                  Wellness Apparel
+                                </SelectItem>
+                                <SelectItem value="accessories">
+                                  Accessories
+                                </SelectItem>
+                                <SelectItem value="nutrition">
+                                  Nutrition
+                                </SelectItem>
+                                <SelectItem value="tech">
+                                  Wellness Tech
+                                </SelectItem>
+                              </>
+                            ) : (
+                              <>
+                                <SelectItem value="workshops">
+                                  Workshops & Seminars
+                                </SelectItem>
+                                <SelectItem value="retreats">
+                                  Wellness Retreats
+                                </SelectItem>
+                                <SelectItem value="classes">
+                                  Group Fitness Classes
+                                </SelectItem>
+                                <SelectItem value="competitions">
+                                  Competitions & Challenges
+                                </SelectItem>
+                                <SelectItem value="festivals">
+                                  Wellness Festivals
+                                </SelectItem>
+                                <SelectItem value="corporate">
+                                  Corporate Wellness
+                                </SelectItem>
+                              </>
+                            )}
                           </SelectContent>
                         </Select>
                       </div>
