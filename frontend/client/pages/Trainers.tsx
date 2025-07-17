@@ -28,7 +28,7 @@ import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { TrainerCard } from "@/components/ui/TrainerCard";
+// Remove TrainerCard import
 
 export default function Trainers() {
   const trainers = [
@@ -501,7 +501,104 @@ export default function Trainers() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
                 {trainers.map((trainer) => (
                   <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
-                    <TrainerCard trainer={trainer} onBook={() => {}} />
+                    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                      <div className="p-6">
+                        <div className="flex items-start space-x-4 mb-4">
+                          <img
+                            src={trainer.image}
+                            alt={trainer.name}
+                            className="w-16 h-16 rounded-full object-cover"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-1">
+                              <h3 className="font-semibold text-lg">
+                                {trainer.name}
+                              </h3>
+                              {trainer.verified && (
+                                <Badge className="bg-green-100 text-green-800 rounded-full text-xs">
+                                  <CheckCircle className="w-3 h-3 mr-1" />
+                                  Verified
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-gray-600 text-sm mb-1">
+                              {trainer.specialty}
+                            </p>
+                            <p className="text-gray-500 text-sm flex items-center">
+                              <MapPin className="w-3 h-3 mr-1" />
+                              {trainer.location}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-4 mb-4 text-center">
+                          <div>
+                            <div className="flex items-center justify-center mb-1">
+                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                              <span className="font-semibold ml-1">
+                                {trainer.rating}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500">
+                              {trainer.reviews} reviews
+                            </p>
+                          </div>
+                          <div>
+                            <div className="flex items-center justify-center mb-1">
+                              <Award className="w-4 h-4 text-vibecore-red" />
+                              <span className="font-semibold ml-1">
+                                {trainer.experience}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500">experience</p>
+                          </div>
+                          <div>
+                            <div className="flex items-center justify-center mb-1">
+                              <DollarSign className="w-4 h-4 text-green-600" />
+                              <span className="font-semibold ml-1">
+                                ${trainer.hourlyRate}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500">per session</p>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {trainer.specialties.slice(0, 3).map((specialty) => (
+                            <Badge
+                              key={specialty}
+                              variant="secondary"
+                              className="text-xs rounded-full"
+                            >
+                              {specialty}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Clock className="w-4 h-4 mr-1" />
+                            <span>{trainer.available}</span>
+                          </div>
+                          <span className="text-xs text-gray-500">
+                            {trainer.responseTime}
+                          </span>
+                        </div>
+
+                        <div className="flex space-x-2">
+                          <Button className="flex-1 bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                            Book Session
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="rounded-full px-4"
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
                 ))}
               </div>

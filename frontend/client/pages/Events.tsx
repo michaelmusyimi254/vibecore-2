@@ -16,7 +16,7 @@ import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { EventCard } from "@/components/ui/EventCard";
+// Remove EventCard import
 
 export default function Events() {
   const events = [
@@ -332,7 +332,57 @@ export default function Events() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {events.map((event) => (
                   <Link key={event.id} to={`/events/1`}>
-                    <EventCard event={event} onBook={() => {}} />
+                    <div
+                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                    >
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="font-semibold text-lg mb-2">
+                          {event.title}
+                        </h3>
+                        <div className="space-y-2 mb-4">
+                          <p className="text-gray-600 text-sm flex items-center">
+                            <Calendar className="w-3 h-3 mr-2" />
+                            {event.date}
+                          </p>
+                          <p className="text-gray-600 text-sm flex items-center">
+                            <Clock className="w-3 h-3 mr-2" />
+                            {event.time}
+                          </p>
+                          <p className="text-gray-600 text-sm flex items-center">
+                            <MapPin className="w-3 h-3 mr-2" />
+                            {event.location}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="font-semibold text-vibecore-red">
+                            {event.price}
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            {event.spots}
+                          </span>
+                        </div>
+                        {/* Example tags for events, if any */}
+                        {/* <div className="flex flex-wrap gap-1 mb-4">
+                        {event.tags?.slice(0, 3).map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs rounded-full"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div> */}
+                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                          Join Event
+                        </Button>
+                      </div>
+                    </div>
                   </Link>
                 ))}
               </div>

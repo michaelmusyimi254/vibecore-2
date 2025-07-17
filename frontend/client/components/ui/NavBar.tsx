@@ -22,7 +22,6 @@ export default function NavBar() {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/search", label: "Search" },
     { to: "/events", label: "Events" },
     { to: "/trainers", label: "Trainers" },
     { to: "/facilities", label: "Facilities" },
