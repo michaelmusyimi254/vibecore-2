@@ -244,9 +244,9 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
-                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
+                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-normal md:leading-tight text-gray-900">
                   Your AI-Powered
-                  <span className="text-gradient block">Wellness Platform</span>
+                  <span className="text-gradient block mt-1 md:mt-2">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
                   Connect with certified coaches, discover premium venues, and
@@ -786,7 +786,7 @@ export default function Index() {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="vc-section bg-gradient-to-br from-white via-red-50 to-orange-50 relative overflow-hidden">
+      <section className="pt-12 pb-20 bg-gradient-to-br from-white via-red-50 to-orange-50 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 bg-red-200 rounded-full animate-float"></div>
