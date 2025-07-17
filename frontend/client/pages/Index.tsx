@@ -32,10 +32,10 @@ const heroSlides = [
     gradient: "from-green-500 to-teal-600",
   },
   {
-    title: "Showcase Your Studio",
+    title: "Showcase Your Venue",
     description:
-      "List your wellness studio, attract new members, and manage bookings seamlessly.",
-    button: "List Your Studio",
+      "List your wellness venue, attract new members, and manage bookings seamlessly.",
+    button: "List Your Venue",
     icon: "🏋️",
     gradient: "from-orange-500 to-red-600",
   },
@@ -130,7 +130,7 @@ export default function Index() {
       `I want to get this right! Are you after a class, a trainer, or a gym in ${region}?`,
   ];
   const friendlyClarifyResponses = [
-    "Ah, I see what you mean! Let’s get you the best options.",
+    "Ah, I see what you mean! Let's get you the best options.",
     "Crystal clear, let me find that for you!",
     "Got it! Searching for the best matches now…",
     "Thanks for clarifying! One moment…",
@@ -249,7 +249,7 @@ export default function Index() {
                   <span className="text-gradient block">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
-                  Connect with certified coaches, discover premium studios, and
+                  Connect with certified coaches, discover premium venues, and
                   transform your wellness journey with intelligent AI
                   recommendations.
                 </p>
@@ -277,7 +277,7 @@ export default function Index() {
                     e.preventDefault();
                     handleSearch(searchQuery);
                   }}
-                                >
+                >
                   <div className="relative group">
                     {/* AI Search Icon */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
@@ -313,6 +313,7 @@ export default function Index() {
                         </div>
                       )}
                     </div>
+
                     <Input
                       ref={inputRef}
                       placeholder={
@@ -357,11 +358,7 @@ export default function Index() {
                       )}
                     </button>
                   </div>
-<<<<<<< HEAD
                   {/* AI-Powered Example Suggestions */}
-=======
-                  {/* Rotating example search below input */}
->>>>>>> e83101a7bac9641e4be5e492896f340fd297e750
                   {!searchQuery && !searching && !awaitingClarification && (
                     <div className="mt-4 space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -616,7 +613,7 @@ export default function Index() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Discover Facilities
+                Discover Venues
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Explore premium gyms, studios, and wellness centers. Filter by
@@ -856,7 +853,7 @@ export default function Index() {
                 </Link>
               </div>
 
-              {/* Studio Card */}
+              {/* Venue Card */}
               <div
                 className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-blue-50 min-w-[300px] md:min-w-0 animate-slide-up"
                 style={{ animationDelay: "0.1s" }}
@@ -877,15 +874,15 @@ export default function Index() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-900">
-                  List Your Studio
+                  List Your Venue
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Showcase your fitness facility to thousands of wellness
+                  Showcase your wellness venue to thousands of wellness
                   enthusiasts. Manage bookings and grow your member community.
                 </p>
                 <Link to="/signup">
                   <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
-                    Join as Studio
+                    Join as Venue
                   </Button>
                 </Link>
               </div>
