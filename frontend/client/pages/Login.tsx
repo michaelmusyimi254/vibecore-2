@@ -70,6 +70,36 @@ export default function Login() {
     return () => clearInterval(interval);
   }, [slideCount]);
 
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate login process
+    setTimeout(() => {
+      // Store user data in localStorage for now
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userRole", "member"); // Default role, could be determined by login
+
+      setIsLoading(false);
+      // Redirect to dashboard
+      navigate("/dashboard");
+    }, 1500);
+  };
+
+  const handleSocialLogin = (provider: string) => {
+    setIsLoading(true);
+    // Simulate social login
+    setTimeout(() => {
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", `user@${provider}.com`);
+      localStorage.setItem("userRole", "member");
+
+      setIsLoading(false);
+      navigate("/dashboard");
+    }, 1000);
+  };
+
   const slide = heroSlides[current];
 
   return (
