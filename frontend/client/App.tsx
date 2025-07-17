@@ -27,15 +27,6 @@ import Dashboard from "./pages/Dashboard";
 const queryClient = new QueryClient();
 
 function App() {
-  const [backendMessage, setBackendMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/hello")
-      .then((res) => res.json())
-      .then((data) => setBackendMessage(data.message))
-      .catch(() => setBackendMessage("Failed to connect to backend."));
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -61,11 +52,11 @@ function App() {
             <Route path="/facilities/:id" element={<FacilityProfile />} />
             <Route path="/shops/:id" element={<ShopProfile />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/welcome" element={<Welcome />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        <h2>Backend says: {backendMessage}</h2>
       </TooltipProvider>
     </QueryClientProvider>
   );
