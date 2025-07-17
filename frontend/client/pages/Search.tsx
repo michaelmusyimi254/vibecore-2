@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
@@ -176,6 +176,72 @@ export default function Search() {
   ];
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searching, setSearching] = useState(false);
+  const [aiMessage, setAiMessage] = useState("");
+  const [awaitingClarification, setAwaitingClarification] = useState(false);
+  const [clarification, setClarification] = useState("");
+  const [userQuery, setUserQuery] = useState("");
+  const [userRegion, setUserRegion] = useState("your area");
+  const inputRef = useRef(null);
+
+  // Try to get browser geolocation
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          // Optionally, use a reverse geocoding API to get city/region from lat/lng
+          setUserRegion("your location"); // Placeholder, can be improved
+        },
+        () => setUserRegion("your area")
+      );
+    }
+  }, []);
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    setSearching(true);
+    setAiMessage("Thinking… Let me help you find the best options!");
+    setAwaitingClarification(false);
+    setClarification("");
+    const query = userQuery;
+    const res = await fetch("http://localhost:8001/ai-search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    });
+    const data = await res.json();
+    const topLabel = data.labels[0];
+    const topScore = data.scores[0];
+    if (topScore < 0.5) {
+      setAiMessage(
+        `Hmm, just to be sure—are you looking for trainers, classes, facilities, or something else?`
+      );
+      setAwaitingClarification(true);
+      setSearching(false);
+      return;
+    }
+    setAiMessage(`Let's see what we have for ${topLabel} in ${userRegion}…`);
+    setTimeout(() => {
+      window.location.href = `/search?type=${topLabel}&region=${userRegion}`;
+    }, 1200);
+  }
+
+  async function handleClarification(e) {
+    e.preventDefault();
+    setSearching(true);
+    setAiMessage("Ah, I see what you mean! Let’s get you the best options…");
+    // Re-run AI search with clarification
+    const res = await fetch("http://localhost:8001/ai-search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: clarification }),
+    });
+    const data = await res.json();
+    const topLabel = data.labels[0];
+    setTimeout(() => {
+      window.location.href = `/search?type=${topLabel}&region=${userRegion}`;
+    }, 1200);
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -186,13 +252,15 @@ export default function Search() {
         <div className="container mx-auto px-4">
           {/* Search Bar */}
           <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
-            <div className="flex flex-col md:flex-row gap-4">
+            <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search for trainers, facilities, or events..."
+                  ref={inputRef}
+                  value={userQuery}
+                  onChange={e => setUserQuery(e.target.value)}
+                  placeholder="What are you looking for? (e.g., yoga classes near me)"
                   className="pl-10 rounded-full border-gray-200"
-                  defaultValue="fitness trainers"
                 />
               </div>
               <Select defaultValue="current">
@@ -207,10 +275,25 @@ export default function Search() {
                   <SelectItem value="eastside">Eastside</SelectItem>
                 </SelectContent>
               </Select>
-              <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
+              <Button type="submit" className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
                 Search
               </Button>
-            </div>
+            </form>
+            {searching && (
+              <div className="text-center text-lg text-gray-600 py-4 animate-pulse">{aiMessage}</div>
+            )}
+            {awaitingClarification && (
+              <form onSubmit={handleClarification} className="flex flex-col items-center gap-2 mt-2">
+                <input
+                  type="text"
+                  value={clarification}
+                  onChange={e => setClarification(e.target.value)}
+                  placeholder="Type your clarification…"
+                  className="input border rounded px-3 py-2 w-full max-w-xs"
+                />
+                <Button type="submit" className="bg-vibecore-red text-white rounded-full w-full max-w-xs">Send</Button>
+              </form>
+            )}
           </div>
 
           {/* Location Detection */}
