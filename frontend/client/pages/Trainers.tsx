@@ -582,16 +582,16 @@ export default function Trainers() {
                       <div className="p-6">
                         <div className="flex items-start space-x-4 mb-4">
                           <img
-                            src={trainer.image}
-                            alt={trainer.name}
+                            src={coach.image}
+                            alt={coach.name}
                             className="w-16 h-16 rounded-full object-cover"
                           />
                           <div className="flex-1">
                             <div className="flex items-start justify-between mb-1">
                               <h3 className="font-semibold text-lg">
-                                {trainer.name}
+                                {coach.name}
                               </h3>
-                              {trainer.verified && (
+                              {coach.verified && (
                                 <Badge className="bg-green-100 text-green-800 rounded-full text-xs">
                                   <CheckCircle className="w-3 h-3 mr-1" />
                                   Verified
@@ -599,11 +599,11 @@ export default function Trainers() {
                               )}
                             </div>
                             <p className="text-gray-600 text-sm mb-1">
-                              {trainer.specialty}
+                              {coach.specialty}
                             </p>
                             <p className="text-gray-500 text-sm flex items-center">
                               <MapPin className="w-3 h-3 mr-1" />
-                              {trainer.location}
+                              {coach.location}
                             </p>
                           </div>
                         </div>
