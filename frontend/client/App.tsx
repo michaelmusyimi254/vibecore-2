@@ -17,22 +17,23 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Events from "./pages/Events";
 import EventProfile from "./pages/EventProfile";
 import FacilityProfile from "./pages/FacilityProfile";
 import ShopProfile from "./pages/ShopProfile";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [backendMessage, setBackendMessage] = useState('');
+  const [backendMessage, setBackendMessage] = useState("");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/hello')
-      .then(res => res.json())
-      .then(data => setBackendMessage(data.message))
-      .catch(() => setBackendMessage('Failed to connect to backend.'));
+    fetch("http://127.0.0.1:8000/api/hello")
+      .then((res) => res.json())
+      .then((data) => setBackendMessage(data.message))
+      .catch(() => setBackendMessage("Failed to connect to backend."));
   }, []);
 
   return (
@@ -59,6 +60,7 @@ function App() {
             <Route path="/events/:id" element={<EventProfile />} />
             <Route path="/facilities/:id" element={<FacilityProfile />} />
             <Route path="/shops/:id" element={<ShopProfile />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
