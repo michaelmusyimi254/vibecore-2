@@ -656,13 +656,13 @@ export default function Signup() {
                     </>
                   )}
 
-                  {selectedRole === "facility" && (
+                  {selectedRole === "studio" && (
                     <>
                       <div>
-                        <Label htmlFor="facilityType">Facility Type</Label>
+                        <Label htmlFor="studioType">Studio/Facility Type</Label>
                         <Select>
                           <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select facility type" />
+                            <SelectValue placeholder="Select studio/facility type" />
                           </SelectTrigger>
                           <SelectContent className="max-h-[300px] overflow-y-auto">
                             {/* Multi-Purpose & Mixed-Use Venues */}
