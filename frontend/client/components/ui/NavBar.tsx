@@ -1,58 +1,111 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 
 export default function NavBar() {
   const location = useLocation();
   const isSignup = location.pathname === "/signup";
   const isLogin = location.pathname === "/login";
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/events", label: "Events" },
+    { to: "/trainers", label: "Trainers" },
+    { to: "/facilities", label: "Facilities" },
+    { to: "/shops", label: "Shops" },
+  ];
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+    <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg font-sans">
       <div className="px-6 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
-          <Link to="/" className="text-2xl font-bold">
-            VIBE<span className="text-vibecore-red">CORE</span>
+          <Link to="/" className="text-2xl font-bold vc-section-header tracking-tight">
+            VIBE<span className="text-[color:hsl(var(--vc-red))]">CORE</span>
           </Link>
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="text-gray-700 hover:text-vibecore-red transition-colors">Home</Link>
-            <Link to="/events" className="text-gray-700 hover:text-vibecore-red transition-colors">Events</Link>
-            <Link to="/trainers" className="text-gray-700 hover:text-vibecore-red transition-colors">Trainers</Link>
-            <Link to="/facilities" className="text-gray-700 hover:text-vibecore-red transition-colors">Facilities</Link>
-            <Link to="/shops" className="text-gray-700 hover:text-vibecore-red transition-colors">Shops</Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="vc-body-text hover:text-[color:hsl(var(--vc-red))] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
-        {isSignup ? (
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">Already have an account?</span>
+        {/* Desktop Auth Buttons */}
+        <div className="hidden md:flex">
+          {isSignup ? (
+            <div className="flex items-center space-x-4">
+              <span className="text-sm vc-body-text">Already have an account?</span>
+              <Link to="/login">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-[color:hsl(var(--vc-red))] text-[color:hsl(var(--vc-red))] hover:bg-[color:hsl(var(--vc-red))] hover:text-white"
+                >
+                  Login
+                </Button>
+              </Link>
+            </div>
+          ) : isLogin ? (
+            <div className="flex items-center space-x-4">
+              <span className="text-sm vc-body-text">Don't have an account?</span>
+              <Link to="/signup">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-[color:hsl(var(--vc-red))] text-[color:hsl(var(--vc-red))] hover:bg-[color:hsl(var(--vc-red))] hover:text-white"
+                >
+                  Sign up
+                </Button>
+              </Link>
+            </div>
+          ) : (
             <Link to="/login">
-              <Button
-                variant="outline"
-                className="rounded-full border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
-              >
-                Login
+              <Button className="bg-[color:hsl(var(--vc-red))] hover:bg-[color:hsl(var(--vc-red-hover))] text-white px-6 rounded-full">
+                Login/Register
               </Button>
             </Link>
-          </div>
-        ) : isLogin ? (
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">Don't have an account?</span>
-            <Link to="/signup">
-              <Button
-                variant="outline"
-                className="rounded-full border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
-              >
-                Sign up
-              </Button>
-            </Link>
-          </div>
-        ) : (
-          <Link to="/login">
-            <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white px-6 rounded-full">
-              Login/Register
-            </Button>
-          </Link>
-        )}
+          )}
+        </div>
+        {/* Hamburger Icon for Mobile (right-aligned, no border) */}
+        <button
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg focus:outline-none bg-white/80 ml-2"
+          aria-label="Open menu"
+          onClick={() => setMobileOpen((open) => !open)}
+        >
+          <span className={`block w-6 h-0.5 bg-[color:hsl(var(--vc-red))] mb-1 transition-all ${mobileOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-[color:hsl(var(--vc-red))] mb-1 transition-all ${mobileOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-[color:hsl(var(--vc-red))] transition-all ${mobileOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+        </button>
       </div>
+      {/* Slender, right-aligned Mobile Nav Dropdown (no border, simplified) */}
+      {mobileOpen && (
+        <nav className="md:hidden absolute top-full right-4 w-72 max-w-[90vw] bg-white/95 shadow-xl rounded-xl z-50 animate-fade-in-down">
+          <ul className="flex flex-col items-stretch py-4 px-2 space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className="vc-body-text text-base py-2 px-4 rounded-lg hover:bg-[color:hsl(var(--vc-light-red))] hover:text-[color:hsl(var(--vc-red))] w-full block text-right transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li className="w-full flex flex-col items-stretch space-y-2 mt-2">
+              <Link to="/login" onClick={() => setMobileOpen(false)}>
+                <Button className="bg-[color:hsl(var(--vc-red))] hover:bg-[color:hsl(var(--vc-red-hover))] text-white px-6 rounded-full w-full">
+                  Login/Register
+                </Button>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 } 

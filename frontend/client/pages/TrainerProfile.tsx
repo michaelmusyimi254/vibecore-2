@@ -180,22 +180,22 @@ export default function TrainerProfile() {
                 {/* Replace the grid of stats with a compact info row styled like Shop/Facility */}
                 <div className="flex flex-wrap items-center gap-4 mb-4 text-base text-gray-800 font-medium">
                   <span className="flex items-center gap-1">
-                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <span className="font-bold">{trainer.rating}</span>
                     <span className="text-gray-500">({trainer.reviews.length} reviews)</span>
-                  </span>
+                      </span>
                   <span className="flex items-center gap-1">
                     <Award className="w-5 h-5 text-vibecore-red" />
                     <span className="font-semibold">{trainer.yearsExperience} Years Experience</span>
-                  </span>
+                      </span>
                   <span className="flex items-center gap-1">
                     <Users className="w-5 h-5 text-vibecore-red" />
                     <span className="font-semibold">{trainer.clientsHelped}+ Clients Helped</span>
-                  </span>
+                      </span>
                   <span className="flex items-center gap-1">
                     <CheckCircle className="w-5 h-5 text-green-500" />
                     <span className="font-semibold">{trainer.certifications.length} Certifications</span>
-                  </span>
+                      </span>
                 </div>
                 {/* Show first four specialties as badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -220,7 +220,7 @@ export default function TrainerProfile() {
       {/* Profile Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-8">
             {/* Left column: sidebar */}
             <div className="space-y-6">
               {/* About */}
@@ -247,53 +247,53 @@ export default function TrainerProfile() {
                 </CardContent>
               </Card>
               {/* Trainer Highlights */}
-              <Card>
-                <CardHeader>
+                  <Card>
+                    <CardHeader>
                   <CardTitle>Trainer Highlights</CardTitle>
-                </CardHeader>
-                <CardContent>
+                    </CardHeader>
+                    <CardContent>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li><span className="font-medium">Years Experience:</span> {trainer.yearsExperience}</li>
                     <li><span className="font-medium">Clients Helped:</span> {trainer.clientsHelped}+</li>
                     <li><span className="font-medium">Certifications:</span> {trainer.certifications.length}</li>
                   </ul>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
               {/* Specialties */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Specialties</CardTitle>
-                </CardHeader>
-                <CardContent>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Specialties</CardTitle>
+                    </CardHeader>
+                    <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {trainer.specialties.map((specialty) => (
+                        {trainer.specialties.map((specialty) => (
                       <Badge key={specialty} variant="secondary" className="rounded-full">
                         {specialty}
                       </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
               {/* Reviews */}
-              <Card>
-                <CardHeader>
+                  <Card>
+                    <CardHeader>
                   <CardTitle>Reviews</CardTitle>
-                </CardHeader>
-                <CardContent>
+                    </CardHeader>
+                    <CardContent>
                   <ul className="space-y-2 mb-2 max-h-64 overflow-y-auto pr-1">
                     {trainer.reviews.map((review, i) => (
                       <li key={i} className="text-xs text-gray-700 border-b border-gray-200 pb-2 last:border-b-0">
                         <span className="font-semibold text-vibecore-red">{review.name}:</span> {review.comment} <span className="ml-2 text-yellow-500">{"★".repeat(review.rating)}</span>
-                      </li>
-                    ))}
-                  </ul>
+                          </li>
+                        ))}
+                      </ul>
                   <form className="mt-2">
                     <input type="text" placeholder="Add a review..." className="w-full border rounded px-2 py-1 text-xs mb-1" />
                     <Button size="sm" className="w-full bg-vibecore-red text-white rounded-full text-xs">Submit</Button>
                   </form>
-                </CardContent>
-              </Card>
-            </div>
+                    </CardContent>
+                  </Card>
+                </div>
             {/* Right column: tabs and tab content */}
             <div className="md:col-span-2 space-y-6">
               <Tabs defaultValue="packages" className="w-full">
@@ -315,10 +315,10 @@ export default function TrainerProfile() {
                           <p className="text-gray-600 text-sm mb-2">{pkg.description}</p>
                           <div className="text-xs text-gray-500 mb-4">{pkg.duration}{pkg.priceNote ? ` • ${pkg.priceNote}` : ''}</div>
                           <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full mt-auto" onClick={() => { setSelectedPackage(pkg.name); setFormSubmitted(false); }}>Select</Button>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
                   {/* Booking/Inquiry Form appears below selected package */}
                   {selectedPackage && !formSubmitted && (
                     <Card className="mb-4">
@@ -364,33 +364,33 @@ export default function TrainerProfile() {
                     <span className="mt-0.5"><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#f59e42" strokeWidth="2"/><path d="M12 8v4m0 4h.01" stroke="#f59e42" strokeWidth="2" strokeLinecap="round"/></svg></span>
                     <span><b>Disclaimer:</b> Please do not make any payments until you have met the trainer and confirmed all details in person. VibeCore does not process payments for trainers directly. All bookings are subject to confirmation by the trainer.</span>
                   </div>
-                </TabsContent>
-                {/* Schedule Tab */}
-                <TabsContent value="schedule">
-                  <Card>
+            </TabsContent>
+            {/* Schedule Tab */}
+            <TabsContent value="schedule">
+              <Card>
                     <CardHeader><CardTitle>Weekly Availability</CardTitle></CardHeader>
-                    <CardContent>
+                <CardContent>
                       <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:gap-6 scrollbar-hide pb-2">
-                        {trainer.availability.map((day) => (
+                    {trainer.availability.map((day) => (
                           <div key={day.day} className="min-w-[220px] flex-shrink-0 flex flex-col items-start justify-between p-4 bg-gray-50 rounded-xl md:min-w-0 md:w-full">
-                            <h4 className="font-medium w-24">{day.day}</h4>
+                        <h4 className="font-medium w-24">{day.day}</h4>
                             <div className="flex flex-wrap gap-2 mt-2">
-                              {day.times.map((time) => (
+                          {day.times.map((time) => (
                                 <Badge key={time} variant={time === "Rest Day" ? "secondary" : "default"} className="rounded-full">{time}</Badge>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                      <div className="mt-6 text-center">
+                    ))}
+                  </div>
+                  <div className="mt-6 text-center">
                         <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8"><Calendar className="w-4 h-4 mr-2" />View Calendar & Book</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
                 {/* Events Tab */}
                 <TabsContent value="events">
-                  <div className="space-y-6">
+              <div className="space-y-6">
                     <h3 className="text-xl font-semibold mb-4">Upcoming Events</h3>
                     <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:gap-6 scrollbar-hide pb-2">
                       {[{title: 'Bootcamp Challenge', date: '2024-07-10', time: '10:00 AM', location: 'Main Gym', spots: '10 spots left', image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=300&h=200&fit=crop'}, {title: 'Nutrition Workshop', date: '2024-07-15', time: '2:00 PM', location: 'Studio B', spots: '20 spots left', image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=300&h=200&fit=crop'}].map((event, idx) => (
@@ -400,17 +400,17 @@ export default function TrainerProfile() {
                             <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
                             <div className="text-sm text-gray-600 mb-1">{event.date} • {event.time}</div>
                             <div className="text-sm text-gray-600 mb-2">{event.location}</div>
-                            <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                               <span className="text-xs text-gray-500">{event.spots}</span>
                               <Button size="sm" className="bg-vibecore-red text-white rounded-full">Join</Button>
                             </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
             </div>
           </div>
         </div>

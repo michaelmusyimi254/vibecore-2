@@ -39,6 +39,16 @@
 
     --radius: 0.5rem;
 
+    /* VibeCore brand colors (HSL) */
+    --vc-red: 0 84% 58%;         /* Main red */
+    --vc-black: 0 0% 10%;        /* Deep black */
+    --vc-light-red: 0 100% 95%;  /* Light red for backgrounds/accents */
+    --vc-font-family: 'Inter', 'Roboto', Arial, sans-serif;
+    --vc-header-size: 1.25rem;
+    --vc-header-weight: 700;
+    --vc-body-size: 1rem;
+    --vc-body-weight: 400;
+
     /* VibeCore brand colors */
     --vibecore-red: 0 66% 58%;
     --vibecore-red-hover: 0 66% 52%;
@@ -59,6 +69,37 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  html, body {
+    font-family: var(--vc-font-family);
+    font-size: var(--vc-body-size);
+    font-weight: var(--vc-body-weight);
+    color: hsl(var(--vc-black));
+    background: hsl(var(--background));
+  }
+
+  /* Section header utility class */
+  .vc-section-header {
+    font-family: var(--vc-font-family);
+    font-size: var(--vc-header-size);
+    font-weight: var(--vc-header-weight);
+    color: hsl(var(--vc-red));
+    letter-spacing: 0.01em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Body text utility class */
+  .vc-body-text {
+    font-family: var(--vc-font-family);
+    font-size: var(--vc-body-size);
+    font-weight: var(--vc-body-weight);
+    color: hsl(var(--vc-black));
+  }
+
+  /* Accent text utility class */
+  .vc-accent-text {
+    color: hsl(var(--vc-light-red));
   }
 
   .dark {
