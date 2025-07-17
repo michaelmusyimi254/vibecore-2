@@ -1349,11 +1349,13 @@ export default function Signup() {
                 <h2 className="text-2xl font-bold mb-2">Choose Your Plan</h2>
                 <p className="text-gray-600">
                   Select the plan that works best for your{" "}
-                  {selectedRole === "trainer"
-                    ? "training business"
-                    : selectedRole === "facility"
-                      ? "facility"
-                      : "business"}
+                  {selectedRole === "coach"
+                    ? "coaching business"
+                    : selectedRole === "studio"
+                      ? "studio"
+                      : selectedRole === "member"
+                        ? "wellness journey"
+                        : "business"}
                 </p>
               </div>
 
