@@ -45,19 +45,41 @@ import BrandSellerDashboard from "@/components/BrandSellerDashboard";
 import EventCuratorDashboard from "@/components/EventCuratorDashboard";
 import AdminDashboard from "@/components/AdminDashboard";
 
-// Mock data for demonstration
-const mockUserData = {
-  role: "admin", // member, coach, studio, brand-seller, event-curator, admin
-  name: "Admin Control Center",
-  avatar: "/api/placeholder/80/80",
-  stats: {
-    member: { sessionsBooked: 12, savedProfiles: 8, progress: 65 },
-    coach: { clients: 24, earnings: 3200, rating: 4.8 },
-    studio: { members: 145, bookings: 89, revenue: 12400 },
-    "brand-seller": { products: 32, orders: 156, revenue: 8900 },
-    "event-curator": { events: 8, attendees: 324, rating: 4.9 },
-    admin: { totalUsers: 12847, revenue: 245680, growth: 18.5, alerts: 4 },
-  },
+// Get user data from localStorage or use defaults
+const getUserData = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const userRole = localStorage.getItem("userRole") || "member";
+  const userEmail = localStorage.getItem("userEmail") || "user@example.com";
+
+  if (!isLoggedIn) {
+    // Redirect to login if not authenticated
+    window.location.href = "/login";
+    return null;
+  }
+
+  const roleNames = {
+    member: "Wellness Member",
+    coach: "Wellness Coach",
+    studio: "Studio Manager",
+    "brand-seller": "Brand Seller",
+    "event-curator": "Event Curator",
+    admin: "Admin Control Center",
+  };
+
+  return {
+    role: userRole,
+    name: roleNames[userRole] || "User",
+    email: userEmail,
+    avatar: "/api/placeholder/80/80",
+    stats: {
+      member: { sessionsBooked: 12, savedProfiles: 8, progress: 65 },
+      coach: { clients: 24, earnings: 3200, rating: 4.8 },
+      studio: { members: 145, bookings: 89, revenue: 12400 },
+      "brand-seller": { products: 32, orders: 156, revenue: 8900 },
+      "event-curator": { events: 8, attendees: 324, rating: 4.9 },
+      admin: { totalUsers: 12847, revenue: 245680, growth: 18.5, alerts: 4 },
+    },
+  };
 };
 
 function MobileNavigation({ activeTab, setActiveTab, role }: any) {
