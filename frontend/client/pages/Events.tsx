@@ -13,6 +13,9 @@ import NavBar from "@/components/ui/NavBar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
 import Footer from "@/components/ui/Footer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { useState } from "react";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export default function Events() {
   const events = [
@@ -61,6 +64,8 @@ export default function Events() {
         "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=300&h=200&fit=crop",
     },
   ];
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
@@ -119,9 +124,125 @@ export default function Events() {
       {/* Main Content */}
       <section className="pb-16">
         <div className="container mx-auto px-4">
+          {/* Mobile Filters Button */}
+          <div className="flex lg:hidden mb-4">
+            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+              <DrawerTrigger asChild>
+                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                  <Filter className="w-5 h-5 mr-2" /> Filters
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Filters</DrawerTitle>
+                </DrawerHeader>
+                {/* Filter controls (same as sidebar) */}
+                <div className="space-y-6 px-4 pb-4">
+                  {/* Event Type */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Event Type
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Class","Workshop","Competition","Meetup","Seminar","Outdoor","Online"].map((type) => (
+                          <div key={type} className="flex items-center space-x-2">
+                            <Checkbox id={type + "-mobile"} />
+                            <label htmlFor={type + "-mobile"} className="text-sm text-gray-700">
+                              {type}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Date */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Date
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Today","This Week","This Month"].map((date) => (
+                          <div key={date} className="flex items-center space-x-2">
+                            <Checkbox id={date + "-mobile"} />
+                            <label htmlFor={date + "-mobile"} className="text-sm text-gray-700">
+                              {date}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Price */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Price
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Free","Paid"].map((price) => (
+                          <div key={price} className="flex items-center space-x-2">
+                            <Checkbox id={price + "-mobile"} />
+                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                              {price}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Level */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Level
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Beginner","Intermediate","Advanced"].map((level) => (
+                          <div key={level} className="flex items-center space-x-2">
+                            <Checkbox id={level + "-mobile"} />
+                            <label htmlFor={level + "-mobile"} className="text-sm text-gray-700">
+                              {level}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Location */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Location
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Current Location","Downtown","Midtown","Eastside","Westside","Online"].map((loc) => (
+                          <div key={loc} className="flex items-center space-x-2">
+                            <Checkbox id={loc + "-mobile"} />
+                            <label htmlFor={loc + "-mobile"} className="text-sm text-gray-700">
+                              {loc}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  <DrawerClose asChild>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                  </DrawerClose>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
-            <div className="lg:w-1/4 space-y-6">
+            {/* Sidebar Filters (desktop only) */}
+            <div className="lg:w-1/4 space-y-6 hidden lg:block">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-semibold mb-4 flex items-center">
                   <Filter className="w-5 h-5 mr-2" />
@@ -190,7 +311,7 @@ export default function Events() {
               </div>
             </div>
             {/* Events Grid Section */}
-            <div className="lg:w-3/4">
+            <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
                   {events.length} events found
@@ -207,7 +328,7 @@ export default function Events() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {events.map((event) => (
                   <Link key={event.id} to={`/events/1`}>
                     <div

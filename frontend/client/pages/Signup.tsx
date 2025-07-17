@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,12 +29,12 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
-import { useRef } from "react";
 import Footer from "@/components/ui/Footer";
 
 export default function Signup() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState<string>("");
+  const [activeRoleIdx, setActiveRoleIdx] = useState(0);
 
   // Refs for scrollable containers
   const stepperRef = useRef<HTMLDivElement>(null);
@@ -122,6 +122,18 @@ export default function Signup() {
   const getRoleData = () => {
     return roles.find((role) => role.id === selectedRole);
   };
+
+  useEffect(() => {
+    const ref = roleScrollRef.current;
+    if (!ref) return;
+    const handleScroll = () => {
+      const cardWidth = 220; // min-w-[220px] for each card
+      const idx = Math.round(ref.scrollLeft / cardWidth);
+      setActiveRoleIdx(idx);
+    };
+    ref.addEventListener('scroll', handleScroll);
+    return () => ref.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -227,7 +239,7 @@ export default function Signup() {
                   ref={roleScrollRef}
                   className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x pb-4 scrollbar-hide"
                 >
-                  {roles.map((role) => {
+                  {roles.map((role, index) => {
                     const IconComponent = role.icon;
                     return (
                       <Card
@@ -257,6 +269,14 @@ export default function Signup() {
                     );
                   })}
                 </div>
+              </div>
+              <div className="flex justify-center mt-2 space-x-2">
+                {roles.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${idx === activeRoleIdx ? 'bg-vibecore-red' : 'bg-gray-300'}`}
+                  />
+                ))}
               </div>
               <Button
                 className="w-full md:w-auto mt-4"

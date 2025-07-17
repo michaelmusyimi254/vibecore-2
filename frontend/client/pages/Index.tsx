@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import BlurText from "../../yes/BlurText/BlurText.jsx";
 
 const heroSlides = [
   {
@@ -69,13 +70,13 @@ export default function Index() {
         <div className="container mx-auto px-4 pt-24 md:pt-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Your Complete
-                <br />
-                Fitness & Wellness
-                <br />
-                Platform
-              </h1>
+              <BlurText
+                text="Your Complete Fitness & Wellness Platform"
+                className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"
+                delay={100}
+                animateBy="words"
+                direction="top"
+              />
 
               {/* Search Form with Curved Buttons */}
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl space-y-4 max-w-md">

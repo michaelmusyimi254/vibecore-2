@@ -23,6 +23,10 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export default function Search() {
   const trainers = [
@@ -171,6 +175,8 @@ export default function Search() {
     },
   ];
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
@@ -215,8 +221,105 @@ export default function Search() {
             </span>
           </div>
 
-          {/* Filters */}
-          <div className="flex items-center gap-4 mb-8">
+          {/* Mobile Filters Button */}
+          <div className="flex lg:hidden mb-4">
+            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+              <DrawerTrigger asChild>
+                <Button variant="outline" className="w-full rounded-full" onClick={() => setDrawerOpen(true)}>
+                  <Filter className="w-5 h-5 mr-2" /> Filters
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Filters</DrawerTitle>
+                </DrawerHeader>
+                {/* Example filter controls */}
+                <div className="space-y-6 px-4 pb-4">
+                  {/* Distance */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Distance
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["5 miles","10 miles","25 miles","Any"].map((distance) => (
+                          <div key={distance} className="flex items-center space-x-2">
+                            <Checkbox id={distance + "-mobile"} />
+                            <label htmlFor={distance + "-mobile"} className="text-sm text-gray-700">
+                              {distance}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Price */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Price
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Any","$","$$","$$$"] .map((price) => (
+                          <div key={price} className="flex items-center space-x-2">
+                            <Checkbox id={price + "-mobile"} />
+                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                              {price}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Rating */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Rating
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["4.5+","4.0+","3.5+","Any"].map((rating) => (
+                          <div key={rating} className="flex items-center space-x-2">
+                            <Checkbox id={rating + "-mobile"} />
+                            <label htmlFor={rating + "-mobile"} className="text-sm text-gray-700">
+                              {rating}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Category */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Category
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Trainers","Facilities","Shops","Events"].map((cat) => (
+                          <div key={cat} className="flex items-center space-x-2">
+                            <Checkbox id={cat + "-mobile"} />
+                            <label htmlFor={cat + "-mobile"} className="text-sm text-gray-700">
+                              {cat}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  <DrawerClose asChild>
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                  </DrawerClose>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
+          {/* Desktop Filters (if any) and badges remain as before */}
+          <div className="hidden lg:flex items-center gap-4 mb-8">
             <Button variant="outline" className="rounded-full">
               <Filter className="w-4 h-4 mr-2" />
               Filters
@@ -238,7 +341,7 @@ export default function Search() {
       <section className="pb-16">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="trainers" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1">
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8 bg-gray-100 rounded-2xl p-1 overflow-x-auto">
               <TabsTrigger
                 value="trainers"
                 className="rounded-xl font-bold transition-colors data-[state=active]:bg-vibecore-red data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-vibecore-red px-4 py-2"
@@ -271,7 +374,7 @@ export default function Search() {
 
             {/* Trainers Tab */}
             <TabsContent value="trainers">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {trainers.map((trainer) => (
                   <Link key={trainer.id} to={`/trainers/${trainer.id}`}>
                     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">

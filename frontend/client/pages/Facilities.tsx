@@ -24,6 +24,9 @@ import {
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { useState } from "react";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export default function Facilities() {
   const facilities = [
@@ -119,6 +122,8 @@ export default function Facilities() {
     },
   ];
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <NavBar />
@@ -178,9 +183,109 @@ export default function Facilities() {
       {/* Main Content */}
       <section className="pb-16">
         <div className="container mx-auto px-4">
+          {/* Mobile Filters Button */}
+          <div className="flex lg:hidden mb-4">
+            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+              <DrawerTrigger asChild>
+                <Button className="w-full bg-vibecore-red text-white rounded-full" onClick={() => setDrawerOpen(true)}>
+                  <Filter className="w-5 h-5 mr-2" /> Filters
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Filters</DrawerTitle>
+                </DrawerHeader>
+                {/* Filter controls (same as sidebar) */}
+                <div className="space-y-6 px-4 pb-4">
+                  {/* Facility Type */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Facility Type
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Gym","Spa","Pool","Studio","Wellness Center"].map((type) => (
+                          <div key={type} className="flex items-center space-x-2">
+                            <Checkbox id={type + "-mobile"} />
+                            <label htmlFor={type + "-mobile"} className="text-sm text-gray-700">
+                              {type}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Price Range */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Price Range
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Under $30","$30 - $60","$60 - $100","Over $100"].map((price) => (
+                          <div key={price} className="flex items-center space-x-2">
+                            <Checkbox id={price + "-mobile"} />
+                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                              {price}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Amenities */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Amenities
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["WiFi","Parking","Showers","Lockers","Café"].map((amenity) => (
+                          <div key={amenity} className="flex items-center space-x-2">
+                            <Checkbox id={amenity + "-mobile"} />
+                            <label htmlFor={amenity + "-mobile"} className="text-sm text-gray-700">
+                              {amenity}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* Rating */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Rating
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
+                          <div key={rating} className="flex items-center space-x-2">
+                            <Checkbox id={rating + "-mobile"} />
+                            <label className="text-sm text-gray-700 flex items-center">
+                              {Array.from({ length: stars }).map((_, i) => (
+                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                              ))}
+                              {rating}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  <div className="sticky bottom-0 bg-white p-4">
+                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
+                  </div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
-            <div className="lg:w-1/4 space-y-6">
+            {/* Sidebar Filters (desktop only) */}
+            <div className="lg:w-1/4 space-y-6 hidden lg:block">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-semibold mb-4 flex items-center">
                   <Filter className="w-5 h-5 mr-2" />
@@ -280,9 +385,8 @@ export default function Facilities() {
                 </div>
               </div>
             </div>
-
             {/* Results Grid */}
-            <div className="lg:w-3/4">
+            <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
                   {facilities.length} facilities found
@@ -301,7 +405,7 @@ export default function Facilities() {
                 </Select>
               </div>
 
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {facilities.map((facility) => (
                   <Link key={facility.id} to={`/facilities/1`}>
                     <div

@@ -27,6 +27,7 @@ import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export default function Trainers() {
   const trainers = [
@@ -228,78 +229,103 @@ export default function Trainers() {
                 {/* Filter controls (same as sidebar) */}
                 <div className="space-y-6 px-4 pb-4">
                   {/* Specialties */}
-                  <div>
-                    <h4 className="font-medium mb-3">Specialties</h4>
-                    <div className="space-y-2">
-                      {["Personal Training","Weight Loss","Strength Training","Yoga","Pilates","CrossFit","HIIT","Martial Arts","Dance Fitness","Rehabilitation"].map((specialty) => (
-                        <div key={specialty} className="flex items-center space-x-2">
-                          <Checkbox id={specialty + "-mobile"} />
-                          <label htmlFor={specialty + "-mobile"} className="text-sm text-gray-700">
-                            {specialty}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Specialties
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Personal Training","Weight Loss","Strength Training","Yoga","Pilates","CrossFit","HIIT","Martial Arts","Dance Fitness","Rehabilitation"].map((specialty) => (
+                          <div key={specialty} className="flex items-center space-x-2">
+                            <Checkbox id={specialty + "-mobile"} />
+                            <label htmlFor={specialty + "-mobile"} className="text-sm text-gray-700">
+                              {specialty}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                   {/* Price Range */}
-                  <div>
-                    <h4 className="font-medium mb-3">Hourly Rate</h4>
-                    <div className="space-y-2">
-                      {["Under $40","$40 - $60","$60 - $80","Over $80"].map((price) => (
-                        <div key={price} className="flex items-center space-x-2">
-                          <Checkbox id={price + "-mobile"} />
-                          <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
-                            {price}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Hourly Rate
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Under $40","$40 - $60","$60 - $80","Over $80"].map((price) => (
+                          <div key={price} className="flex items-center space-x-2">
+                            <Checkbox id={price + "-mobile"} />
+                            <label htmlFor={price + "-mobile"} className="text-sm text-gray-700">
+                              {price}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                   {/* Experience */}
-                  <div>
-                    <h4 className="font-medium mb-3">Experience</h4>
-                    <div className="space-y-2">
-                      {["Less than 2 years","2-5 years","5-10 years","10+ years"].map((experience) => (
-                        <div key={experience} className="flex items-center space-x-2">
-                          <Checkbox id={experience + "-mobile"} />
-                          <label htmlFor={experience + "-mobile"} className="text-sm text-gray-700">
-                            {experience}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Experience
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Less than 2 years","2-5 years","5-10 years","10+ years"].map((experience) => (
+                          <div key={experience} className="flex items-center space-x-2">
+                            <Checkbox id={experience + "-mobile"} />
+                            <label htmlFor={experience + "-mobile"} className="text-sm text-gray-700">
+                              {experience}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                   {/* Availability */}
-                  <div>
-                    <h4 className="font-medium mb-3">Availability</h4>
-                    <div className="space-y-2">
-                      {["Available Today","Available This Week","Online Training","In-Person Only"].map((availability) => (
-                        <div key={availability} className="flex items-center space-x-2">
-                          <Checkbox id={availability + "-mobile"} />
-                          <label htmlFor={availability + "-mobile"} className="text-sm text-gray-700">
-                            {availability}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Availability
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {["Available Today","Available This Week","Online Training","In-Person Only"].map((availability) => (
+                          <div key={availability} className="flex items-center space-x-2">
+                            <Checkbox id={availability + "-mobile"} />
+                            <label htmlFor={availability + "-mobile"} className="text-sm text-gray-700">
+                              {availability}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                   {/* Rating */}
-                  <div>
-                    <h4 className="font-medium mb-3">Rating</h4>
-                    <div className="space-y-2">
-                      {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
-                        <div key={rating} className="flex items-center space-x-2">
-                          <Checkbox id={rating + "-mobile"} />
-                          <label className="text-sm text-gray-700 flex items-center">
-                            {Array.from({ length: stars }).map((_, i) => (
-                              <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                            ))}
-                            {rating}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full flex justify-between items-center py-3 font-medium border-b">
+                      Rating
+                      <span className="ml-2">▼</span>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="space-y-2">
+                        {[{ rating: "4.5+", stars: 5 },{ rating: "4.0+", stars: 4 },{ rating: "3.5+", stars: 4 },{ rating: "3.0+", stars: 3 }].map(({ rating, stars }) => (
+                          <div key={rating} className="flex items-center space-x-2">
+                            <Checkbox id={rating + "-mobile"} />
+                            <label className="text-sm text-gray-700 flex items-center">
+                              {Array.from({ length: stars }).map((_, i) => (
+                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                              ))}
+                              {rating}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                   <DrawerClose asChild>
                     <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">Apply Filters</Button>
                   </DrawerClose>
