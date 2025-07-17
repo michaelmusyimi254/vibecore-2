@@ -1599,16 +1599,15 @@ export default function Signup() {
 
                       <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
                         <p className="text-blue-800 text-sm">
-                          <strong>Welcome!</strong> As a trainee, you can start
-                          exploring trainers and facilities immediately.
-                          Complete your profile to get personalized
-                          recommendations.
+                          <strong>Welcome!</strong> As a member, you can start
+                          exploring coaches and studios immediately. Complete
+                          your profile to get personalized recommendations.
                         </p>
                       </div>
                     </>
                   )}
 
-                  {selectedRole === "trainer" && (
+                  {selectedRole === "coach" && (
                     <>
                       <div>
                         <Label>Certification Documents</Label>
