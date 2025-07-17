@@ -358,18 +358,45 @@ export default function Index() {
                       )}
                     </button>
                   </div>
-                  {/* Rotating example search below input */}
+                  {/* AI-Powered Example Suggestions */}
                   {!searchQuery && !searching && !awaitingClarification && (
-                    <div className="mt-3 text-sm text-gray-500 animate-fade-in">
-                      <span className="text-gray-400">Try: </span>
-                      <span className="text-red-500 font-medium">
-                        {exampleSearches[exampleIdx]}
-                      </span>
+                    <div className="mt-4 space-y-2">
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                        <span className="text-gray-400">AI suggests: </span>
+                        <span className="text-purple-600 font-medium animate-fade-in">
+                          {exampleSearches[exampleIdx]}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        💡 Our AI understands natural language - just type what
+                        you're looking for!
+                      </div>
                     </div>
                   )}
                 </form>
                 {searching && !searchError && (
-                  <div className="vc-glass p-6 rounded-xl animate-scale-in">
+                  <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 p-6 rounded-xl animate-scale-in">
+                    <div className="flex items-center justify-center gap-3 mb-3">
+                      <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center animate-pulse">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="font-semibold text-purple-700">
+                        🤖 AI Assistant
+                      </span>
+                    </div>
                     <DotsLoader />
                     <div className="text-gray-700 text-center py-2 animate-fade-in font-medium">
                       {aiMessage}
@@ -390,18 +417,42 @@ export default function Index() {
                 {awaitingClarification && (
                   <form
                     onSubmit={handleClarificationSubmit}
-                    className="vc-glass p-6 rounded-xl space-y-4 animate-scale-in"
+                    className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 p-6 rounded-xl space-y-4 animate-scale-in"
                   >
-                    <p className="text-gray-700 font-medium">{aiMessage}</p>
-                    <Input
-                      placeholder="Please clarify your search..."
-                      value={clarification}
-                      onChange={(e) => setClarification(e.target.value)}
-                      className="vc-input"
-                    />
-                    <Button type="submit" className="vc-btn-primary w-full">
-                      Continue Search
-                    </Button>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-purple-700 font-medium mb-3">
+                          {aiMessage}
+                        </p>
+                        <Input
+                          placeholder="Help me understand better..."
+                          value={clarification}
+                          onChange={(e) => setClarification(e.target.value)}
+                          className="vc-input mb-3"
+                        />
+                        <Button
+                          type="submit"
+                          className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white w-full"
+                        >
+                          🤖 Continue with AI
+                        </Button>
+                      </div>
+                    </div>
                   </form>
                 )}
               </div>
