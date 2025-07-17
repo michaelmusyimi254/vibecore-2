@@ -568,7 +568,7 @@ export default function Facilities() {
                   variant="outline"
                   className="rounded-full px-8 py-2 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
                 >
-                  Load More Facilities
+                  Load More Venues
                 </Button>
               </div>
             </div>
