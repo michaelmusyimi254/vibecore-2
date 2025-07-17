@@ -548,21 +548,148 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Compact Platform Features */}
+                  {/* Compact Platform Features */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-              Everything you need for{" "}
-              <span className="text-red-500">wellness success</span>
+              Everything you need for <span className="text-red-500">wellness success</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               AI-powered platform with seamless booking and premium experiences
             </p>
           </div>
 
-          {/* Modern Card Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    {/* Compact Features Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-red-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">AI Coach Matching</h3>
+              <p className="text-xs text-gray-600">Smart coach recommendations</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Premium Venues</h3>
+              <p className="text-xs text-gray-600">Access exclusive facilities</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Marketplace</h3>
+              <p className="text-xs text-gray-600">Premium wellness gear</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-yellow-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Events</h3>
+              <p className="text-xs text-gray-600">Join wellness community</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-purple-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 4 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Analytics</h3>
+              <p className="text-xs text-gray-600">Track your progress</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-indigo-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">AI Search</h3>
+              <p className="text-xs text-gray-600">Natural language search</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Security</h3>
+              <p className="text-xs text-gray-600">Enterprise-grade protection</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 text-center hover:bg-gray-100 transition-colors">
+              <div className="w-8 h-8 bg-orange-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-sm mb-1">Marketing</h3>
+              <p className="text-xs text-gray-600">Built-in promotion tools</p>
+            </div>
+          </div>
+
+          {/* Compact CTA Section */}
+          <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Ready to get started?</h3>
+              <p className="text-sm text-gray-600">Choose your path in the wellness community</p>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-3">
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-4 text-center hover:shadow-md transition-all">
+                  <div className="w-10 h-10 bg-red-500 rounded-xl mx-auto mb-2 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-sm mb-1">Become a Coach</h4>
+                  <p className="text-xs text-gray-600">Share your expertise</p>
+                </div>
+              </Link>
+
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-4 text-center hover:shadow-md transition-all">
+                  <div className="w-10 h-10 bg-blue-500 rounded-xl mx-auto mb-2 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-sm mb-1">List Your Venue</h4>
+                  <p className="text-xs text-gray-600">Showcase your space</p>
+                </div>
+              </Link>
+
+              <Link to="/signup" className="group">
+                <div className="bg-white rounded-xl p-4 text-center hover:shadow-md transition-all">
+                  <div className="w-10 h-10 bg-green-500 rounded-xl mx-auto mb-2 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-sm mb-1">Sell Products</h4>
+                  <p className="text-xs text-gray-600">Reach more customers</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
             {/* Modern Feature Card 1 */}
             <div className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-50 to-red-100 rounded-full -translate-y-16 translate-x-16 opacity-50 group-hover:opacity-70 transition-opacity"></div>
