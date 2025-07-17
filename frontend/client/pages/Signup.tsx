@@ -167,72 +167,7 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar />
-      {/* Progress Bar */}
-      <div className="bg-white border-b border-gray-200 mt-32 relative">
-        <div className="container mx-auto px-2 py-2">
-          {/* Mobile nav buttons */}
-          <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
-            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
-            onClick={() => scrollByAmount(stepperRef, -120)}
-            aria-label="Scroll left"
-          >
-            <ArrowLeft className="w-4 h-4 text-gray-500" />
-          </button>
-          <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow"
-            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
-            onClick={() => scrollByAmount(stepperRef, 120)}
-            aria-label="Scroll right"
-          >
-            <ArrowRight className="w-4 h-4 text-gray-500" />
-          </button>
-          <div
-            ref={stepperRef}
-            className="flex items-center justify-center space-x-4 overflow-x-auto flex-nowrap w-full md:space-x-8 md:w-auto snap-x scrollbar-hide"
-          >
-            {progressSteps.map((step, index) => (
-              <div
-                key={step.step}
-                className="flex items-center min-w-[120px] snap-center"
-              >
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step.step <= currentStep
-                      ? "bg-vibecore-red text-white"
-                      : "bg-gray-200 text-gray-600"
-                  }`}
-                >
-                  {step.step < currentStep ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    step.step
-                  )}
-                </div>
-                <span
-                  className={`ml-2 text-xs md:text-sm font-medium ${
-                    step.step <= currentStep
-                      ? "text-vibecore-red"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {step.title}
-                </span>
-                {index < progressSteps.length - 1 && (
-                  <div
-                    className={`w-8 md:w-16 h-1 mx-2 md:mx-4 ${
-                      step.step < currentStep
-                        ? "bg-vibecore-red"
-                        : "bg-gray-200"
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
+      {/* Progress Bar removed */}
       {/* Main Content */}
       <main className="container mx-auto px-2 md:px-4 py-12 mt-8">
         <div className="max-w-6xl mx-auto">
@@ -337,7 +272,7 @@ export default function Signup() {
                       ? "your studio"
                       : selectedRole === "member"
                         ? "yourself"
-                        : "your business"}
+                      : "your business"}
                 </p>
               </div>
 
@@ -1243,18 +1178,18 @@ export default function Signup() {
                           <SelectContent>
                             {selectedRole === "brand-seller" ? (
                               <>
-                                <SelectItem value="equipment">
-                                  Fitness Equipment
-                                </SelectItem>
-                                <SelectItem value="supplements">
-                                  Supplements
-                                </SelectItem>
+                            <SelectItem value="equipment">
+                              Fitness Equipment
+                            </SelectItem>
+                            <SelectItem value="supplements">
+                              Supplements
+                            </SelectItem>
                                 <SelectItem value="apparel">
                                   Wellness Apparel
                                 </SelectItem>
-                                <SelectItem value="accessories">
-                                  Accessories
-                                </SelectItem>
+                            <SelectItem value="accessories">
+                              Accessories
+                            </SelectItem>
                                 <SelectItem value="nutrition">
                                   Nutrition
                                 </SelectItem>
@@ -1318,7 +1253,7 @@ export default function Signup() {
                               ? "your studio, all services offered, what makes it special"
                               : selectedRole === "event-curator"
                                 ? "your event planning experience and the types of wellness events you create"
-                                : "your business and what you offer"
+                            : "your business and what you offer"
                       }...`}
                       className="rounded-xl"
                       rows={4}
@@ -1366,7 +1301,7 @@ export default function Signup() {
                       ? "studio"
                       : selectedRole === "member"
                         ? "wellness journey"
-                        : "business"}
+                      : "business"}
                 </p>
               </div>
 
@@ -1434,22 +1369,22 @@ export default function Signup() {
                       </div>
                       <p className="text-gray-600 text-sm mb-6">per month</p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Everything in Starter
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Advanced analytics
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Priority support
-                        </li>
-                        <li className="flex items-center text-sm">
-                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                            </li>
+                            <li className="flex items-center text-sm">
+                              <Check className="w-4 h-4 text-vibecore-red mr-2" />
                           Featured listing boost
-                        </li>
+                            </li>
                       </ul>
                       <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
                         Select Pro
@@ -1574,7 +1509,7 @@ export default function Signup() {
                       ? "business"
                       : selectedRole === "member"
                         ? "profile"
-                        : "business"}
+                      : "business"}
                 </p>
               </div>
 

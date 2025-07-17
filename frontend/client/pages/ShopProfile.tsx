@@ -21,6 +21,7 @@ import NavBar from "@/components/ui/NavBar";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import Footer from "@/components/ui/Footer";
+import { ProductTile } from "@/components/ui/ProductTile";
 
 // Add Shop type to support both single and multiple locations
 interface ShopLocation {
@@ -594,35 +595,7 @@ export default function ShopProfile() {
                     )}
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                       {filteredProducts.map((product) => (
-                        <div key={product.id} className="bg-white rounded-xl p-4 flex flex-col items-center shadow hover:shadow-lg transition">
-                          <div className="relative w-full mb-3">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-full h-48 object-cover rounded-lg"
-                            />
-                            {product.offer && (
-                              <span className="absolute top-2 left-2 flex items-center gap-1 text-white text-xs font-bold" style={{textShadow: '0 1px 4px rgba(0,0,0,0.5)'}}>
-                                <Flame className="w-4 h-4" /> On Offer
-                              </span>
-                            )}
-                            {product.popular && (
-                              <span className="absolute top-2 right-2 flex items-center gap-1 text-white text-xs font-bold" style={{textShadow: '0 1px 4px rgba(0,0,0,0.5)'}}>
-                                <Sparkles className="w-4 h-4" /> Popular
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="font-semibold text-lg mb-1 text-center">{product.name}</h3>
-                          <span className="font-bold text-vibecore-red text-lg mb-2">{product.price}</span>
-                          <p className="text-gray-500 text-sm mb-2 text-center">{product.shortDescription}</p>
-                          <Button
-                            size="sm"
-                            className="w-32 bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full"
-                            onClick={() => handleAddToCart(product)}
-                          >
-                            Add to Cart
-                          </Button>
-                        </div>
+                        <ProductTile product={product} onAddToCart={() => handleAddToCart(product)} key={product.id} />
                       ))}
                     </div>
                   </TabsContent>
