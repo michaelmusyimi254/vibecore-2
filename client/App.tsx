@@ -14,6 +14,7 @@ import TrainerProfile from "./pages/TrainerProfile";
 import Shops from "./pages/Shops";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
