@@ -556,8 +556,11 @@ export default function Index() {
                 connections with like-minded individuals.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-purple-500/10 text-purple-600 rounded-xl p-4 mb-4">
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 text-purple-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -568,18 +571,24 @@ export default function Index() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 17v-2a4 4 0 018 0v2M5 21v-2a4 4 0 018 0v2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Analytics & Insights</h3>
-              <p className="text-gray-600 text-base">
-                Track your progress, bookings, and earnings. Get actionable
-                insights to grow your business or fitness journey.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Smart Analytics
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Track progress, bookings, and performance with intelligent
+                insights and actionable data.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-pink-500/10 text-pink-600 rounded-xl p-4 mb-4">
+
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <div className="bg-gradient-to-br from-pink-50 to-pink-100 text-pink-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -590,18 +599,24 @@ export default function Index() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">AI-Driven Search</h3>
-              <p className="text-gray-600 text-base">
-                Type what you want—our AI guides you to the right trainers,
-                classes, or products. Natural, human-like search experience.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                AI-Powered Search
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Natural language search that understands your needs and connects
+                you instantly.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-gray-800/10 text-gray-800 rounded-xl p-4 mb-4">
+
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-700 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -612,18 +627,24 @@ export default function Index() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10V5a3 3 0 00-6 0v5m6 0a3 3 0 01-6 0"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Secure & Private</h3>
-              <p className="text-gray-600 text-base">
-                Your data is protected. We use best-in-class security and
-                privacy practices for all users.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Enterprise Security
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Bank-level security with end-to-end encryption protecting your
+                personal and business data.
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <div className="bg-orange-500/10 text-orange-600 rounded-xl p-4 mb-4">
+
+            <div
+              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
+              style={{ animationDelay: "0.7s" }}
+            >
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 text-orange-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -634,36 +655,57 @@ export default function Index() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 10v4m8-8h-4m-4 0H4"
+                    d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Marketing Tools</h3>
-              <p className="text-gray-600 text-base">
-                Promote your services, events, or products with built-in
-                marketing and featured listing tools.
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Marketing Suite
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Built-in promotional tools, featured listings, and marketing
+                automation for growth.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Ready to Join Section with Images and Mobile Scrolling */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Ready to Join VibeCore?</h2>
-            <p className="text-gray-600">
-              Choose your path and start building your fitness business today
+      {/* Enhanced CTA Section */}
+      <section className="vc-section bg-gradient-to-br from-white via-red-50 to-orange-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-red-200 rounded-full animate-float"></div>
+          <div
+            className="absolute bottom-20 right-20 w-80 h-80 bg-orange-200 rounded-full animate-float"
+            style={{ animationDelay: "3s" }}
+          ></div>
+        </div>
+
+        <div className="vc-container relative z-10">
+          <div className="text-center mb-16 animate-fade-in">
+            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              Join Our Community
+            </span>
+            <h2 className="vc-heading-2 text-responsive-lg mb-6">
+              Ready to Transform Your
+              <span className="text-gradient">Wellness Journey</span>?
+            </h2>
+            <p className="vc-body-large max-w-2xl mx-auto">
+              Choose your path and start building meaningful connections in the
+              wellness community today.
             </p>
           </div>
 
           {/* Mobile Scrollable, Desktop Grid */}
-          <div className="md:overflow-visible overflow-x-auto">
-            <div className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto space-x-6 md:space-x-0 pb-4 md:pb-0">
-              {/* Trainer Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+          <div className="overflow-x-auto md:overflow-visible">
+            <div
+              className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto pb-4 md:pb-0"
+              style={{ minWidth: "900px" }}
+            >
+              {/* Coach Card */}
+              <div className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-red-50 min-w-[300px] md:min-w-0 animate-slide-up">
+                <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -678,22 +720,27 @@ export default function Index() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Join as a Trainer
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Become a Coach
                 </h3>
-                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                  Share your expertise, connect with clients, and grow your
-                  fitness business. Offer personal training, group classes, and
-                  wellness coaching services.
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Share your expertise, build meaningful client relationships,
+                  and grow your wellness coaching business with our
+                  comprehensive platform.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  Become a Trainer
-                </Button>
+                <Link to="/signup">
+                  <Button className="vc-btn-primary w-full hover:scale-105 transition-transform duration-300">
+                    Start Coaching
+                  </Button>
+                </Link>
               </div>
 
-              {/* Facility Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              {/* Studio Card */}
+              <div
+                className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-blue-50 min-w-[300px] md:min-w-0 animate-slide-up"
+                style={{ animationDelay: "0.1s" }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -708,22 +755,26 @@ export default function Index() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Join as a Facility
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  List Your Studio
                 </h3>
-                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                  List your gym, studio, or fitness center. Attract new members,
-                  manage bookings, and showcase your facilities to fitness
-                  enthusiasts.
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Showcase your fitness facility to thousands of wellness
+                  enthusiasts. Manage bookings and grow your member community.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  List Your Facility
-                </Button>
+                <Link to="/signup">
+                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
+                    Join as Studio
+                  </Button>
+                </Link>
               </div>
 
-              {/* Vendor Card */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow min-w-[300px] md:min-w-0">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              {/* Brand Seller Card */}
+              <div
+                className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-green-50 min-w-[300px] md:min-w-0 animate-slide-up"
+                style={{ animationDelay: "0.2s" }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -738,15 +789,18 @@ export default function Index() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Join as a Vendor</h3>
-                <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                  Sell fitness equipment, supplements, apparel, and accessories.
-                  Reach thousands of fitness enthusiasts looking for quality
-                  products.
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Sell Premium Products
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Reach thousands of wellness enthusiasts with your high-quality
+                  fitness gear, supplements, and lifestyle products.
                 </p>
-                <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                  Start Selling
-                </Button>
+                <Link to="/signup">
+                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
+                    Start Selling
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
