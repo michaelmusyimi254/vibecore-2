@@ -1,788 +1,630 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Calendar } from "@/components/ui/calendar";
+import { Progress } from "@/components/ui/progress";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
+  Bell,
+  Calendar as CalendarIcon,
+  Heart,
   User,
+  Building2,
+  ShoppingBag,
+  Calendar as EventIcon,
+  MessageCircle,
+  Settings,
+  BarChart3,
+  Users,
   Clock,
   MapPin,
   Star,
-  Calendar,
-  Users,
+  TrendingUp,
   Package,
-  CreditCard,
-  Smartphone,
+  DollarSign,
   CheckCircle,
-  ArrowRight,
-  ArrowLeft,
-  Lock,
-  Gift,
-  Timer,
+  AlertCircle,
+  QrCode,
+  Eye,
+  Plus,
+  Edit,
+  Search,
+  Filter,
+  MoreHorizontal,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import NavBar from "@/components/ui/NavBar";
 
-export default function Dashboard() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [userRole, setUserRole] = useState<string>("trainee"); // This would come from auth
-  const [userName, setUserName] = useState("Sarah"); // This would come from auth
-  const [hasActivePlan, setHasActivePlan] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string>("");
-  const [paymentMethod, setPaymentMethod] = useState<string>("");
+// Mock data for demonstration
+const mockUserData = {
+  role: "member", // member, coach, studio, brand-seller, event-curator
+  name: "Sarah Johnson",
+  avatar: "/api/placeholder/80/80",
+  stats: {
+    member: { sessionsBooked: 12, savedProfiles: 8, progress: 65 },
+    coach: { clients: 24, earnings: 3200, rating: 4.8 },
+    studio: { members: 145, bookings: 89, revenue: 12400 },
+    "brand-seller": { products: 32, orders: 156, revenue: 8900 },
+    "event-curator": { events: 8, attendees: 324, rating: 4.9 },
+  },
+};
 
-  // Mock user data - would come from authentication
-  const userData = {
-    name: "Sarah Johnson",
-    role: "trainer", // trainee, trainer, shop_owner, event_manager
-    email: "sarah@example.com",
-    hasCompletedOnboarding: false,
-  };
-
-  const roleConfig = {
-    trainee: {
-      title: "Trainee",
-      color: "bg-blue-500",
-      steps: [
-        { title: "Fitness Goals", icon: Star },
-        { title: "Preferences", icon: Clock },
-        { title: "Location", icon: MapPin },
-      ],
-    },
-    trainer: {
-      title: "Trainer",
-      color: "bg-vibecore-red",
-      steps: [
-        { title: "Specialties", icon: Star },
-        { title: "Certifications", icon: CheckCircle },
-        { title: "Availability", icon: Clock },
-      ],
-    },
-    shop_owner: {
-      title: "Shop Owner",
-      color: "bg-green-500",
-      steps: [
-        { title: "Store Category", icon: Package },
-        { title: "Products", icon: Package },
-        { title: "Delivery Range", icon: MapPin },
-      ],
-    },
-    event_manager: {
-      title: "Event Manager",
-      color: "bg-purple-500",
-      steps: [
-        { title: "Event Types", icon: Calendar },
-        { title: "Schedule", icon: Clock },
-        { title: "Capacity", icon: Users },
-      ],
-    },
-  };
-
-  const plans = {
-    monthly: {
-      price:
-        userData.role === "trainer"
-          ? 29
-          : userData.role === "shop_owner"
-            ? 49
-            : 39,
-      period: "month",
-    },
-    yearly: {
-      price:
-        userData.role === "trainer"
-          ? 279
-          : userData.role === "shop_owner"
-            ? 459
-            : 379,
-      period: "year",
-      savings: "Save 20%",
-    },
-  };
-
-  const nextStep = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
-
-  const handleStartFreeTrial = () => {
-    setHasActivePlan(true);
-    setSelectedPlan("trial");
-  };
-
-  const handlePayment = () => {
-    if (paymentMethod && selectedPlan) {
-      setHasActivePlan(true);
-      // Handle payment processing
+function MobileNavigation({ activeTab, setActiveTab, role }: any) {
+  const getNavItems = () => {
+    switch (role) {
+      case "member":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "bookings", icon: CalendarIcon, label: "Bookings" },
+          { id: "saved", icon: Heart, label: "Saved" },
+          { id: "chat", icon: MessageCircle, label: "Chat" },
+          { id: "profile", icon: User, label: "Profile" },
+        ];
+      case "coach":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "clients", icon: Users, label: "Clients" },
+          { id: "calendar", icon: CalendarIcon, label: "Calendar" },
+          { id: "services", icon: Settings, label: "Services" },
+          { id: "messages", icon: MessageCircle, label: "Messages" },
+        ];
+      case "studio":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "programs", icon: Calendar, label: "Programs" },
+          { id: "trainers", icon: Users, label: "Trainers" },
+          { id: "bookings", icon: CalendarIcon, label: "Bookings" },
+          { id: "stats", icon: TrendingUp, label: "Stats" },
+        ];
+      case "brand-seller":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "products", icon: Package, label: "Products" },
+          { id: "orders", icon: ShoppingBag, label: "Orders" },
+          { id: "inventory", icon: AlertCircle, label: "Stock" },
+          { id: "revenue", icon: DollarSign, label: "Revenue" },
+        ];
+      case "event-curator":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "events", icon: EventIcon, label: "Events" },
+          { id: "bookings", icon: CalendarIcon, label: "Bookings" },
+          { id: "checkin", icon: QrCode, label: "Check-in" },
+          { id: "analytics", icon: BarChart3, label: "Analytics" },
+        ];
+      default:
+        return [];
     }
   };
 
-  if (hasActivePlan) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-inter">
-        {/* Success State - Dashboard Access Granted */}
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center space-y-6">
-            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Welcome to VibeCore!
-            </h1>
-            <p className="text-gray-600 max-w-md mx-auto">
-              {selectedPlan === "trial"
-                ? "Your 7-day free trial has started. Complete your profile to get the most out of VibeCore."
-                : "Payment successful! Your subscription is now active."}
-            </p>
-            <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
-              Access Dashboard
-            </Button>
-          </div>
-        </div>
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50 md:hidden">
+      <div className="flex justify-around py-2">
+        {getNavItems().map((item) => (
+          <button
+            key={item.id}
+            onClick={() => setActiveTab(item.id)}
+            className={`flex flex-col items-center py-2 px-3 min-w-0 ${
+              activeTab === item.id
+                ? "text-vibecore-red"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            <item.icon className="w-5 h-5 mb-1" />
+            <span className="text-xs truncate">{item.label}</span>
+          </button>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+function DesktopSidebar({ activeTab, setActiveTab, role, userData }: any) {
+  const getNavItems = () => {
+    switch (role) {
+      case "member":
+        return [
+          { id: "overview", icon: BarChart3, label: "Overview" },
+          { id: "bookings", icon: CalendarIcon, label: "My Bookings" },
+          { id: "saved", icon: Heart, label: "Saved Profiles" },
+          { id: "chat", icon: MessageCircle, label: "Messages" },
+          { id: "progress", icon: TrendingUp, label: "Progress" },
+          { id: "profile", icon: User, label: "Profile Settings" },
+        ];
+      case "coach":
+        return [
+          { id: "overview", icon: BarChart3, label: "Dashboard" },
+          { id: "clients", icon: Users, label: "My Clients" },
+          { id: "calendar", icon: CalendarIcon, label: "Schedule" },
+          { id: "services", icon: Settings, label: "Services & Rates" },
+          { id: "messages", icon: MessageCircle, label: "Messages" },
+          { id: "analytics", icon: TrendingUp, label: "Analytics" },
+        ];
+      case "studio":
+        return [
+          { id: "overview", icon: BarChart3, label: "Dashboard" },
+          { id: "programs", icon: Calendar, label: "Programs & Classes" },
+          { id: "trainers", icon: Users, label: "Trainers" },
+          { id: "bookings", icon: CalendarIcon, label: "Bookings" },
+          { id: "members", icon: Heart, label: "Members" },
+          { id: "stats", icon: TrendingUp, label: "Analytics" },
+        ];
+      case "brand-seller":
+        return [
+          { id: "overview", icon: BarChart3, label: "Dashboard" },
+          { id: "products", icon: Package, label: "Product Listings" },
+          { id: "orders", icon: ShoppingBag, label: "Orders" },
+          { id: "inventory", icon: AlertCircle, label: "Stock Alerts" },
+          { id: "revenue", icon: DollarSign, label: "Revenue Tracker" },
+          { id: "analytics", icon: TrendingUp, label: "Analytics" },
+        ];
+      case "event-curator":
+        return [
+          { id: "overview", icon: BarChart3, label: "Dashboard" },
+          { id: "events", icon: EventIcon, label: "Events Management" },
+          { id: "bookings", icon: CalendarIcon, label: "Bookings" },
+          { id: "checkin", icon: QrCode, label: "Check-in QR" },
+          { id: "attendees", icon: Users, label: "Attendee Stats" },
+          { id: "analytics", icon: TrendingUp, label: "Analytics" },
+        ];
+      default:
+        return [];
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-inter">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="text-2xl font-bold">
-              VIBE<span className="text-vibecore-red">CORE</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-600">
-                Welcome back,{" "}
-                <span className="font-semibold">{userData.name}</span>
-              </div>
-              <Badge
-                className={`${roleConfig[userData.role as keyof typeof roleConfig].color} text-white rounded-full`}
-              >
-                {roleConfig[userData.role as keyof typeof roleConfig].title}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Welcome Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to VibeCore, {userData.name.split(" ")[0]}! 👋
-          </h1>
-          <p className="text-gray-600">
-            Let's get your{" "}
-            {roleConfig[
-              userData.role as keyof typeof roleConfig
-            ].title.toLowerCase()}{" "}
-            profile set up in just 3 quick steps.
-          </p>
-        </div>
-
-        {/* Progress Steps */}
-        <div className="flex justify-center mb-8">
-          <div className="flex items-center space-x-4">
-            {roleConfig[userData.role as keyof typeof roleConfig].steps.map(
-              (step, index) => {
-                const StepIcon = step.icon;
-                const isActive = index + 1 === currentStep;
-                const isCompleted = index + 1 < currentStep;
-
-                return (
-                  <div key={index} className="flex items-center">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        isActive
-                          ? roleConfig[userData.role as keyof typeof roleConfig]
-                              .color
-                          : isCompleted
-                            ? "bg-green-500"
-                            : "bg-gray-200"
-                      } text-white`}
-                    >
-                      {isCompleted ? (
-                        <CheckCircle className="w-5 h-5" />
-                      ) : (
-                        <StepIcon className="w-5 h-5" />
-                      )}
-                    </div>
-                    <div className="ml-2">
-                      <div
-                        className={`text-sm font-medium ${isActive ? "text-gray-900" : "text-gray-500"}`}
-                      >
-                        Step {index + 1}
-                      </div>
-                      <div className="text-xs text-gray-500">{step.title}</div>
-                    </div>
-                    {index <
-                      roleConfig[userData.role as keyof typeof roleConfig].steps
-                        .length -
-                        1 && (
-                      <ArrowRight className="w-4 h-4 text-gray-400 mx-4" />
-                    )}
-                  </div>
-                );
-              },
-            )}
-          </div>
-        </div>
-
-        {/* Onboarding Steps */}
-        <Card className="mb-8 shadow-lg border-0 rounded-2xl">
-          <CardHeader className="text-center">
-            <CardTitle className="text-xl">
-              {
-                roleConfig[userData.role as keyof typeof roleConfig].steps[
-                  currentStep - 1
-                ].title
-              }
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Trainer Steps */}
-            {userData.role === "trainer" && (
-              <>
-                {currentStep === 1 && (
-                  <div className="space-y-4">
-                    <Label>What are your main specialties?</Label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {[
-                        "Weight Loss",
-                        "Strength Training",
-                        "Yoga",
-                        "Pilates",
-                        "HIIT",
-                        "Nutrition",
-                        "Rehabilitation",
-                        "Sports Training",
-                      ].map((specialty) => (
-                        <label
-                          key={specialty}
-                          className="flex items-center space-x-2 p-3 border rounded-xl hover:bg-gray-50 cursor-pointer"
-                        >
-                          <Checkbox />
-                          <span className="text-sm">{specialty}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {currentStep === 2 && (
-                  <div className="space-y-4">
-                    <Label>Your Certifications</Label>
-                    <Input
-                      placeholder="e.g., NASM-CPT, ACE, ACSM"
-                      className="rounded-xl"
-                    />
-                    <Label>Years of Experience</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="Select experience level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-2">1-2 years</SelectItem>
-                        <SelectItem value="3-5">3-5 years</SelectItem>
-                        <SelectItem value="5-10">5-10 years</SelectItem>
-                        <SelectItem value="10+">10+ years</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                {currentStep === 3 && (
-                  <div className="space-y-4">
-                    <Label>Available Hours</Label>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label className="text-sm">Weekdays</Label>
-                        <Select>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select hours" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="morning">
-                              Morning (6-12 PM)
-                            </SelectItem>
-                            <SelectItem value="afternoon">
-                              Afternoon (12-6 PM)
-                            </SelectItem>
-                            <SelectItem value="evening">
-                              Evening (6-10 PM)
-                            </SelectItem>
-                            <SelectItem value="flexible">Flexible</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label className="text-sm">Weekends</Label>
-                        <Select>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select hours" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="morning">
-                              Morning (6-12 PM)
-                            </SelectItem>
-                            <SelectItem value="afternoon">
-                              Afternoon (12-6 PM)
-                            </SelectItem>
-                            <SelectItem value="evening">
-                              Evening (6-10 PM)
-                            </SelectItem>
-                            <SelectItem value="not-available">
-                              Not Available
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Shop Owner Steps */}
-            {userData.role === "shop_owner" && (
-              <>
-                {currentStep === 1 && (
-                  <div className="space-y-4">
-                    <Label>Store Category</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="Select your main category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="equipment">
-                          Fitness Equipment
-                        </SelectItem>
-                        <SelectItem value="supplements">Supplements</SelectItem>
-                        <SelectItem value="apparel">Apparel</SelectItem>
-                        <SelectItem value="accessories">Accessories</SelectItem>
-                        <SelectItem value="nutrition">Nutrition</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                {currentStep === 2 && (
-                  <div className="space-y-4">
-                    <Label>What products do you sell?</Label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {[
-                        "Dumbbells",
-                        "Treadmills",
-                        "Yoga Mats",
-                        "Protein Powder",
-                        "Workout Clothes",
-                        "Water Bottles",
-                        "Resistance Bands",
-                        "Heart Rate Monitors",
-                      ].map((product) => (
-                        <label
-                          key={product}
-                          className="flex items-center space-x-2 p-3 border rounded-xl hover:bg-gray-50 cursor-pointer"
-                        >
-                          <Checkbox />
-                          <span className="text-sm">{product}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {currentStep === 3 && (
-                  <div className="space-y-4">
-                    <Label>Delivery Range</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="Select delivery range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="local">Local (5 miles)</SelectItem>
-                        <SelectItem value="city">
-                          City-wide (25 miles)
-                        </SelectItem>
-                        <SelectItem value="regional">
-                          Regional (50 miles)
-                        </SelectItem>
-                        <SelectItem value="national">National</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Event Manager Steps */}
-            {userData.role === "event_manager" && (
-              <>
-                {currentStep === 1 && (
-                  <div className="space-y-4">
-                    <Label>What types of events do you organize?</Label>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        "Fitness Classes",
-                        "Workshops",
-                        "Competitions",
-                        "Bootcamps",
-                        "Yoga Retreats",
-                        "Sports Tournaments",
-                        "Wellness Events",
-                        "Corporate Fitness",
-                      ].map((event) => (
-                        <label
-                          key={event}
-                          className="flex items-center space-x-2 p-3 border rounded-xl hover:bg-gray-50 cursor-pointer"
-                        >
-                          <Checkbox />
-                          <span className="text-sm">{event}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {currentStep === 2 && (
-                  <div className="space-y-4">
-                    <Label>Event Schedule Preference</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="How often do you host events?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="daily">Daily</SelectItem>
-                        <SelectItem value="weekly">Weekly</SelectItem>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                        <SelectItem value="seasonal">Seasonal</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                {currentStep === 3 && (
-                  <div className="space-y-4">
-                    <Label>Typical Event Capacity</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="Select capacity range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="small">
-                          Small (5-20 people)
-                        </SelectItem>
-                        <SelectItem value="medium">
-                          Medium (20-50 people)
-                        </SelectItem>
-                        <SelectItem value="large">
-                          Large (50-100 people)
-                        </SelectItem>
-                        <SelectItem value="xlarge">
-                          Extra Large (100+ people)
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Trainee Steps */}
-            {userData.role === "trainee" && (
-              <>
-                {currentStep === 1 && (
-                  <div className="space-y-4">
-                    <Label>What are your fitness goals?</Label>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        "Weight Loss",
-                        "Muscle Gain",
-                        "Improve Endurance",
-                        "Increase Flexibility",
-                        "Build Strength",
-                        "General Fitness",
-                        "Rehabilitation",
-                        "Sports Performance",
-                      ].map((goal) => (
-                        <label
-                          key={goal}
-                          className="flex items-center space-x-2 p-3 border rounded-xl hover:bg-gray-50 cursor-pointer"
-                        >
-                          <Checkbox />
-                          <span className="text-sm">{goal}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {currentStep === 2 && (
-                  <div className="space-y-4">
-                    <Label>Preferred Workout Times</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="When do you prefer to workout?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="early-morning">
-                          Early Morning (5-8 AM)
-                        </SelectItem>
-                        <SelectItem value="morning">
-                          Morning (8-11 AM)
-                        </SelectItem>
-                        <SelectItem value="afternoon">
-                          Afternoon (12-5 PM)
-                        </SelectItem>
-                        <SelectItem value="evening">
-                          Evening (5-8 PM)
-                        </SelectItem>
-                        <SelectItem value="night">Night (8-11 PM)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                {currentStep === 3 && (
-                  <div className="space-y-4">
-                    <Label>Location Preferences</Label>
-                    <Input
-                      placeholder="Enter your city or area"
-                      className="rounded-xl"
-                    />
-                    <Label>Workout Environment</Label>
-                    <Select>
-                      <SelectTrigger className="rounded-xl">
-                        <SelectValue placeholder="Where do you prefer to workout?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="gym">Traditional Gym</SelectItem>
-                        <SelectItem value="studio">Fitness Studio</SelectItem>
-                        <SelectItem value="outdoor">Outdoor</SelectItem>
-                        <SelectItem value="home">Home/Online</SelectItem>
-                        <SelectItem value="hybrid">Hybrid</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Navigation Buttons */}
-            <div className="flex justify-between pt-4">
-              <Button
-                onClick={prevStep}
-                disabled={currentStep === 1}
-                variant="outline"
-                className="rounded-full"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Previous
-              </Button>
-              <Button
-                onClick={nextStep}
-                disabled={currentStep === 3}
-                className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full"
-              >
-                Next
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Package Summary & Payment */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Package Summary */}
-          <Card className="shadow-lg border-0 rounded-2xl">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Gift className="w-5 h-5 mr-2 text-vibecore-red" />
-                Your Package
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-xl">
-                <div className="flex items-center mb-2">
-                  <Timer className="w-5 h-5 text-green-600 mr-2" />
-                  <span className="font-semibold text-green-800">
-                    7-Day Free Trial
-                  </span>
-                </div>
-                <p className="text-sm text-green-700">
-                  Try all premium features risk-free. Cancel anytime during your
-                  trial.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-semibold">What's included:</h4>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Complete profile setup
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Advanced booking system
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Analytics dashboard
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Customer support
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Mobile app access
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-gray-50 p-4 rounded-xl">
-                <div className="text-sm text-gray-600">After trial:</div>
-                <div className="text-2xl font-bold text-gray-900">
-                  ${plans.monthly.price}
-                  <span className="text-sm font-normal">/month</span>
-                </div>
-                <div className="text-sm text-green-600">
-                  {plans.yearly.savings} with yearly plan
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Payment Section */}
-          <Card className="shadow-lg border-0 rounded-2xl">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Lock className="w-5 h-5 mr-2 text-gray-600" />
-                Unlock Your Dashboard
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Free Trial Option */}
-              <Button
-                onClick={handleStartFreeTrial}
-                className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-3 text-lg"
-              >
-                Start 7-Day Free Trial
-              </Button>
-
-              <div className="text-center text-gray-500 text-sm">or</div>
-
-              {/* Payment Plans */}
-              <div className="space-y-3">
-                <Label>Choose a plan:</Label>
-                <div className="space-y-2">
-                  <label className="flex items-center justify-between p-3 border rounded-xl cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="plan"
-                        value="monthly"
-                        onChange={(e) => setSelectedPlan(e.target.value)}
-                        className="mr-3"
-                      />
-                      <div>
-                        <div className="font-medium">Monthly</div>
-                        <div className="text-sm text-gray-500">
-                          ${plans.monthly.price}/month
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                  <label className="flex items-center justify-between p-3 border rounded-xl cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="plan"
-                        value="yearly"
-                        onChange={(e) => setSelectedPlan(e.target.value)}
-                        className="mr-3"
-                      />
-                      <div>
-                        <div className="font-medium">Yearly</div>
-                        <div className="text-sm text-gray-500">
-                          ${plans.yearly.price}/year
-                        </div>
-                      </div>
-                    </div>
-                    <Badge className="bg-green-100 text-green-800 rounded-full">
-                      {plans.yearly.savings}
-                    </Badge>
-                  </label>
-                </div>
-              </div>
-
-              {/* Payment Methods */}
-              <div className="space-y-3">
-                <Label>Payment Method:</Label>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => setPaymentMethod("mpesa")}
-                    className={`flex items-center justify-center p-4 border rounded-xl ${
-                      paymentMethod === "mpesa"
-                        ? "border-vibecore-red bg-red-50"
-                        : "border-gray-200"
-                    }`}
-                  >
-                    <Smartphone className="w-5 h-5 mr-2" />
-                    M-Pesa
-                  </button>
-                  <button
-                    onClick={() => setPaymentMethod("card")}
-                    className={`flex items-center justify-center p-4 border rounded-xl ${
-                      paymentMethod === "card"
-                        ? "border-vibecore-red bg-red-50"
-                        : "border-gray-200"
-                    }`}
-                  >
-                    <CreditCard className="w-5 h-5 mr-2" />
-                    Card
-                  </button>
-                </div>
-              </div>
-
-              <Button
-                onClick={handlePayment}
-                disabled={!selectedPlan || !paymentMethod}
-                className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-xl py-3"
-              >
-                Pay & Access Dashboard
-              </Button>
-
-              <p className="text-xs text-gray-500 text-center">
-                Secure payment. Cancel anytime. No setup fees.
+    <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white border-r border-gray-200 pt-20">
+      <div className="flex flex-col flex-grow overflow-y-auto">
+        {/* User info */}
+        <div className="px-4 py-6 border-b border-gray-200">
+          <div className="flex items-center">
+            <Avatar className="h-12 w-12">
+              <AvatarImage src={userData.avatar} />
+              <AvatarFallback>
+                {userData.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </AvatarFallback>
+            </Avatar>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-gray-900">
+                {userData.name}
               </p>
-            </CardContent>
-          </Card>
+              <p className="text-xs text-gray-500 capitalize">
+                {role.replace("-", " ")}
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Dashboard Access Blocked Notice */}
-        <Card className="mt-6 border-l-4 border-l-yellow-500 bg-yellow-50">
-          <CardContent className="p-4">
-            <div className="flex items-start">
-              <Lock className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
-              <div>
-                <h4 className="font-semibold text-yellow-800">
-                  Dashboard Access Required
-                </h4>
-                <p className="text-sm text-yellow-700 mt-1">
-                  Complete your profile setup and start your free trial or
-                  subscribe to access your VibeCore dashboard.
+        {/* Navigation */}
+        <nav className="mt-5 flex-1 px-2 space-y-1">
+          {getNavItems().map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`w-full group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors ${
+                activeTab === item.id
+                  ? "bg-vibecore-red text-white"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+              }`}
+            >
+              <item.icon className="mr-3 h-5 w-5" />
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+function OverviewContent({ role, userData }: any) {
+  const getRoleTitle = () => {
+    switch (role) {
+      case "member":
+        return "Welcome to Your Wellness Journey";
+      case "coach":
+        return "Coach Dashboard";
+      case "studio":
+        return "Studio Management";
+      case "brand-seller":
+        return "Brand Seller Hub";
+      case "event-curator":
+        return "Event Curator Dashboard";
+      default:
+        return "Dashboard";
+    }
+  };
+
+  const getQuickStats = () => {
+    switch (role) {
+      case "member":
+        return [
+          {
+            label: "Sessions Booked",
+            value: userData.stats.member.sessionsBooked,
+            icon: CalendarIcon,
+            color: "text-blue-600",
+          },
+          {
+            label: "Saved Profiles",
+            value: userData.stats.member.savedProfiles,
+            icon: Heart,
+            color: "text-red-600",
+          },
+          {
+            label: "Progress",
+            value: `${userData.stats.member.progress}%`,
+            icon: TrendingUp,
+            color: "text-green-600",
+          },
+        ];
+      case "coach":
+        return [
+          {
+            label: "Active Clients",
+            value: userData.stats.coach.clients,
+            icon: Users,
+            color: "text-blue-600",
+          },
+          {
+            label: "Monthly Earnings",
+            value: `$${userData.stats.coach.earnings}`,
+            icon: DollarSign,
+            color: "text-green-600",
+          },
+          {
+            label: "Rating",
+            value: userData.stats.coach.rating,
+            icon: Star,
+            color: "text-yellow-600",
+          },
+        ];
+      case "studio":
+        return [
+          {
+            label: "Members",
+            value: userData.stats.studio.members,
+            icon: Users,
+            color: "text-blue-600",
+          },
+          {
+            label: "This Month Bookings",
+            value: userData.stats.studio.bookings,
+            icon: CalendarIcon,
+            color: "text-purple-600",
+          },
+          {
+            label: "Revenue",
+            value: `$${userData.stats.studio.revenue}`,
+            icon: DollarSign,
+            color: "text-green-600",
+          },
+        ];
+      case "brand-seller":
+        return [
+          {
+            label: "Products Listed",
+            value: userData.stats["brand-seller"].products,
+            icon: Package,
+            color: "text-blue-600",
+          },
+          {
+            label: "Orders",
+            value: userData.stats["brand-seller"].orders,
+            icon: ShoppingBag,
+            color: "text-purple-600",
+          },
+          {
+            label: "Revenue",
+            value: `$${userData.stats["brand-seller"].revenue}`,
+            icon: DollarSign,
+            color: "text-green-600",
+          },
+        ];
+      case "event-curator":
+        return [
+          {
+            label: "Events Created",
+            value: userData.stats["event-curator"].events,
+            icon: EventIcon,
+            color: "text-blue-600",
+          },
+          {
+            label: "Total Attendees",
+            value: userData.stats["event-curator"].attendees,
+            icon: Users,
+            color: "text-purple-600",
+          },
+          {
+            label: "Rating",
+            value: userData.stats["event-curator"].rating,
+            icon: Star,
+            color: "text-yellow-600",
+          },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900">{getRoleTitle()}</h1>
+        <p className="text-gray-600">
+          Manage your {role.replace("-", " ")} activities and track your
+          progress
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {getQuickStats().map((stat, index) => (
+          <Card key={index} className="relative overflow-hidden">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">
+                    {stat.label}
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {stat.value}
+                  </p>
+                </div>
+                <div className={`p-3 rounded-full bg-gray-50 ${stat.color}`}>
+                  <stat.icon className="h-6 w-6" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Quick Actions */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick Actions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {role === "member" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                  <Search className="h-6 w-6" />
+                  <span className="text-sm">Find Coach</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <CalendarIcon className="h-6 w-6" />
+                  <span className="text-sm">Book Session</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <TrendingUp className="h-6 w-6" />
+                  <span className="text-sm">View Progress</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <MessageCircle className="h-6 w-6" />
+                  <span className="text-sm">Messages</span>
+                </Button>
+              </>
+            )}
+            {role === "coach" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                  <Plus className="h-6 w-6" />
+                  <span className="text-sm">Add Client</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <CalendarIcon className="h-6 w-6" />
+                  <span className="text-sm">Schedule</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <Settings className="h-6 w-6" />
+                  <span className="text-sm">Services</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <BarChart3 className="h-6 w-6" />
+                  <span className="text-sm">Analytics</span>
+                </Button>
+              </>
+            )}
+            {role === "studio" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                  <Plus className="h-6 w-6" />
+                  <span className="text-sm">Add Program</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <Users className="h-6 w-6" />
+                  <span className="text-sm">Manage Trainers</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <CalendarIcon className="h-6 w-6" />
+                  <span className="text-sm">Bookings</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <BarChart3 className="h-6 w-6" />
+                  <span className="text-sm">Analytics</span>
+                </Button>
+              </>
+            )}
+            {role === "brand-seller" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                  <Plus className="h-6 w-6" />
+                  <span className="text-sm">Add Product</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <Package className="h-6 w-6" />
+                  <span className="text-sm">Inventory</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <ShoppingBag className="h-6 w-6" />
+                  <span className="text-sm">Orders</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <BarChart3 className="h-6 w-6" />
+                  <span className="text-sm">Analytics</span>
+                </Button>
+              </>
+            )}
+            {role === "event-curator" && (
+              <>
+                <Button className="flex flex-col items-center p-6 h-auto space-y-2">
+                  <Plus className="h-6 w-6" />
+                  <span className="text-sm">Create Event</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <CalendarIcon className="h-6 w-6" />
+                  <span className="text-sm">Bookings</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <QrCode className="h-6 w-6" />
+                  <span className="text-sm">Check-in</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center p-6 h-auto space-y-2"
+                >
+                  <BarChart3 className="h-6 w-6" />
+                  <span className="text-sm">Analytics</span>
+                </Button>
+              </>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Recent Activity */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Activity</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {role === "member" && (
+              <>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <span className="text-sm">
+                    Completed yoga session with Maria Thompson
+                  </span>
+                  <span className="text-xs text-gray-500">2 hours ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Heart className="h-5 w-5 text-red-600" />
+                  <span className="text-sm">
+                    Saved fitness coach: David Martinez
+                  </span>
+                  <span className="text-xs text-gray-500">1 day ago</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CalendarIcon className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm">
+                    Booked pilates class for tomorrow
+                  </span>
+                  <span className="text-xs text-gray-500">2 days ago</span>
+                </div>
+              </>
+            )}
+            {/* Add similar activity feeds for other roles */}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export default function Dashboard() {
+  const [activeTab, setActiveTab] = useState("overview");
+  const [userRole] = useState(mockUserData.role);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <NavBar />
+
+      <div className="flex">
+        <DesktopSidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          role={userRole}
+          userData={mockUserData}
+        />
+
+        <main className="flex-1 md:ml-64 pt-20 pb-20 md:pb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {activeTab === "overview" && (
+              <OverviewContent role={userRole} userData={mockUserData} />
+            )}
+
+            {/* Placeholder for other tab contents */}
+            {activeTab !== "overview" && (
+              <div className="text-center py-12">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
+                  Section
+                </h2>
+                <p className="text-gray-600">
+                  This section is under development. Content for {activeTab}{" "}
+                  will be implemented here.
                 </p>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            )}
+          </div>
+        </main>
+
+        <MobileNavigation
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          role={userRole}
+        />
       </div>
     </div>
   );
