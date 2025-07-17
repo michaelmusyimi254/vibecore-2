@@ -466,7 +466,7 @@ export default function Facilities() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {studios.map((studio) => (
-                  <Link key={facility.id} to={`/facilities/1`}>
+                  <Link key={studio.id} to={`/facilities/1`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
                         src={facility.image}
