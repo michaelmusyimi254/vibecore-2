@@ -572,83 +572,91 @@ export default function Index() {
 
           {/* Modern Card Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <div className="vc-card vc-card-hover p-6 text-center group animate-slide-up">
-              <div className="bg-gradient-to-br from-red-50 to-red-100 text-red-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
+            {/* Modern Feature Card 1 */}
+            <div className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-50 to-red-100 rounded-full -translate-y-16 translate-x-16 opacity-50 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg
+                    className="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  AI-Powered Coach Matching
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Connect with certified coaches using our intelligent matching
+                  system. Book sessions instantly.
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Find & Book Experts
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Connect with certified coaches, nutritionists, and wellness
-                professionals. Book sessions seamlessly.
-              </p>
             </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  />
-                </svg>
+
+            {/* Modern Feature Card 2 */}
+            <div className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full -translate-y-16 translate-x-16 opacity-50 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg
+                    className="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Premium Venues Network
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Access exclusive gyms, studios, pools, and wellness venues
+                  with seamless booking.
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Discover Venues
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Explore premium gyms, studios, and wellness centers. Filter by
-                amenities and location.
-              </p>
             </div>
-            <div
-              className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <div className="bg-gradient-to-br from-green-50 to-green-100 text-green-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
+
+            {/* Modern Feature Card 3 */}
+            <div className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-50 to-green-100 rounded-full -translate-y-16 translate-x-16 opacity-50 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg
+                    className="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Curated Marketplace
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Shop premium wellness gear and supplements from verified brand
+                  sellers.
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Premium Marketplace
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Shop high-quality fitness gear, supplements, and wellness
-                products from trusted vendors.
-              </p>
             </div>
             <div
               className="vc-card vc-card-hover p-6 text-center group animate-slide-up"
