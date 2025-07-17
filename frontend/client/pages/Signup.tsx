@@ -1667,7 +1667,8 @@ export default function Signup() {
                     </>
                   )}
 
-                  {selectedRole === "vendor" && (
+                  {(selectedRole === "brand-seller" ||
+                    selectedRole === "event-curator") && (
                     <>
                       <div>
                         <Label>Business Registration</Label>
@@ -1683,11 +1684,17 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        <Label>Product Images</Label>
+                        <Label>
+                          {selectedRole === "brand-seller"
+                            ? "Product Images"
+                            : "Event Portfolio"}
+                        </Label>
                         <div className="mt-2 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                           <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                           <p className="text-sm text-gray-600 mb-2">
-                            Upload images of your products
+                            {selectedRole === "brand-seller"
+                              ? "Upload images of your products"
+                              : "Upload photos from previous events you've organized"}
                           </p>
                           <Button variant="outline" className="rounded-xl">
                             Choose Files
