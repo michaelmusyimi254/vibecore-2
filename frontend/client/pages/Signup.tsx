@@ -29,7 +29,7 @@ import {
   Calendar,
   Heart,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 
@@ -37,6 +37,7 @@ export default function Signup() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [activeRoleIdx, setActiveRoleIdx] = useState(0);
+  const navigate = useNavigate();
 
   // Refs for scrollable containers
   const stepperRef = useRef<HTMLDivElement>(null);
@@ -1723,7 +1724,10 @@ export default function Signup() {
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back
                 </Button>
-                <Button className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8">
+                <Button
+                  onClick={handleCompleteRegistration}
+                  className="bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full px-8"
+                >
                   Complete Registration
                   <Check className="w-4 h-4 ml-2" />
                 </Button>
