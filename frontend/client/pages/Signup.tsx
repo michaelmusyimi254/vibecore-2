@@ -1290,28 +1290,32 @@ export default function Signup() {
 
                   <div>
                     <Label htmlFor="bio">
-                      {selectedRole === "trainer"
+                      {selectedRole === "coach" || selectedRole === "member"
                         ? "About You"
-                        : selectedRole === "facility"
-                          ? "About Your Facility"
+                        : selectedRole === "studio"
+                          ? "About Your Studio"
                           : "About Your Business"}
                     </Label>
                     <Textarea
                       id="bio"
                       placeholder={`Tell people about ${
-                        selectedRole === "trainer"
-                          ? "yourself and your training philosophy"
-                          : selectedRole === "facility"
-                            ? "your facility, all services offered, what makes it special, and any unique multi-function features"
-                            : "your business and what you offer"
+                        selectedRole === "coach"
+                          ? "yourself and your coaching philosophy"
+                          : selectedRole === "member"
+                            ? "yourself, your wellness goals, and what you're looking for"
+                            : selectedRole === "studio"
+                              ? "your studio, all services offered, what makes it special"
+                              : selectedRole === "event-curator"
+                                ? "your event planning experience and the types of wellness events you create"
+                                : "your business and what you offer"
                       }...`}
                       className="rounded-xl"
                       rows={4}
                     />
-                    {selectedRole === "facility" && (
+                    {selectedRole === "studio" && (
                       <p className="text-xs text-gray-500 mt-1">
-                        For multi-function venues: Describe all your services,
-                        target audiences, and what makes your facility unique
+                        Describe all your wellness services, target audiences,
+                        and what makes your studio unique
                       </p>
                     )}
                   </div>
