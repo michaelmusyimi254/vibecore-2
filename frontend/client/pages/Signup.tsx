@@ -26,6 +26,8 @@ import {
   Phone,
   Mail,
   Camera,
+  Calendar,
+  Heart,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
@@ -42,7 +44,10 @@ export default function Signup() {
   const planScrollRef = useRef<HTMLDivElement>(null);
 
   // Scroll helpers
-  const scrollByAmount = (ref: React.RefObject<HTMLDivElement>, amount: number) => {
+  const scrollByAmount = (
+    ref: React.RefObject<HTMLDivElement>,
+    amount: number,
+  ) => {
     if (ref.current) {
       ref.current.scrollBy({ left: amount, behavior: "smooth" });
     }
@@ -50,55 +55,68 @@ export default function Signup() {
 
   const roles = [
     {
-      id: "trainee",
-      title: "Join as a Trainee",
+      id: "member",
+      title: "Join as a Member",
       description:
-        "Start your fitness journey, find trainers, and achieve your goals",
-      icon: Dumbbell,
+        "Start your wellness journey, find coaches, and achieve your goals",
+      icon: Heart,
       features: [
-        "Find and book qualified trainers",
-        "Access facilities and classes",
-        "Track your fitness progress",
+        "Find and book qualified coaches",
+        "Access studios and classes",
+        "Track your wellness progress",
         "Join community events",
       ],
     },
     {
-      id: "trainer",
-      title: "Join as a Trainer",
+      id: "coach",
+      title: "Join as a Coach",
       description:
-        "Share your expertise, connect with clients, and grow your fitness business",
+        "Share your expertise, connect with clients, and grow your wellness business",
       icon: User,
       features: [
-        "Create detailed trainer profile",
+        "Create detailed coach profile",
         "Set your own rates and schedule",
         "Connect with potential clients",
         "Track earnings and bookings",
       ],
     },
     {
-      id: "facility",
-      title: "Join as a Facility",
+      id: "studio",
+      title: "Join as a Studio",
       description:
-        "List your gym, studio, or fitness center to attract new members",
+        "List your studio, gym, or wellness center to attract new members",
       icon: Building2,
       features: [
-        "Showcase your facility",
+        "Showcase your studio",
         "Manage bookings and memberships",
         "Promote classes and events",
         "Analytics and insights",
       ],
     },
     {
-      id: "vendor",
-      title: "Join as a Vendor",
+      id: "brand-seller",
+      title: "Join as a Brand Seller",
       description:
-        "Sell fitness equipment, supplements, and accessories to our community",
+        "Sell wellness gear, supplements, and accessories to our community",
       icon: ShoppingBag,
       features: [
         "List your products",
-        "Reach fitness enthusiasts",
+        "Reach wellness enthusiasts",
         "Manage inventory and orders",
         "Promotional opportunities",
+      ],
+    },
+    {
+      id: "event-curator",
+      title: "Join as an Event Curator",
+      description:
+        "Create and manage wellness events, workshops, and experiences",
+      icon: Calendar,
+      features: [
+        "Create event listings",
+        "Manage bookings and attendees",
+        "Promote wellness experiences",
+        "Track event success",
       ],
     },
   ];
@@ -131,8 +149,8 @@ export default function Signup() {
       const idx = Math.round(ref.scrollLeft / cardWidth);
       setActiveRoleIdx(idx);
     };
-    ref.addEventListener('scroll', handleScroll);
-    return () => ref.removeEventListener('scroll', handleScroll);
+    ref.addEventListener("scroll", handleScroll);
+    return () => ref.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -163,7 +181,10 @@ export default function Signup() {
             className="flex items-center justify-center space-x-4 overflow-x-auto flex-nowrap w-full md:space-x-8 md:w-auto snap-x scrollbar-hide"
           >
             {progressSteps.map((step, index) => (
-              <div key={step.step} className="flex items-center min-w-[120px] snap-center">
+              <div
+                key={step.step}
+                className="flex items-center min-w-[120px] snap-center"
+              >
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                     step.step <= currentStep
@@ -255,10 +276,14 @@ export default function Signup() {
                           <div className="w-16 h-16 bg-gradient-to-br from-vibecore-red to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
                             <IconComponent className="w-8 h-8 text-white" />
                           </div>
-                          <CardTitle className="text-xl">{role.title}</CardTitle>
+                          <CardTitle className="text-xl">
+                            {role.title}
+                          </CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-gray-600 text-sm mb-4">{role.description}</p>
+                          <p className="text-gray-600 text-sm mb-4">
+                            {role.description}
+                          </p>
                           <ul className="text-xs text-left text-gray-500 space-y-1">
                             {role.features.map((f) => (
                               <li key={f}>• {f}</li>
@@ -274,7 +299,7 @@ export default function Signup() {
                 {roles.map((_, idx) => (
                   <span
                     key={idx}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${idx === activeRoleIdx ? 'bg-vibecore-red' : 'bg-gray-300'}`}
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${idx === activeRoleIdx ? "bg-vibecore-red" : "bg-gray-300"}`}
                   />
                 ))}
               </div>
@@ -1308,65 +1333,138 @@ export default function Signup() {
                   {/* Starter Plan */}
                   <div className="bg-white border-2 border-green-400 rounded-2xl p-6 hover:border-green-600 transition-colors shadow-sm">
                     <div className="text-center">
-                      <h3 className="text-xl font-semibold mb-2 text-green-700">Starter</h3>
-                      <div className="text-3xl font-bold text-green-600 mb-1">$5</div>
+                      <h3 className="text-xl font-semibold mb-2 text-green-700">
+                        Starter
+                      </h3>
+                      <div className="text-3xl font-bold text-green-600 mb-1">
+                        $5
+                      </div>
                       <p className="text-gray-600 text-sm mb-6">per month</p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-green-600 mr-2" />Profile listing on platform</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-green-600 mr-2" />Client booking system</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-green-600 mr-2" />Basic analytics</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-green-600 mr-2" />Email support</li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-green-600 mr-2" />
+                          Profile listing on platform
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-green-600 mr-2" />
+                          Client booking system
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-green-600 mr-2" />
+                          Basic analytics
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-green-600 mr-2" />
+                          Email support
+                        </li>
                       </ul>
-                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Select Starter</Button>
+                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">
+                        Select Starter
+                      </Button>
                     </div>
                   </div>
                   {/* Pro (Monthly) Plan */}
                   <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
                     <div className="text-center">
                       <h3 className="text-xl font-semibold mb-2">Pro</h3>
-                      <div className="text-3xl font-bold text-vibecore-red mb-1">$49</div>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $49
+                      </div>
                       <p className="text-gray-600 text-sm mb-6">per month</p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Everything in Starter</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Advanced analytics</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Priority support</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Featured listing boost</li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Everything in Starter
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Advanced analytics
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Priority support
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Featured listing boost
+                        </li>
                       </ul>
-                      <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">Select Pro</Button>
+                      <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white rounded-full">
+                        Select Pro
+                      </Button>
                     </div>
                   </div>
                   {/* Growth (6 Months) Plan - Most Popular */}
                   <div className="bg-white border-2 border-vibecore-red rounded-2xl p-6 relative shadow-lg">
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <Badge className="bg-vibecore-red text-white rounded-full px-4 py-1">Most Popular</Badge>
+                      <Badge className="bg-vibecore-red text-white rounded-full px-4 py-1">
+                        Most Popular
+                      </Badge>
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl font-semibold mb-2">Growth (6 Months)</h3>
-                      <div className="text-3xl font-bold text-vibecore-red mb-1">$249</div>
+                      <h3 className="text-xl font-semibold mb-2">
+                        Growth (6 Months)
+                      </h3>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $249
+                      </div>
                       <p className="text-gray-600 text-sm mb-2">total</p>
-                      <p className="text-green-600 text-sm font-medium mb-4">Save $45!</p>
+                      <p className="text-green-600 text-sm font-medium mb-4">
+                        Save $45!
+                      </p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Everything in Pro</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Extra marketing tools</li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Everything in Pro
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Extra marketing tools
+                        </li>
                       </ul>
-                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">Select Growth</Button>
+                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                        Select Growth
+                      </Button>
                     </div>
                   </div>
                   {/* Elite (Yearly) Plan */}
                   <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-vibecore-red transition-colors">
                     <div className="text-center">
-                      <h3 className="text-xl font-semibold mb-2">Elite (Yearly)</h3>
-                      <div className="text-3xl font-bold text-vibecore-red mb-1">$459</div>
+                      <h3 className="text-xl font-semibold mb-2">
+                        Elite (Yearly)
+                      </h3>
+                      <div className="text-3xl font-bold text-vibecore-red mb-1">
+                        $459
+                      </div>
                       <p className="text-gray-600 text-sm mb-2">per year</p>
-                      <p className="text-green-600 text-sm font-medium mb-4">Save $129!</p>
+                      <p className="text-green-600 text-sm font-medium mb-4">
+                        Save $129!
+                      </p>
                       <ul className="text-left space-y-3 mb-6">
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Everything in Growth</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Premium analytics & insights</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Dedicated account manager</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />Marketing toolkit</li>
-                        <li className="flex items-center text-sm"><Check className="w-4 h-4 text-vibecore-red mr-2" />API access</li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Everything in Growth
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Premium analytics & insights
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Dedicated account manager
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          Marketing toolkit
+                        </li>
+                        <li className="flex items-center text-sm">
+                          <Check className="w-4 h-4 text-vibecore-red mr-2" />
+                          API access
+                        </li>
                       </ul>
-                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">Select Elite</Button>
+                      <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
+                        Select Elite
+                      </Button>
                     </div>
                   </div>
                 </div>
