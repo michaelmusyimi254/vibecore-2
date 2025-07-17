@@ -40,17 +40,17 @@ export default function NavBar() {
   };
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg font-sans">
-      <div className="px-6 py-4 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 md:top-4 md:left-4 md:right-4 md:rounded-2xl md:border md:border-white/20 shadow-lg font-sans">
+      <div className="px-4 py-3 md:px-6 md:py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link
             to="/"
-            className="text-2xl font-bold vc-section-header tracking-tight"
+            className="text-xl md:text-2xl font-bold vc-section-header tracking-tight"
           >
             VIBE<span className="text-[color:hsl(var(--vc-red))]">CORE</span>
           </Link>
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
@@ -62,8 +62,8 @@ export default function NavBar() {
             ))}
           </nav>
         </div>
-        {/* Desktop Auth Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Desktop & Tablet Auth Buttons */}
+        <div className="hidden md:flex items-center space-x-3">
           {isLoggedIn ? (
             <>
               <Link to="/dashboard">
