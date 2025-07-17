@@ -22,11 +22,10 @@ export default function NavBar() {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/search", label: "Search" },
     { to: "/events", label: "Events" },
-    { to: "/trainers", label: "Trainers" },
-    { to: "/facilities", label: "Facilities" },
-    { to: "/shops", label: "Shops" },
+    { to: "/trainers", label: "Coaches" },
+    { to: "/facilities", label: "Studios" },
+    { to: "/shops", label: "Shop" },
   ];
 
   const handleLogout = () => {
