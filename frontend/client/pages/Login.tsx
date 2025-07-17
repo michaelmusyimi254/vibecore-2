@@ -158,7 +158,9 @@ export default function Login() {
                 <div className="space-y-3">
                   <Button
                     variant="outline"
-                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red"
+                    onClick={() => handleSocialLogin("google")}
+                    disabled={isLoading}
+                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red disabled:opacity-50"
                   >
                     <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                       <path
@@ -182,7 +184,9 @@ export default function Login() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red"
+                    onClick={() => handleSocialLogin("facebook")}
+                    disabled={isLoading}
+                    className="w-full rounded-full border-gray-300 hover:border-vibecore-red hover:text-vibecore-red disabled:opacity-50"
                   >
                     <svg
                       className="w-5 h-5 mr-3"
