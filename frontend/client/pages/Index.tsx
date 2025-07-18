@@ -222,12 +222,28 @@ export default function Index() {
   const slide = heroSlides[current];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div
+      className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50"
+      style={{
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <NavBar />
 
       {/* Enhanced Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{
+            backgroundImage:
+              "url(https://cdn.builder.io/api/v1/image/assets%2F89b2ce336c1e469faf0b11a3b6d20bdd%2Fd753390aadd949fca87f57d0eb199371)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
           <div
             className="absolute -bottom-40 -left-40 w-96 h-96 bg-orange-200 rounded-full opacity-20 animate-float"
@@ -239,15 +255,27 @@ export default function Index() {
           ></div>
         </div>
 
-        <div className="vc-container relative z-10 pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[80vh]">
+        <div
+          className="vc-container relative z-10 pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[790px]"
+          style={{
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
                 <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
-                  Your AI-Powered
+                  <span style={{ color: "rgb(255, 255, 255)" }}>
+                    Your AI-Powered
+                  </span>
                   <span className="text-gradient block">Wellness Platform</span>
                 </h1>
-                <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
+                <p
+                  className="vc-body-large mb-8 max-w-lg"
+                  style={{ color: "rgba(255, 255, 255, 1)" }}
+                >
                   Connect with certified coaches, discover premium venues, and
                   transform your wellness journey with intelligent AI
                   recommendations.
@@ -259,14 +287,19 @@ export default function Index() {
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 bg-gradient-to-r from-purple-100 to-blue-100 px-3 py-1.5 rounded-full border border-purple-200">
                     <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-purple-700">
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "rgba(208, 2, 27, 1)" }}
+                    >
                       ✨ AI-Powered Search
                     </span>
                   </div>
                   {userLocation && (
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <MapPin className="w-4 h-4 text-red-500" />
-                      <span>{userLocation}</span>
+                      <span style={{ color: "rgba(255, 255, 255, 1)" }}>
+                        {userLocation}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -352,22 +385,35 @@ export default function Index() {
                               d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                             />
                           </svg>
-                          <span>Ask AI</span>
+                          <span style={{ color: "rgba(208, 2, 27, 1)" }}>
+                            Ask AI
+                          </span>
                         </>
                       )}
                     </button>
                   </div>
 
                   {!searchQuery && !searching && !awaitingClarification && (
-                    <div className="mt-4 space-y-2">
+                    <div
+                      className="mt-4 space-y-2"
+                      style={{ color: "rgba(255, 255, 255, 1)" }}
+                    >
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
-                        <span className="text-gray-400">AI suggests: </span>
-                        <span className="text-purple-600 font-medium animate-fade-in">
+                        <span style={{ color: "rgba(255, 255, 255, 1)" }}>
+                          AI suggests:{" "}
+                        </span>
+                        <span
+                          className="font-medium animate-fade-in"
+                          style={{ color: "rgba(208, 2, 27, 1)" }}
+                        >
                           {exampleSearches[exampleIdx]}
                         </span>
                       </div>
-                      <div className="text-xs text-gray-400">
+                      <div
+                        className="text-xs"
+                        style={{ color: "rgba(255, 255, 255, 1)" }}
+                      >
                         💡 Our AI understands natural language - just type what
                         you're looking for!
                       </div>
