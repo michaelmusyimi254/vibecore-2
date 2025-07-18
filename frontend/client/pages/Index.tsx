@@ -28,7 +28,7 @@ const heroSlides = [
     description:
       "Share your expertise, build meaningful connections, and grow your coaching business.",
     button: "Become a Coach",
-    icon: "💪",
+    icon: "��",
     gradient: "from-green-500 to-teal-600",
   },
   {
@@ -675,48 +675,19 @@ export default function Index() {
                 </div>
               </div>
               <div className="flex flex-col w-6/12 ml-5 max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col relative min-h-[100px] p-5">
-                  <section className="flex flex-col relative min-h-[100px] p-5 w-full self-stretch grow max-w-[1200px] mx-auto">
-                    <div className="space-y-8">
-                      <div className="relative group">
-                        <div className="relative overflow-hidden rounded-2xl h-48">
-                          <img
-                            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
-                            alt="Premium wellness facility"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
-                          <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                            <h4 className="font-bold text-lg mb-1">
-                              Premium Venues
-                            </h4>
-                            <p className="text-white/90 text-sm">
-                              Access to top-rated facilities
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="relative group">
-                        <div className="relative overflow-hidden rounded-2xl h-48">
-                          <img
-                            src="https://images.unsplash.com/photo-1506629905531-f59c1b47e89c?auto=format&fit=crop&w=800&q=80"
-                            alt="Wellness community"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
-                          <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                            <h4 className="font-bold text-lg mb-1">
-                              Community Events
-                            </h4>
-                            <p className="text-white/90 text-sm">
-                              Join wellness gatherings
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
+                <div
+                  className="relative"
+                  style={{
+                    height: "auto",
+                    fontSize: "23px",
+                    fontWeight: "400",
+                    minHeight: "878px",
+                    padding: "220px 40px 40px",
+                  }}
+                >
+                  our ai matching add text here
+                  <br />
+                  Enter some text...
                 </div>
               </div>
             </div>
