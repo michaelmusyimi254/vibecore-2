@@ -791,12 +791,6 @@ export default function Index() {
                         </Button>
                       </Link>
 
-                      <Link to="/signup" className="w-full">
-                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white text-lg py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
-                          Become a Coach - Open Your Shop
-                        </Button>
-                      </Link>
-
                       <div className="text-center pt-4">
                         <p className="text-sm text-gray-500">
                           Join over{" "}
