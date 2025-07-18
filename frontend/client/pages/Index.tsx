@@ -561,17 +561,122 @@ export default function Index() {
       {/* Two-Column Features with Images and Floating Text */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything you need for{" "}
-              <span className="text-red-500">wellness success</span>
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              AI-powered platform with seamless booking and premium experiences
-            </p>
+          <div className="flex flex-col relative mt-5">
+            <div className="gap-5 flex max-md:flex-col max-md:gap-0">
+              <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col relative min-h-[100px] p-5">
+                  <section className="flex flex-col relative min-h-[100px] p-5 w-full self-stretch grow max-w-[1200px] mx-auto">
+                    <div className="mb-12">
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex flex-col">
+                        <span className="mr-auto">Everything you need for</span>
+                        <span className="text-red-500 mr-auto">
+                          wellness success
+                        </span>
+                      </h2>
+                      <p className="text-gray-600 text-lg max-w-2xl mr-auto text-left">
+                        AI-powered platform with seamless booking and premium
+                        experiences
+                      </p>
+                    </div>
+
+                    <div className="mb-[149px]">
+                      <div className="relative group">
+                        <div className="relative overflow-hidden rounded-2xl h-64">
+                          <img
+                            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                            alt="Personal trainer with client"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
+                          <div className="absolute top-4 right-4">
+                            <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                              Featured
+                            </div>
+                          </div>
+                          <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              </div>
+                              <div className="flex text-yellow-400 text-sm">
+                                ⭐⭐⭐⭐⭐{" "}
+                                <span className="text-white ml-1">
+                                  4.9 (324)
+                                </span>
+                              </div>
+                            </div>
+                            <h3 className="font-bold text-xl mb-2">
+                              AI Coach Matching
+                            </h3>
+                            <p className="text-white/90 text-sm">
+                              Smart recommendations & instant booking with
+                              certified professionals
+                            </p>
+                            <div className="mt-3 text-white/80 text-xs">
+                              From $25/hour
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center mt-12 space-x-6">
+                      <button
+                        onClick={() =>
+                          setCurrent((current - 1 + slideCount) % slideCount)
+                        }
+                        className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
+                        aria-label="Previous Slide"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+
+                      <div className="flex items-center space-x-2">
+                        {heroSlides.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrent(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === current
+                                ? "bg-red-500 scale-125"
+                                : "bg-gray-300 hover:bg-gray-400"
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => setCurrent((current + 1) % slideCount)}
+                        className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
+                        aria-label="Next Slide"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div className="flex flex-col w-6/12 ml-5 max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col relative min-h-[100px] p-5">
+                  <section className="flex flex-col relative min-h-[100px] p-5 w-full self-stretch grow max-w-[1200px] mx-auto">
+                    {/* Right column content will be added here */}
+                  </section>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div
+            className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            style={{ display: "none" }}
+          >
             {/* Left Column */}
             <div className="space-y-6">
               {/* AI Coach Matching */}
