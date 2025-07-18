@@ -637,7 +637,7 @@ export default function Index() {
                       </div>
                     </div>
 
-                    <div className="flex justify-center mt-12 space-x-6">
+                    <div className="flex justify-center space-x-6">
                       <button
                         onClick={() =>
                           setCurrent((current - 1 + slideCount) % slideCount)
