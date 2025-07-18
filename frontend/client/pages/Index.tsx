@@ -390,7 +390,7 @@ export default function Index() {
                             />
                           </svg>
                           <span style={{ color: "rgba(208, 2, 27, 1)" }}>
-                            Ask AI
+                            Ask Me
                           </span>
                         </>
                       )}
@@ -409,7 +409,11 @@ export default function Index() {
                         </span>
                         <span
                           className="font-medium animate-fade-in"
-                          style={{ color: "rgba(208, 2, 27, 1)" }}
+                          style={{
+                            color: "rgba(255, 255, 255, 1)",
+                            fontStyle: "italic",
+                            fontSize: "15px",
+                          }}
                         >
                           {exampleSearches[exampleIdx]}
                         </span>
@@ -501,7 +505,7 @@ export default function Index() {
                           type="submit"
                           className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white w-full"
                         >
-                          🤖 Continue with AI
+                          ���� Continue with AI
                         </Button>
                       </div>
                     </div>
@@ -510,7 +514,10 @@ export default function Index() {
               </div>
 
               <div className="space-y-4">
-                <p className="text-gray-600 font-medium">
+                <p
+                  className="font-medium"
+                  style={{ color: "rgba(255, 255, 255, 1)" }}
+                >
                   Popular in your area
                 </p>
                 <div className="flex flex-wrap gap-3">
