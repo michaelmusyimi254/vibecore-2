@@ -94,59 +94,9 @@ export default function Index() {
     return () => clearInterval(interval);
   }, []);
 
-  // Get browser location (city/region if possible)
+  // Set default location without external API calls
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            // Add timeout and proper error handling for the fetch
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-            const res = await fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
-              {
-                signal: controller.signal,
-                headers: {
-                  "User-Agent": "VibeCore/1.0",
-                },
-              },
-            );
-
-            clearTimeout(timeoutId);
-
-            if (!res.ok) {
-              throw new Error(`HTTP error! status: ${res.status}`);
-            }
-
-            const data = await res.json();
-            setUserLocation(
-              data.address?.city ||
-                data.address?.town ||
-                data.address?.village ||
-                data.address?.state ||
-                "Sigona ward",
-            );
-          } catch (error) {
-            console.warn("Location fetch failed:", error.message);
-            setUserLocation("Sigona ward");
-          }
-        },
-        (error) => {
-          console.warn("Geolocation failed:", error.message);
-          setUserLocation("Sigona ward");
-        },
-        {
-          timeout: 10000,
-          enableHighAccuracy: false,
-          maximumAge: 300000, // Cache for 5 minutes
-        },
-      );
-    } else {
-      setUserLocation("Sigona ward");
-    }
+    setUserLocation("Sigona ward");
   }, []);
 
   const followUpPrompts = [
