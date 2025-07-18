@@ -41,11 +41,11 @@ import {
 // Remove FacilityCard import
 
 export default function Facilities() {
-  const studios = [
+  const grounds = [
     {
       id: 1,
-      name: "Elite Wellness Studio",
-      type: "Premium Studio",
+      name: "Elite Wellness Grounds",
+      type: "Premium Grounds",
       location: "123 Main St, Downtown",
       status: "Open",
       rating: 4.6,
@@ -141,13 +141,13 @@ export default function Facilities() {
       <NavBar />
 
       {/* Page Header */}
-      <section className="pt-24 pb-8 bg-gray-50">
+      <section className="pt-32 pb-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Wellness Venues</h1>
+            <h1 className="text-3xl font-bold mb-2">Wellness Grounds</h1>
             <p className="text-gray-600">
-              Discover gyms, studios, spas, stadiums, pools, golf clubs, and
-              wellness venues near you
+              Discover gyms, grounds, spas, stadiums, pools, golf clubs, and
+              wellness grounds near you
             </p>
           </div>
 
@@ -157,7 +157,7 @@ export default function Facilities() {
               <div className="flex-1 relative">
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
-                  placeholder="Search venues..."
+                  placeholder="Search grounds..."
                   className="pl-10 rounded-full border-gray-200"
                 />
               </div>
@@ -449,7 +449,7 @@ export default function Facilities() {
             <div className="w-full lg:w-3/4">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold">
-                  {studios.length} studios found
+                  {grounds.length} grounds found
                 </h2>
                 <Select defaultValue="rating">
                   <SelectTrigger className="w-[150px] rounded-full">
@@ -466,92 +466,85 @@ export default function Facilities() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {studios.map((studio) => (
-                  <Link key={studio.id} to={`/facilities/1`}>
+                {grounds.map((ground) => (
+                  <Link key={ground.id} to={`/facilities/1`}>
                     <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                       <img
-                        src={studio.image}
-                        alt={studio.name}
                         className="w-full h-48 object-cover"
+                        src={ground.image}
+                        alt={ground.name}
                       />
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-lg">
-                            {studio.name}
+                      <div className="p-5">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-lg font-semibold">
+                            {ground.name}
                           </h3>
                           <Badge
                             variant={
-                              studio.status === "Open" ? "default" : "secondary"
+                              ground.status === "Open" ? "default" : "secondary"
                             }
-                            className="rounded-full"
+                            className="ml-2"
                           >
-                            {studio.status}
+                            {ground.status}
                           </Badge>
                         </div>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {studio.type}
+                        <p className="text-sm text-gray-500 mb-3">
+                          {ground.type}
                         </p>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {studio.location}
-                        </p>
+                        <div className="flex items-center text-sm text-gray-500 mb-3">
+                          <MapPin className="w-4 h-4 mr-1" />
+                          {ground.location}
+                        </div>
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center">
-                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                            <span className="text-sm font-medium ml-1">
-                              {studio.rating}
+                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
+                            <span className="font-medium">
+                              {ground.rating}
                             </span>
-                            <span className="text-gray-500 text-sm ml-1">
-                              ({studio.reviews})
+                            <span className="text-gray-400 ml-1">
+                              ({ground.reviews})
                             </span>
                           </div>
-                          <span className="font-semibold text-vibecore-red">
-                            {studio.price}
-                          </span>
+                          <div className="font-semibold">
+                            {ground.price}
+                          </div>
                         </div>
-                        <p className="text-gray-500 text-sm mb-3 flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {studio.openTime}
-                        </p>
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {studio.tags.slice(0, 3).map((tag) => (
+                        <div className="flex items-center text-sm text-gray-500 mb-3">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {ground.openTime}
+                        </div>
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {ground.tags.slice(0, 3).map((tag) => (
                             <Badge
                               key={tag}
                               variant="secondary"
-                              className="text-xs rounded-full"
+                              className="text-xs"
                             >
                               {tag}
                             </Badge>
                           ))}
                         </div>
-                        <div className="flex items-center mb-4 text-xs text-gray-500">
-                          {studio.amenities
-                            .slice(0, 4)
-                            .map((amenity, index) => (
-                              <span key={amenity} className="flex items-center">
-                                {amenity === "WiFi" && (
-                                  <Wifi className="w-3 h-3 mr-1" />
-                                )}
-                                {amenity === "Parking" && (
-                                  <Car className="w-3 h-3 mr-1" />
-                                )}
-                                {amenity.includes("Room") ||
-                                  amenity.includes("Area") ||
-                                  (amenity === "Showers" && (
-                                    <Building2 className="w-3 h-3 mr-1" />
-                                  ))}
-                                {!["WiFi", "Parking"].includes(amenity) &&
-                                  !amenity.includes("Room") &&
-                                  !amenity.includes("Area") &&
-                                  amenity !== "Showers" && (
-                                    <Users className="w-3 h-3 mr-1" />
-                                  )}
-                                {amenity}
-                                {index <
-                                  studio.amenities.slice(0, 4).length - 1 &&
-                                  " • "}
-                              </span>
-                            ))}
+                        <div className="flex items-center text-sm text-gray-500">
+                          <div className="flex -space-x-2 mr-2">
+                            {ground.amenities
+                              .slice(0, 4)
+                              .map((amenity, i) => (
+                                <div
+                                  key={i}
+                                  className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs"
+                                >
+                                  {amenity[0]}
+                                </div>
+                              ))}
+                            {ground.amenities.length > 4 && (
+                              <div className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs">
+                                +{ground.amenities.length - 4}
+                              </div>
+                            )}
+                          </div>
+                          {ground.amenities.slice(0, 4).join(" • ")}
+                          {ground.amenities.length > 4 &&
+                            ` • +${ground.amenities.length - 4} more`}
                         </div>
                         <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
                           View More
@@ -568,7 +561,7 @@ export default function Facilities() {
                   variant="outline"
                   className="rounded-full px-8 py-2 border-vibecore-red text-vibecore-red hover:bg-vibecore-red hover:text-white"
                 >
-                  Load More Venues
+                  Load More Grounds
                 </Button>
               </div>
             </div>

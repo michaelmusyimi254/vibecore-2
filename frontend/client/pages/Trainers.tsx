@@ -66,7 +66,7 @@ export default function Trainers() {
       id: 2,
       name: "Mike Chen",
       specialty: "Yoga & Mindfulness",
-      location: "Zen Wellness Studio",
+      location: "Zen Wellness Grounds",
       rating: 4.8,
       reviews: 89,
       experience: "6 years",
@@ -85,7 +85,7 @@ export default function Trainers() {
       id: 3,
       name: "Emma Davis",
       specialty: "Pilates & Rehabilitation",
-      location: "Core Fitness Studio",
+      location: "Core Fitness Grounds",
       rating: 4.7,
       reviews: 156,
       experience: "5 years",
@@ -123,7 +123,7 @@ export default function Trainers() {
       id: 5,
       name: "Lisa Rodriguez",
       specialty: "Dance Fitness",
-      location: "Rhythm Studio",
+      location: "Rhythm Grounds",
       rating: 4.6,
       reviews: 98,
       experience: "4 years",
@@ -166,7 +166,7 @@ export default function Trainers() {
       <NavBar />
 
       {/* Page Header */}
-      <section className="pt-24 pb-8 bg-gray-50">
+      <section className="pt-32 pb-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <h1 className="text-3xl font-bold mb-2">Find Your Perfect Coach</h1>

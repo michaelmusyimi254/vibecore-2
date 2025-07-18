@@ -225,8 +225,14 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <NavBar />
 
+<<<<<<< HEAD
       {/* Enhanced Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
+=======
+      {/* Join Our Community Section */}
+      <section className="pt-16 pb-20 bg-gray-50 relative overflow-hidden">
+        {/* Animated Background Elements */}
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
           <div
@@ -238,17 +244,21 @@ export default function Index() {
             style={{ animationDelay: "4s" }}
           ></div>
         </div>
+<<<<<<< HEAD
 
         <div className="vc-container relative z-10 pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[80vh]">
+=======
+        <div className="vc-container relative z-10 pt-24 md:pt-28 flex flex-col items-center justify-center py-12">
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
           <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full">
             <div className="flex flex-col items-start w-full space-y-8">
               <div className="animate-slide-up">
-                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
+                <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-normal md:leading-tight text-gray-900">
                   Your AI-Powered
-                  <span className="text-gradient block">Wellness Platform</span>
+                  <span className="text-gradient block mt-1 md:mt-2">Wellness Platform</span>
                 </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
-                  Connect with certified coaches, discover premium venues, and
+                  Connect with certified coaches, discover premium grounds, and
                   transform your wellness journey with intelligent AI
                   recommendations.
                 </p>
@@ -441,7 +451,7 @@ export default function Index() {
                         <p className="text-purple-700 font-medium mb-3">
                           {aiMessage}
                         </p>
-                        <Input
+                <Input
                           placeholder="Help me understand better..."
                           value={clarification}
                           onChange={(e) => setClarification(e.target.value)}
@@ -452,7 +462,7 @@ export default function Index() {
                           className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white w-full"
                         >
                           🤖 Continue with AI
-                        </Button>
+                </Button>
                       </div>
                     </div>
                   </form>
@@ -473,16 +483,16 @@ export default function Index() {
                     "Meditation Centers",
                   ].map((tag) => (
                     <button
-                      key={tag}
+                    key={tag}
                       onClick={() => {
                         setSearchQuery(tag);
                         handleSearch(tag);
                       }}
                       className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:border-red-300 hover:text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-105 shadow-sm"
-                    >
-                      {tag}
+                  >
+                    {tag}
                     </button>
-                  ))}
+                ))}
                 </div>
               </div>
             </div>
@@ -517,8 +527,8 @@ export default function Index() {
                   </p>
                   <Link to="/signup">
                     <Button className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 rounded-xl font-medium hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                      {slide.button}
-                    </Button>
+                  {slide.button}
+                </Button>
                   </Link>
                 </div>
               </div>
@@ -526,15 +536,15 @@ export default function Index() {
           </div>
 
           <div className="flex justify-center mt-12 space-x-6">
-            <button
+          <button
               onClick={() =>
                 setCurrent((current - 1 + slideCount) % slideCount)
               }
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-              aria-label="Previous Slide"
-            >
+            aria-label="Previous Slide"
+          >
               <ChevronLeft size={20} />
-            </button>
+          </button>
 
             <div className="flex items-center space-x-2">
               {heroSlides.map((_, index) => (
@@ -547,17 +557,18 @@ export default function Index() {
               ))}
             </div>
 
-            <button
-              onClick={() => setCurrent((current + 1) % slideCount)}
+          <button
+            onClick={() => setCurrent((current + 1) % slideCount)}
               className="bg-white/10 backdrop-blur-sm border border-gray-200 text-gray-600 p-3 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300 transition-all duration-300 hover:scale-110"
-              aria-label="Next Slide"
-            >
+            aria-label="Next Slide"
+          >
               <ChevronRight size={20} />
-            </button>
+          </button>
           </div>
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Two-Column Features with Images and Floating Text */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -565,6 +576,17 @@ export default function Index() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Everything you need for{" "}
               <span className="text-red-500">wellness success</span>
+=======
+      {/* Enhanced Platform Features Section */}
+      <section className="py-12 bg-white">
+        <div className="vc-container">
+          <div className="text-center mb-16 animate-fade-in">
+            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              Platform Features
+            </span>
+            <h2 className="vc-heading-2 text-responsive-lg mb-6">
+              Why Choose <span className="text-gradient">VibeCore</span>?
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
               AI-powered platform with seamless booking and premium experiences
@@ -946,6 +968,16 @@ export default function Index() {
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
+=======
+              <h3 className="text-xl font-bold mb-3 text-gray-900">
+                Discover Grounds
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Explore premium gyms, studios, and wellness centers. Filter by
+                amenities and location.
+              </p>
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
             </div>
           </div>
 
@@ -1039,6 +1071,7 @@ export default function Index() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Featured Trainers Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -1078,6 +1111,70 @@ export default function Index() {
                 <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
                   Featured
                 </span>
+=======
+      {/* Enhanced CTA Section */}
+      <section className="pt-12 pb-20 bg-gradient-to-br from-white via-red-50 to-orange-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-red-200 rounded-full animate-float"></div>
+          <div
+            className="absolute bottom-20 right-20 w-80 h-80 bg-orange-200 rounded-full animate-float"
+            style={{ animationDelay: "3s" }}
+          ></div>
+        </div>
+
+        <div className="vc-container relative z-10">
+          <div className="text-center mb-16 animate-fade-in">
+            <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              Join Our Community
+            </span>
+            <h2 className="vc-heading-2 text-responsive-lg mb-6">
+              Ready to Transform Your
+              <span className="text-gradient">Wellness Journey</span>?
+            </h2>
+            <p className="vc-body-large max-w-2xl mx-auto">
+              Choose your path and start building meaningful connections in the
+              wellness community today.
+            </p>
+          </div>
+
+          {/* Mobile Scrollable, Desktop Grid */}
+          <div className="overflow-x-auto md:overflow-visible">
+            <div
+              className="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto pb-4 md:pb-0"
+              style={{ minWidth: "900px" }}
+            >
+              {/* Coach Card */}
+              <div className="vc-card vc-card-3d p-8 text-center bg-gradient-to-br from-white to-red-50 min-w-[300px] md:min-w-0 animate-slide-up">
+                <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Become a Coach
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Share your expertise, build meaningful client relationships,
+                  and grow your wellness coaching business with our
+                  comprehensive platform.
+                </p>
+                <Link to="/signup">
+                  <Button className="vc-btn-primary w-full hover:scale-105 transition-transform duration-300">
+                    Start Coaching
+                </Button>
+                </Link>
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
               </div>
               <div className="absolute top-4 right-4 z-10">
                 <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
@@ -1094,7 +1191,23 @@ export default function Index() {
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                   </svg>
+<<<<<<< HEAD
                 </button>
+=======
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  List Your Venue
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Showcase your wellness venue to thousands of wellness
+                  enthusiasts. Manage bookings and grow your member community.
+                </p>
+                <Link to="/signup">
+                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
+                    Join as Venue
+                </Button>
+                </Link>
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
               </div>
               <div className="relative h-80">
                 <img
@@ -1302,6 +1415,21 @@ export default function Index() {
                     </span>
                   </div>
                 </div>
+<<<<<<< HEAD
+=======
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  Sell Premium Products
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Reach thousands of wellness enthusiasts with your high-quality
+                  fitness gear, supplements, and lifestyle products.
+                </p>
+                <Link to="/signup">
+                  <Button className="vc-btn-secondary w-full hover:scale-105 transition-transform duration-300">
+                  Start Selling
+                </Button>
+                </Link>
+>>>>>>> 36531d24f839172ca7281bb53eeda236e8a561c3
               </div>
             </div>
           </div>

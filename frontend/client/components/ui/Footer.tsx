@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
               <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
                 Your AI-powered wellness platform connecting you with certified
-                coaches, premium venues, and amazing experiences.
+                coaches, premium grounds, and amazing experiences.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -78,7 +78,7 @@ export default function Footer() {
                     to="/facilities"
                     className="text-gray-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block"
                   >
-                    Wellness Venues
+                    Wellness Grounds
                   </Link>
                 </li>
                 <li>
