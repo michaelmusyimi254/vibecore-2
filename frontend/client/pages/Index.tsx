@@ -7,12 +7,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 import BlurText from "../../yes/BlurText/BlurText.jsx";
+
+// Banner slides with real fitness images
+const bannerSlides = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    title: "Premium Fitness Facilities",
+    subtitle: "State-of-the-art equipment for all your training needs"
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    title: "Expert Personal Training",
+    subtitle: "Get personalized coaching from certified professionals"
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    title: "Group Fitness Classes",
+    subtitle: "Join our energetic group sessions"
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1558611848-73f7d918d762?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    title: "Nutrition & Wellness",
+    subtitle: "Complete health solutions for your fitness journey"
+  }
+];
 
 const heroSlides = [
   {
@@ -129,6 +157,8 @@ const ctaCards = [
 ];
 
 export default function Index() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [current, setCurrent] = useState(0);
   const slideCount = heroSlides.length;
   const [searchQuery, setSearchQuery] = useState("");
@@ -149,6 +179,54 @@ export default function Index() {
     }, 5000);
     return () => clearInterval(interval);
   }, [slideCount]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setExampleIdx((prev) => (prev + 1) % exampleSearches.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto-slide effect for the hero section
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slideCount);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slideCount]);
+
+  // Auto-slide effect for the banner
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
+    }, 5000);
+    
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  // Update banner slide visibility
+  useEffect(() => {
+    const slides = document.querySelectorAll('.banner-slide');
+    slides.forEach((slide, index) => {
+      if (index === currentSlide) {
+        slide.classList.add('opacity-100');
+        slide.classList.remove('opacity-0');
+      } else {
+        slide.classList.add('opacity-0');
+        slide.classList.remove('opacity-100');
+      }
+    });
+  }, [currentSlide]);
+  
+  const goToPrevSlide = () => {
+    setCurrentSlide(prev => (prev === 0 ? bannerSlides.length - 1 : prev - 1));
+  };
+  
+  const goToNextSlide = () => {
+    setCurrentSlide(prev => (prev === bannerSlides.length - 1 ? 0 : prev + 1));
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -302,8 +380,8 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <NavBar />
 
-      {/* Enhanced Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
+      <main className="relative">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-200 rounded-full opacity-20 animate-float"></div>
           <div
@@ -323,7 +401,7 @@ export default function Index() {
                 <h1 className="vc-heading-1 text-responsive-xl mb-6 leading-tight text-gray-900">
                   Your AI-Powered
                   <span className="text-gradient block">Wellness Platform</span>
-                </h1>
+              </h1>
                 <p className="vc-body-large text-gray-600 mb-8 max-w-lg">
                   Connect with certified coaches, discover premium venues, and
                   transform your wellness journey with intelligent AI
@@ -713,7 +791,7 @@ export default function Index() {
                       ))}
                     </div>
                     <span className="text-xs ml-1">5 (167)</span>
-                  </div>
+        </div>
                   <h3 className="font-bold text-lg">Marcus Rodriguez</h3>
                   <p className="text-white/80 text-sm mb-2">
                     Strength & Conditioning Coach
@@ -728,7 +806,7 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
 
             {/* Trainer 2 */}
             <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -1127,8 +1205,9 @@ export default function Index() {
           </div>
         </div>
       </section>
-
+      
       <Footer />
+      </main>
     </div>
   );
 }
