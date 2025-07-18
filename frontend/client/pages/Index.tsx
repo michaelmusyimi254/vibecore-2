@@ -28,7 +28,7 @@ const heroSlides = [
     description:
       "Share your expertise, build meaningful connections, and grow your coaching business.",
     button: "Become a Coach",
-    icon: "��",
+    icon: "💪",
     gradient: "from-green-500 to-teal-600",
   },
   {
@@ -676,18 +676,138 @@ export default function Index() {
               </div>
               <div className="flex flex-col w-6/12 ml-5 max-md:ml-0 max-md:w-full">
                 <div
-                  className="relative"
+                  className="relative flex flex-col justify-center"
                   style={{
                     height: "auto",
-                    fontSize: "23px",
                     fontWeight: "400",
                     minHeight: "878px",
-                    padding: "220px 40px 40px",
+                    padding: "80px 40px 40px",
                   }}
                 >
-                  our ai matching add text here
-                  <br />
-                  Enter some text...
+                  <div className="space-y-8">
+                    {/* Main heading */}
+                    <div>
+                      <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                        AI-Powered Coach Matching
+                      </h2>
+                      <p className="text-xl text-gray-600 leading-relaxed">
+                        Our intelligent platform understands your wellness
+                        goals, preferences, and schedule to connect you with the
+                        perfect certified coach.
+                      </p>
+                    </div>
+
+                    {/* Features list */}
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            Smart Recommendations
+                          </h3>
+                          <p className="text-gray-600">
+                            Our AI analyzes your fitness level, goals, and
+                            location to suggest the most compatible coaches in
+                            your area.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            Instant Booking
+                          </h3>
+                          <p className="text-gray-600">
+                            Book sessions instantly with verified coaches.
+                            Real-time availability and seamless scheduling.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            Certified Professionals
+                          </h3>
+                          <p className="text-gray-600">
+                            All coaches are background-checked and certified.
+                            Read reviews, check credentials, and choose with
+                            confidence.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Call-to-action buttons */}
+                    <div className="space-y-4 pt-8">
+                      <Link to="/signup" className="w-full">
+                        <Button className="w-full bg-red-500 hover:bg-red-600 text-white text-lg py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                          Find Your Perfect Coach
+                        </Button>
+                      </Link>
+
+                      <Link to="/signup" className="w-full">
+                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white text-lg py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                          Become a Coach - Open Your Shop
+                        </Button>
+                      </Link>
+
+                      <div className="text-center pt-4">
+                        <p className="text-sm text-gray-500">
+                          Join over{" "}
+                          <span className="font-semibold text-red-500">
+                            10,000+ members
+                          </span>{" "}
+                          already transforming their wellness journey
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
