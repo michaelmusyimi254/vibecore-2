@@ -605,9 +605,15 @@ export default function Index() {
                       </p>
                     </div>
 
-                    <div className="mb-[149px]">
-                      <div className="relative group">
-                        <div className="relative overflow-hidden rounded-2xl h-64">
+                    <div className="mb-[149px]" style={{ height: "400px" }}>
+                      <div
+                        className="relative group"
+                        style={{ height: "400px" }}
+                      >
+                        <div
+                          className="relative overflow-hidden rounded-2xl"
+                          style={{ height: "500px" }}
+                        >
                           <img
                             src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
                             alt="Personal trainer with client"
