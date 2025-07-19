@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useNavigate } from 'react-router-dom';
@@ -730,8 +730,6 @@ const Signup: React.FC = () => {
       case 2:
         return renderAccountForm();
       case 3:
-        return renderPaymentStep();
-      case 4:
         return renderSuccessStep();
       default:
         return renderRoleSelection();
@@ -1234,10 +1232,17 @@ const Signup: React.FC = () => {
             <div className="pt-4">
               <div className="flex items-start mb-6">
                 <div className="flex items-center h-5">
-                  <Checkbox
-                    id="acceptTerms"
-                    className={cn('h-4 w-4 rounded', errors.acceptTerms && 'border-red-500')}
-                    {...register('acceptTerms')}
+                  <Controller
+                    name="acceptTerms"
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        id="acceptTerms"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className={cn('h-4 w-4 rounded', errors.acceptTerms && 'border-red-500')}
+                      />
+                    )}
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -1285,10 +1290,10 @@ const Signup: React.FC = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Progress Indicator */}
-        {currentStep < 4 && (
+        {currentStep < 3 && (
           <div className="max-w-3xl mx-auto mb-12">
             <div className="flex justify-between items-center mb-2">
-              {[1, 2, 3].map((step) => (
+              {[1, 2].map((step) => (
                 <div 
                   key={step} 
                   className={`flex flex-col items-center ${currentStep >= step ? 'text-red-600' : 'text-gray-400'}`}
@@ -1301,7 +1306,7 @@ const Signup: React.FC = () => {
                     )}
                   </div>
                   <span className="mt-2 text-xs font-medium">
-                    {step === 1 ? 'Role' : step === 2 ? 'Account' : 'Payment'}
+                    {step === 1 ? 'Role' : 'Account'}
                   </span>
                 </div>
               ))}
@@ -1309,7 +1314,7 @@ const Signup: React.FC = () => {
                 <div 
                   className="h-full bg-red-500 transition-all duration-300"
                   style={{
-                    width: `${((currentStep - 1) / 2) * 100}%`,
+                    width: `${((currentStep - 1) / 1) * 100}%`,
                   }}
                 />
               </div>
