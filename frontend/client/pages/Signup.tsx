@@ -891,40 +891,7 @@ const Signup: React.FC = () => {
             
             {/* Card and billing address fields are deferred to onboarding/payment setup. */}
             
-            {/* Terms and Conditions */}
-            <div className="mt-8 pt-6 border-t">
-              <div className="flex items-start">
-                <div className="flex items-center h-5">
-                  <Checkbox
-                    id="acceptTermsPayment"
-                    className={cn('h-4 w-4 rounded', errors.acceptTerms && 'border-red-500')}
-                    {...register('acceptTerms')}
-                    onCheckedChange={async (checked) => {
-                      setValue('acceptTerms', !!checked, { shouldValidate: true });
-                      const valid = await trigger();
-                      if (checked && valid) {
-                        setCurrentStep(currentStep + 1);
-                      }
-                    }}
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="acceptTermsPayment" className="font-medium text-gray-700">
-                    I agree to the{' '}
-                    <a href="/terms" className="text-red-600 hover:text-red-500">
-                      Terms of Service
-                    </a>{' '}
-                    and{' '}
-                    <a href="/privacy" className="text-red-600 hover:text-red-500">
-                      Privacy Policy
-                    </a>
-                  </label>
-                  {errors.acceptTerms && (
-                    <p className="mt-1 text-sm text-red-600">{errors.acceptTerms.message}</p>
-                  )}
-                </div>
-              </div>
-            </div>
+            {/* Terms and Conditions moved to the end of the form */}
           </div>
         </div>
       </div>
@@ -940,40 +907,23 @@ const Signup: React.FC = () => {
 
   // Render date of birth field
   const renderDateOfBirth = () => (
-    <div>
+    <div className="mb-4">
       <Label htmlFor="dateOfBirth">Date of Birth</Label>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            id="dateOfBirth"
-            variant="outline"
-            className={cn(
-              'w-full justify-start text-left font-normal mt-1',
-              !date && 'text-muted-foreground',
-              errors.dateOfBirth && 'border-red-500'
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, 'PPP') : <span>Pick a date</span>}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={(newDate) => {
-              setDate(newDate);
-              setValue('dateOfBirth', newDate as Date);
-            }}
-            disabled={(date) =>
-              date > new Date() || date < new Date('1900-01-01')
-            }
-            initialFocus
-          />
-        </PopoverContent>
-      </Popover>
+      <Input
+        id="dateOfBirth"
+        type="date"
+        value={date ? format(date, 'yyyy-MM-dd') : ''}
+        onChange={e => {
+          const val = e.target.value ? new Date(e.target.value) : undefined;
+          setDate(val);
+          setValue('dateOfBirth', val);
+        }}
+        className={cn('w-full mt-1', errors.dateOfBirth && 'border-red-500')}
+        max={format(new Date(), 'yyyy-MM-dd')}
+        min="1900-01-01"
+      />
       {errors.dateOfBirth && (
-        <p className="mt-1 text-sm text-red-600">{errors.dateOfBirth.message}</p>
+        <p className="mt-1 text-xs text-red-600">{errors.dateOfBirth.message}</p>
       )}
     </div>
   );
@@ -1278,13 +1228,15 @@ const Signup: React.FC = () => {
 
             {/* Role-Specific Fields: All event organizer info is now deferred to onboarding. */}
 
-            {/* Terms and Conditions */}
-            <div className="pt-2">
-              <div className="flex items-start">
+            {/* Terms and Conditions - only one instance at the end of the form */}
+
+            {/* Terms and Conditions - only one instance at the end of the form */}
+            <div className="pt-4">
+              <div className="flex items-start mb-6">
                 <div className="flex items-center h-5">
                   <Checkbox
                     id="acceptTerms"
-                    className={cn('h-4 w-4', errors.acceptTerms && 'border-red-500')}
+                    className={cn('h-4 w-4 rounded', errors.acceptTerms && 'border-red-500')}
                     {...register('acceptTerms')}
                   />
                 </div>
@@ -1304,9 +1256,6 @@ const Signup: React.FC = () => {
                   )}
                 </div>
               </div>
-            </div>
-
-            <div className="pt-4">
               <Button 
                 type="submit" 
                 size="lg" 
@@ -1401,4 +1350,15 @@ const Signup: React.FC = () => {
   );
 };
 
-export default Signup;
+import NavBar from '@/components/ui/NavBar';
+import Footer from '@/components/ui/Footer';
+
+export default function SignupPageWrapper() {
+  return (
+    <>
+      <NavBar />
+      <Signup />
+      <Footer />
+    </>
+  );
+}
