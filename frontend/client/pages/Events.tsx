@@ -16,7 +16,7 @@ import Footer from "@/components/ui/Footer";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { useState } from "react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-// Remove EventCard import
+import { EventCard } from "@/components/ui/EventCard";
 
 export default function Events() {
   const events = [
@@ -26,10 +26,18 @@ export default function Events() {
       date: "Dec 15, 2024",
       time: "7:00 AM",
       location: "Central Park",
-      price: "Free",
-      spots: "15 spots left",
-      image:
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=300&h=200&fit=crop",
+      price: 0, // Free
+      capacity: 30,
+      spotsLeft: 15,
+      rating: 4.8,
+      isPopular: true,
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop",
+      tags: ["Yoga", "Beginner Friendly", "Outdoor"],
+      organizer: {
+        name: "Yoga with Sarah",
+        avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      description: "Start your day with a refreshing yoga session in the park. All levels welcome!"
     },
     {
       id: 2,
@@ -37,10 +45,18 @@ export default function Events() {
       date: "Dec 20, 2024",
       time: "10:00 AM",
       location: "Iron Box Gym",
-      price: "$25",
-      spots: "8 spots left",
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop",
+      price: 25,
+      capacity: 20,
+      spotsLeft: 8,
+      rating: 4.9,
+      isPopular: true,
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+      tags: ["CrossFit", "Competition", "Advanced"],
+      organizer: {
+        name: "Iron Box Athletics",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      description: "Test your limits in our quarterly CrossFit throwdown!"
     },
     {
       id: 3,
@@ -48,10 +64,18 @@ export default function Events() {
       date: "Dec 22, 2024",
       time: "9:00 AM",
       location: "Riverside Park",
-      price: "$10",
-      spots: "20 spots left",
-      image:
-        "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=300&h=200&fit=crop",
+      price: 10,
+      capacity: 25,
+      spotsLeft: 20,
+      rating: 4.5,
+      isPopular: false,
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=600&h=400&fit=crop",
+      tags: ["HIIT", "Outdoor", "All Levels"],
+      organizer: {
+        name: "FitFam Trainers",
+        avatar: "https://randomuser.me/api/portraits/women/68.jpg"
+      },
+      description: "High-intensity outdoor workout to get you in shape!"
     },
     {
       id: 4,
@@ -59,10 +83,18 @@ export default function Events() {
       date: "Jan 5, 2025",
       time: "2:00 PM",
       location: "Zen Wellness Studio",
-      price: "Free",
-      spots: "30 spots left",
-      image:
-        "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=300&h=200&fit=crop",
+      price: 0,
+      capacity: 40,
+      spotsLeft: 30,
+      rating: 4.7,
+      isPopular: false,
+      image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=600&h=400&fit=crop",
+      tags: ["Workshop", "Nutrition", "Wellness"],
+      organizer: {
+        name: "Zen Wellness",
+        avatar: "https://randomuser.me/api/portraits/men/75.jpg"
+      },
+      description: "Learn about balanced nutrition and healthy eating habits."
     },
   ];
 
@@ -331,58 +363,14 @@ export default function Events() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {events.map((event) => (
-                  <Link key={event.id} to={`/events/1`}>
-                    <div
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6">
-                        <h3 className="font-semibold text-lg mb-2">
-                          {event.title}
-                        </h3>
-                        <div className="space-y-2 mb-4">
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <Calendar className="w-3 h-3 mr-2" />
-                            {event.date}
-                          </p>
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <Clock className="w-3 h-3 mr-2" />
-                            {event.time}
-                          </p>
-                          <p className="text-gray-600 text-sm flex items-center">
-                            <MapPin className="w-3 h-3 mr-2" />
-                            {event.location}
-                          </p>
-                        </div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="font-semibold text-vibecore-red">
-                            {event.price}
-                          </span>
-                          <span className="text-sm text-gray-500">
-                            {event.spots}
-                          </span>
-                        </div>
-                        {/* Example tags for events, if any */}
-                        {/* <div className="flex flex-wrap gap-1 mb-4">
-                        {event.tags?.slice(0, 3).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs rounded-full"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div> */}
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          Join Event
-                        </Button>
-                      </div>
-                    </div>
+                  <Link key={event.id} to={`/events/${event.id}`} className="block">
+                    <EventCard 
+                      event={event} 
+                      onBook={() => {
+                        // Handle booking logic here
+                        console.log('Booking event:', event.id);
+                      }}
+                    />
                   </Link>
                 ))}
               </div>

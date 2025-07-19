@@ -15,22 +15,18 @@ import {
   Clock,
   Filter,
   Search as SearchIcon,
-  Building2,
-  Wifi,
-  Car,
-  Users,
   ChevronDown,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import { FacilityCard } from "@/components/ui/FacilityCard";
 import {
   Drawer,
   DrawerTrigger,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerClose,
 } from "@/components/ui/drawer";
 import { useState } from "react";
 import {
@@ -38,7 +34,6 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-// Remove FacilityCard import
 
 export default function Facilities() {
   const grounds = [
@@ -47,7 +42,7 @@ export default function Facilities() {
       name: "Elite Wellness Grounds",
       type: "Premium Grounds",
       location: "123 Main St, Downtown",
-      status: "Open",
+      status: "Popular",
       rating: 4.6,
       reviews: 248,
       openTime: "5:00 AM - 11:00 PM",
@@ -56,6 +51,8 @@ export default function Facilities() {
       tags: ["24/7", "Pool", "Sauna", "Personal Training"],
       amenities: ["WiFi", "Parking", "Showers", "Lockers"],
       price: "$49/month",
+      capacity: 100,
+      spotsLeft: 15,
     },
     {
       id: 2,
@@ -71,36 +68,42 @@ export default function Facilities() {
       tags: ["Massage", "Yoga", "Meditation", "Wellness"],
       amenities: ["WiFi", "Parking", "Relaxation Area", "Steam Room"],
       price: "$79/session",
+      capacity: 30,
+      spotsLeft: 8,
     },
     {
       id: 3,
       name: "AquaFit Pool Center",
       type: "Pool",
       location: "789 Water St, Eastside",
-      status: "Closed",
+      status: "Open",
       rating: 4.4,
       reviews: 89,
-      openTime: "Closed until 6:00 AM",
+      openTime: "6:00 AM - 10:00 PM",
       image:
         "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=300&fit=crop",
       tags: ["Swimming", "Water Aerobics", "Lessons", "Lap Pool"],
       amenities: ["Parking", "Showers", "Changing Rooms", "Equipment"],
       price: "$35/day",
+      capacity: 50,
+      spotsLeft: 20,
     },
     {
       id: 4,
       name: "Powerhouse Gym",
       type: "Gym",
       location: "321 Strength Blvd, Westside",
-      status: "Open",
+      status: "Popular",
       rating: 4.7,
       reviews: 302,
-      openTime: "6:00 AM - 10:00 PM",
+      openTime: "5:00 AM - 11:00 PM",
       image:
         "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
       tags: ["Weights", "Cardio", "Classes", "Nutrition"],
       amenities: ["WiFi", "Parking", "Café", "Pro Shop"],
       price: "$59/month",
+      capacity: 150,
+      spotsLeft: 25,
     },
     {
       id: 5,
@@ -116,6 +119,8 @@ export default function Facilities() {
       tags: ["Yoga", "Pilates", "Meditation", "Workshops"],
       amenities: ["WiFi", "Props Included", "Tea Bar", "Retail"],
       price: "$25/class",
+      capacity: 20,
+      spotsLeft: 5,
     },
     {
       id: 6,
@@ -131,6 +136,8 @@ export default function Facilities() {
       tags: ["CrossFit", "HIIT", "Olympic Lifting", "Competitions"],
       amenities: ["Parking", "Showers", "Equipment", "Coaching"],
       price: "$120/month",
+      capacity: 40,
+      spotsLeft: 12,
     },
   ];
 
@@ -467,91 +474,12 @@ export default function Facilities() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {grounds.map((ground) => (
-                  <Link key={ground.id} to={`/facilities/1`}>
-                    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                      <img
-                        className="w-full h-48 object-cover"
-                        src={ground.image}
-                        alt={ground.name}
-                      />
-                      <div className="p-5">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-lg font-semibold">
-                            {ground.name}
-                          </h3>
-                          <Badge
-                            variant={
-                              ground.status === "Open" ? "default" : "secondary"
-                            }
-                            className="ml-2"
-                          >
-                            {ground.status}
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-gray-500 mb-3">
-                          {ground.type}
-                        </p>
-                        <div className="flex items-center text-sm text-gray-500 mb-3">
-                          <MapPin className="w-4 h-4 mr-1" />
-                          {ground.location}
-                        </div>
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center">
-                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
-                            <span className="font-medium">
-                              {ground.rating}
-                            </span>
-                            <span className="text-gray-400 ml-1">
-                              ({ground.reviews})
-                            </span>
-                          </div>
-                          <div className="font-semibold">
-                            {ground.price}
-                          </div>
-                        </div>
-                        <div className="flex items-center text-sm text-gray-500 mb-3">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {ground.openTime}
-                        </div>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {ground.tags.slice(0, 3).map((tag) => (
-                            <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-500">
-                          <div className="flex -space-x-2 mr-2">
-                            {ground.amenities
-                              .slice(0, 4)
-                              .map((amenity, i) => (
-                                <div
-                                  key={i}
-                                  className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs"
-                                >
-                                  {amenity[0]}
-                                </div>
-                              ))}
-                            {ground.amenities.length > 4 && (
-                              <div className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs">
-                                +{ground.amenities.length - 4}
-                              </div>
-                            )}
-                          </div>
-                          {ground.amenities.slice(0, 4).join(" • ")}
-                          {ground.amenities.length > 4 &&
-                            ` • +${ground.amenities.length - 4} more`}
-                        </div>
-                        <Button className="w-full bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                          View More
-                        </Button>
-                      </div>
-                    </div>
-                  </Link>
+                  <div key={ground.id} className="h-full">
+                    <FacilityCard 
+                      facility={ground} 
+                      onBook={() => window.location.href = `/facilities/${ground.id}`}
+                    />
+                  </div>
                 ))}
               </div>
 

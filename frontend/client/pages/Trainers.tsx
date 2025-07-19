@@ -14,17 +14,12 @@ import {
   Star,
   Filter,
   Search as SearchIcon,
-  User,
-  Award,
-  Clock,
-  DollarSign,
-  CheckCircle,
   ChevronDown,
-  MessageCircle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
+import { CoachCard } from "@/components/ui/CoachCard";
 import {
   Drawer,
   DrawerTrigger,
@@ -39,7 +34,6 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-// Remove TrainerCard import
 
 export default function Trainers() {
   const coaches = [
@@ -400,11 +394,13 @@ export default function Trainers() {
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
-                  <DrawerClose asChild>
-                    <Button className="w-full mt-4 bg-vibecore-red text-white rounded-full">
-                      Apply Filters
-                    </Button>
-                  </DrawerClose>
+                  <div className="mt-4">
+                    <DrawerClose asChild>
+                      <Button className="w-full bg-vibecore-red text-white rounded-full">
+                        Apply Filters
+                      </Button>
+                    </DrawerClose>
+                  </div>
                 </div>
               </DrawerContent>
             </Drawer>
@@ -573,108 +569,15 @@ export default function Trainers() {
                 </Select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {coaches.map((coach) => (
-                  <Link key={coach.id} to={`/trainers/${coach.id}`}>
-                    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                      <div className="p-6">
-                        <div className="flex items-start space-x-4 mb-4">
-                          <img
-                            src={coach.image}
-                            alt={coach.name}
-                            className="w-16 h-16 rounded-full object-cover"
-                          />
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between mb-1">
-                              <h3 className="font-semibold text-lg">
-                                {coach.name}
-                              </h3>
-                              {coach.verified && (
-                                <Badge className="bg-green-100 text-green-800 rounded-full text-xs">
-                                  <CheckCircle className="w-3 h-3 mr-1" />
-                                  Verified
-                                </Badge>
-                              )}
-                            </div>
-                            <p className="text-gray-600 text-sm mb-1">
-                              {coach.specialty}
-                            </p>
-                            <p className="text-gray-500 text-sm flex items-center">
-                              <MapPin className="w-3 h-3 mr-1" />
-                              {coach.location}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-3 gap-4 mb-4 text-center">
-                          <div>
-                            <div className="flex items-center justify-center mb-1">
-                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                              <span className="font-semibold ml-1">
-                                {coach.rating}
-                              </span>
-                            </div>
-                            <p className="text-xs text-gray-500">
-                              {coach.reviews} reviews
-                            </p>
-                          </div>
-                          <div>
-                            <div className="flex items-center justify-center mb-1">
-                              <Award className="w-4 h-4 text-vibecore-red" />
-                              <span className="font-semibold ml-1">
-                                {coach.experience}
-                              </span>
-                            </div>
-                            <p className="text-xs text-gray-500">experience</p>
-                          </div>
-                          <div>
-                            <div className="flex items-center justify-center mb-1">
-                              <DollarSign className="w-4 h-4 text-green-600" />
-                              <span className="font-semibold ml-1">
-                                ${coach.hourlyRate}
-                              </span>
-                            </div>
-                            <p className="text-xs text-gray-500">per session</p>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {coach.specialties.slice(0, 3).map((specialty) => (
-                            <Badge
-                              key={specialty}
-                              variant="secondary"
-                              className="text-xs rounded-full"
-                            >
-                              {specialty}
-                            </Badge>
-                          ))}
-                        </div>
-
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center text-sm text-gray-600">
-                            <Clock className="w-4 h-4 mr-1" />
-                            <span>{coach.available}</span>
-                          </div>
-                          <span className="text-xs text-gray-500">
-                            {coach.responseTime}
-                          </span>
-                        </div>
-
-                        <div className="flex space-x-2">
-                          <Button className="flex-1 bg-vibecore-red hover:bg-vibecore-red-hover text-white rounded-full">
-                            Book Session
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="rounded-full px-4"
-                          >
-                            <MessageCircle className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
+                  <div key={coach.id} className="h-full">
+                    <CoachCard 
+                      coach={coach}
+                      onBook={() => window.location.href = `/trainers/${coach.id}`}
+                      onMessage={() => window.location.href = `/messages?to=${coach.id}`}
+                    />
+                  </div>
                 ))}
               </div>
 
