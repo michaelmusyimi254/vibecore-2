@@ -24,6 +24,7 @@ import FacilityProfile from "./pages/FacilityProfile";
 import ShopProfile from "./pages/ShopProfile";
 import Dashboard from "./pages/Dashboard";
 import Welcome from "./pages/Welcome";
+import Onboarding from "./pages/Onboarding";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="/shops/:id" element={<ShopProfile />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/welcome" element={<Welcome />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
